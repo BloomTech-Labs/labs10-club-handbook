@@ -1,0 +1,41 @@
+.members-container {
+  max-width: 800px;
+  margin: 0 auto;
+  border: 2px solid black;
+}
+
+.members-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.members-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 100px;
+  border: 2px solid black;
+}
+
+.members-info {
+  display: flex;
+  align-items: center;
+  border: 2px solid red;
+}
+
+.members-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid green;
+}
+.members-text {
+  display: flex;
+  align-items: center;
+}
+
+.members-actions {
+  display: flex;
+}
