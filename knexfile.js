@@ -2,16 +2,11 @@
 
 module.exports = {
   development: {
-    client: "pg",
+    client: "sqlite3",
     connection: {
-      database: "clubDB",
-      user: "username",
-      password: "password"
+      filename: "./data/devDB.db3"
     },
-    pool: {
-      min: 2,
-      max: 10
-    },
+    useNullAsDefault: true,
     migrations: {
       directory: "./data/migrations"
     },
