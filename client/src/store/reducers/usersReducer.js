@@ -10,7 +10,6 @@ import {
 
 const initialState = {
    users: [],
-   currentUser: null,
    loading: false,
    message: null,
    error: null,
@@ -44,7 +43,6 @@ const usersReducer = (state = initialState, action) => {
       case GET_USER_BY_ID:
          return {
             ...state,
-            currentUser: action.payload,
             message: null,
          };
 
