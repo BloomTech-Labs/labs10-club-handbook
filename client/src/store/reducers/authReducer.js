@@ -1,6 +1,6 @@
 import { START, FAIL, LOGIN, REGISTER, LOGOUT } from '../actions/authActions';
 
-initialState = {
+const initialState = {
    currentUser: null,
    loading: false,
    message: null,
