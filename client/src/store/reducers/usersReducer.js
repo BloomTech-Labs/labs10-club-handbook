@@ -1,4 +1,8 @@
-const initialState = {};
+const initialState = {
+   users: [],
+   message: null,
+   error: null
+};
 
 const usersReducer = (state = initialState, action) => {
    switch (action.type) {
