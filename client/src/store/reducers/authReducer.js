@@ -1,21 +1,13 @@
-import {
-   START,
-   FAIL,
-   GET_USERS,
-   GET_USER_BY_ID,
-   ADD_USER,
-   UPDATE_USER,
-   DELETE_USER,
-} from '../actions/usersActions';
+import { START, FAIL, LOGIN, REGISTER, LOGOUT } from '../actions/authActions';
 
-const initialState = {
-   users: [],
+initialState = {
+   currentUser: null,
    loading: false,
    message: null,
    error: null,
 };
 
-const usersReducer = (state = initialState, action) => {
+const authReducer = (state = initialState, action) => {
    switch (action.type) {
       case START:
          return {
@@ -32,36 +24,28 @@ const usersReducer = (state = initialState, action) => {
             error: action.error,
          };
 
-      case GET_USERS:
+      case LOGIN:
          return {
             ...state,
-            users: action.payload,
+            currentUser: action.payload,
             loading: false,
             message: null,
          };
 
-      case GET_USER_BY_ID:
+      case REGISTER:
          return {
             ...state,
+            currentUser: action.payload,
+            loading: false,
             message: null,
          };
 
-      case ADD_USER:
+      case LOGOUT:
          return {
-            ...state,
+            currentUser: null,
+            loading: false,
             message: null,
-         };
-
-      case UPDATE_USER:
-         return {
-            ...state,
-            message: null,
-         };
-
-      case DELETE_USER:
-         return {
-            ...state,
-            message: null,
+            error: null,
          };
 
       default:
@@ -69,4 +53,4 @@ const usersReducer = (state = initialState, action) => {
    }
 };
 
-export default usersReducer;
+export default authReducer;
