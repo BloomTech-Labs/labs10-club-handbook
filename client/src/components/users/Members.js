@@ -15,9 +15,9 @@ class Members extends React.Component {
       <div className="members-container">
         <AppBar position="static">
           <h1>ClubMembers</h1>
-          {/* <Button variant="text" color="white">
+          <Button variant="text" color="white">
             +ADD Member
-          </Button> */}
+          </Button>
         </AppBar>
 
         <div className="members-list">
