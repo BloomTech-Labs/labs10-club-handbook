@@ -1,7 +1,12 @@
 .members-container {
   max-width: 800px;
   margin: 0 auto;
-  border: 2px solid black;
+  /* border: 2px solid black; */
+}
+
+h3,
+.links {
+  margin: 0 10px;
 }
 
 .members-header {
@@ -14,28 +19,31 @@
 .members-list {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  margin: 100px;
-  border: 2px solid black;
 }
 
 .members-info {
   display: flex;
   align-items: center;
-  border: 2px solid red;
 }
 
 .members-details {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  border: 2px solid green;
 }
 .members-text {
   display: flex;
   align-items: center;
 }
-
 .members-actions {
   display: flex;
+}
+
+.members-management {
+  display: flex;
+}
+
+.members {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
 }
