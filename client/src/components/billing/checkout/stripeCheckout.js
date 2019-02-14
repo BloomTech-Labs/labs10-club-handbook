@@ -1,6 +1,6 @@
 import React from 'react'
 import { Elements } from 'react-stripe-elements'
-import CheckoutForm from './CheckoutForm'
+import CheckoutForm from './checkoutForm'
 
 class Checkout extends React.Component {
   render() {
