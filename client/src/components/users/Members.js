@@ -1,19 +1,19 @@
-import React from "react";
-import { AppBar, Button, Avatar } from "@material-ui/core";
+import React from 'react'
+import { AppBar, Button, Avatar } from '@material-ui/core'
 
-import { connect } from "react-redux";
-import { getUsers } from "../../store/actions/usersActions";
-import { Link } from "react-router-dom";
+import { connect } from 'react-redux'
+import { getUsers } from '../../store/actions/usersActions'
+import { Link } from 'react-router-dom'
 
-import "./Members.css";
+import './Members.css'
 
 class Members extends React.Component {
   componentDidMount() {
-    this.props.getUsers();
+    this.props.getUsers()
   }
   render() {
-    const { users } = this.props;
-    console.log(users[0]);
+    const { users } = this.props
+    console.log(users[0])
     return (
       <div className="members-container">
         <AppBar position="static">
@@ -26,7 +26,7 @@ class Members extends React.Component {
         </AppBar>
 
         <div className="members-list">
-          {users.slice(0, 2).map(user => {
+          {users.slice(0, 10).map(user => {
             return (
               <div className="members">
                 <div className="members-info">
@@ -35,7 +35,7 @@ class Members extends React.Component {
                     <div className="members-text">
                       <h3>first name</h3>
                       <h3>last name</h3>
-                      <h3>email</h3>
+                      <h3>{user.email}</h3>
                     </div>
                     <div className="members-management">
                       <Link className="links" to="/members/:id">
@@ -64,22 +64,22 @@ class Members extends React.Component {
                   </div>
                 </div>
               </div>
-            );
+            )
           })}
         </div>
       </div>
-    );
+    )
   }
 }
 
 const mapStateToProps = state => {
   return {
     users: state.users.users,
-    loading: state.users.loading
-  };
-};
+    loading: state.users.loading,
+  }
+}
 
 export default connect(
   mapStateToProps,
   { getUsers }
-)(Members);
+)(Members)
