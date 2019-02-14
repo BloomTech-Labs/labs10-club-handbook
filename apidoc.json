@@ -1,0 +1,8 @@
+{
+  "name": "Club Handbook API Documentation",
+  "version": "1.0.0",
+  "description": "API task list manager",
+  "template": {
+    "forceLanguage": "en"
+  }
+}
