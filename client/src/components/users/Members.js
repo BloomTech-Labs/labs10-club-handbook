@@ -3,6 +3,7 @@ import { AppBar, Button, Avatar } from "@material-ui/core";
 
 import { connect } from "react-redux";
 import { getUsers } from "../../store/actions/usersActions";
+import { Link } from "react-router-dom";
 
 import "./Members.css";
 
@@ -18,7 +19,7 @@ class Members extends React.Component {
         <AppBar position="static">
           <div className="members-header">
             <h1>ClubMembers</h1>
-            <Button variant="text" color="white">
+            <Button variant="text" color="secondary">
               +ADD Member
             </Button>
           </div>
@@ -27,18 +28,39 @@ class Members extends React.Component {
         <div className="members-list">
           {users.slice(0, 2).map(user => {
             return (
-              <div className="members-info">
-                <Avatar />
-                <div className="members-details">
-                  <div className="members-text">
-                    <h3>first name</h3>
-                    <h3>last name</h3>
-                    <h3>email</h3>
+              <div className="members">
+                <div className="members-info">
+                  <Avatar />
+                  <div className="members-details">
+                    <div className="members-text">
+                      <h3>first name</h3>
+                      <h3>last name</h3>
+                      <h3>email</h3>
+                    </div>
+                    <div className="members-management">
+                      <Link className="links" to="/members/:id">
+                        Edit
+                      </Link>
+                      <Link className="links" to="/members/:id">
+                        Remove
+                      </Link>
+                      <Link className="links" to="/members/:id">
+                        Send Notification
+                      </Link>
+                    </div>
                   </div>
-                  <div className="members-actions">
-                    <h3>Edit</h3>
-                    <h3>Remove</h3>
-                    <h3>Send Notification</h3>
+                </div>
+                <div className="members-actions">
+                  <div>
+                    <h3>Visited</h3>
+                    {/* <img alt="checkmark">CheckMark</img> */}
+                    <h3>date</h3>
+                  </div>
+
+                  <div>
+                    <h3>Signed</h3>
+                    {/* <img alt="checkmark">CheckMark</img> */}
+                    <h3>date</h3>
                   </div>
                 </div>
               </div>
