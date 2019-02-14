@@ -1,6 +1,6 @@
 import React from 'react'
 import { injectStripe } from 'react-stripe-elements'
-import CardSection from './CardSection'
+import CardSection from './cardSection'
 
 class CheckoutForm extends React.Component {
   handleSubmit = ev => {

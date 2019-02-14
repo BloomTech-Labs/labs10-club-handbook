@@ -9,7 +9,8 @@ class Auth {
         domain: "dev-6n5bufcg.auth0.com",
         clientID: "F0bq6WjQXm4UjZeR6ysqG3DSdvi0sfKo",
         redirectUri: "http://localhost:3000/callback", // where the user is redirected after the authentication is done???
-        audience: "https://dev-6n5bufcg.auth0.com/userinfo", // endpoint to get some user information???
+        // audience: "https://dev-6n5bufcg.auth0.com/userinfo", // endpoint to get some user information???
+        audience: "https://club-handbook.herokuapp.com/", // inserted this audience so that the Access Token returned is a full JWT
         responseType: "token id_token", 
         scope: "openid profile" 
     });
@@ -24,12 +25,15 @@ class Auth {
 
     handleAuthentication() {
         this.auth0.parseHash((err, authResults) => {
+            console.log(authResults);
+
             if (authResults && authResults.accessToken && authResults.idToken) {
                 let expiresAt = JSON.stringify((authResults.expiresIn) * 1000 + new Date().getTime());
                 localStorage.setItem("access_token", authResults.accessToken);
                 localStorage.setItem("id_token", authResults.idToken);
                 localStorage.setItem("expires_at", expiresAt);
-                location.hash = "";
+                localStorage.setItem("isLoggedIn", "true");
+                // location.hash = "";
                 // location.pathname = "/authenticated"; // *** Replace this with where we want to route the user after successfully logging in ***
             } else {
                 // location.pathname = LOGIN_FAILURE_PAGE; // *** Replace this with where we want to route the user if login failed ***
