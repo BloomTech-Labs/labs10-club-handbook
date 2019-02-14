@@ -1,6 +1,6 @@
 import React from 'react'
 import { StripeProvider } from 'react-stripe-elements'
-import Checkout from './checkout/stripeCheckout'
+import Checkout from './checkout/StripeCheckout'
 import styled from 'styled-components'
 
 const PaymentContainer = styled.div`
