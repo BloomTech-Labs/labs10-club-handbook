@@ -2,6 +2,7 @@
 
 import auth0 from 'auth0-js';
 import jwtDecode from 'jwt-decode';
+import axios from 'axios';
 
 class Auth {
     // initialzing Auth0. These are properties that can be found on auth0 webpage.
@@ -12,7 +13,7 @@ class Auth {
         // audience: "https://dev-6n5bufcg.auth0.com/userinfo", // endpoint to get some user information???
         audience: "https://club-handbook.herokuapp.com/", // inserted this audience so that the Access Token returned is a full JWT
         responseType: "token id_token", 
-        scope: "openid profile" 
+        scope: "openid profile email password" 
     });
 
     constructor() {
@@ -33,8 +34,28 @@ class Auth {
                 localStorage.setItem("id_token", authResults.idToken);
                 localStorage.setItem("expires_at", expiresAt);
                 localStorage.setItem("isLoggedIn", "true");
-                // location.hash = "";
-                // location.pathname = "/authenticated"; // *** Replace this with where we want to route the user after successfully logging in ***
+
+                // builds user object that we will send to our database
+                const user = this.getProfile();
+
+                const userObject = {
+                    username: user.email,
+                    password: 'fakePasswordssshhhhhh',
+                    firstname: user.given_name,
+                    lastname: user.family_name,
+                    email: user.email,
+                    admin: true,
+                };
+                
+                const endpoint = 'http://localhost:5000'
+
+                axios
+                    .post(`${endpoint}/api/users/register`, userObject)
+                    .then(res => {
+                        console.log(res);
+                    })
+                    .catch(err => console.log(err));
+
             } else {
                 // location.pathname = LOGIN_FAILURE_PAGE; // *** Replace this with where we want to route the user if login failed ***
                 console.log(err);
