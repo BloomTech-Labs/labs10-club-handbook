@@ -17,7 +17,7 @@ class Payment extends React.Component {
       body: JSON.stringify(token),
     }).then(response => {
       response.json().then(data => {
-        alert(`We are in business, ${data.email}`);
+        alert(`Thank you for your purchase!`);
       });
     });
   }
