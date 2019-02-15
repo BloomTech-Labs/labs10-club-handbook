@@ -52,6 +52,12 @@ router.get('/', async (req, res) => {
   }
 })
 
+/**
+ * @api {get} /api/users/:id Get User by ID
+ * @apiGroup users
+ *
+ * @apiSuccess {Object} user info
+ */
 //TODO- param ID must match ID on token
 router.get('/:id', async (req, res) => {
   try {
@@ -71,6 +77,12 @@ router.get('/:id', async (req, res) => {
   }
 })
 
+/**
+ * @api {patch} /api/users/:id Update User by ID
+ * @apiGroup users
+ *
+ * @apiSuccess {Object} updated user info
+ */
 //TODO- param ID must match ID on token
 router.patch(
   '/:id',
@@ -94,6 +106,12 @@ router.patch(
   }
 )
 
+/**
+ * @api {delete} /api/users/:id Delete User by ID
+ * @apiGroup users
+ *
+ * @apiSuccess {Object} confirmation message
+ */
 //TODO - param ID must match ID on token
 router.delete('/:id', async (req, res, next) => {
   try {

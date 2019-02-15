@@ -25,6 +25,7 @@ router.get('/', async (req, res) => {
  *
  * @apiSuccess {Object} single club object.
  */
+//TODO - confirm ownership auth
 router.get('/:id', checkClubExists, (req, res) => {
   res.status(200).json(req.body.club)
 })
@@ -43,6 +44,12 @@ router.post('/', async (req, res, next) => {
   }
 })
 
+/**
+ * @api {patch} /api/clubs/:id Update a Club
+ * @apiGroup clubs
+ *
+ * @apiSuccess {Object} updated club object
+ */
 //TODO- check user on token is admin for club ID param
 router.patch('/:id', async (req, res, next) => {
   try {
@@ -67,7 +74,14 @@ router.patch('/:id', async (req, res, next) => {
   }
 })
 
+/**
+ * @api {delete} /api/clubs/:id Delete a Club
+ * @apiGroup clubs
+ *
+ * @apiSuccess {Object} confirmation message
+ */
 //TODO - confirm ownership auth
+// will not delete if sections for club exist via PSQL constraint
 router.delete('/:id', async (req, res, next) => {
   try {
     let count = await db('clubs')
@@ -91,6 +105,7 @@ router.delete('/:id', async (req, res, next) => {
  *
  * @apiSuccess {Array} List of section objects.
  */
+//TODO - confirm ownership auth
 router.get('/:id/sections', checkClubExists, async (req, res) => {
   try {
     let sections = await db('clubs')
@@ -106,6 +121,98 @@ router.get('/:id/sections', checkClubExists, async (req, res) => {
         'sections.club_id'
       )
     res.status(200).json(sections)
+  } catch (err) {
+    res.status(500).json(err)
+  }
+})
+
+/**
+ * @api {post} /api/clubs/:id/sections Add Sections to a Club
+ * @apiGroup sections
+ *
+ * @apiSuccess {object} confirmation message and created section object
+ */
+//TODO - confirm ownership auth
+router.post('/:id/sections', async (req, res) => {
+  try {
+    req.body.club_id = req.params.id
+    let section = await db('sections')
+      .insert(req.body)
+      .returning('*')
+
+    res.status(201).json({ message: `section created`, section: section[0] })
+  } catch (err) {
+    res.status(500).json(err)
+  }
+})
+
+/**
+ * @api {patch} /api/clubs/:id/sections/:sectionId Update info of a Section
+ * @apiGroup sections
+ *
+ * @apiSuccess {object} confirmation message and updated section object
+ */
+//TODO - confirm ownership auth
+router.patch('/:id/sections/:sectionId', async (req, res, next) => {
+  try {
+    let section = await db('sections')
+      .where({ id: req.params.sectionId })
+      .update(req.body)
+      .returning('*')
+
+    res.status(200).json({ message: `section updated`, section: section[0] })
+  } catch (err) {
+    res.status(500).json(err)
+  }
+})
+
+/**
+ * @api {delete} /api/clubs/:id/sections Delete ALL sections of a club
+ * @apiGroup sections
+ *
+ * @apiSuccess {object} confirmation message
+ */
+//TODO - confirm ownership auth
+router.delete('/:id/sections', async (req, res, next) => {
+  try {
+    let count = await db('sections')
+      .where({ club_id: req.params.id })
+      .delete()
+    if (count) {
+      res
+        .status(200)
+        .json({ message: `sections deleted for club of id: ${req.params.id}` })
+    } else {
+      res
+        .status(404)
+        .json({ message: `no sections found for club of id: ${req.params.id}` })
+    }
+  } catch (err) {
+    res.status(500).json(err)
+  }
+})
+
+/**
+ * @api {delete} /api/clubs/:id/sections/:sectionId Delete a section by sectionId
+ * @apiGroup sections
+ *
+ * @apiSuccess {object} confirmation message
+ */
+//TODO - confirm ownership auth
+router.delete('/:id/sections/:sectionId', async (req, res, next) => {
+  try {
+    let count = await db('sections')
+      .where({ id: req.params.sectionId })
+      .delete()
+    if (count) {
+      res
+        .status(200)
+        .json({ message: `section of id: ${req.params.sectionId} deleted` })
+    } else {
+      res
+        .status(404)
+        .json({ message: `section of id: ${req.params.sectionId} not found` })
+    }
   } catch (err) {
     res.status(500).json(err)
   }
