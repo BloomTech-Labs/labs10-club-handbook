@@ -1,6 +1,5 @@
 import React from 'react'
-import { StripeProvider } from 'react-stripe-elements'
-import Checkout from './checkout/stripeCheckout'
+import StripeCheckout from 'react-stripe-checkout';
 import styled from 'styled-components'
 
 const PaymentContainer = styled.div`
@@ -10,15 +9,39 @@ const PaymentContainer = styled.div`
   display: flex;
   justify-content: center;
 `
-
-function Payment() {
-  return (
-    <PaymentContainer>
-      <StripeProvider apiKey="pk_test_M1Y5kyDDSB7dOAWXIhzOOqMV">
-        <Checkout />
-      </StripeProvider>
-    </PaymentContainer>
-  )
+class Payment extends React.Component {
+  onToken = (token) => {
+    console.log(token);
+    fetch('/billing', {
+      method: 'POST',
+      body: JSON.stringify(token),
+    }).then(response => {
+      response.json().then(data => {
+        alert(`We are in business, ${data.email}`);
+      });
+    });
+  }
+ 
+  render() {
+    return (
+      <PaymentContainer>
+      <StripeCheckout
+        token={this.onToken}
+        stripeKey="pk_test_M1Y5kyDDSB7dOAWXIhzOOqMV"
+      />
+      </PaymentContainer>
+    )
+  }
 }
+
+// function Payment() {
+//   return (
+//     <PaymentContainer>
+//       <StripeProvider apiKey="pk_test_M1Y5kyDDSB7dOAWXIhzOOqMV">
+//         <Checkout />
+//       </StripeProvider>
+//     </PaymentContainer>
+//   )
+// }
 
 export default Payment
