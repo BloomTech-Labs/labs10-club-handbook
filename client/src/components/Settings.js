@@ -28,8 +28,39 @@ class Settings extends React.Component {
                     margin="normal"
                     variant="outlined"
                     />
+                <div>
+                    <FormGroup row>
+                        <FormControlLabel 
+                            label="Email?"
+                            labelPlacement="start"
+                            control={
+                                <Checkbox
+                                    checked={this.state.checkedEmail}
+                                    onChange={this.handleChange('checkedEmail')}
+                                    value="checkedEmail"
+                                    color="primary"
+                                />
+                            }
+                        />
+                        <FormControlLabel 
+                            label="Text?"
+                            labelPlacement="start"
+                            control={
+                                <Checkbox
+                                    checked={this.state.checkedText}
+                                    onChange={this.handleChange('checkedText')}
+                                    value="checkedText"
+                                    color="primary"
+                                />
+                            }
+                        />
+                    </FormGroup>
+                </div>
                 <Button variant="contained" size="large" color="primary">
                     SAVE
+                </Button>
+                <Button variant="contained" size="large" color="secondary">
+                    LEAVE TEAM
                 </Button>
             </form>
         );
