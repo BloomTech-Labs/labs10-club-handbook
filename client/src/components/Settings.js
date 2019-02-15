@@ -2,6 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 import { FormGroup, FormControlLabel, TextField, Button, Checkbox } from '@material-ui/core';
 
+const SettingsContainer = styled.div`
+margin: auto;
+margin-top: 10px;
+display: flex;
+justify-content: center;
+align-items: center;
+width: 700px;
+height: 450px;
+`
 
 class Settings extends React.Component {
     state = {
@@ -15,6 +24,7 @@ class Settings extends React.Component {
 
     render() {
         return(
+            <SettingsContainer>
             <form>
                 <TextField
                     id="outlined-email"
@@ -63,6 +73,7 @@ class Settings extends React.Component {
                     LEAVE TEAM
                 </Button>
             </form>
+            </SettingsContainer>
         );
     }
 }
