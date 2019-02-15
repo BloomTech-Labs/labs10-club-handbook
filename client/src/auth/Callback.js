@@ -7,6 +7,7 @@ class Callback extends React.Component {
         console.log('Callback!!!!!')
         const auth = new Auth();
         auth.handleAuthentication();
+        
         this.props.history.push('/authenticated')
     }
 
