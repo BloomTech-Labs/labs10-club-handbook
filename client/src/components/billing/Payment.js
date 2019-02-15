@@ -12,7 +12,7 @@ const PaymentContainer = styled.div`
 class Payment extends React.Component {
   onToken = (token) => {
     console.log(token);
-    fetch('http://localhost:5000/payment', {
+    fetch('http://localhost:5000/payments', {
       method: 'POST',
       body: JSON.stringify(token),
     }).then(response => {
