@@ -7,6 +7,7 @@ import Members from './components/users/Members'
 import Login from './auth/Login'
 import Callback from './auth/Callback'
 import Authenticated from './auth/Authenticated'
+import SectionForm from './components/sections/SectionForm'
 import Settings from './components/Settings'
 
 class App extends Component {
@@ -25,6 +26,7 @@ class App extends Component {
               path="/authenticated"
               render={props => <Authenticated {...props} />}
             />
+            <Route path="/section-form" component={SectionForm} />
           </Switch>
         </div>
       </BrowserRouter>
