@@ -10,26 +10,20 @@ const db = require('../../config/dbConfig')
  *
  * @apiSuccess {Object} Success message and user ID.
  */
-router.post(
-  '/register',
-  checkUsername,
-  checkEmail,
-  hashPassword,
-  async (req, res) => {
-    try {
-      let ids = await db('users')
-        .insert(req.body)
-        .returning('id')
-      let user = await db('users')
-        .where({ id: ids[0] })
-        .select('username', 'firstname', 'lastname', 'email', 'id')
-        .first()
-      res.status(201).json({ message: 'user created', user })
-    } catch (err) {
-      res.status(500).json(err)
-    }
+router.post('/register', checkEmail, async (req, res) => {
+  try {
+    let ids = await db('users')
+      .insert(req.body)
+      .returning('id')
+    let user = await db('users')
+      .where({ id: ids[0] })
+      .select('firstname', 'lastname', 'email', 'id', 'img_url')
+      .first()
+    res.status(201).json({ message: 'user created', user })
+  } catch (err) {
+    res.status(500).json(err)
   }
-)
+})
 
 /**
  * @api {get} /api/users/register Get a List of Users
@@ -40,11 +34,11 @@ router.post(
 router.get('/', async (req, res) => {
   try {
     let users = await db('users').select(
-      'username',
       'firstname',
       'lastname',
       'email',
-      'id'
+      'id',
+      'img_url'
     )
     res.status(200).json(users)
   } catch (err) {
@@ -63,7 +57,7 @@ router.get('/:id', async (req, res) => {
   try {
     let user = await db('users')
       .where({ id: req.params.id })
-      .select('username', 'firstname', 'lastname', 'email', 'id')
+      .select('firstname', 'lastname', 'email', 'id', 'img_url')
       .first()
     if (user) {
       res.status(200).json(user)
@@ -84,27 +78,21 @@ router.get('/:id', async (req, res) => {
  * @apiSuccess {Object} updated user info
  */
 //TODO- param ID must match ID on token
-router.patch(
-  '/:id',
-  checkUsername,
-  checkEmail,
-  hashPassword,
-  async (req, res) => {
-    try {
-      await db('users')
-        .where({ id: req.params.id })
-        .update(req.body)
+router.patch('/:id', checkEmail, async (req, res) => {
+  try {
+    await db('users')
+      .where({ id: req.params.id })
+      .update(req.body)
 
-      let user = await db('users')
-        .where({ id: req.params.id })
-        .select('username', 'firstname', 'lastname', 'email', 'id')
-        .first()
-      res.status(200).json({ message: `user updated`, user })
-    } catch (err) {
-      res.status(500).json(err)
-    }
+    let user = await db('users')
+      .where({ id: req.params.id })
+      .select('firstname', 'lastname', 'email', 'id', 'img_url')
+      .first()
+    res.status(200).json({ message: `user updated`, user })
+  } catch (err) {
+    res.status(500).json(err)
   }
-)
+})
 
 /**
  * @api {delete} /api/users/:id Delete User by ID
