@@ -1,52 +1,51 @@
-import { START, FAIL, LOGIN, REGISTER, LOGOUT } from '../actions/authActions';
+import {
+      AUTHORIZATION_START,
+      AUTHORIZATION_SUCCESS,
+      AUTHORIZATION_FAIL,
+      LOGOUT_USER,
+} from '../actions/authActions';
 
 const initialState = {
    currentUser: null,
    loading: false,
    message: null,
    error: null,
+   authorizingUser: false,
+   userAuthorized: false
 };
 
 const authReducer = (state = initialState, action) => {
    switch (action.type) {
-      case START:
+      case AUTHORIZATION_START:
          return {
             ...state,
-            loading: true,
+            authorizingUser: true,
+            userAuthorized: false,
             message: action.message,
          };
 
-      case FAIL:
+      case AUTHORIZATION_SUCCESS:
          return {
-            ...state,
-            loading: false,
-            message: null,
-            error: action.error,
+               ...state,
+               authorizingUser: false,
+               userAuthorized: true,
+               message: action.message
          };
 
-      case LOGIN:
+      case AUTHORIZATION_FAIL:
          return {
-            ...state,
-            currentUser: action.payload,
-            loading: false,
-            message: null,
-         };
+               ...state,
+               authorizingUser: false,
+               userAuthorized: false,
+               message: action.message
+         }
 
-      case REGISTER:
+      case LOGOUT_USER:
          return {
-            ...state,
-            currentUser: action.payload,
-            loading: false,
-            message: null,
-         };
-
-      case LOGOUT:
-         return {
-            currentUser: null,
-            loading: false,
-            message: null,
-            error: null,
-         };
+               ...state,
+               userAuthorized: false,
+               message: action.message
+         }
 
       default:
          return state;

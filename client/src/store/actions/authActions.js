@@ -1,41 +1,48 @@
 import axios from 'axios';
+import Auth from '../../auth/Auth';;
 
-export const START = 'START';
-export const FAIL = 'FAIL';
-export const LOGIN = 'LOGIN';
-export const REGISTER = 'REGISTER';
-export const LOGOUT = 'LOGOUT';
+export const AUTHORIZATION_START = 'AUTHORIZATION_START';
+export const AUTHORIZATION_SUCCESS = 'AUTHORIZATION_SUCCESS';
+export const AUTHORIZATION_FAIL = 'AUTHORIZATION_FAIL';
+export const LOGOUT_USER = 'LOGOUT_USER';
 
-export const login = userInfo => dispatch => {
-   dispatch({ type: START, message: 'Logging in.' });
+const auth = new Auth();
 
-   axios
-      .post(`https://club-handbook.herokuapp.com/api/users/login`, userInfo)
-      .then(res => {
-         localStorage.setItem('token', res.data.token);
+export const signinUser = () => dispatch => {
+      dispatch({ type: AUTHORIZATION_START, message: 'Starting authorization.' })
 
-         dispatch({ type: LOGIN, payload: res.data });
-      })
-      .catch(err => {
-         dispatch({ type: FAIL, error: err });
-      });
+      // loads the auth0 lock widget > user signs up/logs in > route to Callback component
+      // handleAuthorization action creator is invoked when Callback component mounts
+      auth.login();
+   };
+
+
+export const handleAuthorization = () => dispatch => {
+      auth.handleAuthentication()
+            .then(res => {
+                  dispatch({ type: AUTHORIZATION_SUCCESS, message: 'User authorized.' })
+
+                  const userObject = {
+                        email: res.idTokenPayload.email,
+                        token: res.accessToken
+                  };
+
+                  axios
+                        .post(`https://club-handbook.herokuapp.com/api/users/register`, userObject)
+                        .then(res => {
+                              console.log(res);
+                        })
+                        .catch(err => console.log(err));
+            })
+            .catch(err => {
+                  console.log(err);
+                  dispatch({ type: AUTHORIZATION_FAIL, message: 'User not authorized.'})
+            });
 };
 
-export const register = userInfo => dispatch => {
-   dispatch({ type: START, message: 'New user is registering.' });
+export const logoutUser = () => dispatch => {
+      auth.logout();
 
-   axios
-      .post(`https://club-handbook.herokuapp.com/api/users/register`, userInfo)
-      .then(res => {
-         localStorage.setItem('token', res.data.token);
-         dispatch({ type: REGISTER, payload: res.data });
-      })
-      .catch(err => {
-         dispatch({ type: FAIL, error: err });
-      });
+      dispatch({ type: LOGOUT_USER, message: 'User logged out.' })
 };
 
-export const logout = () => {
-   localStorage.removeItem('token');
-   return { type: LOGOUT };
-};
