@@ -60,7 +60,7 @@ const usersReducer = (state = initialState, action) => {
     case UPDATE_USER:
       return {
         ...state,
-        users: users.map(user => {
+        users: state.users.map(user => {
           if (user.id === action.payload.id) {
             return { user: action.payload }
           }
