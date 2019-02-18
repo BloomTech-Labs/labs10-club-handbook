@@ -125,7 +125,7 @@ export const updateSection = (id, sectionId, sectionInfo) => dispatch => {
     )
     .then(res => {
       // returns a section object
-      dispatch({ type: ADD_SECTION_BY_CLUB_ID, payload: res.data })
+      dispatch({ type: UPDATE_SECTION_BY_CLUB_ID, payload: res.data })
     })
     .catch(err => {
       dispatch({ type: FAIL, error: err })
