@@ -36,10 +36,10 @@ export const getClubById = (id) => dispatch => {
     })
 }
 
-export const createClub = () => dispatch => {
+export const createClub = (clubInfo) => dispatch => {
     dispatch({type: START, message: `Creating new club`})
 
-    axios.get(`https://club-handbook.herokuapp.com/api/clubs`).then(res => {
+    axios.get(`https://club-handbook.herokuapp.com/api/clubs`, clubInfo).then(res => {
         // returns an object with the club details
         dispatch({type: CREATE_CLUB, payload: res.data}) 
     }).catch(err => {
@@ -47,10 +47,10 @@ export const createClub = () => dispatch => {
     })
 }
 
-export const updateClub = (id) => dispatch => {
+export const updateClub = (id, clubInfo) => dispatch => {
     dispatch({type: START, message: `Updating club`})
 
-    axios.get(`https://club-handbook.herokuapp.com/api/clubs/${id}`).then(res => {
+    axios.get(`https://club-handbook.herokuapp.com/api/clubs/${id}`, clubInfo).then(res => {
         // returns an object with the club details
         dispatch({type: UPDATE_CLUB, payload: res.data}) 
     }).catch(err => {
@@ -65,6 +65,17 @@ export const deleteClub = (id) => dispatch => {
     axios.get(`https://club-handbook.herokuapp.com/api/clubs/${id}`).then(res => {
         // returns message: `club deleted`
         dispatch({type: DELETE_CLUB, payload: res.data}) 
+    }).catch(err => {
+        dispatch({type: FAIL, error: err})
+    })
+}
+
+export const getClubSections = (id) => dispatch => {
+    dispatch({type: START, message: `Getting club sections`})
+
+    axios.get(`https://club-handbook.herokuapp.com/api/clubs/${id}/sections`).then(res => {
+        // returns an array of section objects
+        dispatch({type: GET_CLUB_SECTIONS, payload: res.data}) 
     }).catch(err => {
         dispatch({type: FAIL, error: err})
     })
