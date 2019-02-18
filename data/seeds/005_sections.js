@@ -14,10 +14,15 @@ exports.seed = function(knex, Promise) {
     }
   }
   // Deletes ALL existing entries
-  return knex('sections')
-    .del()
-    .then(function() {
-      // Inserts seed entries
-      return knex('sections').insert(sections)
-    })
+  return (
+    // knex('sections')
+    //   .truncate()
+    knex
+      .raw('TRUNCATE TABLE sections RESTART IDENTITY CASCADE')
+
+      .then(function() {
+        // Inserts seed entries
+        return knex('sections').insert(sections)
+      })
+  )
 }

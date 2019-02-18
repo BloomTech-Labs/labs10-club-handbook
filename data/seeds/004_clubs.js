@@ -11,10 +11,15 @@ exports.seed = function(knex, Promise) {
     })
   }
   // Deletes ALL existing entries
-  return knex('clubs')
-    .del()
-    .then(function() {
-      // Inserts seed entries
-      return knex('clubs').insert(clubs)
-    })
+  return (
+    // knex('clubs')
+    //   .truncate()
+    knex
+      .raw('TRUNCATE TABLE clubs RESTART IDENTITY CASCADE')
+
+      .then(function() {
+        // Inserts seed entries
+        return knex('clubs').insert(clubs)
+      })
+  )
 }
