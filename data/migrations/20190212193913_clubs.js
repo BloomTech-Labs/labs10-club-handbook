@@ -19,6 +19,18 @@ exports.up = function(knex, Promise) {
       .references('id')
       .inTable('colors')
 
+    tbl
+      .integer('title_font')
+      .unsigned()
+      .references('id')
+      .inTable('fonts')
+
+    tbl
+      .integer('body_font')
+      .unsigned()
+      .references('id')
+      .inTable('fonts')
+
     tbl.text('handbook_url')
   })
 }
