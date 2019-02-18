@@ -25,3 +25,14 @@ export const getClubs = () => dispatch => {
     })
 }
 
+export const getClubById = (id) => dispatch => {
+    dispatch({type: START, message: `Getting club by id`})
+
+    axios.get(`https://club-handbook.herokuapp.com/api/clubs/${id}`).then(res => {
+        // returns an object with the club details
+        dispatch({type: GET_CLUB_BY_ID, payload: res.data}) 
+    }).catch(err => {
+        dispatch({type: FAIL, error: err})
+    })
+}
+
