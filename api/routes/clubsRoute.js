@@ -30,6 +30,13 @@ router.get('/:id', checkClubExists, (req, res) => {
   res.status(200).json(req.body.club)
 })
 
+/**
+ * @api {post} /api/clubs Create a new Club
+ * @apiGroup clubs
+ *
+ * @apiSuccess {Object} single club object.
+ */
+//TODO - confirm ownership auth
 router.post('/', async (req, res, next) => {
   try {
     let ids = await db('clubs')
