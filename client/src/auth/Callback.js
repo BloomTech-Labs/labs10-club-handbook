@@ -1,21 +1,20 @@
 import React from 'react';
-import Auth from './Auth';
+import { connect } from 'react-redux';
+import { handleAuthorization } from '../store/actions/authActions';
 
 
 class Callback extends React.Component {
+    
     componentDidMount() {
-        console.log('Callback!!!!!')
-        const auth = new Auth();
-        auth.handleAuthentication();
-        
+        this.props.handleAuthorization();
         this.props.history.push('/authenticated')
-    }
+    };
 
     render() {
         return (
             <div>Loading...</div>
-        )
-    }
-}
+        );
+    };
+};
 
-export default Callback;
+export default connect(null, { handleAuthorization })(Callback);

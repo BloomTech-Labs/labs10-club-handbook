@@ -1,5 +1,7 @@
 import React from 'react';
 import Auth from './Auth';
+import { connect } from 'react-redux';
+import { logoutUser } from '../store/actions/authActions';
 
 const auth = new Auth();
 
@@ -20,4 +22,4 @@ class Authenticated extends React.Component {
     }
 }
 
-export default Authenticated;
+export default connect(null, { logoutUser })(Authenticated);

@@ -1,10 +1,16 @@
 import React from 'react';
-import Auth from './Auth';
+// import Auth from './Auth';
+import { connect } from 'react-redux';
+import { signinUser } from '../store/actions/authActions';
 
-const auth = new Auth();
+// const auth = new Auth();
 
 class Login extends React.Component {
 
+    handleSubmit = event => {
+        console.log('handleSubmit button clicked');
+        this.props.signinUser();
+    };
 
     render() {
         return (
@@ -13,11 +19,11 @@ class Login extends React.Component {
                     <h2>Hello, please login or register</h2>
                 </div>
                 <div>
-                    <button onClick={auth.login}>Login/Register</button>
+                    <button onClick={this.handleSubmit}>Login/Register</button>
                 </div>
             </div>
         )
     }
 };
 
-export default Login;
+export default connect(null, { signinUser })(Login);
