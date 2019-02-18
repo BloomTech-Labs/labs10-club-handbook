@@ -131,3 +131,17 @@ export const updateSection = (id, sectionId, sectionInfo) => dispatch => {
       dispatch({ type: FAIL, error: err })
     })
 }
+
+export const deleteAllSections = id => dispatch => {
+  dispatch({ type: START, message: `Deleting all sections` })
+
+  axios
+    .get(`https://club-handbook.herokuapp.com/api/clubs/${id}/sections`)
+    .then(res => {
+      // returns a message
+      dispatch({ type: DELETE_ALL_SECTIONS_BY_CLUB_ID, payload: res.data })
+    })
+    .catch(err => {
+      dispatch({ type: FAIL, error: err })
+    })
+}
