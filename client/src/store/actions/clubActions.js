@@ -37,11 +37,11 @@ export const getClubById = (id) => dispatch => {
 }
 
 export const createClub = () => dispatch => {
-    dispatch({type: START, message: `Creating a new club`})
+    dispatch({type: START, message: `Creating new club`})
 
     axios.get(`https://club-handbook.herokuapp.com/api/clubs`).then(res => {
         // returns an object with the club details
-        dispatch({type: UPDATE_CLUB, payload: res.data}) 
+        dispatch({type: CREATE_CLUB, payload: res.data}) 
     }).catch(err => {
         dispatch({type: FAIL, error: err})
     })
@@ -53,6 +53,18 @@ export const updateClub = (id) => dispatch => {
     axios.get(`https://club-handbook.herokuapp.com/api/clubs/${id}`).then(res => {
         // returns an object with the club details
         dispatch({type: UPDATE_CLUB, payload: res.data}) 
+    }).catch(err => {
+        dispatch({type: FAIL, error: err})
+    })
+}
+
+// will not delete if sections for club exist via PSQL constraint
+export const deleteClub = (id) => dispatch => {
+    dispatch({type: START, message: `Deleting club`})
+
+    axios.get(`https://club-handbook.herokuapp.com/api/clubs/${id}`).then(res => {
+        // returns message: `club deleted`
+        dispatch({type: DELETE_CLUB, payload: res.data}) 
     }).catch(err => {
         dispatch({type: FAIL, error: err})
     })
