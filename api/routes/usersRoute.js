@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-const bcrypt = require('bcryptjs')
 
 const db = require('../../config/dbConfig')
 
@@ -98,7 +97,7 @@ router.patch('/:id', checkEmail, async (req, res) => {
  * @api {delete} /api/users/:id Delete User by ID
  * @apiGroup users
  *
- * @apiSuccess {Object} confirmation message
+ * @apiSuccess {Object} confirmation message and id
  */
 //TODO - param ID must match ID on token
 router.delete('/:id', async (req, res, next) => {
@@ -107,9 +106,10 @@ router.delete('/:id', async (req, res, next) => {
       .where({ id: req.params.id })
       .delete()
     if (count) {
-      res
-        .status(200)
-        .json({ message: `successful removal of user of ID: ${req.params.id}` })
+      res.status(200).json({
+        message: `successful removal of user of ID: ${req.params.id}`,
+        id: req.params.id,
+      })
     } else {
       res
         .status(404)
@@ -121,20 +121,20 @@ router.delete('/:id', async (req, res, next) => {
 })
 
 // defined middleware functions
-async function checkUsername(req, res, next) {
-  if (req.body.username) {
-    let name = await db('users')
-      .where({ username: req.body.username })
-      .first()
-    if (name && name.id != req.params.id) {
-      res.status(400).json({ message: `username in use` })
-    } else {
-      next()
-    }
-  } else {
-    next()
-  }
-}
+// async function checkUsername(req, res, next) {
+//   if (req.body.username) {
+//     let name = await db('users')
+//       .where({ username: req.body.username })
+//       .first()
+//     if (name && name.id != req.params.id) {
+//       res.status(400).json({ message: `username in use` })
+//     } else {
+//       next()
+//     }
+//   } else {
+//     next()
+//   }
+// }
 
 async function checkEmail(req, res, next) {
   if (req.body.email) {
@@ -150,13 +150,14 @@ async function checkEmail(req, res, next) {
     next()
   }
 }
-async function hashPassword(req, res, next) {
-  if (req.body.password) {
-    req.body.password = bcrypt.hashSync(req.body.password, 12)
-    next()
-  } else {
-    next()
-  }
-}
+
+// async function hashPassword(req, res, next) {
+//   if (req.body.password) {
+//     req.body.password = bcrypt.hashSync(req.body.password, 12)
+//     next()
+//   } else {
+//     next()
+//   }
+// }
 
 module.exports = router

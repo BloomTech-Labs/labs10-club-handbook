@@ -78,7 +78,7 @@ router.patch('/:id', async (req, res, next) => {
  * @api {delete} /api/clubs/:id Delete a Club
  * @apiGroup clubs
  *
- * @apiSuccess {Object} confirmation message
+ * @apiSuccess {Object} confirmation message and id
  */
 //TODO - confirm ownership auth
 // will not delete if sections for club exist via PSQL constraint
@@ -88,7 +88,7 @@ router.delete('/:id', async (req, res, next) => {
       .where({ id: req.params.id })
       .delete()
     if (count) {
-      res.status(200).json({ message: `club deleted` })
+      res.status(200).json({ message: `club deleted`, id: req.params.id })
     } else {
       res
         .status(404)
@@ -196,7 +196,7 @@ router.delete('/:id/sections', async (req, res, next) => {
  * @api {delete} /api/clubs/:id/sections/:sectionId Delete a section by sectionId
  * @apiGroup sections
  *
- * @apiSuccess {object} confirmation message
+ * @apiSuccess {object} confirmation message and id
  */
 //TODO - confirm ownership auth
 router.delete('/:id/sections/:sectionId', async (req, res, next) => {
@@ -205,9 +205,10 @@ router.delete('/:id/sections/:sectionId', async (req, res, next) => {
       .where({ id: req.params.sectionId })
       .delete()
     if (count) {
-      res
-        .status(200)
-        .json({ message: `section of id: ${req.params.sectionId} deleted` })
+      res.status(200).json({
+        message: `section of id: ${req.params.sectionId} deleted`,
+        id: req.params.sectionId,
+      })
     } else {
       res
         .status(404)
