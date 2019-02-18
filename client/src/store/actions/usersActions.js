@@ -14,6 +14,7 @@ export const getUsers = () => dispatch => {
   axios
     .get('https://club-handbook.herokuapp.com/api/users')
     .then(res => {
+      // returns an array of user objects
       dispatch({ type: GET_USERS, payload: res.data })
     })
     .catch(err => {
@@ -27,6 +28,7 @@ export const getUserById = id => dispatch => {
   axios
     .get(`https://club-handbook.herokuapp.com/api/users/${id}`)
     .then(res => {
+      // returns a user object
       dispatch({ type: GET_USER_BY_ID, payload: res.data })
     })
     .catch(err => {
@@ -38,8 +40,9 @@ export const addUser = user => dispatch => {
   dispatch({ type: START, message: `Adding a user` })
 
   axios
-    .get('https://club-handbook.herokuapp.com/api/users', user)
+    .post('https://club-handbook.herokuapp.com/api/users', user)
     .then(res => {
+      // returns an object with the added user details
       dispatch({ type: ADD_USER, payload: res.data })
     })
     .catch(err => {
@@ -51,8 +54,9 @@ export const updateUser = id => dispatch => {
   dispatch({ type: START, message: `Updating user` })
 
   axios
-    .get(`https://club-handbook.herokuapp.com/api/users/${id}`)
+    .patch(`https://club-handbook.herokuapp.com/api/users/${id}`)
     .then(res => {
+      // returns the user id
       dispatch({ type: UPDATE_USER, payload: res.data })
     })
     .catch(err => {
@@ -64,8 +68,9 @@ export const deleteUser = id => dispatch => {
   dispatch({ type: START, message: `Deleting user` })
 
   axios
-    .get(`https://club-handbook.herokuapp.com/api/users/${id}`)
+    .delete(`https://club-handbook.herokuapp.com/api/users/${id}`)
     .then(res => {
+      // returns the user id
       dispatch({ type: DELETE_USER, payload: res.data })
     })
     .catch(err => {
