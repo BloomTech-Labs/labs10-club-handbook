@@ -45,7 +45,7 @@ export const createClub = clubInfo => dispatch => {
   dispatch({ type: START, message: `Creating new club` })
 
   axios
-    .get(`https://club-handbook.herokuapp.com/api/clubs`, clubInfo)
+    .post(`https://club-handbook.herokuapp.com/api/clubs`, clubInfo)
     .then(res => {
       // returns an object with the club details
       dispatch({ type: CREATE_CLUB, payload: res.data })
@@ -59,7 +59,7 @@ export const updateClub = (id, clubInfo) => dispatch => {
   dispatch({ type: START, message: `Updating club` })
 
   axios
-    .get(`https://club-handbook.herokuapp.com/api/clubs/${id}`, clubInfo)
+    .patch(`https://club-handbook.herokuapp.com/api/clubs/${id}`, clubInfo)
     .then(res => {
       // returns an object with the club details
       dispatch({ type: UPDATE_CLUB, payload: res.data })
@@ -74,7 +74,7 @@ export const deleteClub = id => dispatch => {
   dispatch({ type: START, message: `Deleting club` })
 
   axios
-    .get(`https://club-handbook.herokuapp.com/api/clubs/${id}`)
+    .delete(`https://club-handbook.herokuapp.com/api/clubs/${id}`)
     .then(res => {
       // returns message: `club deleted`
       dispatch({ type: DELETE_CLUB, payload: res.data })
@@ -102,7 +102,7 @@ export const addSection = (id, sectionInfo) => dispatch => {
   dispatch({ type: START, message: `Adding a section` })
 
   axios
-    .get(
+    .post(
       `https://club-handbook.herokuapp.com/api/clubs/${id}/sections`,
       sectionInfo
     )
@@ -119,7 +119,7 @@ export const updateSection = (id, sectionId, sectionInfo) => dispatch => {
   dispatch({ type: START, message: `Updating section` })
 
   axios
-    .get(
+    .patch(
       `https://club-handbook.herokuapp.com/api/clubs/${id}/sections/${sectionId}`,
       sectionInfo
     )
@@ -136,7 +136,7 @@ export const deleteAllSections = id => dispatch => {
   dispatch({ type: START, message: `Deleting all sections` })
 
   axios
-    .get(`https://club-handbook.herokuapp.com/api/clubs/${id}/sections`)
+    .delete(`https://club-handbook.herokuapp.com/api/clubs/${id}/sections`)
     .then(res => {
       // returns a message
       dispatch({ type: DELETE_ALL_SECTIONS_BY_CLUB_ID, payload: res.data })
@@ -150,7 +150,7 @@ export const deleteSectionById = (id, sectionId) => dispatch => {
   dispatch({ type: START, message: `Deleting section` })
 
   axios
-    .get(
+    .delete(
       `https://club-handbook.herokuapp.com/api/clubs/${id}/sections/${sectionId}`
     )
     .then(res => {

@@ -45,6 +45,7 @@ const clubReducer = (state = initialState, action) => {
         ...state,
         clubs: action.payload,
         loading: false,
+        message: null,
       }
 
     case GET_CLUB_BY_ID:
@@ -52,6 +53,7 @@ const clubReducer = (state = initialState, action) => {
         ...state,
         clubById: action.payload,
         loading: false,
+        message: null,
       }
 
     case CREATE_CLUB:
@@ -59,6 +61,7 @@ const clubReducer = (state = initialState, action) => {
         ...state,
         clubs: [...state.clubs, action.payload],
         loading: false,
+        message: null,
       }
 
     case UPDATE_CLUB:
@@ -70,6 +73,7 @@ const clubReducer = (state = initialState, action) => {
           }
         }),
         loading: false,
+        message: null,
       }
 
     case DELETE_CLUB:
@@ -77,6 +81,7 @@ const clubReducer = (state = initialState, action) => {
         ...state,
         clubs: state.clubs.filter(club => club.id !== action.payload),
         loading: false,
+        message: null,
       }
 
     case GET_CLUB_SECTIONS:
@@ -84,6 +89,7 @@ const clubReducer = (state = initialState, action) => {
         ...state,
         sections: action.payload,
         loading: false,
+        message: null,
       }
 
     case ADD_SECTION_BY_CLUB_ID:
@@ -91,6 +97,7 @@ const clubReducer = (state = initialState, action) => {
         ...state,
         sections: [...state.sections, action.payload],
         loading: false,
+        message: null,
       }
 
     case UPDATE_SECTION_BY_CLUB_ID:
@@ -102,6 +109,7 @@ const clubReducer = (state = initialState, action) => {
           }
         }),
         loading: false,
+        message: null,
       }
 
     case DELETE_ALL_SECTIONS_BY_CLUB_ID:
@@ -109,6 +117,7 @@ const clubReducer = (state = initialState, action) => {
         ...state,
         sections: [],
         loading: false,
+        message: null,
       }
 
     case DELETE_SECTION_BY_SECTION_ID:
@@ -117,6 +126,8 @@ const clubReducer = (state = initialState, action) => {
         sections: state.sections.filter(
           section => section.id !== action.payload
         ),
+        loading: false,
+        message: null,
       }
 
     default:
