@@ -36,3 +36,14 @@ export const getClubById = (id) => dispatch => {
     })
 }
 
+export const createClub = () => dispatch => {
+    dispatch({type: START, message: `Creating a new club`})
+
+    axios.get(`https://club-handbook.herokuapp.com/api/clubs`).then(res => {
+        // returns an object with the club details
+        dispatch({type: UPDATE_CLUB, payload: res.data}) 
+    }).catch(err => {
+        dispatch({type: FAIL, error: err})
+    })
+}
+
