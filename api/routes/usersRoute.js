@@ -11,8 +11,8 @@ const { validateToken, getInfoFromToken } = require('../helpers/authHelper')
 /**
  * @api {post} /api/users/register Add a User
  * @apiGroup users
- *
- * @apiSuccess {Object} Success message and user ID.
+ * @apiDescription accessToken and idToken must be sent in body, this is intended for club owners registering and signing in throught auth0, this is not intended for adding members or magic-link login
+ * @apiSuccess {text} n/a 'welcome' or 'welcome back'
  */
 router.post('/register', async (req, res) => {
   let userInfo = jwtdecode(req.body.idToken)
@@ -61,8 +61,9 @@ router.post('/register', async (req, res) => {
 /**
  * @api {post} /api/users/addMember Add a Club Member
  * @apiGroup members
- *
- * @apiSuccess {Object} Success message and user object.
+ * @apiHeader authorization access token
+ * @apiSuccess {String} message Success message and user object.
+ * @apiSuccess {object} user created member object
  */
 router.post(
   '/addMember',
@@ -88,8 +89,9 @@ router.post(
 /**
  * @api {patch} /api/users/addMember/:id Edit a Club Member
  * @apiGroup members
- *
- * @apiSuccess {Object} Success message and updated user object.
+ * @apiHeader authorization access token
+ * @apiSuccess {String} message Success message and user object.
+ * @apiSuccess {object} user updated member object
  */
 router.patch(
   '/addMember/:id',
@@ -115,9 +117,10 @@ router.patch(
 /**
  * @api {delete} /api/users/addMember/:id Delete a Club Member
  * @apiGroup members
- *
- * @apiSuccess {Object} Success message and id of deleted user.
- */
+ * @apiHeader authorization access token
+ * @apiSuccess {String} message Success message and user object.
+ * @apiSuccess {integer} id id of deleted member
+ * */
 router.delete(
   '/addMember/:id',
   validateToken,
@@ -137,20 +140,21 @@ router.delete(
 
 /**
  * @api {get} /api/users/register Get a List of Users
+ * @apiDeprecated [not needed, not protected, TODO remove]
  * @apiGroup users
- *
  * @apiSuccess {Array} List of user objects.
  */
 router.get('/', async (req, res) => {
   try {
-    let users = await db('users').select(
-      'firstname',
-      'lastname',
-      'email',
-      'id',
-      'img_url',
-      'club_id'
-    )
+    let users = await db('users')
+    // .select(
+    //   'firstname',
+    //   'lastname',
+    //   'email',
+    //   'id',
+    //   'img_url',
+    //   'club_id'
+    // )
     res.status(200).json(users)
   } catch (err) {
     res.status(500).json(err)
@@ -160,8 +164,8 @@ router.get('/', async (req, res) => {
 /**
  * @api {get} /api/users/:id Get User by ID
  * @apiGroup users
- *
- * @apiSuccess {Object} user info
+ * @apiHeader authorization access token
+ * @apiSuccess {Object} user user object
  */
 //TODO- param ID must match ID on token
 router.get(
@@ -173,7 +177,7 @@ router.get(
     try {
       let user = await db('users')
         .where({ id: req.params.id })
-        .select('firstname', 'lastname', 'email', 'id', 'img_url', 'club_id')
+        // .select('firstname', 'lastname', 'email', 'id', 'img_url', 'club_id')
         .first()
       if (user) {
         res.status(200).json(user)
@@ -191,8 +195,9 @@ router.get(
 /**
  * @api {patch} /api/users/:id Update User by ID
  * @apiGroup users
- *
- * @apiSuccess {Object} updated user info
+ * @apiHeader authorization access token
+ * @apiSuccess {String} message Success message and user object.
+ * @apiSuccess {object} user updated user object
  */
 //TODO- param ID must match ID on token
 router.patch(
@@ -208,7 +213,7 @@ router.patch(
 
       let user = await db('users')
         .where({ id: req.params.id })
-        .select('firstname', 'lastname', 'email', 'id', 'img_url', 'club_id')
+        // .select('firstname', 'lastname', 'email', 'id', 'img_url', 'club_id')
         .first()
       res.status(200).json({ message: `user updated`, user })
     } catch (err) {
@@ -220,8 +225,9 @@ router.patch(
 /**
  * @api {delete} /api/users/:id Delete User by ID
  * @apiGroup users
- *
- * @apiSuccess {Object} confirmation message and id
+ * @apiHeader authorization access token
+ * @apiSuccess {String} message Success message and user object.
+ * @apiSuccess {integer} id id of deleted user
  */
 //TODO - param ID must match ID on token
 router.delete(

@@ -4,15 +4,34 @@ define({ "api": [
     "url": "/api/clubs/:id",
     "title": "Delete a Club",
     "group": "clubs",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "authorization",
+            "description": "<p>access token</p>"
+          }
+        ]
+      }
+    },
     "success": {
       "fields": {
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "Object",
+            "type": "string",
             "optional": false,
-            "field": "confirmation",
-            "description": "<p>message and id</p>"
+            "field": "message",
+            "description": "<p>success message</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>id of deleted club</p>"
           }
         ]
       }
@@ -27,6 +46,9 @@ define({ "api": [
     "url": "/api/clubs",
     "title": "Request List of Clubs",
     "group": "clubs",
+    "deprecated": {
+      "content": "[not needed, not protected, TODO remove]"
+    },
     "success": {
       "fields": {
         "Success 200": [
@@ -34,8 +56,8 @@ define({ "api": [
             "group": "Success 200",
             "type": "Array",
             "optional": false,
-            "field": "List",
-            "description": "<p>of Club objects.</p>"
+            "field": "Clubs",
+            "description": "<p>List of Club objects.</p>"
           }
         ]
       }
@@ -50,6 +72,18 @@ define({ "api": [
     "url": "/api/clubs/:id",
     "title": "get member list of a club",
     "group": "clubs",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "authorization",
+            "description": "<p>access token</p>"
+          }
+        ]
+      }
+    },
     "success": {
       "fields": {
         "Success 200": [
@@ -57,8 +91,8 @@ define({ "api": [
             "group": "Success 200",
             "type": "Array",
             "optional": false,
-            "field": "array",
-            "description": "<p>of members objects</p>"
+            "field": "members",
+            "description": "<p>Array of members objects</p>"
           }
         ]
       }
@@ -73,6 +107,18 @@ define({ "api": [
     "url": "/api/clubs/:id",
     "title": "Request Club by ID",
     "group": "clubs",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "authorization",
+            "description": "<p>access token</p>"
+          }
+        ]
+      }
+    },
     "success": {
       "fields": {
         "Success 200": [
@@ -80,8 +126,8 @@ define({ "api": [
             "group": "Success 200",
             "type": "Object",
             "optional": false,
-            "field": "single",
-            "description": "<p>club object.</p>"
+            "field": "Club",
+            "description": "<p>single club object.</p>"
           }
         ]
       }
@@ -96,6 +142,18 @@ define({ "api": [
     "url": "/api/clubs/:id/sections",
     "title": "Request Sections of a Club",
     "group": "clubs",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "authorization",
+            "description": "<p>access token</p>"
+          }
+        ]
+      }
+    },
     "success": {
       "fields": {
         "Success 200": [
@@ -103,8 +161,8 @@ define({ "api": [
             "group": "Success 200",
             "type": "Array",
             "optional": false,
-            "field": "List",
-            "description": "<p>of section objects.</p>"
+            "field": "sections",
+            "description": "<p>List of section objects.</p>"
           }
         ]
       }
@@ -119,14 +177,33 @@ define({ "api": [
     "url": "/api/clubs/:id",
     "title": "Update a Club",
     "group": "clubs",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "authorization",
+            "description": "<p>access token</p>"
+          }
+        ]
+      }
+    },
     "success": {
       "fields": {
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "Object",
+            "type": "string",
             "optional": false,
-            "field": "updated",
+            "field": "message",
+            "description": "<p>success message</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "object",
+            "optional": false,
+            "field": "club",
             "description": "<p>club object</p>"
           }
         ]
@@ -142,15 +219,34 @@ define({ "api": [
     "url": "/api/clubs",
     "title": "Create a new Club",
     "group": "clubs",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "authorization",
+            "description": "<p>access token</p>"
+          }
+        ]
+      }
+    },
     "success": {
       "fields": {
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "Object",
+            "type": "string",
             "optional": false,
-            "field": "single",
-            "description": "<p>club object.</p>"
+            "field": "message",
+            "description": "<p>success message</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "object",
+            "optional": false,
+            "field": "club",
+            "description": "<p>club object</p>"
           }
         ]
       }
@@ -188,15 +284,34 @@ define({ "api": [
     "url": "/api/users/addMember/:id",
     "title": "Delete a Club Member",
     "group": "members",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "authorization",
+            "description": "<p>access token</p>"
+          }
+        ]
+      }
+    },
     "success": {
       "fields": {
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "Object",
+            "type": "String",
             "optional": false,
-            "field": "Success",
-            "description": "<p>message and id of deleted user.</p>"
+            "field": "message",
+            "description": "<p>Success message and user object.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>id of deleted member</p>"
           }
         ]
       }
@@ -211,15 +326,34 @@ define({ "api": [
     "url": "/api/users/addMember/:id",
     "title": "Edit a Club Member",
     "group": "members",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "authorization",
+            "description": "<p>access token</p>"
+          }
+        ]
+      }
+    },
     "success": {
       "fields": {
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "Object",
+            "type": "String",
             "optional": false,
-            "field": "Success",
-            "description": "<p>message and updated user object.</p>"
+            "field": "message",
+            "description": "<p>Success message and user object.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "object",
+            "optional": false,
+            "field": "user",
+            "description": "<p>updated member object</p>"
           }
         ]
       }
@@ -234,15 +368,34 @@ define({ "api": [
     "url": "/api/users/addMember",
     "title": "Add a Club Member",
     "group": "members",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "authorization",
+            "description": "<p>access token</p>"
+          }
+        ]
+      }
+    },
     "success": {
       "fields": {
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "Object",
+            "type": "String",
             "optional": false,
-            "field": "Success",
-            "description": "<p>message and user object.</p>"
+            "field": "message",
+            "description": "<p>Success message and user object.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "object",
+            "optional": false,
+            "field": "user",
+            "description": "<p>created member object</p>"
           }
         ]
       }
@@ -257,6 +410,18 @@ define({ "api": [
     "url": "/api/clubs/:id/sections",
     "title": "Delete ALL sections of a club",
     "group": "sections",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "authorization",
+            "description": "<p>access token</p>"
+          }
+        ]
+      }
+    },
     "success": {
       "fields": {
         "Success 200": [
@@ -280,15 +445,34 @@ define({ "api": [
     "url": "/api/clubs/:id/sections/:sectionId",
     "title": "Delete a section by sectionId",
     "group": "sections",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "authorization",
+            "description": "<p>access token</p>"
+          }
+        ]
+      }
+    },
     "success": {
       "fields": {
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "object",
+            "type": "string",
             "optional": false,
-            "field": "confirmation",
-            "description": "<p>message and id</p>"
+            "field": "message",
+            "description": "<p>success message</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>id of deleted section</p>"
           }
         ]
       }
@@ -303,15 +487,34 @@ define({ "api": [
     "url": "/api/clubs/:id/sections/:sectionId",
     "title": "Update info of a Section",
     "group": "sections",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "authorization",
+            "description": "<p>access token</p>"
+          }
+        ]
+      }
+    },
     "success": {
       "fields": {
         "Success 200": [
           {
             "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "message",
+            "description": "<p>success message</p>"
+          },
+          {
+            "group": "Success 200",
             "type": "object",
             "optional": false,
-            "field": "confirmation",
-            "description": "<p>message and updated section object</p>"
+            "field": "section",
+            "description": "<p>section object</p>"
           }
         ]
       }
@@ -326,15 +529,34 @@ define({ "api": [
     "url": "/api/clubs/:id/sections",
     "title": "Add Sections to a Club",
     "group": "sections",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "authorization",
+            "description": "<p>access token</p>"
+          }
+        ]
+      }
+    },
     "success": {
       "fields": {
         "Success 200": [
           {
             "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "message",
+            "description": "<p>success message</p>"
+          },
+          {
+            "group": "Success 200",
             "type": "object",
             "optional": false,
-            "field": "confirmation",
-            "description": "<p>message and created section object</p>"
+            "field": "section",
+            "description": "<p>section object</p>"
           }
         ]
       }
@@ -372,15 +594,34 @@ define({ "api": [
     "url": "/api/users/:id",
     "title": "Delete User by ID",
     "group": "users",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "authorization",
+            "description": "<p>access token</p>"
+          }
+        ]
+      }
+    },
     "success": {
       "fields": {
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "Object",
+            "type": "String",
             "optional": false,
-            "field": "confirmation",
-            "description": "<p>message and id</p>"
+            "field": "message",
+            "description": "<p>Success message and user object.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>id of deleted user</p>"
           }
         ]
       }
@@ -395,6 +636,18 @@ define({ "api": [
     "url": "/api/users/:id",
     "title": "Get User by ID",
     "group": "users",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "authorization",
+            "description": "<p>access token</p>"
+          }
+        ]
+      }
+    },
     "success": {
       "fields": {
         "Success 200": [
@@ -403,7 +656,7 @@ define({ "api": [
             "type": "Object",
             "optional": false,
             "field": "user",
-            "description": "<p>info</p>"
+            "description": "<p>user object</p>"
           }
         ]
       }
@@ -417,6 +670,9 @@ define({ "api": [
     "type": "get",
     "url": "/api/users/register",
     "title": "Get a List of Users",
+    "deprecated": {
+      "content": "[not needed, not protected, TODO remove]"
+    },
     "group": "users",
     "success": {
       "fields": {
@@ -441,15 +697,34 @@ define({ "api": [
     "url": "/api/users/:id",
     "title": "Update User by ID",
     "group": "users",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "authorization",
+            "description": "<p>access token</p>"
+          }
+        ]
+      }
+    },
     "success": {
       "fields": {
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "Object",
+            "type": "String",
             "optional": false,
-            "field": "updated",
-            "description": "<p>user info</p>"
+            "field": "message",
+            "description": "<p>Success message and user object.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "object",
+            "optional": false,
+            "field": "user",
+            "description": "<p>updated user object</p>"
           }
         ]
       }
@@ -464,15 +739,16 @@ define({ "api": [
     "url": "/api/users/register",
     "title": "Add a User",
     "group": "users",
+    "description": "<p>accessToken and idToken must be sent in body, this is intended for club owners registering and signing in throught auth0, this is not intended for adding members or magic-link login</p>",
     "success": {
       "fields": {
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "Object",
+            "type": "text",
             "optional": false,
-            "field": "Success",
-            "description": "<p>message and user ID.</p>"
+            "field": "n/a",
+            "description": "<p>'welcome' or 'welcome back'</p>"
           }
         ]
       }

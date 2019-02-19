@@ -7,8 +7,8 @@ const { validateToken, getInfoFromToken } = require('../helpers/authHelper')
 /**
  * @api {get} /api/clubs Request List of Clubs
  * @apiGroup clubs
- *
- * @apiSuccess {Array} List of Club objects.
+ * @apiDeprecated [not needed, not protected, TODO remove]
+ * @apiSuccess {Array} Clubs List of Club objects.
  */
 
 router.get('/', async (req, res) => {
@@ -23,10 +23,9 @@ router.get('/', async (req, res) => {
 /**
  * @api {get} /api/clubs/:id Request Club by ID
  * @apiGroup clubs
- *
- * @apiSuccess {Object} single club object.
+ * @apiHeader authorization access token
+ * @apiSuccess {Object} Club single club object.
  */
-//TODO - confirm ownership auth
 router.get(
   '/:id',
   validateToken,
@@ -41,10 +40,9 @@ router.get(
 /**
  * @api {get} /api/clubs/:id get member list of a club
  * @apiGroup clubs
- *
- * @apiSuccess {Array} array of members objects
+ * @apiHeader authorization access token
+ * @apiSuccess {Array} members Array of members objects
  */
-//TODO - confirm ownership auth
 router.get(
   '/:id/members',
   validateToken,
@@ -64,10 +62,10 @@ router.get(
 /**
  * @api {post} /api/clubs Create a new Club
  * @apiGroup clubs
- *
- * @apiSuccess {Object} single club object.
+ * @apiHeader authorization access token
+ * @apiSuccess {string} message success message
+ * @apiSuccess {object} club club object
  */
-//TODO - confirm ownership auth
 router.post(
   '/',
   validateToken,
@@ -97,10 +95,10 @@ router.post(
 /**
  * @api {patch} /api/clubs/:id Update a Club
  * @apiGroup clubs
- *
- * @apiSuccess {Object} updated club object
+ * @apiHeader authorization access token
+ * @apiSuccess {string} message success message
+ * @apiSuccess {object} club club object
  */
-//TODO- check user on token is admin for club ID param
 router.patch(
   '/:id',
   validateToken,
@@ -134,10 +132,11 @@ router.patch(
 /**
  * @api {delete} /api/clubs/:id Delete a Club
  * @apiGroup clubs
- *
- * @apiSuccess {Object} confirmation message and id
+ * @apiHeader authorization access token
+ * @apiSuccess {string} message success message
+ * @apiSuccess {integer} id id of deleted club
  */
-//TODO - confirm ownership auth
+
 // will not delete if sections for club exist via PSQL constraint
 router.delete(
   '/:id',
@@ -171,10 +170,10 @@ router.delete(
 /**
  * @api {get} /api/clubs/:id/sections Request Sections of a Club
  * @apiGroup clubs
- *
- * @apiSuccess {Array} List of section objects.
+ * @apiHeader authorization access token
+ * @apiSuccess {Array} sections List of section objects.
  */
-//TODO - confirm ownership auth
+
 router.get(
   '/:id/sections',
   validateToken,
@@ -205,10 +204,11 @@ router.get(
 /**
  * @api {post} /api/clubs/:id/sections Add Sections to a Club
  * @apiGroup sections
- *
- * @apiSuccess {object} confirmation message and created section object
+ * @apiHeader authorization access token
+ * @apiSuccess {string} message success message
+ * @apiSuccess {object} section section object
  */
-//TODO - confirm ownership auth
+
 router.post(
   '/:id/sections',
   validateToken,
@@ -232,10 +232,11 @@ router.post(
 /**
  * @api {patch} /api/clubs/:id/sections/:sectionId Update info of a Section
  * @apiGroup sections
- *
- * @apiSuccess {object} confirmation message and updated section object
+ * @apiHeader authorization access token
+ * @apiSuccess {string} message success message
+ * @apiSuccess {object} section section object
  */
-//TODO - confirm ownership auth
+
 router.patch(
   '/:id/sections/:sectionId',
   validateToken,
@@ -260,10 +261,10 @@ router.patch(
 /**
  * @api {delete} /api/clubs/:id/sections Delete ALL sections of a club
  * @apiGroup sections
- *
+ * @apiHeader authorization access token
  * @apiSuccess {object} confirmation message
  */
-//TODO - confirm ownership auth
+
 router.delete(
   '/:id/sections',
   validateToken,
@@ -293,10 +294,11 @@ router.delete(
 /**
  * @api {delete} /api/clubs/:id/sections/:sectionId Delete a section by sectionId
  * @apiGroup sections
- *
- * @apiSuccess {object} confirmation message and id
+ * @apiHeader authorization access token
+ * @apiSuccess {string} message success message
+ * @apiSuccess {integer} id id of deleted section
  */
-//TODO - confirm ownership auth
+
 router.delete(
   '/:id/sections/:sectionId',
   validateToken,
