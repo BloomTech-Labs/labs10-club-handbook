@@ -33,8 +33,8 @@ class Members extends React.Component {
                   <Avatar />
                   <div className="members-details">
                     <div className="members-text">
-                      <h3>first name</h3>
-                      <h3>last name</h3>
+                      <h3>{user.firstname}</h3>
+                      <h3>{user.lastname}</h3>
                       <h3>{user.email}</h3>
                     </div>
                     <div className="members-management">
@@ -53,13 +53,13 @@ class Members extends React.Component {
                 <div className="members-actions">
                   <div>
                     <h3>Visited</h3>
-                    {/* <img alt="checkmark">CheckMark</img> */}
+                    <h6>CheckMark Visited</h6>
                     <h3>date</h3>
                   </div>
 
                   <div>
                     <h3>Signed</h3>
-                    {/* <img alt="checkmark">CheckMark</img> */}
+                    <h6>CheckMark Signed</h6>
                     <h3>date</h3>
                   </div>
                 </div>

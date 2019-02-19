@@ -12,6 +12,8 @@ import Grid from '@material-ui/core/Grid';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom'
+
 
 
 const styles = theme => ({
@@ -91,7 +93,11 @@ const subscriptions = [
   },
 ];
 
+<<<<<<< HEAD
 function Landing(props) {
+=======
+function Landing(props)  {
+>>>>>>> 9bcf274425b56e2fd97236fc68cd13491caeaae5
   const { classes } = props;
 
   return (
@@ -102,11 +108,18 @@ function Landing(props) {
           <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
             Club.Handbook
           </Typography>
+<<<<<<< HEAD
           <Button>Members</Button>
           <Button>Billing</Button>
           <Button>SectionForm</Button>
           <Button>Settings</Button>
           <Button color="primary" variant="outlined">
+=======
+          <Button component={Link} to="/members">Members</Button>
+          <Button component={Link} to="/section-form">SectionForm</Button>
+          <Button component={Link} to="/settings">Settings</Button>
+          <Button component={Link} to="/login" color="primary" variant="outlined">
+>>>>>>> 9bcf274425b56e2fd97236fc68cd13491caeaae5
             Login
           </Button>
         </Toolbar>
@@ -164,7 +177,11 @@ function Landing(props) {
                   ))}
                 </CardContent>
                 <CardActions className={classes.cardActions}>
+<<<<<<< HEAD
                   <Button fullWidth variant={tier.buttonVariant} color="primary">
+=======
+                  <Button component={Link} to="/login" fullWidth variant={tier.buttonVariant} color="primary">
+>>>>>>> 9bcf274425b56e2fd97236fc68cd13491caeaae5
                     {tier.buttonText}
                   </Button>
                 </CardActions>
@@ -184,12 +201,20 @@ function Landing(props) {
             <div>
               <Grid container spacing={16} justify="center">
                 <Grid item>
+<<<<<<< HEAD
                   <Button variant="outlined" color="primary">
+=======
+                  <Button component={Link} to="/login" variant="outlined" color="primary">
+>>>>>>> 9bcf274425b56e2fd97236fc68cd13491caeaae5
                     Sign Up
                   </Button>
                 </Grid>
                 <Grid item>
+<<<<<<< HEAD
                   <Button variant="contained" color="primary">
+=======
+                  <Button component={Link} to="/login" variant="contained" color="primary">
+>>>>>>> 9bcf274425b56e2fd97236fc68cd13491caeaae5
                     Contact Us
                   </Button>
                 </Grid>
