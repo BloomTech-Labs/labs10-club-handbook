@@ -105,7 +105,6 @@ function Landing(props)  {
             Club.Handbook
           </Typography>
           <Button component={Link} to="/members">Members</Button>
-          <Button component={Link} to="/billing">Billing</Button>
           <Button component={Link} to="/section-form">SectionForm</Button>
           <Button component={Link} to="/settings">Settings</Button>
           <Button component={Link} to="/login" color="primary" variant="outlined">
