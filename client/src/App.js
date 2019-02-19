@@ -9,6 +9,8 @@ import Callback from './auth/Callback'
 import Authenticated from './auth/Authenticated'
 import SectionForm from './components/sections/SectionForm'
 import Settings from './components/Settings'
+import AddMembers from './components/users/AddMembers'
+import UpdateMembers from './components/users/UpdateMembers'
 import Landing from './components/Landing'
 
 class App extends Component {
@@ -19,6 +21,8 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Landing} />
             <Route exact path="/members" component={Members} />
+            <Route exact path="/add-members" component={AddMembers} />
+            <Route exact path="/update-members" component={UpdateMembers} />
             <Route exact path="/billing" component={Payment} />
             <Route exact path="/settings" component={Settings} />
             <Route path="/login" component={Login} />
