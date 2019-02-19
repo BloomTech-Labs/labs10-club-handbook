@@ -1,9 +1,22 @@
 import React from 'react';
-// import Auth from './Auth';
 import { connect } from 'react-redux';
+import styled from 'styled-components'
 import { signinUser } from '../store/actions/authActions';
 
-// const auth = new Auth();
+const StyledButton = styled.div`
+    border: 1px solid white;
+    border-radius: 3px;
+    width: 160px;
+    text-align: center;
+    padding: 10px;
+    background: lightgrey;
+    color: black;
+    :hover {
+        background: darkgrey;
+        color: white;
+        cursor: pointer;
+    }
+`;
 
 class Login extends React.Component {
 
@@ -14,14 +27,9 @@ class Login extends React.Component {
 
     render() {
         return (
-            <div>
-                <div>
-                    <h2>Hello, please login or register</h2>
-                </div>
-                <div>
-                    <button onClick={this.handleSubmit}>Login/Register</button>
-                </div>
-            </div>
+            <>
+                <StyledButton onClick={this.handleSubmit}>Login | Register</StyledButton>
+            </>
         )
     }
 };

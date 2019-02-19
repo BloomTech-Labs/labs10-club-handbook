@@ -23,8 +23,8 @@ export const handleAuthorization = () => dispatch => {
                   dispatch({ type: AUTHORIZATION_SUCCESS, message: 'User authorized.' })
 
                   const userObject = {
-                        email: res.idTokenPayload.email,
-                        token: res.accessToken
+                        accessToken: res.accessToken,
+                        id_token: res.id_token
                   };
 
                   axios
@@ -42,7 +42,6 @@ export const handleAuthorization = () => dispatch => {
 
 export const logoutUser = () => dispatch => {
       auth.logout();
-
       dispatch({ type: LOGOUT_USER, message: 'User logged out.' })
 };
 

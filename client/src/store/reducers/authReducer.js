@@ -11,7 +11,8 @@ const initialState = {
    message: null,
    error: null,
    authorizingUser: false,
-   userAuthorized: false
+   userAuthorized: false,
+   userLoggedIn: false
 };
 
 const authReducer = (state = initialState, action) => {
@@ -29,6 +30,7 @@ const authReducer = (state = initialState, action) => {
                ...state,
                authorizingUser: false,
                userAuthorized: true,
+               userLoggedIn: true,
                message: action.message
          };
 
@@ -37,6 +39,7 @@ const authReducer = (state = initialState, action) => {
                ...state,
                authorizingUser: false,
                userAuthorized: false,
+               userLoggedIn: false,
                message: action.message
          }
 
@@ -44,6 +47,7 @@ const authReducer = (state = initialState, action) => {
          return {
                ...state,
                userAuthorized: false,
+               userLoggedIn: false,
                message: action.message
          }
 
