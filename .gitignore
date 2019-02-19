@@ -5,3 +5,4 @@ node_modules/
 haters/
 .env
 variables.env
+.db3

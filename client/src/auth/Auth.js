@@ -8,7 +8,8 @@ class Auth {
   auth0 = new auth0.WebAuth({
     domain: "club-handbook.auth0.com",
     clientID: "LL5WL3YD7vxOZ5tw5yMDmtQb2QxRpTkU",
-    redirectUri: "https://club-handbook.herokuapp.com/callback",
+    redirectUri: "https://clubhandbook.netlify.com/callback",
+    // redirectUri: process.env.ENV_REDIRECT_URI,
     audience: "https://club-handbook.herokuapp.com/",
     responseType: "token id_token", 
     scope: "openid profile email" 
@@ -28,7 +29,7 @@ class Auth {
           localStorage.setItem("access_token", authResults.accessToken);
           localStorage.setItem("id_token", authResults.idToken);
           localStorage.setItem("expires_at", expiresAt);
-
+          console.log(authResults);
           resolve(authResults);
 
         } else if (err) {
@@ -57,6 +58,13 @@ class Auth {
       return {};
     }
   };
+
+  sendEmail = emailAddress => {
+    this.auth0.passwordlessStart({ connection: 'email', send: 'link', email: emailAddress }, (err, res) => {
+      console.log(err);
+    })
+  }
+
 };
 
 export default Auth;
