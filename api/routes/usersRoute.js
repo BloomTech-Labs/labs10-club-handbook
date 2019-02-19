@@ -59,7 +59,7 @@ router.post('/register', async (req, res) => {
 })
 
 /**
- * @api {post} /api/users/addMember Edit a Club Member
+ * @api {post} /api/users/addMember Add a Club Member
  * @apiGroup members
  *
  * @apiSuccess {Object} Success message and user object.
@@ -86,7 +86,7 @@ router.post(
 )
 
 /**
- * @api {post} /api/users/addMember/:id Edit a Club Member
+ * @api {patch} /api/users/addMember/:id Edit a Club Member
  * @apiGroup members
  *
  * @apiSuccess {Object} Success message and updated user object.
@@ -113,7 +113,7 @@ router.patch(
 )
 
 /**
- * @api {post} /api/users/addMember/:id Delete a Club Member
+ * @api {delete} /api/users/addMember/:id Delete a Club Member
  * @apiGroup members
  *
  * @apiSuccess {Object} Success message and id of deleted user.

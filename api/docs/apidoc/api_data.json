@@ -184,53 +184,7 @@
     "name": "GetApiImagesUpload"
   },
   {
-    "type": "post",
-    "url": "/api/users/addMember",
-    "title": "Edit a Club Member",
-    "group": "members",
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "Object",
-            "optional": false,
-            "field": "Success",
-            "description": "<p>message and user object.</p>"
-          }
-        ]
-      }
-    },
-    "version": "0.0.0",
-    "filename": "api/routes/usersRoute.js",
-    "groupTitle": "members",
-    "name": "PostApiUsersAddmember"
-  },
-  {
-    "type": "post",
-    "url": "/api/users/addMember/:id",
-    "title": "Edit a Club Member",
-    "group": "members",
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "Object",
-            "optional": false,
-            "field": "Success",
-            "description": "<p>message and updated user object.</p>"
-          }
-        ]
-      }
-    },
-    "version": "0.0.0",
-    "filename": "api/routes/usersRoute.js",
-    "groupTitle": "members",
-    "name": "PostApiUsersAddmemberId"
-  },
-  {
-    "type": "post",
+    "type": "delete",
     "url": "/api/users/addMember/:id",
     "title": "Delete a Club Member",
     "group": "members",
@@ -250,7 +204,53 @@
     "version": "0.0.0",
     "filename": "api/routes/usersRoute.js",
     "groupTitle": "members",
-    "name": "PostApiUsersAddmemberId"
+    "name": "DeleteApiUsersAddmemberId"
+  },
+  {
+    "type": "patch",
+    "url": "/api/users/addMember/:id",
+    "title": "Edit a Club Member",
+    "group": "members",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "Success",
+            "description": "<p>message and updated user object.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "api/routes/usersRoute.js",
+    "groupTitle": "members",
+    "name": "PatchApiUsersAddmemberId"
+  },
+  {
+    "type": "post",
+    "url": "/api/users/addMember",
+    "title": "Add a Club Member",
+    "group": "members",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "Success",
+            "description": "<p>message and user object.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "api/routes/usersRoute.js",
+    "groupTitle": "members",
+    "name": "PostApiUsersAddmember"
   },
   {
     "type": "delete",
