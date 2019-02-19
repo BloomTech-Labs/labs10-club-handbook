@@ -9,9 +9,10 @@ const { validateToken, getInfoFromToken } = require('../helpers/authHelper')
 // const env_secret = jwtKey.split(',').join('\n')
 
 /**
- * @api {post} /api/users/register Add a User
+ * @api {post} /api/users/register Add a User (Auth0)
  * @apiGroup users
- * @apiDescription accessToken and idToken must be sent in body, this is intended for club owners registering and signing in throught auth0, this is not intended for adding members or magic-link login
+ * @apiParam {string} tokens both idToken and accessToken send in body
+ * @apiDescription this is intended for club owners registering and signing in throught auth0, this is not intended for adding members or magic-link login
  * @apiSuccess {text} n/a 'welcome' or 'welcome back'
  */
 router.post('/register', async (req, res) => {
@@ -61,7 +62,9 @@ router.post('/register', async (req, res) => {
 /**
  * @api {post} /api/users/addMember Add a Club Member
  * @apiGroup members
+ * @apiDescription user on token must own a club to add members
  * @apiHeader authorization access token
+ * @apiParam {string} email attach to body.email (req)
  * @apiSuccess {String} message Success message and user object.
  * @apiSuccess {object} user created member object
  */
@@ -89,6 +92,7 @@ router.post(
 /**
  * @api {patch} /api/users/addMember/:id Edit a Club Member
  * @apiGroup members
+ * @apiDescription member must belong to the token users club
  * @apiHeader authorization access token
  * @apiSuccess {String} message Success message and user object.
  * @apiSuccess {object} user updated member object
@@ -117,6 +121,7 @@ router.patch(
 /**
  * @api {delete} /api/users/addMember/:id Delete a Club Member
  * @apiGroup members
+ * @apiDescription member must belong to the token users club
  * @apiHeader authorization access token
  * @apiSuccess {String} message Success message and user object.
  * @apiSuccess {integer} id id of deleted member
@@ -164,6 +169,7 @@ router.get('/', async (req, res) => {
 /**
  * @api {get} /api/users/:id Get User by ID
  * @apiGroup users
+ * @apiDescription can only acces info of user on token
  * @apiHeader authorization access token
  * @apiSuccess {Object} user user object
  */
@@ -195,6 +201,7 @@ router.get(
 /**
  * @api {patch} /api/users/:id Update User by ID
  * @apiGroup users
+ * @apiDescription can only change info of user on token
  * @apiHeader authorization access token
  * @apiSuccess {String} message Success message and user object.
  * @apiSuccess {object} user updated user object
@@ -225,6 +232,7 @@ router.patch(
 /**
  * @api {delete} /api/users/:id Delete User by ID
  * @apiGroup users
+ * @apiDescription can only delete user on token
  * @apiHeader authorization access token
  * @apiSuccess {String} message Success message and user object.
  * @apiSuccess {integer} id id of deleted user

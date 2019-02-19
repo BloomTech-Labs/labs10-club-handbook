@@ -23,6 +23,7 @@ router.get('/', async (req, res) => {
 /**
  * @api {get} /api/clubs/:id Request Club by ID
  * @apiGroup clubs
+ * @apiDescription token holder must be member of club
  * @apiHeader authorization access token
  * @apiSuccess {Object} Club single club object.
  */
@@ -38,8 +39,9 @@ router.get(
 )
 
 /**
- * @api {get} /api/clubs/:id get member list of a club
- * @apiGroup clubs
+ * @api {get} /api/clubs/:id/members get member list of a club
+ * @apiGroup members
+ * @apiDescription only owner of club can access
  * @apiHeader authorization access token
  * @apiSuccess {Array} members Array of members objects
  */
@@ -60,9 +62,31 @@ router.get(
 )
 
 /**
+ * @api {post} /api/clubs/:id/checkMember verify member by email
+ * @apiGroup members
+ * @apiDescription no token req, returns boolean
+ * @apiParam {string} email add to body.email (REQ)
+ * @apiSuccess {string} message confirmation message
+ * @apiSuccess {boolean} isMember true or false
+ */
+router.post('/:id/checkMember', async (req, res, next) => {
+  let member = await db('users')
+    .where({ email: req.body.email, club_id: req.params.id })
+    .first()
+  if (member) {
+    res.status(200).json({ message: `member exists in club`, isMember: true })
+  } else {
+    res
+      .status(400)
+      .json({ message: `member does not exist in club`, isMember: false })
+  }
+})
+/**
  * @api {post} /api/clubs Create a new Club
  * @apiGroup clubs
+ * @apiDescription token owner must not be part of a club
  * @apiHeader authorization access token
+ * @apiParam {string} name add to body.name (REQ)
  * @apiSuccess {string} message success message
  * @apiSuccess {object} club club object
  */
@@ -95,6 +119,7 @@ router.post(
 /**
  * @api {patch} /api/clubs/:id Update a Club
  * @apiGroup clubs
+ * @apiDescription only owner of club can access
  * @apiHeader authorization access token
  * @apiSuccess {string} message success message
  * @apiSuccess {object} club club object
@@ -132,6 +157,7 @@ router.patch(
 /**
  * @api {delete} /api/clubs/:id Delete a Club
  * @apiGroup clubs
+ * @apiDescription only owner of club can access
  * @apiHeader authorization access token
  * @apiSuccess {string} message success message
  * @apiSuccess {integer} id id of deleted club
@@ -169,7 +195,8 @@ router.delete(
 
 /**
  * @api {get} /api/clubs/:id/sections Request Sections of a Club
- * @apiGroup clubs
+ * @apiGroup sections
+ * @apiDescription token holder must be member of club
  * @apiHeader authorization access token
  * @apiSuccess {Array} sections List of section objects.
  */
@@ -204,6 +231,7 @@ router.get(
 /**
  * @api {post} /api/clubs/:id/sections Add Sections to a Club
  * @apiGroup sections
+ * @apiDescription only owner of club can access
  * @apiHeader authorization access token
  * @apiSuccess {string} message success message
  * @apiSuccess {object} section section object
@@ -232,6 +260,7 @@ router.post(
 /**
  * @api {patch} /api/clubs/:id/sections/:sectionId Update info of a Section
  * @apiGroup sections
+ * @apiDescription only owner of club can access
  * @apiHeader authorization access token
  * @apiSuccess {string} message success message
  * @apiSuccess {object} section section object
@@ -261,6 +290,7 @@ router.patch(
 /**
  * @api {delete} /api/clubs/:id/sections Delete ALL sections of a club
  * @apiGroup sections
+ * @apiDescription only owner of club can access
  * @apiHeader authorization access token
  * @apiSuccess {object} confirmation message
  */
@@ -294,6 +324,7 @@ router.delete(
 /**
  * @api {delete} /api/clubs/:id/sections/:sectionId Delete a section by sectionId
  * @apiGroup sections
+ * @apiDescription only owner of club can access
  * @apiHeader authorization access token
  * @apiSuccess {string} message success message
  * @apiSuccess {integer} id id of deleted section
