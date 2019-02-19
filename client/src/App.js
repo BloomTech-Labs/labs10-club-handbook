@@ -10,6 +10,7 @@ import Authenticated from './auth/Authenticated'
 import SectionForm from './components/sections/SectionForm'
 import Settings from './components/Settings'
 import AddMembers from './components/users/AddMembers'
+import UpdateMembers from './components/users/UpdateMembers'
 
 class App extends Component {
   render() {
@@ -20,6 +21,7 @@ class App extends Component {
             <Route exact path="/" component={Dashboard} />
             <Route exact path="/members" component={Members} />
             <Route exact path="/add-members" component={AddMembers} />
+            <Route exact path="/update-members" component={UpdateMembers} />
             <Route exact path="/billing" component={Payment} />
             <Route exact path="/settings" component={Settings} />
             <Route path="/login" component={Login} />

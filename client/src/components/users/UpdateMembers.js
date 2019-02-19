@@ -2,12 +2,12 @@ import React from 'react'
 import { AppBar, Button, Avatar } from '@material-ui/core'
 
 import { connect } from 'react-redux'
-import { addUser } from '../../store/actions/usersActions'
+import { updateUser } from '../../store/actions/usersActions'
 import { Link } from 'react-router-dom'
 
 import './Members.css'
 
-class AddMembers extends React.Component {
+class UpdateMembers extends React.Component {
   constructor() {
     super()
     this.state = {
@@ -21,10 +21,9 @@ class AddMembers extends React.Component {
     // this.setState({ [event.target.name]: event.target.value })
   }
 
-  handleAddMember = event => {
+  updateMember = event => {
     event.preventDefault()
-    console.log('button clicked')
-    this.props.addMember(this.state.value)
+    this.props.updateMember(this.state.value)
   }
 
   render() {
@@ -32,10 +31,10 @@ class AddMembers extends React.Component {
       <div className="members-container">
         <AppBar position="static">
           <div className="members-header">
-            <h1>Add Club Member</h1>
+            <h1>Update Club Member Info</h1>
           </div>
         </AppBar>
-        <form onSubmit={this.handleAddMember}>
+        <form onSubmit={this.updateMember}>
           <input
             type="text"
             name="firstname"
@@ -59,7 +58,7 @@ class AddMembers extends React.Component {
             placeholder="email"
             value={this.state.value}
           />
-          <button>Add New Club Member</button>
+          <button>Update Club Member Info</button>
         </form>
       </div>
     )
@@ -75,5 +74,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { addUser }
-)(AddMembers)
+  { updateUser }
+)(UpdateMembers)
