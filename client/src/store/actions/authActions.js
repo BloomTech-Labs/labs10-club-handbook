@@ -17,33 +17,34 @@ export const signinUser = () => dispatch => {
 }
 
 export const handleAuthorization = () => dispatch => {
-      auth.handleAuthentication()
-            .then(res => {
-                  dispatch({ type: AUTHORIZATION_SUCCESS, message: 'User authorized.' })
+  auth
+    .handleAuthentication()
+    .then(res => {
+      dispatch({ type: AUTHORIZATION_SUCCESS, message: 'User authorized.' })
 
-                  const userObject = {
-                        accessToken: res.accessToken,
-                        id_token: res.id_token
-                  };
+      const userObject = {
+        accessToken: res.accessToken,
+        id_token: res.id_token,
+      }
 
-                  axios
-                  // .post(`http://localhost:5000/api/users/register`, userObject)
-                        .post(`https://club-handbook.herokuapp.com/api/users/register`, userObject)
-                        .then(res => {
-                              console.log(res);
-                        })
-                        .catch(err => console.log(err));
-            })
-            .catch(err => {
-                  console.log(err);
-                  dispatch({ type: AUTHORIZATION_FAIL, message: 'User not authorized.'})
-            });
-};
+      axios
+        // .post(`http://localhost:5000/api/users/register`, userObject)
+        .post(
+          `https://club-handbook.herokuapp.com/api/users/register`,
+          userObject
+        )
+        .then(res => {
+          console.log(res)
+        })
+        .catch(err => console.log(err))
+    })
+    .catch(err => {
+      console.log(err)
+      dispatch({ type: AUTHORIZATION_FAIL, message: 'User not authorized.' })
+    })
+}
 
 export const logoutUser = () => dispatch => {
-      auth.logout();
-      dispatch({ type: LOGOUT_USER, message: 'User logged out.' })
-};
-
+  auth.logout()
   dispatch({ type: LOGOUT_USER, message: 'User logged out.' })
 }
