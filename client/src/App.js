@@ -9,6 +9,8 @@ import Callback from './auth/Callback'
 import Authenticated from './auth/Authenticated'
 import SectionForm from './components/sections/SectionForm'
 import Settings from './components/Settings'
+import Landing from './components/Landing'
+import CallbackEmail from './auth/CallbackEmail';
 
 class App extends Component {
   render() {
@@ -16,7 +18,7 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <Switch>
-            <Route exact path="/" component={Dashboard} />
+            <Route exact path="/" component={Landing} />
             <Route exact path="/members" component={Members} />
             <Route exact path="/billing" component={Payment} />
             <Route exact path="/settings" component={Settings} />
@@ -27,6 +29,7 @@ class App extends Component {
               render={props => <Authenticated {...props} />}
             />
             <Route path="/section-form" component={SectionForm} />
+            <Route path="/callback-email" component={CallbackEmail} />
           </Switch>
         </div>
       </BrowserRouter>
