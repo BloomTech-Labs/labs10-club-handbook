@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const jwtdecode = require('jwt-decode')
-const jwt = require('jsonwebtoken')
 const db = require('../../config/dbConfig')
+const { validateToken, getInfoFromToken } = require('../helpers/authHelper')
 
 /**
  * @api {get} /api/clubs Request List of Clubs
@@ -29,6 +29,7 @@ router.get('/', async (req, res) => {
 //TODO - confirm ownership auth
 router.get(
   '/:id',
+  validateToken,
   checkClubExists,
   getInfoFromToken,
   checkUserIsMember,
@@ -46,6 +47,7 @@ router.get(
 //TODO - confirm ownership auth
 router.get(
   '/:id/members',
+  validateToken,
   checkClubExists,
   getInfoFromToken,
   checkUserOwnsClub,
@@ -68,6 +70,7 @@ router.get(
 //TODO - confirm ownership auth
 router.post(
   '/',
+  validateToken,
   getInfoFromToken,
   checkUserIsntClubbed,
   async (req, res, next) => {
@@ -100,6 +103,7 @@ router.post(
 //TODO- check user on token is admin for club ID param
 router.patch(
   '/:id',
+  validateToken,
   checkClubExists,
   getInfoFromToken,
   checkUserOwnsClub,
@@ -137,6 +141,7 @@ router.patch(
 // will not delete if sections for club exist via PSQL constraint
 router.delete(
   '/:id',
+  validateToken,
   checkClubExists,
   getInfoFromToken,
   checkUserOwnsClub,
@@ -172,6 +177,7 @@ router.delete(
 //TODO - confirm ownership auth
 router.get(
   '/:id/sections',
+  validateToken,
   checkClubExists,
   getInfoFromToken,
   checkUserIsMember,
@@ -205,6 +211,7 @@ router.get(
 //TODO - confirm ownership auth
 router.post(
   '/:id/sections',
+  validateToken,
   checkClubExists,
   getInfoFromToken,
   checkUserOwnsClub,
@@ -231,6 +238,7 @@ router.post(
 //TODO - confirm ownership auth
 router.patch(
   '/:id/sections/:sectionId',
+  validateToken,
   checkClubExists,
   getInfoFromToken,
   checkUserOwnsClub,
@@ -258,6 +266,7 @@ router.patch(
 //TODO - confirm ownership auth
 router.delete(
   '/:id/sections',
+  validateToken,
   checkClubExists,
   getInfoFromToken,
   checkUserOwnsClub,
@@ -290,6 +299,7 @@ router.delete(
 //TODO - confirm ownership auth
 router.delete(
   '/:id/sections/:sectionId',
+  validateToken,
   checkClubExists,
   getInfoFromToken,
   checkUserOwnsClub,
@@ -329,23 +339,6 @@ async function checkClubExists(req, res, next) {
     }
   } catch (err) {
     res.status(500).json(err)
-  }
-}
-
-async function getInfoFromToken(req, res, next) {
-  try {
-    let tokenInfo = jwtdecode(req.headers.authorization)
-    let findUser = await db('users')
-      .where({ sub_id: tokenInfo.sub })
-      .first()
-    if (findUser) {
-      req.userInfo = findUser
-      next()
-    } else {
-      res.status(404).json({ message: `user not found` })
-    }
-  } catch (err) {
-    res.status(500).json({ message: `error in mw`, err, tokenInfo })
   }
 }
 

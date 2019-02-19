@@ -12,7 +12,7 @@
             "type": "Object",
             "optional": false,
             "field": "confirmation",
-            "description": "<p>message</p>"
+            "description": "<p>message and id</p>"
           }
         ]
       }
@@ -44,6 +44,29 @@
     "filename": "api/routes/clubsRoute.js",
     "groupTitle": "clubs",
     "name": "GetApiClubs"
+  },
+  {
+    "type": "get",
+    "url": "/api/clubs/:id",
+    "title": "get member list of a club",
+    "group": "clubs",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Array",
+            "optional": false,
+            "field": "array",
+            "description": "<p>of members objects</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "api/routes/clubsRoute.js",
+    "groupTitle": "clubs",
+    "name": "GetApiClubsId"
   },
   {
     "type": "get",
@@ -115,6 +138,121 @@
     "name": "PatchApiClubsId"
   },
   {
+    "type": "post",
+    "url": "/api/clubs",
+    "title": "Create a new Club",
+    "group": "clubs",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "single",
+            "description": "<p>club object.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "api/routes/clubsRoute.js",
+    "groupTitle": "clubs",
+    "name": "PostApiClubs"
+  },
+  {
+    "type": "get",
+    "url": "/api/images/upload",
+    "title": "Post an image",
+    "group": "images",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "Returns",
+            "description": "<p>url to image</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "api/routes/imagesRoute.js",
+    "groupTitle": "images",
+    "name": "GetApiImagesUpload"
+  },
+  {
+    "type": "post",
+    "url": "/api/users/addMember",
+    "title": "Edit a Club Member",
+    "group": "members",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "Success",
+            "description": "<p>message and user object.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "api/routes/usersRoute.js",
+    "groupTitle": "members",
+    "name": "PostApiUsersAddmember"
+  },
+  {
+    "type": "post",
+    "url": "/api/users/addMember/:id",
+    "title": "Edit a Club Member",
+    "group": "members",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "Success",
+            "description": "<p>message and updated user object.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "api/routes/usersRoute.js",
+    "groupTitle": "members",
+    "name": "PostApiUsersAddmemberId"
+  },
+  {
+    "type": "post",
+    "url": "/api/users/addMember/:id",
+    "title": "Delete a Club Member",
+    "group": "members",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "Success",
+            "description": "<p>message and id of deleted user.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "api/routes/usersRoute.js",
+    "groupTitle": "members",
+    "name": "PostApiUsersAddmemberId"
+  },
+  {
     "type": "delete",
     "url": "/api/clubs/:id/sections",
     "title": "Delete ALL sections of a club",
@@ -150,7 +288,7 @@
             "type": "object",
             "optional": false,
             "field": "confirmation",
-            "description": "<p>message</p>"
+            "description": "<p>message and id</p>"
           }
         ]
       }
@@ -207,6 +345,29 @@
     "name": "PostApiClubsIdSections"
   },
   {
+    "type": "get",
+    "url": "/api/settings",
+    "title": "Get list of Settings",
+    "group": "settings",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "object",
+            "optional": false,
+            "field": "lists",
+            "description": "<p>of colors, fonts, and img_placements</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "api/routes/settingsRoute.js",
+    "groupTitle": "settings",
+    "name": "GetApiSettings"
+  },
+  {
     "type": "delete",
     "url": "/api/users/:id",
     "title": "Delete User by ID",
@@ -219,7 +380,7 @@
             "type": "Object",
             "optional": false,
             "field": "confirmation",
-            "description": "<p>message</p>"
+            "description": "<p>message and id</p>"
           }
         ]
       }

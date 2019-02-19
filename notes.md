@@ -1,5 +1,5 @@
 ## command to run apidoc - 
-apidoc -i api/route -o api/docs
+apidoc -i api/routes -o api/docs/apidoc
 
 ## commandline for Heroku DB stuff
 heroku run -a club-handbook knex migrate:latest --env production
