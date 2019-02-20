@@ -7,6 +7,7 @@ const clubsRoute = require('./routes/clubsRoute')
 const paymentsRoute = require('./routes/paymentsRoute')
 const stripe = require('stripe')('sk_test_QBcc8So0WjMMIznAloTV3kdv')
 const imagesRoute = require('./routes/imagesRoute')
+const settingsRoute = require('./routes/settingsRoute')
 
 mwConfig(server)
 
@@ -42,5 +43,6 @@ server.use('/api/users', usersRoute)
 server.use('/api/clubs', clubsRoute)
 server.use('/payments', paymentsRoute)
 server.use('/api/images', imagesRoute)
+server.use('/api/settings', settingsRoute)
 
 module.exports = server
