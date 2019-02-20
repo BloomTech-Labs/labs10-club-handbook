@@ -4,7 +4,7 @@ class AuthEmail {
   auth0 = new auth0.WebAuth({
     domain: 'club-handbook.auth0.com',
     clientID: 'LL5WL3YD7vxOZ5tw5yMDmtQb2QxRpTkU',
-    redirectUri: "https://clubhandbook.netlify.com/callback-email",
+    redirectUri: 'https://clubhandbook.netlify.com/callback-email',
     // redirectUri: 'http://localhost:3000/callback-email',
     audience: 'https://club-handbook.herokuapp.com/',
     responseType: 'token id_token',
