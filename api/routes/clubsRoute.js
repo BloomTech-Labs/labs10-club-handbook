@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const jwtdecode = require('jwt-decode')
+const requestIp = require('request-ip')
 const db = require('../../config/dbConfig')
 const { validateToken, getInfoFromToken } = require('../helpers/authHelper')
 
@@ -70,17 +70,61 @@ router.get(
  * @apiSuccess {boolean} isMember true or false
  */
 router.post('/:id/checkMember', async (req, res, next) => {
-  let member = await db('users')
-    .where({ email: req.body.email, club_id: req.params.id })
-    .first()
-  if (member) {
-    res.status(200).json({ message: `member exists in club`, isMember: true })
-  } else {
-    res
-      .status(400)
-      .json({ message: `member does not exist in club`, isMember: false })
+  try {
+    let member = await db('users')
+      .where({ email: req.body.email, club_id: req.params.id })
+      .first()
+    if (member) {
+      res.status(200).json({ message: `member exists in club`, isMember: true })
+    } else {
+      res
+        .status(400)
+        .json({ message: `member does not exist in club`, isMember: false })
+    }
+  } catch (err) {
+    res.status(500).json(err)
   }
 })
+
+/**
+ * @api {post} /api/clubs/:id/signature sign a handbook
+ * @apiGroup members
+ * @apiDescription token owner must belong to club in param
+ * @apiHeader authorization access token
+ * @apiParam {string} email add to body.email (REQ)
+ * @apiSuccess {string} message confirmation message
+ */
+router.post(
+  '/:id/signature',
+  validateToken,
+  getInfoFromToken,
+  checkClubExists,
+  checkUserIsMember,
+  async (req, res, next) => {
+    let clientIP = requestIp.getClientIp(req)
+    let { iss, sub, iat, exp, azp } = req.decoded
+    let insertInfo = {
+      user_id: req.userInfo.id,
+      iss,
+      sub,
+      iat,
+      exp,
+      azp,
+      ip: clientIP,
+      signature: req.body.signature,
+    }
+    try {
+      await db('signatures').insert(insertInfo)
+      await db('users')
+        .where({ sub_id: sub })
+        .update({ signed: true })
+      res.status(201).json({ message: `signature successful` })
+    } catch (err) {
+      res.status(500).json(err)
+    }
+  }
+)
+
 /**
  * @api {post} /api/clubs Create a new Club
  * @apiGroup clubs

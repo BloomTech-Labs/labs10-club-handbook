@@ -32,9 +32,7 @@ export const handleAuthorization = () => dispatch => {
       }
 
       axios
-
         // .post(`http://localhost:5000/api/users/register`, userObject)
-
         .post(
           `https://club-handbook.herokuapp.com/api/users/register`,
           userObject
