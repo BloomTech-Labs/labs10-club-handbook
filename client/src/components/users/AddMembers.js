@@ -1,9 +1,8 @@
 import React from 'react'
-import { AppBar, Button, Avatar } from '@material-ui/core'
+import { AppBar } from '@material-ui/core'
 
 import { connect } from 'react-redux'
 import { addUser } from '../../store/actions/usersActions'
-import { Link } from 'react-router-dom'
 
 import './Members.css'
 
@@ -18,16 +17,18 @@ class AddMembers extends React.Component {
   }
 
   handleChanges = event => {
-    // this.setState({ [event.target.name]: event.target.value })
+    this.setState({ [event.target.name]: event.target.value })
   }
 
-  handleAddMember = event => {
+  handleSubmit = event => {
     event.preventDefault()
-    console.log('button clicked')
-    this.props.addMember(this.state.value)
+    this.props.addUser(this.state.firstname)
+    this.props.addUser(this.state.lastname)
+    this.props.addUser(this.state.email)
   }
 
   render() {
+    console.log('got to render')
     return (
       <div className="members-container">
         <AppBar position="static">
@@ -35,13 +36,13 @@ class AddMembers extends React.Component {
             <h1>Add Club Member</h1>
           </div>
         </AppBar>
-        <form onSubmit={this.handleAddMember}>
+        <form onSubmit={this.handleSubmit}>
           <input
             type="text"
             name="firstname"
             onChange={this.handleChanges}
             placeholder="firstname"
-            value={this.state.value}
+            value={this.state.firstname}
           />
 
           <input
@@ -49,7 +50,7 @@ class AddMembers extends React.Component {
             name="lastname"
             onChange={this.handleChanges}
             placeholder="lastname"
-            value={this.state.value}
+            value={this.state.lastname}
           />
 
           <input
@@ -57,7 +58,7 @@ class AddMembers extends React.Component {
             name="email"
             onChange={this.handleChanges}
             placeholder="email"
-            value={this.state.value}
+            value={this.state.email}
           />
           <button>Add New Club Member</button>
         </form>

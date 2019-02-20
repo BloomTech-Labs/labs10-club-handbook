@@ -1,9 +1,8 @@
 import React from 'react'
-import { AppBar, Button, Avatar } from '@material-ui/core'
+import { AppBar } from '@material-ui/core'
 
 import { connect } from 'react-redux'
 import { updateUser } from '../../store/actions/usersActions'
-import { Link } from 'react-router-dom'
 
 import './Members.css'
 
@@ -40,7 +39,7 @@ class UpdateMembers extends React.Component {
             name="firstname"
             onChange={this.handleChanges}
             placeholder="firstname"
-            value={this.state.value}
+            value={this.props.firstname}
           />
 
           <input
@@ -48,7 +47,7 @@ class UpdateMembers extends React.Component {
             name="lastname"
             onChange={this.handleChanges}
             placeholder="lastname"
-            value={this.state.value}
+            value={this.props.lastname}
           />
 
           <input
@@ -56,10 +55,11 @@ class UpdateMembers extends React.Component {
             name="email"
             onChange={this.handleChanges}
             placeholder="email"
-            value={this.state.value}
+            value={this.props.email}
           />
           <button>Update Club Member Info</button>
         </form>
+        <button>Delete Club Member</button>
       </div>
     )
   }
