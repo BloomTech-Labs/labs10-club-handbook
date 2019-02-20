@@ -6,6 +6,8 @@ import { handleAuthorization } from '../store/actions/authActions';
 class Callback extends React.Component {
     
     componentDidMount() {
+        console.log('Callback Component mounted')
+        
         this.props.handleAuthorization();
         this.props.history.push('/authenticated')
     };
