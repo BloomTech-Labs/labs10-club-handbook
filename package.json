@@ -20,6 +20,7 @@
    },
    "homepage": "https://github.com/Lambda-School-Labs/labs10-club-handbook#readme",
    "dependencies": {
+      "@material-ui/icons": "^3.0.2",
       "bcryptjs": "^2.4.3",
       "cloudinary": "^1.13.2",
       "cors": "^2.8.5",

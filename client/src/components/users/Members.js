@@ -6,6 +6,7 @@ import { getUsers } from '../../store/actions/usersActions'
 import { Link } from 'react-router-dom'
 import DeleteTwoToneIcon from '@material-ui/icons/DeleteTwoTone'
 import Done from '@material-ui/icons/Done'
+import EmailButton from './SendEmail'
 
 import './Members.css'
 
@@ -47,9 +48,7 @@ class Members extends React.Component {
                       <Link className="links" to="/members/:id">
                         Remove
                       </Link>
-                      <Link className="links" to="/members/:id">
-                        Send Notification
-                      </Link>
+                      <EmailButton />
                       <DeleteTwoToneIcon />
                     </div>
                   </div>

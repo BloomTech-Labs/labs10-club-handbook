@@ -10,10 +10,9 @@ import Authenticated from './auth/Authenticated'
 import SectionForm from './components/sections/SectionForm'
 import Settings from './components/Settings'
 import Landing from './components/Landing'
-import CallbackEmail from './auth/CallbackEmail';
+import CallbackEmail from './auth/CallbackEmail'
 import AddMembers from './components/users/AddMembers'
 import UpdateMembers from './components/users/UpdateMembers'
-
 
 class App extends Component {
   render() {
