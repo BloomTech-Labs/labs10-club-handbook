@@ -17,12 +17,19 @@ class UpdateMembers extends React.Component {
   }
 
   handleChanges = event => {
-    // this.setState({ [event.target.name]: event.target.value })
+    this.setState({ [event.target.name]: event.target.value })
   }
 
-  updateMember = event => {
+  handleSubmit = event => {
     event.preventDefault()
-    this.props.updateMember(this.state.value)
+    
+    const user = {
+      firstname: this.state.firstname,
+      lastname: this.state.lastname,
+      email: this.state.email
+    }
+
+    this.props.updateUser(user)
   }
 
   render() {
@@ -33,7 +40,7 @@ class UpdateMembers extends React.Component {
             <h1>Update Club Member Info</h1>
           </div>
         </AppBar>
-        <form onSubmit={this.updateMember}>
+        <form onSubmit={this.handleSubmit}>
           <input
             type="text"
             name="firstname"
