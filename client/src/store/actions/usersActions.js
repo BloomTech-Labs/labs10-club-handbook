@@ -2,9 +2,11 @@ import axios from 'axios'
 
 export const START = 'START'
 export const FAIL = 'FAIL'
+export const ADD_MEMBER_START = 'ADD_MEMBER_START'
+export const ADD_MEMBER_SUCCESS = 'ADD_MEMBER_SUCCESS'
+export const ADD_MEMBER_FAIL = 'ADD_MEMBER_FAIL'
 export const GET_USERS = 'GET_USERS'
 export const GET_USER_BY_ID = 'GET_USER_BY_ID'
-export const ADD_USER = 'ADD_USER'
 export const UPDATE_USER = 'UPDATE_USER'
 export const DELETE_USER = 'DELETE_USER'
 
@@ -37,16 +39,26 @@ export const getUserById = id => dispatch => {
 }
 
 export const addUser = user => dispatch => {
-  dispatch({ type: START, message: `Adding a user` })
+  dispatch({ type: ADD_MEMBER_START, message: `Adding a user` })
+
+  const requestOptions = {
+    headers: {
+      authorization: localStorage.getItem('access_token'),
+    },
+  }
 
   axios
-    .post('https://club-handbook.herokuapp.com/api/users', user)
+    .post(
+      'https://club-handbook.herokuapp.com/api/users/addMember',
+      user,
+      requestOptions
+    )
     .then(res => {
       // returns an object with the added user details
-      dispatch({ type: ADD_USER, payload: res.data })
+      dispatch({ type: ADD_MEMBER_SUCCESS, payload: res.data })
     })
     .catch(err => {
-      dispatch({ type: FAIL, error: err })
+      dispatch({ type: ADD_MEMBER_FAIL, error: err })
     })
 }
 

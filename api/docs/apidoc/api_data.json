@@ -394,6 +394,55 @@
   },
   {
     "type": "post",
+    "url": "/api/clubs/:id/signature",
+    "title": "sign a handbook",
+    "group": "members",
+    "description": "<p>token owner must belong to club in param</p>",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "authorization",
+            "description": "<p>access token</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "email",
+            "description": "<p>add to body.email (REQ)</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "message",
+            "description": "<p>confirmation message</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "api/routes/clubsRoute.js",
+    "groupTitle": "members",
+    "name": "PostApiClubsIdSignature"
+  },
+  {
+    "type": "post",
     "url": "/api/users/addMember",
     "title": "Add a Club Member",
     "group": "members",

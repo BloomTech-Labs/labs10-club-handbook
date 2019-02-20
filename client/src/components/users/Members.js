@@ -22,7 +22,7 @@ class Members extends React.Component {
         <AppBar position="static">
           <div className="members-header">
             <h1>ClubMembers</h1>
-            <Button variant="text" color="secondary">
+            <Button variant="text" color="secondary" onClick={() => {this.props.history.push("/add-members")}}>
               +ADD Member
             </Button>
           </div>
