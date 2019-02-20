@@ -48,7 +48,7 @@ class Members extends React.Component {
                       <Link className="links" to="/members/:id">
                         Remove
                       </Link>
-                      <EmailButton />
+                      <EmailButton email={user.email} />
                       <DeleteTwoToneIcon />
                     </div>
                   </div>
