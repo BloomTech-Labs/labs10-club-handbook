@@ -22,13 +22,18 @@ class AddMembers extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    this.props.addUser(this.state.firstname)
-    this.props.addUser(this.state.lastname)
-    this.props.addUser(this.state.email)
+
+    const user = {
+      firstname: this.state.firstname,
+      lastname: this.state.lastname,
+      email: this.state.email
+    }
+
+    this.props.addUser(user)
   }
 
   render() {
-    console.log('got to render')
+    // console.log('got to render')
     return (
       <div className="members-container">
         <AppBar position="static">
