@@ -32,6 +32,7 @@ class UpdateMembers extends React.Component {
     if (this.state.email.length > 0) userInfo.email = this.state.email;
 
     this.props.updateUser(userId, userInfo)
+    this.props.history.push('/members')
   }
 
   render() {
