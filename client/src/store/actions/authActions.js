@@ -1,5 +1,9 @@
 import axios from 'axios'
 import Auth from '../../auth/Auth'
+<<<<<<< HEAD
+=======
+import AuthEmail from '../../auth/AuthEmail'
+>>>>>>> b2f2292cafe8d7d892ac135d4f4267a7732ab783
 
 export const AUTHORIZATION_START = 'AUTHORIZATION_START'
 export const AUTHORIZATION_SUCCESS = 'AUTHORIZATION_SUCCESS'
@@ -7,6 +11,10 @@ export const AUTHORIZATION_FAIL = 'AUTHORIZATION_FAIL'
 export const LOGOUT_USER = 'LOGOUT_USER'
 
 const auth = new Auth()
+<<<<<<< HEAD
+=======
+const authEmail = new AuthEmail()
+>>>>>>> b2f2292cafe8d7d892ac135d4f4267a7732ab783
 
 export const signinUser = () => dispatch => {
   dispatch({ type: AUTHORIZATION_START, message: 'Starting authorization.' })
@@ -28,7 +36,10 @@ export const handleAuthorization = () => dispatch => {
       }
 
       axios
+<<<<<<< HEAD
         // .post(`http://localhost:5000/api/users/register`, userObject)
+=======
+>>>>>>> b2f2292cafe8d7d892ac135d4f4267a7732ab783
         .post(
           `https://club-handbook.herokuapp.com/api/users/register`,
           userObject
@@ -48,3 +59,37 @@ export const logoutUser = () => dispatch => {
   auth.logout()
   dispatch({ type: LOGOUT_USER, message: 'User logged out.' })
 }
+<<<<<<< HEAD
+=======
+
+export const handleAuthorizationEmail = () => dispatch => {
+  console.log('handleAuthorizationEmail() from authActions invoked')
+
+  authEmail
+    .handleAuthentication()
+    .then(res => {
+      console.log('authEmail.handleAuthentication() from authActions invoked')
+
+      dispatch({ type: AUTHORIZATION_SUCCESS, message: 'User authorized.' })
+
+      const userObject = {
+        accessToken: res.accessToken,
+        id_token: res.id_token,
+      }
+
+      axios
+        .post(
+          `https://club-handbook.herokuapp.com/api/users/register-magiclink`,
+          userObject
+        )
+        .then(res => {
+          console.log(res)
+        })
+        .catch(err => console.log(err))
+    })
+    .catch(err => {
+      console.log(err)
+      dispatch({ type: AUTHORIZATION_FAIL, message: 'User not authorized.' })
+    })
+}
+>>>>>>> b2f2292cafe8d7d892ac135d4f4267a7732ab783
