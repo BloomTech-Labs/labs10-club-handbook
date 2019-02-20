@@ -1,5 +1,6 @@
 import axios from 'axios'
 import Auth from '../../auth/Auth'
+
 import AuthEmail from '../../auth/AuthEmail'
 
 export const AUTHORIZATION_START = 'AUTHORIZATION_START'
@@ -8,6 +9,7 @@ export const AUTHORIZATION_FAIL = 'AUTHORIZATION_FAIL'
 export const LOGOUT_USER = 'LOGOUT_USER'
 
 const auth = new Auth()
+
 const authEmail = new AuthEmail()
 
 export const signinUser = () => dispatch => {
@@ -26,10 +28,11 @@ export const handleAuthorization = () => dispatch => {
 
       const userObject = {
         accessToken: res.accessToken,
-        id_token: res.id_token,
+        idToken: res.idToken,
       }
 
       axios
+        // .post(`http://localhost:5000/api/users/register`, userObject)
         .post(
           `https://club-handbook.herokuapp.com/api/users/register`,
           userObject
@@ -62,10 +65,11 @@ export const handleAuthorizationEmail = () => dispatch => {
 
       const userObject = {
         accessToken: res.accessToken,
-        id_token: res.id_token,
+        idToken: res.idToken,
       }
 
       axios
+        // .post('http://localhost:5000/api/users/register-magiclink', userObject)
         .post(
           `https://club-handbook.herokuapp.com/api/users/register-magiclink`,
           userObject

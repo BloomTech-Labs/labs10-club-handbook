@@ -1,11 +1,13 @@
 import {
-  START,
-  FAIL,
+  ADD_MEMBER_START,
+  ADD_MEMBER_SUCCESS,
+  ADD_MEMBER_FAIL,
   GET_USERS,
   GET_USER_BY_ID,
-  ADD_USER,
   UPDATE_USER,
   DELETE_USER,
+  START,
+  FAIL,
 } from '../actions/usersActions'
 
 const initialState = {
@@ -33,6 +35,29 @@ const usersReducer = (state = initialState, action) => {
         error: action.error,
       }
 
+    case ADD_MEMBER_START:
+      return {
+        ...state,
+        loading: true,
+        message: action.message,
+      }
+
+    case ADD_MEMBER_SUCCESS:
+      return {
+        ...state,
+        users: [...state.users, action.payload],
+        loading: false,
+        message: null,
+      }
+
+    case ADD_MEMBER_FAIL:
+      return {
+        ...state,
+        loading: false,
+        message: null,
+        error: action.error,
+      }
+
     case GET_USERS:
       return {
         ...state,
@@ -45,14 +70,6 @@ const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         userById: action.payload,
-        loading: false,
-        message: null,
-      }
-
-    case ADD_USER:
-      return {
-        ...state,
-        users: [...state.users, action.payload],
         loading: false,
         message: null,
       }

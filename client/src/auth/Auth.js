@@ -8,7 +8,7 @@ class Auth {
   auth0 = new auth0.WebAuth({
     domain: 'club-handbook.auth0.com',
     clientID: 'LL5WL3YD7vxOZ5tw5yMDmtQb2QxRpTkU',
-    redirectUri: "https://clubhandbook.netlify.com/callback",
+    redirectUri: 'https://clubhandbook.netlify.com/callback',
     // redirectUri: 'http://localhost:3000/callback',
     audience: 'https://club-handbook.herokuapp.com/',
     responseType: 'token id_token',
@@ -62,14 +62,15 @@ class Auth {
       return {}
     }
   }
-
-  // sendEmail = emailAddress => {
-  //   console.log('sendEmail from Auth.js invoked');
-
-  //   this.auth0.passwordlessStart({ connection: 'email', send: 'link', email: emailAddress }, (err, res) => {
-  //     console.log(err);
-  //   })
-  // }
 }
+
+// sendEmail = emailAddress => {
+//   console.log('sendEmail from Auth.js invoked');
+
+//   this.auth0.passwordlessStart({ connection: 'email', send: 'link', email: emailAddress }, (err, res) => {
+//     console.log(err);
+//   })
+// }
+// }
 
 export default Auth
