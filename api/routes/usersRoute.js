@@ -61,7 +61,7 @@ router.post('/register', async (req, res) => {
 })
 
 /**
- * @api {post} /api/users/register Email/Magic Link Login
+ * @api {post} /api/users/register-magiclink Email/Magic Link Login
  * @apiGroup users
  * @apiParam {string} tokens both idToken and accessToken send in body
  * @apiDescription this is intended for magic-link login, their email and club_id have previously been added by club owner through /users/addMember endpoint.
