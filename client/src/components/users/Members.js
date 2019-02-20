@@ -1,9 +1,11 @@
 import React from 'react'
-import { AppBar, Button, Avatar } from '@material-ui/core'
+import { AppBar, Button, Avatar, SvgIcon } from '@material-ui/core'
 
 import { connect } from 'react-redux'
 import { getUsers } from '../../store/actions/usersActions'
 import { Link } from 'react-router-dom'
+import DeleteTwoToneIcon from '@material-ui/icons/DeleteTwoTone'
+import Done from '@material-ui/icons/Done'
 
 import './Members.css'
 
@@ -11,6 +13,7 @@ class Members extends React.Component {
   componentDidMount() {
     this.props.getUsers()
   }
+
   render() {
     const { users } = this.props
     console.log(users[0])
@@ -47,19 +50,20 @@ class Members extends React.Component {
                       <Link className="links" to="/members/:id">
                         Send Notification
                       </Link>
+                      <DeleteTwoToneIcon />
                     </div>
                   </div>
                 </div>
                 <div className="members-actions">
                   <div>
                     <h3>Visited</h3>
-                    <h6>CheckMark Visited</h6>
+                    <Done />
                     <h3>date</h3>
                   </div>
 
                   <div>
                     <h3>Signed</h3>
-                    <h6>CheckMark Signed</h6>
+                    <Done />
                     <h3>date</h3>
                   </div>
                 </div>
