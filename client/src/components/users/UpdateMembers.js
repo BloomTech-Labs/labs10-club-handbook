@@ -2,7 +2,7 @@ import React from 'react'
 import { AppBar } from '@material-ui/core'
 
 import { connect } from 'react-redux'
-import { updateUser } from '../../store/actions/usersActions'
+import { updateUser, deleteUser } from '../../store/actions/usersActions'
 
 import './Members.css'
 
@@ -33,6 +33,15 @@ class UpdateMembers extends React.Component {
 
     this.props.updateUser(userId, userInfo)
     this.props.history.push('/members')
+  }
+
+  handleDeleteClick = event => {
+    event.preventDefault();
+
+    const userId = this.props.match.params.id;
+
+    this.props.deleteUser(userId)
+
   }
 
   render() {
@@ -69,7 +78,7 @@ class UpdateMembers extends React.Component {
           />
           <button>Update Club Member Info</button>
         </form>
-        <button>Delete Club Member</button>
+        <button onClick={this.handleDeleteClick}>Delete Club Member</button>
       </div>
     )
   }
@@ -84,5 +93,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { updateUser }
+  { updateUser, deleteUser }
 )(UpdateMembers)

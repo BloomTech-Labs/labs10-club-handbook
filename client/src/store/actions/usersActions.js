@@ -85,8 +85,14 @@ export const updateUser = (id, changes) => dispatch => {
 export const deleteUser = id => dispatch => {
   dispatch({ type: START, message: `Deleting user` })
 
+  const requestOptions = {
+    headers: {
+      authorization: localStorage.getItem('access_token'),
+    },
+  }
+
   axios
-    .delete(`https://club-handbook.herokuapp.com/api/users/${id}`)
+    .delete(`https://club-handbook.herokuapp.com/api/users/${id}`, requestOptions)
     .then(res => {
       // returns the user id
       dispatch({ type: DELETE_USER, payload: res.data })
