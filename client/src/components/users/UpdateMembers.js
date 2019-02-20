@@ -23,13 +23,15 @@ class UpdateMembers extends React.Component {
   handleSubmit = event => {
     event.preventDefault()
     
-    const user = {
-      firstname: this.state.firstname,
-      lastname: this.state.lastname,
-      email: this.state.email
-    }
+    const userId = this.props.match.params.id;
 
-    this.props.updateUser(user)
+    const userInfo = {};
+
+    if (this.state.firstname.length > 0) userInfo.firstname = this.state.firstname;
+    if (this.state.lastname.length > 0) userInfo.lastname = this.state.lastname;
+    if (this.state.email.length > 0) userInfo.email = this.state.email;
+
+    this.props.updateUser(userId, userInfo)
   }
 
   render() {
