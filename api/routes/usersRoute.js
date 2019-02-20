@@ -3,10 +3,10 @@ const router = express.Router()
 const jwtdecode = require('jwt-decode')
 const jwt = require('jsonwebtoken')
 const db = require('../../config/dbConfig')
-// const jwtKey = process.env.JWT_SECRET
+const jwtKey = process.env.JWT_SECRET
 const { validateToken, getInfoFromToken } = require('../helpers/authHelper')
 
-// const env_secret = jwtKey.split(',').join('\n')
+const env_secret = jwtKey.split(',').join('\n')
 
 /**
  * @api {post} /api/users/register Add a User (Auth0)
@@ -30,6 +30,58 @@ router.post('/register', async (req, res) => {
     async (err, decoded) => {
       if (err) {
         res.status(400).json({ message: 'invalid token', error: err })
+      }
+      try {
+        let findUser = await db('users')
+          .where({ sub_id: userInfo.sub })
+          .first()
+        if (findUser) {
+          //we good?
+          console.log('success')
+          res.status(200).send('welcome back')
+        } else {
+          //add new user
+          let userToInsert = {
+            email: userInfo.email,
+            firstname: userInfo.given_name,
+            lastname: userInfo.family_name,
+            img_url: userInfo.picture,
+            sub_id: userInfo.sub,
+          }
+          await db('users').insert([userToInsert])
+          console.log('success')
+          res.status(200).send('welcome')
+        }
+      } catch (err) {
+        console.log('what the?')
+        res.status(500).json(err)
+      }
+    }
+  )
+})
+
+/**
+ * @api {post} /api/users/register Email/Magic Link Login
+ * @apiGroup users
+ * @apiParam {string} tokens both idToken and accessToken send in body
+ * @apiDescription this is intended for magic-link login, their email and club_id have previously been added by club owner through /users/addMember endpoint.
+ * @apiSuccess {text} n/a 'welcome' or 'welcome back'
+ */
+router.post('/register-magiclink', async (req, res) => {
+  let userInfo = jwtdecode(req.body.idToken)
+
+  jwt.verify(
+    req.body.accessToken,
+    env_secret,
+    {
+      algorithms: ['RS256'],
+      audience: 'https://club-handbook.herokuapp.com/',
+      issuer: 'https://club-handbook.auth0.com/',
+    },
+
+    async (err, decoded) => {
+      if (err) {
+        res.status(400).json({ message: 'invalid token', error: err })
       } else {
         try {
           //check if sub exists in users
@@ -37,19 +89,24 @@ router.post('/register', async (req, res) => {
             .where({ sub_id: userInfo.sub })
             .first()
           if (findUser) {
-            //we good?
+            //user has logged in before
             res.status(200).send('welcome back')
           } else {
-            //add new user
-            let userToInsert = {
-              email: userInfo.email,
-              firstname: userInfo.given_name,
-              lastname: userInfo.family_name,
-              img_url: userInfo.picture,
-              sub_id: userInfo.sub,
+            //first time log-in
+            let invitedUser = await db('users')
+              .where({ email: userInfo.email, sub_id: null })
+              .first()
+            //find the staged- member entry and insert sub_id
+            if (invitedUser) {
+              let infoToUpdate = {
+                img_url: userInfo.picture,
+                sub_id: userInfo.sub,
+              }
+              await db('users')
+                .where({ email: userInfo.email, sub_id: null })
+                .update(infoToUpdate)
+              res.status(200).send('welcome')
             }
-            await db('users').insert([userToInsert])
-            res.status(200).send('welcome')
           }
         } catch (err) {
           res.status(500).json(err)

@@ -26,10 +26,11 @@ export const handleAuthorization = () => dispatch => {
 
       const userObject = {
         accessToken: res.accessToken,
-        id_token: res.id_token,
+        idToken: res.idToken,
       }
 
       axios
+        // .post('http://localhost:5000/api/users/register', userObject)
         .post(
           `https://club-handbook.herokuapp.com/api/users/register`,
           userObject
@@ -62,10 +63,11 @@ export const handleAuthorizationEmail = () => dispatch => {
 
       const userObject = {
         accessToken: res.accessToken,
-        id_token: res.id_token,
+        idToken: res.idToken,
       }
 
       axios
+        // .post('http://localhost:5000/api/users/register-magiclink', userObject)
         .post(
           `https://club-handbook.herokuapp.com/api/users/register-magiclink`,
           userObject

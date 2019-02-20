@@ -856,5 +856,42 @@ define({ "api": [
     "filename": "api/routes/usersRoute.js",
     "groupTitle": "users",
     "name": "PostApiUsersRegister"
+  },
+  {
+    "type": "post",
+    "url": "/api/users/register",
+    "title": "Email/Magic Link Login",
+    "group": "users",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "tokens",
+            "description": "<p>both idToken and accessToken send in body</p>"
+          }
+        ]
+      }
+    },
+    "description": "<p>this is intended for magic-link login, their email and club_id have previously been added by club owner through /users/addMember endpoint.</p>",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "text",
+            "optional": false,
+            "field": "n/a",
+            "description": "<p>'welcome' or 'welcome back'</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "api/routes/usersRoute.js",
+    "groupTitle": "users",
+    "name": "PostApiUsersRegister"
   }
 ] });
