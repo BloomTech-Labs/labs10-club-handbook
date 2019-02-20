@@ -12,6 +12,8 @@ import Grid from '@material-ui/core/Grid';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom'
+
 
 
 const styles = theme => ({
@@ -91,7 +93,7 @@ const subscriptions = [
   },
 ];
 
-function Landing(props) {
+function Landing(props)  {
   const { classes } = props;
 
   return (
@@ -102,11 +104,10 @@ function Landing(props) {
           <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
             Club.Handbook
           </Typography>
-          <Button>Members</Button>
-          <Button>Billing</Button>
-          <Button>SectionForm</Button>
-          <Button>Settings</Button>
-          <Button color="primary" variant="outlined">
+          <Button component={Link} to="/members">Members</Button>
+          <Button component={Link} to="/section-form">SectionForm</Button>
+          <Button component={Link} to="/settings">Settings</Button>
+          <Button component={Link} to="/login" color="primary" variant="outlined">
             Login
           </Button>
         </Toolbar>
@@ -164,7 +165,7 @@ function Landing(props) {
                   ))}
                 </CardContent>
                 <CardActions className={classes.cardActions}>
-                  <Button fullWidth variant={tier.buttonVariant} color="primary">
+                  <Button component={Link} to="/login" fullWidth variant={tier.buttonVariant} color="primary">
                     {tier.buttonText}
                   </Button>
                 </CardActions>
@@ -184,12 +185,12 @@ function Landing(props) {
             <div>
               <Grid container spacing={16} justify="center">
                 <Grid item>
-                  <Button variant="outlined" color="primary">
+                  <Button component={Link} to="/login" variant="outlined" color="primary">
                     Sign Up
                   </Button>
                 </Grid>
                 <Grid item>
-                  <Button variant="contained" color="primary">
+                  <Button component={Link} to="/login" variant="contained" color="primary">
                     Contact Us
                   </Button>
                 </Grid>

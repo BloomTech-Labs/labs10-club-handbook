@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FormGroup, FormControlLabel, TextField, Button, Checkbox } from '@material-ui/core';
+import Payment from './billing/Payment'
 
 const SettingsContainer = styled.div`
 margin: auto;
@@ -73,6 +74,7 @@ class Settings extends React.Component {
                     LEAVE TEAM
                 </Button>
             </form>
+            <Payment />
             </SettingsContainer>
         );
     }
