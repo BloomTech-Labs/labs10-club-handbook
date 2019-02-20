@@ -13,7 +13,7 @@ import Landing from './components/Landing'
 import CallbackEmail from './auth/CallbackEmail';
 import AddMembers from './components/users/AddMembers'
 import UpdateMembers from './components/users/UpdateMembers'
-import Landing from './components/Landing'
+
 
 class App extends Component {
   render() {
