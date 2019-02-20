@@ -24,7 +24,7 @@ class App extends Component {
             <Route exact path="/Dashboard" component={DashDrawer} />
             <Route exact path="/members" component={Members} />
             <Route exact path="/add-members" component={AddMembers} />
-            <Route exact path="/update-members" component={UpdateMembers} />
+            <Route exact path="/update-members/:id" component={UpdateMembers} />
             <Route exact path="/billing" component={Payment} />
             <Route exact path="/settings" component={Settings} />
             <Route path="/login" component={Login} />

@@ -41,7 +41,7 @@ class Members extends React.Component {
                       <h3>{user.email}</h3>
                     </div>
                     <div className="members-management">
-                      <Link className="links" to={`/members/${user.id}`}>
+                      <Link className="links" to={`/update-members/${user.id}`}>
                         Edit
                       </Link>
                       <Link className="links" to="/members/:id">

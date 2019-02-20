@@ -62,7 +62,7 @@ export const addUser = user => dispatch => {
     })
 }
 
-export const updateUser = id => dispatch => {
+export const updateUser = (id, changes) => dispatch => {
   dispatch({ type: START, message: `Updating user` })
 
   axios
