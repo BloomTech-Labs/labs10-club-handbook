@@ -859,7 +859,7 @@ define({ "api": [
   },
   {
     "type": "post",
-    "url": "/api/users/register",
+    "url": "/api/users/register-magiclink",
     "title": "Email/Magic Link Login",
     "group": "users",
     "parameter": {
@@ -892,6 +892,6 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "api/routes/usersRoute.js",
     "groupTitle": "users",
-    "name": "PostApiUsersRegister"
+    "name": "PostApiUsersRegisterMagiclink"
   }
 ] });
