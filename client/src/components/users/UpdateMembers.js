@@ -18,7 +18,7 @@ class UpdateMembers extends React.Component {
 
   handleChanges = event => {
     this.setState({ [event.target.name]: event.target.value })
-  }
+  };
 
   handleSubmit = event => {
     event.preventDefault()
