@@ -13,6 +13,7 @@ import DashDrawer from './components/Dashboard'
 import CallbackEmail from './auth/CallbackEmail'
 import AddMembers from './components/users/AddMembers'
 import UpdateMembers from './components/users/UpdateMembers'
+import Signature from './components/signature/Signature'
 import HandbookPage from './components/handbook/HandbookPage'
 import MagicLinkRequest from './components/sections/MagicLinkRequest'
 
@@ -27,6 +28,7 @@ class App extends Component {
             <Route exact path="/handbook" component={HandbookPage} />
             <Route exact path="/members" component={Members} />
             <Route exact path="/add-members" component={AddMembers} />
+            <Route exact path="/signature" component={Signature} />
             <Route exact path="/update-members/:id" component={UpdateMembers} />
             <Route exact path="/billing" component={Payment} />
             <Route exact path="/settings" component={Settings} />
