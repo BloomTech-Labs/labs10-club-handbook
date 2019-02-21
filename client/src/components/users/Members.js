@@ -67,12 +67,11 @@ class Members extends React.Component {
                       <ViewedManual key={user.email} sub_id={user.sub_id} />
                       <h3>date</h3>
                     </div>
-
-                    <div>
-                      <h3>Signed</h3>
-                      <SignedManual key={user.email} signed={user.signed} />
-                      <h3>date</h3>
-                    </div>
+                  </div>
+                  <div>
+                    <h3>Signed</h3>
+                    <SignedManual key={user.email} signed={user.signed} />
+                    <h3>date</h3>
                   </div>
                 </div>
               )
