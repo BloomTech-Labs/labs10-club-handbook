@@ -91,7 +91,7 @@ router.post('/:id/checkMember', async (req, res, next) => {
  * @apiGroup members
  * @apiDescription token owner must belong to club in param
  * @apiHeader authorization access token
- * @apiParam {string} email add to body.email (REQ)
+ * @apiParam {string} signature what they type into signature field (REQ)
  * @apiSuccess {string} message confirmation message
  */
 router.post(

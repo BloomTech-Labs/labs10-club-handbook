@@ -24,7 +24,7 @@ export const handleAuthorization = () => dispatch => {
   auth
     .handleAuthentication()
     .then(res => {
-      dispatch({ type: AUTHORIZATION_SUCCESS, message: 'User authorized.' })
+      // dispatch({ type: AUTHORIZATION_SUCCESS, message: 'User authorized.' })
 
       const userObject = {
         accessToken: res.accessToken,
@@ -32,12 +32,23 @@ export const handleAuthorization = () => dispatch => {
       }
 
       axios
-        // .post(`http://localhost:5000/api/users/register`, userObject)
-        .post(
-          `https://club-handbook.herokuapp.com/api/users/register`,
-          userObject
-        )
+        .post(`http://localhost:5000/api/users/register`, userObject)
+        // .post(
+        //   `https://club-handbook.herokuapp.com/api/users/register`,
+        //   userObject
+        // )
         .then(res => {
+          // can we do history.push from here somehow instead of in callback component?
+          // if res.status = 200 => welcome back
+          // if res.status = 201 => welcome first time
+          // if res.status = 400 => invalid token
+          // if res.status = 500 => other error
+          dispatch({
+            type: AUTHORIZATION_SUCCESS,
+            message: 'User authorized.',
+            payload: res.data.user,
+          })
+
           console.log(res)
         })
         .catch(err => console.log(err))
@@ -69,11 +80,11 @@ export const handleAuthorizationEmail = () => dispatch => {
       }
 
       axios
-        // .post('http://localhost:5000/api/users/register-magiclink', userObject)
-        .post(
-          `https://club-handbook.herokuapp.com/api/users/register-magiclink`,
-          userObject
-        )
+        .post('http://localhost:5000/api/users/register-magiclink', userObject)
+        // .post(
+        //   `https://club-handbook.herokuapp.com/api/users/register-magiclink`,
+        //   userObject
+        // )
         .then(res => {
           console.log(res)
         })

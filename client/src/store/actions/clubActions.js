@@ -13,6 +13,12 @@ export const UPDATE_SECTION_BY_CLUB_ID = 'UPDATE_SECTION_BY_CLUB_ID'
 export const DELETE_ALL_SECTIONS_BY_CLUB_ID = 'DELETE_ALL_SECTIONS_BY_CLUB_ID'
 export const DELETE_SECTION_BY_SECTION_ID = 'DELETE_SECTION_BY_SECTION_ID'
 
+const header = {
+  headers: {
+    authorization: localStorage.getItem('access_token'),
+  },
+}
+
 export const getClubs = () => dispatch => {
   dispatch({ type: START, message: `Getting list of clubs` })
 
@@ -31,7 +37,8 @@ export const getClubById = id => dispatch => {
   dispatch({ type: START, message: `Getting club by id` })
 
   axios
-    .get(`https://club-handbook.herokuapp.com/api/clubs/${id}`)
+    .get(`http://localhost:5000/api/clubs/${id}`, header)
+    // .get(`https://club-handbook.herokuapp.com/api/clubs/${id}`, header)
     .then(res => {
       // returns an object with the club details
       dispatch({ type: GET_CLUB_BY_ID, payload: res.data })
