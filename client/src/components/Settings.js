@@ -1,38 +1,68 @@
 import React from 'react'
-import styled from 'styled-components'
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
 import {
+  CssBaseline,
   FormGroup,
   FormControlLabel,
   TextField,
   Button,
   Checkbox,
+  Paper,
 } from '@material-ui/core'
-import Payment from './billing/Payment'
 
-const SettingsContainer = styled.div`
-  margin: auto;
-  margin-top: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 700px;
-  height: 450px;
-`
+const styles = theme => ({
+  main: {
+    width: 'auto',
+    display: 'block',
+    marginLeft: theme.spacing.unit * 3,
+    marginRight: theme.spacing.unit * 3,
+    [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
+      width: 350,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    },
+  },
+  paper: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: `${theme.spacing.unit * 1}px ${theme.spacing.unit * 3}px ${theme
+      .spacing.unit * 4}px`,
+  },
+  form: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: '90%',
+    margin: 'auto',
+  },
+  formgroup: {
+    display: 'flex',
+    flexDirection: 'row',
+    margin: 'auto',
+  },
+  submit: {
+    marginTop: theme.spacing.unit * 4,
+  },
+})
 
-class Settings extends React.Component {
-  state = {
-    checkedEmail: false,
-    checkednText: false,
-  }
+function Settings(props) {
+  const { classes } = props
 
-  handleChange = name => event => {
-    this.setState({ [name]: event.target.checked })
-  }
+  //   state = {
+  //     checkedEmail: false,
+  //     checkednText: false,
+  //   }
 
-  render() {
-    return (
-      <SettingsContainer>
-        <form>
+  //   handleChange = name => event => {
+  //     this.setState({ [name]: event.target.checked })
+  //   }
+
+  return (
+    <main className={classes.main}>
+      <CssBaseline />
+      <Paper className={classes.paper}>
+        <form className={classes.form}>
           <TextField
             id="outlined-email"
             label="Email"
@@ -45,45 +75,53 @@ class Settings extends React.Component {
             margin="normal"
             variant="outlined"
           />
-          <div>
-            <FormGroup row>
-              <FormControlLabel
-                label="Email?"
-                labelPlacement="start"
-                control={
-                  <Checkbox
-                    checked={this.state.checkedEmail}
-                    onChange={this.handleChange('checkedEmail')}
-                    value="checkedEmail"
-                    color="primary"
-                  />
-                }
-              />
-              <FormControlLabel
-                label="Text?"
-                labelPlacement="start"
-                control={
-                  <Checkbox
-                    checked={this.state.checkedText}
-                    onChange={this.handleChange('checkedText')}
-                    value="checkedText"
-                    color="primary"
-                  />
-                }
-              />
-            </FormGroup>
-          </div>
-          <Button variant="contained" size="large" color="primary">
-            SAVE
-          </Button>
-          <Button variant="contained" size="large" color="secondary">
-            LEAVE TEAM
+          <FormGroup className={classes.formgroup}>
+            <FormControlLabel
+              control={<Checkbox color="primary" />}
+              label="Nofications"
+              color="green"
+            />
+            <FormControlLabel
+              control={<Checkbox disabled color="primary" />}
+              label="Email"
+              labelPlacement="start"
+              //             checked={this.state.checkedEmail}
+              //             onChange={this.handleChange('checkedEmail')}
+            />
+            <FormControlLabel
+              control={<Checkbox disabled color="primary" />}
+              label="Text"
+              labelPlacement="start"
+              //             checked={this.state.checkedText}
+              //             onChange={this.handleChange('checkedText')}
+            />
+          </FormGroup>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            Save
           </Button>
         </form>
-        <Payment />
-      </SettingsContainer>
-    )
-  }
+      </Paper>
+      <Button
+        type="submit"
+        fullWidth
+        variant="outlined"
+        color="secondary"
+        className={classes.submit}
+      >
+        Leave Team
+      </Button>
+    </main>
+  )
 }
 
-export default Settings
+Settings.propTypes = {
+  classes: PropTypes.object.isRequired,
+}
+
+export default withStyles(styles)(Settings)
