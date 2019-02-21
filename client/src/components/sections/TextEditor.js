@@ -21,10 +21,10 @@ const TextEditor = props => {
 
 TextEditor.modules = {
   toolbar: [
-    [{ header: '1' }, { header: '2' }, { font: [] }],
+    [{ header: '1' }, { header: '2' }],
     [{ size: [] }],
     ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-    [{ color: [] }, { background: [] }],
+    [{ color: [] }],
     [{ align: [] }],
     [
       { list: 'ordered' },
@@ -32,7 +32,6 @@ TextEditor.modules = {
       { indent: '-1' },
       { indent: '+1' },
     ],
-    ['link', 'image'],
     ['clean'],
   ],
 }
@@ -49,10 +48,7 @@ TextEditor.formats = [
   'list',
   'bullet',
   'indent',
-  'link',
-  'image',
   'color',
-  'background',
   'align',
 ]
 
