@@ -19,8 +19,14 @@ import DashboardIcon from '@material-ui/icons/Dashboard'
 import PeopleIcon from '@material-ui/icons/People'
 import SettingsIcon from '@material-ui/icons/Settings'
 import SubjectIcon from '@material-ui/icons/Subject'
+import CreditCardIcon from '@material-ui/icons/CreditCard'
 import LibraryBooksIcon from '@material-ui/icons/LibraryBooks'
 import { Link } from 'react-router-dom'
+
+import Settings from './Settings'
+import Members from './users/Members'
+import SectionForm from './sections/SectionForm'
+import Billing from './billing/Payment'
 
 const drawerWidth = 150
 
@@ -91,11 +97,42 @@ const styles = theme => ({
   },
 })
 
+function SectionContainer(props) {
+  return (
+    <Typography component="div" style={{ padding: 8 * 3 }}>
+      {props.children}
+    </Typography>
+  )
+}
+
+SectionContainer.propTypes = {
+  children: PropTypes.node.isRequired,
+}
+
 class DashDrawer extends React.Component {
   state = {
     open: true,
+    value: 0,
   }
 
+  handleDash = () => {
+    this.setState({ value: 0 })
+  }
+  handleMembers = () => {
+    this.setState({ value: 1 })
+  }
+  handleHandbook = () => {
+    this.setState({ value: 2 })
+  }
+  handleSections = () => {
+    this.setState({ value: 3 })
+  }
+  handleSettings = () => {
+    this.setState({ value: 4 })
+  }
+  handleBilling = () => {
+    this.setState({ value: 5 })
+  }
   handleDrawerOpen = () => {
     this.setState({ open: true })
   }
@@ -106,7 +143,7 @@ class DashDrawer extends React.Component {
 
   render() {
     const { classes, theme } = this.props
-    const { open } = this.state
+    const { open, value } = this.state
 
     return (
       <div className={classes.root}>
@@ -149,6 +186,8 @@ class DashDrawer extends React.Component {
           variant="persistent"
           anchor="left"
           open={open}
+          value={value}
+          onChange={this.handleChange}
           classes={{
             paper: classes.drawerPaper,
           }}
@@ -162,31 +201,37 @@ class DashDrawer extends React.Component {
               )}
             </IconButton>
           </div>
-          <ListItem button>
+          <ListItem button onClick={this.handleDash}>
             <ListItemIcon>
               <DashboardIcon />
             </ListItemIcon>
             <ListItemText primary="Dashboard" />
           </ListItem>
-          <ListItem button component={Link} to="/members">
+          <ListItem button onClick={this.handleMembers}>
             <ListItemIcon>
               <PeopleIcon />
             </ListItemIcon>
             <ListItemText primary="Members" />
           </ListItem>
-          <ListItem button>
+          <ListItem button onClick={this.handleHandbook}>
             <ListItemIcon>
               <LibraryBooksIcon />
             </ListItemIcon>
             <ListItemText primary="Handbook" />
           </ListItem>
-          <ListItem button component={Link} to="/section-form">
+          <ListItem button onClick={this.handleSections}>
             <ListItemIcon>
               <SubjectIcon />
             </ListItemIcon>
             <ListItemText primary="Sections" />
           </ListItem>
-          <ListItem button component={Link} to="/settings">
+          <ListItem button onClick={this.handleBilling}>
+            <ListItemIcon>
+              <CreditCardIcon />
+            </ListItemIcon>
+            <ListItemText primary="Billing" />
+          </ListItem>
+          <ListItem button onClick={this.handleSettings}>
             <ListItemIcon>
               <SettingsIcon />
             </ListItemIcon>
@@ -195,6 +240,28 @@ class DashDrawer extends React.Component {
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />
+          {value === 0 && <SectionContainer>Dashboard</SectionContainer>}
+          {value === 1 && (
+            <SectionContainer>
+              <Members />
+            </SectionContainer>
+          )}
+          {value === 2 && <SectionContainer>Handbook</SectionContainer>}
+          {value === 3 && (
+            <SectionContainer>
+              <SectionForm />
+            </SectionContainer>
+          )}
+          {value === 4 && (
+            <SectionContainer>
+              <Settings />
+            </SectionContainer>
+          )}
+          {value === 5 && (
+            <SectionContainer>
+              <Billing />
+            </SectionContainer>
+          )}
         </main>
       </div>
     )

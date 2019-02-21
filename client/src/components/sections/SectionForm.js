@@ -3,11 +3,12 @@ import axios from 'axios'
 import TextEditor from './TextEditor'
 import renderHtml from 'react-render-html'
 import { Button } from '@material-ui/core'
+import { connect } from 'react-redux'
+import { addSection } from '../../store/actions/clubActions'
 
 class SectionForm extends Component {
   state = {
     clubId: null,
-    handbook: [],
     title: '',
     isSubsection: false,
     body: '',
@@ -18,7 +19,11 @@ class SectionForm extends Component {
     contactInfo: '',
     color: null,
     font: null,
-    sectionType: null,
+  }
+
+  componentDidMount() {
+    const { clubId } = this.props.currentUser
+    this.setState({ clubId }) // { clubId: clubId }
   }
 
   changeHandler = e => {
@@ -51,9 +56,19 @@ class SectionForm extends Component {
   }
 
   render() {
+    const { clubId } = this.state
+    const { addSection } = this.props
+
+    if (!clubId) {
+      return <h1>Loading...</h1>
+    }
     return (
       <div className="section-form">
-        <form method="/POST" encType="multipart/form-data">
+        <form
+          method="/POST"
+          encType="multipart/form-data"
+          onSubmit={addSection(clubId, this.state)}
+        >
           <div className="form-group">
             <div className="action-btns">
               <Button variant="contained" color="secondary">
@@ -166,41 +181,13 @@ class SectionForm extends Component {
   }
 }
 
-SectionForm.modules = {
-  toolbar: [
-    [{ header: '1' }, { header: '2' }, { font: [] }],
-    [{ size: [] }],
-    ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-    [{ color: [] }, { background: [] }],
-    [{ align: [] }],
-    [
-      { list: 'ordered' },
-      { list: 'bullet' },
-      { indent: '-1' },
-      { indent: '+1' },
-    ],
-    ['link', 'image'],
-    ['clean'],
-  ],
+const mapStateToProps = state => {
+  return {
+    currentUser: state.auth.currentUser,
+  }
 }
 
-SectionForm.formats = [
-  'header',
-  'font',
-  'size',
-  'bold',
-  'italic',
-  'underline',
-  'strike',
-  'blockquote',
-  'list',
-  'bullet',
-  'indent',
-  'link',
-  'image',
-  'color',
-  'background',
-  'align',
-]
-
-export default SectionForm
+export default connect(
+  mapStateToProps,
+  { addSection }
+)(SectionForm)
