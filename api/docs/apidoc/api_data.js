@@ -417,8 +417,8 @@ define({ "api": [
             "group": "Parameter",
             "type": "string",
             "optional": false,
-            "field": "email",
-            "description": "<p>add to body.email (REQ)</p>"
+            "field": "signature",
+            "description": "<p>what they type into signature field (REQ)</p>"
           }
         ]
       }
