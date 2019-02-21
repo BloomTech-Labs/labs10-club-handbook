@@ -9,7 +9,7 @@ class Callback extends React.Component {
         console.log('Callback Component mounted')
         
         this.props.handleAuthorization();
-        this.props.history.push('/authenticated')
+        this.props.history.push('/Dashboard')
     };
 
     render() {
