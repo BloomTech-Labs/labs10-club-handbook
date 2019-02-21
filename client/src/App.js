@@ -10,10 +10,11 @@ import SectionForm from './components/sections/SectionForm'
 import Settings from './components/Settings'
 import Landing from './components/Landing'
 import DashDrawer from './components/Dashboard'
-import CallbackEmail from './auth/CallbackEmail';
+import CallbackEmail from './auth/CallbackEmail'
 import AddMembers from './components/users/AddMembers'
 import UpdateMembers from './components/users/UpdateMembers'
-import MagicLinkRequest from './components/sections/MagicLinkRequest';
+import HandbookPage from './components/handbook/HandbookPage'
+import MagicLinkRequest from './components/sections/MagicLinkRequest'
 
 class App extends Component {
   render() {
@@ -23,6 +24,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Landing} />
             <Route exact path="/Dashboard" component={DashDrawer} />
+            <Route exact path="/handbook" component={HandbookPage} />
             <Route exact path="/members" component={Members} />
             <Route exact path="/add-members" component={AddMembers} />
             <Route exact path="/update-members/:id" component={UpdateMembers} />

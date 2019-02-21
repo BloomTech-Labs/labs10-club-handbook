@@ -13,7 +13,8 @@ const env_secret = jwtKey.split(',').join('\n')
  * @apiGroup users
  * @apiParam {string} tokens both idToken and accessToken send in body
  * @apiDescription this is intended for club owners registering and signing in throught auth0, this is not intended for adding members or magic-link login
- * @apiSuccess {text} n/a 'welcome' or 'welcome back'
+ * @apiSuccess {string} message 'welcome' or 'welcome back'
+ * @apiSuccess {integer} id id of user
  */
 router.post('/register', async (req, res) => {
   let userInfo = jwtdecode(req.body.idToken)
@@ -36,9 +37,7 @@ router.post('/register', async (req, res) => {
           .where({ sub_id: userInfo.sub })
           .first()
         if (findUser) {
-          //we good?
-          console.log('success')
-          res.status(200).send('welcome back')
+          res.status(200).json({ message: 'welcome back', user: findUser })
         } else {
           //add new user
           let userToInsert = {
@@ -49,11 +48,12 @@ router.post('/register', async (req, res) => {
             sub_id: userInfo.sub,
           }
           await db('users').insert([userToInsert])
-          console.log('success')
-          res.status(200).send('welcome')
+          let newUser = await db('users')
+            .where({ sub_id: userInfo.sub })
+            .first()
+          res.status(201).send({ message: 'welcome', user: newUser })
         }
       } catch (err) {
-        console.log('what the?')
         res.status(500).json(err)
       }
     }
@@ -105,7 +105,7 @@ router.post('/register-magiclink', async (req, res) => {
               await db('users')
                 .where({ email: userInfo.email, sub_id: null })
                 .update(infoToUpdate)
-              res.status(200).send('welcome')
+              res.status(201).send('welcome')
             }
           }
         } catch (err) {

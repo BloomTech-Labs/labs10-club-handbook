@@ -13,6 +13,12 @@ export const UPDATE_SECTION_BY_CLUB_ID = 'UPDATE_SECTION_BY_CLUB_ID'
 export const DELETE_ALL_SECTIONS_BY_CLUB_ID = 'DELETE_ALL_SECTIONS_BY_CLUB_ID'
 export const DELETE_SECTION_BY_SECTION_ID = 'DELETE_SECTION_BY_SECTION_ID'
 
+const header = {
+  headers: {
+    authorization: localStorage.getItem('access_token'),
+  },
+}
+
 export const getClubs = () => dispatch => {
   dispatch({ type: START, message: `Getting list of clubs` })
 
@@ -31,7 +37,8 @@ export const getClubById = id => dispatch => {
   dispatch({ type: START, message: `Getting club by id` })
 
   axios
-    .get(`https://club-handbook.herokuapp.com/api/clubs/${id}`)
+    // .get(`http://localhost:5000/api/clubs/${id}`, header)
+    .get(`https://club-handbook.herokuapp.com/api/clubs/${id}`, header)
     .then(res => {
       // returns an object with the club details
       dispatch({ type: GET_CLUB_BY_ID, payload: res.data })
@@ -45,7 +52,8 @@ export const createClub = clubInfo => dispatch => {
   dispatch({ type: START, message: `Creating new club` })
 
   axios
-    .post(`https://club-handbook.herokuapp.com/api/clubs`, clubInfo)
+    // .post(`http://localhost:5000/api/clubs`, clubInfo, header)
+    .post(`https://club-handbook.herokuapp.com/api/clubs`, clubInfo, header)
     .then(res => {
       // returns an object with the club details
       dispatch({ type: CREATE_CLUB, payload: res.data })
@@ -59,7 +67,12 @@ export const updateClub = (id, clubInfo) => dispatch => {
   dispatch({ type: START, message: `Updating club` })
 
   axios
-    .patch(`https://club-handbook.herokuapp.com/api/clubs/${id}`, clubInfo)
+    // .patch(`http://localhost:5000/api/clubs/${id}`, clubInfo, header)
+    .patch(
+      `https://club-handbook.herokuapp.com/api/clubs/${id}`,
+      clubInfo,
+      header
+    )
     .then(res => {
       // returns an object with the club details
       dispatch({ type: UPDATE_CLUB, payload: res.data })
@@ -74,7 +87,7 @@ export const deleteClub = id => dispatch => {
   dispatch({ type: START, message: `Deleting club` })
 
   axios
-    .delete(`https://club-handbook.herokuapp.com/api/clubs/${id}`)
+    .delete(`https://club-handbook.herokuapp.com/api/clubs/${id}`, header)
     .then(res => {
       // returns message: `club deleted`
       dispatch({ type: DELETE_CLUB, payload: res.data })
@@ -88,9 +101,11 @@ export const getClubSections = id => dispatch => {
   dispatch({ type: START, message: `Getting club sections` })
 
   axios
-    .get(`https://club-handbook.herokuapp.com/api/clubs/${id}/sections`)
+    // .get(`http://localhost:5000/api/clubs/${id}/sections`, header)
+    .get(`https://club-handbook.herokuapp.com/api/clubs/${id}/sections`, header)
     .then(res => {
       // returns an array of section objects
+      console.log(res.data)
       dispatch({ type: GET_CLUB_SECTIONS, payload: res.data })
     })
     .catch(err => {
@@ -104,6 +119,7 @@ export const addSection = (id, sectionInfo) => dispatch => {
   axios
     .post(
       `https://club-handbook.herokuapp.com/api/clubs/${id}/sections`,
+      header,
       sectionInfo
     )
     .then(res => {
@@ -121,7 +137,8 @@ export const updateSection = (id, sectionId, sectionInfo) => dispatch => {
   axios
     .patch(
       `https://club-handbook.herokuapp.com/api/clubs/${id}/sections/${sectionId}`,
-      sectionInfo
+      sectionInfo,
+      header
     )
     .then(res => {
       // returns a section object
@@ -136,7 +153,10 @@ export const deleteAllSections = id => dispatch => {
   dispatch({ type: START, message: `Deleting all sections` })
 
   axios
-    .delete(`https://club-handbook.herokuapp.com/api/clubs/${id}/sections`)
+    .delete(
+      `https://club-handbook.herokuapp.com/api/clubs/${id}/sections`,
+      header
+    )
     .then(res => {
       // returns a message
       dispatch({ type: DELETE_ALL_SECTIONS_BY_CLUB_ID, payload: res.data })
@@ -151,7 +171,8 @@ export const deleteSectionById = (id, sectionId) => dispatch => {
 
   axios
     .delete(
-      `https://club-handbook.herokuapp.com/api/clubs/${id}/sections/${sectionId}`
+      `https://club-handbook.herokuapp.com/api/clubs/${id}/sections/${sectionId}`,
+      header
     )
     .then(res => {
       // returns a message
