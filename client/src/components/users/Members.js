@@ -59,6 +59,23 @@ class Members extends React.Component {
                         <DeleteTwoToneIcon />
                       </div>
                     </div>
+                    <div className="members-management">
+                      <Link className="links" to={`/update-members/${user.id}`}>
+                        Edit
+                      </Link>
+                      <Link className="links" to="/members/:id">
+                        Remove
+                      </Link>
+                      <EmailButton email={user.email} />
+                      <DeleteTwoToneIcon />
+                    </div>
+                  </div>
+                </div>
+                <div className="members-actions">
+                  <div>
+                    <h3>Visited</h3>
+                    <Done />
+                    <h3>date</h3>
                   </div>
                   <div className="members-actions">
                     <div>
