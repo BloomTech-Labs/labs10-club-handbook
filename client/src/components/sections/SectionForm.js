@@ -67,7 +67,7 @@ class SectionForm extends Component {
         <form
           method="/POST"
           encType="multipart/form-data"
-          onSubmit={() => addSection(clubId, this.state)}
+          onSubmit={addSection(clubId, this.state)}
         >
           <div className="form-group">
             <div className="action-btns">
