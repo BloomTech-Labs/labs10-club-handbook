@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { getUsers } from '../../store/actions/usersActions'
 import { Link } from 'react-router-dom'
 import DeleteTwoToneIcon from '@material-ui/icons/DeleteTwoTone'
-import Done from '@material-ui/icons/Done'
+import SignedManual from './SignedManual'
 import EmailButton from './SendEmail'
 
 import './Members.css'
@@ -23,7 +23,13 @@ class Members extends React.Component {
         <AppBar position="static">
           <div className="members-header">
             <h1>ClubMembers</h1>
-            <Button variant="text" color="secondary" onClick={() => {this.props.history.push("/add-members")}}>
+            <Button
+              variant="text"
+              color="secondary"
+              onClick={() => {
+                this.props.history.push('/add-members')
+              }}
+            >
               +ADD Member
             </Button>
           </div>
@@ -31,43 +37,45 @@ class Members extends React.Component {
 
         <div className="members-list">
           {users.slice(0, 10).map(user => {
-            return (
-              <div className="members">
-                <div className="members-info">
-                  <Avatar />
-                  <div className="members-details">
-                    <div className="members-text">
-                      <h3>{user.firstname}</h3>
-                      <h3>{user.lastname}</h3>
-                      <h3>{user.email}</h3>
-                    </div>
-                    <div className="members-management">
-                      <Link className="links" to="/members/:id">
-                        Edit
-                      </Link>
-                      <Link className="links" to="/members/:id">
-                        Remove
-                      </Link>
-                      <EmailButton email={user.email} />
-                      <DeleteTwoToneIcon />
+            if (user.admin === false) {
+              return (
+                <div className="members">
+                  <div className="members-info">
+                    <Avatar />
+                    <div className="members-details">
+                      <div className="members-text">
+                        <h3>{user.firstname}</h3>
+                        <h3>{user.lastname}</h3>
+                        <h3>{user.email}</h3>
+                      </div>
+                      <div className="members-management">
+                        <Link className="links" to="/members/:id">
+                          Edit
+                        </Link>
+                        <Link className="links" to="/members/:id">
+                          Remove
+                        </Link>
+                        <EmailButton email={user.email} />
+                        <DeleteTwoToneIcon />
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="members-actions">
-                  <div>
-                    <h3>Visited</h3>
-                    <Done />
-                    <h3>date</h3>
-                  </div>
+                  <div className="members-actions">
+                    <div>
+                      <h3>Visited</h3>
 
-                  <div>
-                    <h3>Signed</h3>
-                    <Done />
-                    <h3>date</h3>
+                      <h3>date</h3>
+                    </div>
+
+                    <div>
+                      <h3>Signed</h3>
+                      <SignedManual key={user.email} signed={user.signed} />
+                      <h3>date</h3>
+                    </div>
                   </div>
                 </div>
-              </div>
-            )
+              )
+            }
           })}
         </div>
       </div>
