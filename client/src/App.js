@@ -16,6 +16,7 @@ import UpdateMembers from './components/users/UpdateMembers'
 import Signature from './components/signature/Signature'
 import HandbookPage from './components/handbook/HandbookPage'
 import MagicLinkRequest from './components/sections/MagicLinkRequest'
+import SectionRender from './components/sections/SectionRender'
 
 class App extends Component {
   render() {
@@ -41,6 +42,7 @@ class App extends Component {
             <Route path="/section-form" component={SectionForm} />
             <Route path="/callback-email" component={CallbackEmail} />
             <Route path="/magic-link-request" component={MagicLinkRequest} />
+            <Route path="/section/:id" component={SectionRender} />
           </Switch>
         </div>
       </BrowserRouter>
