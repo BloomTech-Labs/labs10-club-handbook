@@ -1,5 +1,5 @@
 import React from 'react'
-import StripeCheckout from 'react-stripe-checkout';
+import StripeCheckout from 'react-stripe-checkout'
 import styled from 'styled-components'
 
 const PaymentContainer = styled.div`
@@ -10,25 +10,25 @@ const PaymentContainer = styled.div`
   justify-content: center;
 `
 class Payment extends React.Component {
-  onToken = (token) => {
-    console.log(token);
+  onToken = token => {
+    console.log(token)
     fetch('http://localhost:5000/payments', {
       method: 'POST',
       body: JSON.stringify(token),
     }).then(response => {
       response.json().then(data => {
-        alert(`Thank you for your purchase!`);
-      });
-    });
+        alert(`Thank you for your purchase!`)
+      })
+    })
   }
- 
+
   render() {
     return (
       <PaymentContainer>
-      <StripeCheckout
-        token={this.onToken}
-        stripeKey="pk_test_M1Y5kyDDSB7dOAWXIhzOOqMV"
-      />
+        <StripeCheckout
+          token={this.onToken}
+          stripeKey="pk_test_M1Y5kyDDSB7dOAWXIhzOOqMV"
+        />
       </PaymentContainer>
     )
   }

@@ -19,12 +19,14 @@ import DashboardIcon from '@material-ui/icons/Dashboard'
 import PeopleIcon from '@material-ui/icons/People'
 import SettingsIcon from '@material-ui/icons/Settings'
 import SubjectIcon from '@material-ui/icons/Subject'
+import CreditCardIcon from '@material-ui/icons/CreditCard'
 import LibraryBooksIcon from '@material-ui/icons/LibraryBooks'
 import { Link } from 'react-router-dom'
 
 import Settings from './Settings'
 import Members from './users/Members'
 import SectionForm from './sections/SectionForm'
+import Billing from './billing/Payment'
 
 const drawerWidth = 150
 
@@ -128,6 +130,9 @@ class DashDrawer extends React.Component {
   handleSettings = () => {
     this.setState({ value: 4 })
   }
+  handleBilling = () => {
+    this.setState({ value: 5 })
+  }
   handleDrawerOpen = () => {
     this.setState({ open: true })
   }
@@ -220,6 +225,12 @@ class DashDrawer extends React.Component {
             </ListItemIcon>
             <ListItemText primary="Sections" />
           </ListItem>
+          <ListItem button onClick={this.handleBilling}>
+            <ListItemIcon>
+              <CreditCardIcon />
+            </ListItemIcon>
+            <ListItemText primary="Billing" />
+          </ListItem>
           <ListItem button onClick={this.handleSettings}>
             <ListItemIcon>
               <SettingsIcon />
@@ -244,6 +255,11 @@ class DashDrawer extends React.Component {
           {value === 4 && (
             <SectionContainer>
               <Settings />
+            </SectionContainer>
+          )}
+          {value === 5 && (
+            <SectionContainer>
+              <Billing />
             </SectionContainer>
           )}
         </main>
