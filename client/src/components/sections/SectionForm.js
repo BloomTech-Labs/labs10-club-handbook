@@ -56,7 +56,9 @@ class SectionForm extends Component {
   }
 
   render() {
-    const { clubId, addSection } = this.state
+    const { clubId } = this.state
+    const { addSection } = this.props
+
     if (!clubId) {
       return <h1>Loading...</h1>
     }
