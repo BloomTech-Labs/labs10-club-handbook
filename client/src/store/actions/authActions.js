@@ -32,11 +32,11 @@ export const handleAuthorization = () => dispatch => {
       }
 
       axios
-        .post(`http://localhost:5000/api/users/register`, userObject)
-        // .post(
-        //   `https://club-handbook.herokuapp.com/api/users/register`,
-        //   userObject
-        // )
+        // .post(`http://localhost:5000/api/users/register`, userObject)
+        .post(
+          `https://club-handbook.herokuapp.com/api/users/register`,
+          userObject
+        )
         .then(res => {
           // can we do history.push from here somehow instead of in callback component?
           // if res.status = 200 => welcome back
@@ -80,11 +80,11 @@ export const handleAuthorizationEmail = () => dispatch => {
       }
 
       axios
-        .post('http://localhost:5000/api/users/register-magiclink', userObject)
-        // .post(
-        //   `https://club-handbook.herokuapp.com/api/users/register-magiclink`,
-        //   userObject
-        // )
+        // .post('http://localhost:5000/api/users/register-magiclink', userObject)
+        .post(
+          `https://club-handbook.herokuapp.com/api/users/register-magiclink`,
+          userObject
+        )
         .then(res => {
           console.log(res)
         })
