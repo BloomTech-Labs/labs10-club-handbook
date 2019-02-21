@@ -119,14 +119,15 @@ export const addSection = (id, sectionInfo) => dispatch => {
   axios
     .post(
       `https://club-handbook.herokuapp.com/api/clubs/${id}/sections`,
-      header,
-      sectionInfo
+      sectionInfo,
+      header
     )
     .then(res => {
       // returns a section object
       dispatch({ type: ADD_SECTION_BY_CLUB_ID, payload: res.data })
     })
     .catch(err => {
+      console.log(id, sectionInfo, header)
       dispatch({ type: FAIL, error: err })
     })
 }
