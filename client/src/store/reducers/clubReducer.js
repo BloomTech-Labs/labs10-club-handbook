@@ -97,7 +97,7 @@ const clubReducer = (state = initialState, action) => {
     case ADD_SECTION_BY_CLUB_ID:
       return {
         ...state,
-        sections: [...state.sections, action.payload],
+        sections: [...state.sections, action.payload.section],
         loading: false,
         message: null,
       }
