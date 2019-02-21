@@ -55,6 +55,7 @@ class SectionForm extends Component {
       .catch(err => console.log(err))
   }
 
+
   addSection = ev => {
     ev.preventDefault()
     let sectionInfo = {
@@ -63,6 +64,9 @@ class SectionForm extends Component {
       img_url: this.state.image,
     }
     this.props.addSection(this.state.clubId, sectionInfo)
+
+  cancel = () => {
+    this.props.history.push('/')
   }
 
   render() {
@@ -71,6 +75,7 @@ class SectionForm extends Component {
     if (!clubId) {
       return <h1>Loading...</h1>
     }
+
     return (
       <div className="section-form">
         <form
@@ -80,7 +85,11 @@ class SectionForm extends Component {
         >
           <div className="form-group">
             <div className="action-btns">
-              <Button variant="contained" color="secondary">
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={this.cancel}
+              >
                 Cancel
               </Button>
 
@@ -183,7 +192,11 @@ class SectionForm extends Component {
             </select>
 
             <div className="action-btns">
-              <Button variant="contained" color="secondary">
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={this.cancel}
+              >
                 Cancel
               </Button>
               <Button
