@@ -64,13 +64,4 @@ class Auth {
   }
 }
 
-// sendEmail = emailAddress => {
-//   console.log('sendEmail from Auth.js invoked');
-
-//   this.auth0.passwordlessStart({ connection: 'email', send: 'link', email: emailAddress }, (err, res) => {
-//     console.log(err);
-//   })
-// }
-// }
-
 export default Auth

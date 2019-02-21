@@ -14,6 +14,8 @@ import CallbackEmail from './auth/CallbackEmail'
 import AddMembers from './components/users/AddMembers'
 import UpdateMembers from './components/users/UpdateMembers'
 import Signature from './components/signature/Signature'
+import HandbookPage from './components/handbook/HandbookPage'
+import MagicLinkRequest from './components/sections/MagicLinkRequest'
 
 class App extends Component {
   render() {
@@ -23,6 +25,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Landing} />
             <Route exact path="/Dashboard" component={DashDrawer} />
+            <Route exact path="/handbook" component={HandbookPage} />
             <Route exact path="/members" component={Members} />
             <Route exact path="/add-members" component={AddMembers} />
             <Route exact path="/signature" component={Signature} />
@@ -37,6 +40,7 @@ class App extends Component {
             />
             <Route path="/section-form" component={SectionForm} />
             <Route path="/callback-email" component={CallbackEmail} />
+            <Route path="/magic-link-request" component={MagicLinkRequest} />
           </Switch>
         </div>
       </BrowserRouter>

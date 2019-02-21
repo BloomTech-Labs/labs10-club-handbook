@@ -60,6 +60,7 @@ const clubReducer = (state = initialState, action) => {
       return {
         ...state,
         clubs: [...state.clubs, action.payload],
+        clubById: action.payload.club,
         loading: false,
         message: null,
       }
@@ -72,6 +73,7 @@ const clubReducer = (state = initialState, action) => {
             return { club: action.payload }
           }
         }),
+        clubById: action.payload.club,
         loading: false,
         message: null,
       }
