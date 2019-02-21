@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import DeleteTwoToneIcon from '@material-ui/icons/DeleteTwoTone'
 import SignedManual from './SignedManual'
 import EmailButton from './SendEmail'
+import ViewedManual from './ViewedManual'
 
 import './Members.css'
 
@@ -63,7 +64,7 @@ class Members extends React.Component {
                   <div className="members-actions">
                     <div>
                       <h3>Visited</h3>
-
+                      <ViewedManual key={user.email} sub_id={user.sub_id} />
                       <h3>date</h3>
                     </div>
 
