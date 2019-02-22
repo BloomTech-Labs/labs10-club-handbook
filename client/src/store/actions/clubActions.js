@@ -13,12 +13,6 @@ export const UPDATE_SECTION_BY_CLUB_ID = 'UPDATE_SECTION_BY_CLUB_ID'
 export const DELETE_ALL_SECTIONS_BY_CLUB_ID = 'DELETE_ALL_SECTIONS_BY_CLUB_ID'
 export const DELETE_SECTION_BY_SECTION_ID = 'DELETE_SECTION_BY_SECTION_ID'
 
-const header = {
-  headers: {
-    authorization: localStorage.getItem('access_token'),
-  },
-}
-
 export const getClubs = () => dispatch => {
   dispatch({ type: START, message: `Getting list of clubs` })
 
@@ -35,7 +29,11 @@ export const getClubs = () => dispatch => {
 
 export const getClubById = id => dispatch => {
   dispatch({ type: START, message: `Getting club by id` })
-
+  const header = {
+    headers: {
+      authorization: localStorage.getItem('access_token'),
+    },
+  }
   axios
     // .get(`http://localhost:5000/api/clubs/${id}`, header)
     .get(`https://club-handbook.herokuapp.com/api/clubs/${id}`, header)
@@ -50,7 +48,11 @@ export const getClubById = id => dispatch => {
 
 export const createClub = clubInfo => dispatch => {
   dispatch({ type: START, message: `Creating new club` })
-
+  const header = {
+    headers: {
+      authorization: localStorage.getItem('access_token'),
+    },
+  }
   axios
     // .post(`http://localhost:5000/api/clubs`, clubInfo, header)
     .post(`https://club-handbook.herokuapp.com/api/clubs`, clubInfo, header)
@@ -65,7 +67,11 @@ export const createClub = clubInfo => dispatch => {
 
 export const updateClub = (id, clubInfo) => dispatch => {
   dispatch({ type: START, message: `Updating club` })
-
+  const header = {
+    headers: {
+      authorization: localStorage.getItem('access_token'),
+    },
+  }
   axios
     // .patch(`http://localhost:5000/api/clubs/${id}`, clubInfo, header)
     .patch(
@@ -85,7 +91,11 @@ export const updateClub = (id, clubInfo) => dispatch => {
 // will not delete if sections for club exist via PSQL constraint
 export const deleteClub = id => dispatch => {
   dispatch({ type: START, message: `Deleting club` })
-
+  const header = {
+    headers: {
+      authorization: localStorage.getItem('access_token'),
+    },
+  }
   axios
     .delete(`https://club-handbook.herokuapp.com/api/clubs/${id}`, header)
     .then(res => {
@@ -99,7 +109,11 @@ export const deleteClub = id => dispatch => {
 
 export const getClubSections = id => dispatch => {
   dispatch({ type: START, message: `Getting club sections` })
-
+  const header = {
+    headers: {
+      authorization: localStorage.getItem('access_token'),
+    },
+  }
   axios
     // .get(`http://localhost:5000/api/clubs/${id}/sections`, header)
     .get(`https://club-handbook.herokuapp.com/api/clubs/${id}/sections`, header)
@@ -115,7 +129,11 @@ export const getClubSections = id => dispatch => {
 
 export const addSection = (id, sectionInfo) => dispatch => {
   dispatch({ type: START, message: `Adding a section` })
-
+  const header = {
+    headers: {
+      authorization: localStorage.getItem('access_token'),
+    },
+  }
   axios
     .post(
       `https://club-handbook.herokuapp.com/api/clubs/${id}/sections`,
@@ -134,7 +152,11 @@ export const addSection = (id, sectionInfo) => dispatch => {
 
 export const updateSection = (id, sectionId, sectionInfo) => dispatch => {
   dispatch({ type: START, message: `Updating section` })
-
+  const header = {
+    headers: {
+      authorization: localStorage.getItem('access_token'),
+    },
+  }
   axios
     .patch(
       `https://club-handbook.herokuapp.com/api/clubs/${id}/sections/${sectionId}`,
@@ -152,7 +174,11 @@ export const updateSection = (id, sectionId, sectionInfo) => dispatch => {
 
 export const deleteAllSections = id => dispatch => {
   dispatch({ type: START, message: `Deleting all sections` })
-
+  const header = {
+    headers: {
+      authorization: localStorage.getItem('access_token'),
+    },
+  }
   axios
     .delete(
       `https://club-handbook.herokuapp.com/api/clubs/${id}/sections`,
@@ -169,7 +195,11 @@ export const deleteAllSections = id => dispatch => {
 
 export const deleteSectionById = (id, sectionId) => dispatch => {
   dispatch({ type: START, message: `Deleting section` })
-
+  const header = {
+    headers: {
+      authorization: localStorage.getItem('access_token'),
+    },
+  }
   axios
     .delete(
       `https://club-handbook.herokuapp.com/api/clubs/${id}/sections/${sectionId}`,

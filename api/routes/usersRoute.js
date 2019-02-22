@@ -90,7 +90,7 @@ router.post('/register-magiclink', async (req, res) => {
             .first()
           if (findUser) {
             //user has logged in before
-            res.status(200).send('welcome back')
+            res.status(200).json({ message: `welcome back`, user: findUser })
           } else {
             //first time log-in
             let invitedUser = await db('users')
@@ -102,10 +102,14 @@ router.post('/register-magiclink', async (req, res) => {
                 img_url: userInfo.picture,
                 sub_id: userInfo.sub,
               }
-              await db('users')
+              let ids = await db('users')
                 .where({ email: userInfo.email, sub_id: null })
                 .update(infoToUpdate)
-              res.status(201).send('welcome')
+                .returning('id')
+              let updatedUser = await db('users')
+                .where({ id: ids[0] })
+                .first()
+              res.status(201).json({ message: `welcome`, user: updatedUser })
             }
           }
         } catch (err) {

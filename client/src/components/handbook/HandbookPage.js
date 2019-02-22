@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import SectionForm from '../sections/SectionForm'
-import SectionRenderer from '../sections/SectionRender'
+
 import {
   getClubById,
   updateClub,
@@ -128,8 +128,6 @@ class HandbookPage extends React.Component {
             </div>
           ))}
         </HandbookPreview>
-
-        <SectionRenderer />
       </div>
     )
   }

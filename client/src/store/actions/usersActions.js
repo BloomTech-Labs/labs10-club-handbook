@@ -10,12 +10,6 @@ export const GET_USER_BY_ID = 'GET_USER_BY_ID'
 export const UPDATE_USER = 'UPDATE_USER'
 export const DELETE_USER = 'DELETE_USER'
 
-const header = {
-  headers: {
-    authorization: localStorage.getItem('access_token'),
-  },
-}
-
 export const getUsers = () => dispatch => {
   dispatch({ type: START, message: `Fetching users` })
 
@@ -32,7 +26,11 @@ export const getUsers = () => dispatch => {
 
 export const getUserById = id => dispatch => {
   dispatch({ type: START, message: `Getting user` })
-
+  const header = {
+    headers: {
+      authorization: localStorage.getItem('access_token'),
+    },
+  }
   axios
     .get(`https://club-handbook.herokuapp.com/api/users/${id}`, header)
     .then(res => {
