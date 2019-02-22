@@ -5,9 +5,9 @@ import { getClubById } from '../../store/actions/clubActions';
 class HandbookMemberView extends React.Component {
 
     componentDidMount() {
-        const userId = this.props.currentUser.id
+        const clubId = this.props.currentUser.club_id
 
-        this.props.getClubById(userId)
+        this.props.getClubById(clubId)
 
     };
 
