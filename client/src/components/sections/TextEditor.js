@@ -25,14 +25,7 @@ TextEditor.modules = {
     [{ size: [] }],
     ['bold', 'italic', 'underline', 'strike', 'blockquote'],
     [{ color: [] }],
-    [{ align: [] }],
-    [
-      { list: 'ordered' },
-      { list: 'bullet' },
-      { indent: '-1' },
-      { indent: '+1' },
-    ],
-    ['clean'],
+    [{ list: 'ordered' }, { list: 'bullet' }],
   ],
 }
 
@@ -47,9 +40,7 @@ TextEditor.formats = [
   'blockquote',
   'list',
   'bullet',
-  'indent',
   'color',
-  'align',
 ]
 
 export default TextEditor

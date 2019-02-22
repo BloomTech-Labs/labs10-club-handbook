@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import TextEditor from './TextEditor'
-import renderHtml from 'react-render-html'
 import { Button } from '@material-ui/core'
 import { connect } from 'react-redux'
 import { addSection } from '../../store/actions/clubActions'
@@ -10,8 +9,8 @@ class SectionForm extends Component {
   state = {
     clubId: null,
     title: '',
-    isSubsection: false,
     body: '',
+    imgPlacement: 4,
     selectedFile: null,
     image: '',
     orderPosition: null,
@@ -114,10 +113,6 @@ class SectionForm extends Component {
               value={this.state.title}
             />
 
-            <label htmlFor="subsection">Subsection</label>
-            <input id="subsection" name="subsection" type="checkbox" />
-            <span className="slider" />
-
             <TextEditor
               bodyChangeHandler={this.bodyChangeHandler}
               body={this.state.body}
@@ -161,10 +156,10 @@ class SectionForm extends Component {
 
             <label htmlFor="section-type">Section Type</label>
             <select name="section-type" id="section-type">
-              <option value="image-bg">Image Background</option>
-              <option value="image-left">Image Left</option>
-              <option value="image-right">Image Right</option>
-              <option value="no-image">No Image</option>
+              <option value="1">Image Background</option>
+              <option value="2">Image Left</option>
+              <option value="3">Image Right</option>
+              <option value="4">No Image</option>
             </select>
 
             <label htmlFor="background">Background Color</label>
@@ -179,13 +174,6 @@ class SectionForm extends Component {
 
             <label htmlFor="title-font">Title Font</label>
             <select name="title-font" id="title-font">
-              <option value="Helvetica Neue">Helvetica Neue</option>
-              <option value="Sans Serif">Sans Serif</option>
-              <option value="Roboto">Roboto</option>
-            </select>
-
-            <label htmlFor="body-font">Body Font</label>
-            <select name="body-font" id="body-font">
               <option value="Helvetica Neue">Helvetica Neue</option>
               <option value="Sans Serif">Sans Serif</option>
               <option value="Roboto">Roboto</option>
