@@ -72,7 +72,8 @@ export const handleAuthorizationEmail = () => dispatch => {
     .then(res => {
       console.log('authEmail.handleAuthentication() from authActions invoked')
 
-      dispatch({ type: AUTHORIZATION_SUCCESS, message: 'User authorized.' })
+      // moved this to inside the .then() after the axios request, since we need a response from the server before we can set state with the payload
+      // dispatch({ type: AUTHORIZATION_SUCCESS, message: 'User authorized.' })
 
       const userObject = {
         accessToken: res.accessToken,
@@ -87,6 +88,7 @@ export const handleAuthorizationEmail = () => dispatch => {
         )
         .then(res => {
           console.log(res)
+          dispatch({ type: AUTHORIZATION_SUCCESS, message: 'User authorized.' })
         })
         .catch(err => console.log(err))
     })
