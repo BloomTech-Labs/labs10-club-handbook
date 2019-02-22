@@ -8,8 +8,10 @@ class CallbackEmail extends React.Component {
 
     this.props.handleAuthorizationEmail()
 
-    // Need to update this route to redirect the user of the handbook they need to see!
     this.props.history.push('/Dashboard')
+
+    // Need to update this route to redirect the user of the handbook they need to see!
+    // this.props.history.push('/handbook')
   }
 
   render() {

@@ -10,6 +10,12 @@ export const GET_USER_BY_ID = 'GET_USER_BY_ID'
 export const UPDATE_USER = 'UPDATE_USER'
 export const DELETE_USER = 'DELETE_USER'
 
+const header = {
+  headers: {
+    authorization: localStorage.getItem('access_token'),
+  },
+}
+
 export const getUsers = () => dispatch => {
   dispatch({ type: START, message: `Fetching users` })
 
@@ -28,7 +34,7 @@ export const getUserById = id => dispatch => {
   dispatch({ type: START, message: `Getting user` })
 
   axios
-    .get(`https://club-handbook.herokuapp.com/api/users/${id}`)
+    .get(`https://club-handbook.herokuapp.com/api/users/${id}`, header)
     .then(res => {
       // returns a user object
       dispatch({ type: GET_USER_BY_ID, payload: res.data })
@@ -72,7 +78,11 @@ export const updateUser = (id, changes) => dispatch => {
   }
 
   axios
-    .patch(`https://club-handbook.herokuapp.com/api/users/${id}`, changes, requestOptions)
+    .patch(
+      `https://club-handbook.herokuapp.com/api/users/${id}`,
+      changes,
+      requestOptions
+    )
     .then(res => {
       // returns the user id
       dispatch({ type: UPDATE_USER, payload: res.data })
@@ -92,7 +102,10 @@ export const deleteUser = id => dispatch => {
   }
 
   axios
-    .delete(`https://club-handbook.herokuapp.com/api/users/${id}`, requestOptions)
+    .delete(
+      `https://club-handbook.herokuapp.com/api/users/${id}`,
+      requestOptions
+    )
     .then(res => {
       // returns the user id
       dispatch({ type: DELETE_USER, payload: res.data })

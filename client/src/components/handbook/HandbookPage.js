@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
+import SectionForm from '../sections/SectionForm'
+import SectionRenderer from '../sections/SectionRender'
 import {
   getClubById,
   updateClub,
@@ -116,6 +118,7 @@ class HandbookPage extends React.Component {
           )}
         </HandbookForm>
 
+        {this.state.sectionView ? <SectionForm /> : null}
         <HandbookPreview>
           <h1>{this.props.club.name}</h1>
           {this.props.sections.map(section => (
@@ -125,6 +128,8 @@ class HandbookPage extends React.Component {
             </div>
           ))}
         </HandbookPreview>
+
+        <SectionRenderer />
       </div>
     )
   }
@@ -139,6 +144,7 @@ const HandbookForm = styled.form`
     img {
       min-height: 30px;
       min-width: 30px;
+      max-width: 300px;
     }
   }
 `

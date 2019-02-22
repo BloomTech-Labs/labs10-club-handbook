@@ -22,8 +22,8 @@ class SectionForm extends Component {
   }
 
   componentDidMount() {
-    const { clubId } = this.props.currentUser
-    this.setState({ clubId }) // { clubId: clubId }
+    const { club_id } = this.props.currentUser
+    this.setState({ clubId: club_id }) // { clubId: clubId }
   }
 
   changeHandler = e => {
@@ -55,13 +55,22 @@ class SectionForm extends Component {
       .catch(err => console.log(err))
   }
 
+  addSection = ev => {
+    ev.preventDefault()
+    let sectionInfo = {
+      title: this.state.title,
+      body: this.state.body,
+      img_url: this.state.image,
+    }
+    this.props.addSection(this.state.clubId, sectionInfo)
+  }
+
   cancel = () => {
     this.props.history.push('/')
   }
 
   render() {
     const { clubId } = this.state
-    const { addSection } = this.props
 
     if (!clubId) {
       return <h1>Loading...</h1>
@@ -86,7 +95,11 @@ class SectionForm extends Component {
 
               <h2>Create Section</h2>
 
-              <Button variant="contained" color="primary">
+              <Button
+                onClick={this.addSection}
+                variant="contained"
+                color="primary"
+              >
                 Save Section
               </Button>
             </div>
@@ -98,6 +111,7 @@ class SectionForm extends Component {
               onChange={this.changeHandler}
               style={{ width: '500px' }}
               required
+              value={this.state.title}
             />
 
             <label htmlFor="subsection">Subsection</label>
@@ -112,19 +126,21 @@ class SectionForm extends Component {
             <label htmlFor="contact-name">Contact Name</label>
             <input
               id="contact-name"
-              name="contact-name"
+              name="contactName"
               onChange={this.changeHandler}
               style={{ width: '500px' }}
               required
+              value={this.state.contactName}
             />
 
             <label htmlFor="contact-info">Contact Info</label>
             <input
               id="contact-info"
-              name="contact-info"
+              name="contactInfo"
               onChange={this.changeHandler}
               style={{ width: '500px' }}
               required
+              value={this.state.contactInfo}
             />
 
             <input
@@ -183,7 +199,11 @@ class SectionForm extends Component {
               >
                 Cancel
               </Button>
-              <Button variant="contained" color="primary">
+              <Button
+                onClick={this.addSection}
+                variant="contained"
+                color="primary"
+              >
                 Save Section
               </Button>
             </div>
