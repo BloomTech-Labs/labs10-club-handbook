@@ -12,12 +12,17 @@ const SectionRender = props => {
       section => section.id.toString() === sectionId.toString()
     )
 
-    const { title, body } = section
+    const { title, body, img_url } = section
+
+    // const body =
+    //   '<p>asdasdasdwq<strong>asdasda</strong><strong style="color: rgb(230, 0, 0);">asdadasdasdasd</strong></p>'
 
     return (
       <div>
         <h1>{title}</h1>
+        {img_url}
         <div className="body">{renderHTML({ body })}</div>
+        {/* <div className="body">{renderHTML(body)}</div> */}
       </div>
     )
   }
