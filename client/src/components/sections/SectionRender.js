@@ -6,24 +6,24 @@ const SectionRender = props => {
   if (props.sections.length === 0) {
     return <h1>No sections on the Redux Store</h1>
   } else {
-    console.log(props.sections)
-    // const sectionId = props.match.params.id
-    // const section = props.sections.find(
-    //   section => section.id.toString() === sectionId.toString()
-    // )
+     console.log(props.sections)
+     const sectionId = props.match.params.id
+     const section = props.sections.find(
+       section => section.id.toString() === sectionId.toString()
+     )
 
-    // const { title, body } = section
+    const { title, body, img_url } = section
+
+    // const body =
+    //   '<p>asdasdasdwq<strong>asdasda</strong><strong style="color: rgb(230, 0, 0);">asdadasdasdasd</strong></p>'
 
     return (
       <div>
-        {/* <h1>{title}</h1>
-        <div className="body">{renderHTML({ body })}</div> */}
-        {props.sections.map(section => (
-          <div>
-            <h1>{section.title}</h1>
-            <div className="body">{renderHTML(section.body)}</div>
-          </div>
-        ))}
+        <h1>{title}</h1>
+        {img_url}
+        <div className="body">{renderHTML(body)}</div>
+        {/* <div className="body">{renderHTML(body)}</div> */}
+
       </div>
     )
   }
