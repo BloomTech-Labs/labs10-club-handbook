@@ -1,7 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import { getClubById } from '../../store/actions/clubActions';
 
 class HandbookMemberView extends React.Component {
+
+    componentDidMount() {
+        const userId = this.props.currentUser.id
+
+        this.props.getClubById(userId)
+
+    };
+
+
     render() {
         return (
             <div>hi
@@ -24,5 +34,5 @@ const mapStateToProps = state => {
   
   export default connect(
     mapStateToProps,
-    { }
+    { getClubById }
   )(HandbookMemberView)
