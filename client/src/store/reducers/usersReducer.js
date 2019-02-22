@@ -4,6 +4,7 @@ import {
   ADD_MEMBER_FAIL,
   GET_USERS,
   GET_USER_BY_ID,
+  GET_USERS_BY_CLUB_ID,
   UPDATE_USER,
   DELETE_USER,
   START,
@@ -72,6 +73,14 @@ const usersReducer = (state = initialState, action) => {
         userById: action.payload,
         loading: false,
         message: null,
+      }
+
+    case GET_USERS_BY_CLUB_ID:
+      return {
+        ...state,
+        loading: false,
+        message: null,
+        users: action.payload
       }
 
     case UPDATE_USER:

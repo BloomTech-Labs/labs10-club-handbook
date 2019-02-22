@@ -2,7 +2,7 @@ import React from 'react'
 import { AppBar, Button, Avatar, SvgIcon } from '@material-ui/core'
 
 import { connect } from 'react-redux'
-import { getUsers } from '../../store/actions/usersActions'
+import { getUsers, getUsersByClubId } from '../../store/actions/usersActions'
 import { Link } from 'react-router-dom'
 import DeleteTwoToneIcon from '@material-ui/icons/DeleteTwoTone'
 import SignedManual from './SignedManual'
@@ -13,12 +13,17 @@ import './Members.css'
 
 class Members extends React.Component {
   componentDidMount() {
-    this.props.getUsers()
+    // this.props.getUsers()
+
+
+    const clubId = this.props.currentUser.club_id
+
+    this.props.getUsersByClubId(clubId);
   }
 
   render() {
     const { users } = this.props
-    console.log(users[0])
+
     return (
       <div className="members-container">
         <AppBar position="static">
@@ -37,7 +42,7 @@ class Members extends React.Component {
         </AppBar>
 
         <div className="members-list">
-          {users.slice(0, 10).map(user => {
+          {users.map(user => {
             if (user.admin === false) {
               return (
                 <div className="members">
@@ -87,10 +92,11 @@ const mapStateToProps = state => {
   return {
     users: state.users.users,
     loading: state.users.loading,
+    currentUser: state.auth.currentUser,
   }
 }
 
 export default connect(
   mapStateToProps,
-  { getUsers }
+  { getUsers, getUsersByClubId }
 )(Members)

@@ -7,8 +7,8 @@ import { updateUser, deleteUser } from '../../store/actions/usersActions'
 import './Members.css'
 
 class UpdateMembers extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       firstname: '',
       lastname: '',
@@ -25,13 +25,13 @@ class UpdateMembers extends React.Component {
     
     const userId = this.props.match.params.id;
 
-    const userInfo = {};
+    const userChanges = {};
 
-    if (this.state.firstname.length > 0) userInfo.firstname = this.state.firstname;
-    if (this.state.lastname.length > 0) userInfo.lastname = this.state.lastname;
-    if (this.state.email.length > 0) userInfo.email = this.state.email;
+    if (this.state.firstname.length > 0) userChanges.firstname = this.state.firstname;
+    if (this.state.lastname.length > 0) userChanges.lastname = this.state.lastname;
+    if (this.state.email.length > 0) userChanges.email = this.state.email;
 
-    this.props.updateUser(userId, userInfo)
+    this.props.updateUser(userId, userChanges)
     this.props.history.push('/members')
   }
 
@@ -58,7 +58,7 @@ class UpdateMembers extends React.Component {
             name="firstname"
             onChange={this.handleChanges}
             placeholder="firstname"
-            value={this.props.firstname}
+            value={this.state.firstname}
           />
 
           <input
@@ -66,7 +66,7 @@ class UpdateMembers extends React.Component {
             name="lastname"
             onChange={this.handleChanges}
             placeholder="lastname"
-            value={this.props.lastname}
+            value={this.state.lastname}
           />
 
           <input
@@ -74,7 +74,7 @@ class UpdateMembers extends React.Component {
             name="email"
             onChange={this.handleChanges}
             placeholder="email"
-            value={this.props.email}
+            value={this.state.email}
           />
           <button>Update Club Member Info</button>
         </form>

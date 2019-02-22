@@ -30,6 +30,8 @@ class AddMembers extends React.Component {
     }
 
     this.props.addUser(user)
+
+    this.props.history.push('/members')
   }
 
   render() {
