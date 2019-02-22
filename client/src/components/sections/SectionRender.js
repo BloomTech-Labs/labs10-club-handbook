@@ -21,7 +21,7 @@ const SectionRender = props => {
       <div>
         <h1>{title}</h1>
         {img_url}
-        <div className="body">{renderHTML({ body })}</div>
+        <div className="body">{renderHTML(body)}</div>
         {/* <div className="body">{renderHTML(body)}</div> */}
       </div>
     )
