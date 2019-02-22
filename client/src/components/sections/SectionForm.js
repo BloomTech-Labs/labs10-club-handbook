@@ -55,7 +55,6 @@ class SectionForm extends Component {
       .catch(err => console.log(err))
   }
 
-
   addSection = ev => {
     ev.preventDefault()
     let sectionInfo = {
@@ -64,6 +63,7 @@ class SectionForm extends Component {
       img_url: this.state.image,
     }
     this.props.addSection(this.state.clubId, sectionInfo)
+  }
 
   cancel = () => {
     this.props.history.push('/')
