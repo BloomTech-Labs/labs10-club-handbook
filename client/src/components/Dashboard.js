@@ -27,6 +27,7 @@ import Settings from './Settings'
 import Members from './users/Members'
 import SectionForm from './sections/SectionForm'
 import Billing from './billing/Payment'
+import HandbookPage from './handbook/HandbookPage'
 
 const drawerWidth = 150
 
@@ -111,8 +112,8 @@ SectionContainer.propTypes = {
 
 class DashDrawer extends React.Component {
   state = {
-    open: true,
-    value: 0,
+    open: false,
+    value: 2,
   }
 
   handleDash = () => {
@@ -246,7 +247,11 @@ class DashDrawer extends React.Component {
               <Members />
             </SectionContainer>
           )}
-          {value === 2 && <SectionContainer>Handbook</SectionContainer>}
+          {value === 2 && (
+            <SectionContainer>
+              <HandbookPage />
+            </SectionContainer>
+          )}
           {value === 3 && (
             <SectionContainer>
               <SectionForm />

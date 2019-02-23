@@ -17,6 +17,8 @@ import {
 
 import { Link } from 'react-router-dom'
 
+import Login from '../auth/Login'
+
 const styles = theme => ({
   appBar: {
     position: 'relative',
@@ -106,14 +108,7 @@ function Landing(props) {
           <Button component={Link} to="/dashboard" color="inherit">
             Dashboard
           </Button>
-          <Button
-            component={Link}
-            to="/login"
-            color="inherit"
-            variant="outlined"
-          >
-            Login
-          </Button>
+          <Button component={Login} color="inherit" variant="outlined" />
         </Toolbar>
       </AppBar>
       <main className={classes.layout}>
