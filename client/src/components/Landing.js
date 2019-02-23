@@ -18,6 +18,7 @@ import {
 import { Link } from 'react-router-dom'
 
 import Login from '../auth/Login'
+import ProcessStepper from './Process'
 
 const styles = theme => ({
   appBar: {
@@ -52,8 +53,9 @@ const styles = theme => ({
     },
   },
   processSection: {
-    fullWidth: 'true',
+    maxWidth: 800,
     margin: '0 auto',
+    backgroundColor: theme.palette.background.paper,
   },
   processContent: {
     maxWidth: 500,
@@ -155,10 +157,10 @@ function Landing(props) {
               paragraph
             >
               With Club.Handbook we make bringing your club members together as
-              easy as possible. Create your handbook, send and magic link, and
-              watch the signatures roll in.
+              easy as possible. Simple as 1-2-3:
             </Typography>
           </div>
+          <ProcessStepper />
         </div>
         <div className={classes.landingContent}>
           <Typography
