@@ -58,7 +58,7 @@ const styles = theme => ({
   processContent: {
     maxWidth: 500,
     margin: '0 auto',
-    padding: `${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 6}px`,
+    padding: `${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 3}px`,
   },
   mainLandingPost: {
     marginBottom: theme.spacing.unit * 4,
@@ -230,7 +230,7 @@ function Landing(props) {
           <div className={classes.landingContent}>
             <Typography
               component="h1"
-              variant="h2"
+              variant="h3"
               align="center"
               color="textPrimary"
               gutterBottom

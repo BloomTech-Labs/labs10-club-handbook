@@ -202,23 +202,23 @@ class DashDrawer extends React.Component {
               )}
             </IconButton>
           </div>
-          <ListItem button onClick={this.handleDash}>
+          {/* <ListItem button onClick={this.handleDash}>
             <ListItemIcon>
               <DashboardIcon />
             </ListItemIcon>
             <ListItemText primary="Dashboard" />
+          </ListItem> */}
+          <ListItem button onClick={this.handleHandbook}>
+            <ListItemIcon>
+              <SubjectIcon />
+            </ListItemIcon>
+            <ListItemText primary="Handbook" />
           </ListItem>
           <ListItem button onClick={this.handleMembers}>
             <ListItemIcon>
               <PeopleIcon />
             </ListItemIcon>
             <ListItemText primary="Members" />
-          </ListItem>
-          <ListItem button onClick={this.handleHandbook}>
-            <ListItemIcon>
-              <SubjectIcon />
-            </ListItemIcon>
-            <ListItemText primary="Handbook" />
           </ListItem>
           {/* <ListItem button onClick={this.handleSections}>
             <ListItemIcon>

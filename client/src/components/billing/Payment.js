@@ -9,15 +9,36 @@ import {
   CardContent,
   CardHeader,
   Typography,
+  Radio,
 } from '@material-ui/core'
 
 const PaymentContainer = styled.div`
   margin: auto;
-  margin-top: 80px;
   width: 70%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
 `
+
+const PaymentButton = styled.div`
+  margin: auto;
+  margin-top 5%;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+`
+
+const styles = theme => ({
+  cardPricing: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginBottom: theme.spacing.unit * 2,
+  },
+  cardActions: {
+    [theme.breakpoints.up('sm')]: {
+      paddingBottom: theme.spacing.unit * 2,
+    },
+  },
+})
 
 const subscriptions = [
   {
@@ -68,7 +89,7 @@ class Payment extends React.Component {
               sm={tier.title === 'Enterprise' ? 12 : 6}
               md={4}
             >
-              <Card>
+              <Card align="center">
                 <CardHeader
                   title={tier.title}
                   subheader={tier.subheader}
@@ -76,12 +97,21 @@ class Payment extends React.Component {
                   subheaderTypographyProps={{ align: 'center' }}
                 />
                 <CardContent>
-                  <div>
-                    <Typography component="h2" variant="h3" color="textPrimary">
+                  <div className={styles.cardPricing}>
+                    <Typography
+                      align="center"
+                      component="h2"
+                      variant="h3"
+                      color="textPrimary"
+                    >
                       ${tier.price}
                     </Typography>
-                    <Typography variant="h6" color="textSecondary">
-                      /mo
+                    <Typography
+                      align="center"
+                      variant="h6"
+                      color="textSecondary"
+                    >
+                      monthly
                     </Typography>
                   </div>
                   {tier.description.map(line => (
@@ -90,20 +120,17 @@ class Payment extends React.Component {
                     </Typography>
                   ))}
                 </CardContent>
-                <CardActions>
-                  <StripeCheckout
-                    token={this.onToken}
-                    stripeKey="pk_test_M1Y5kyDDSB7dOAWXIhzOOqMV"
-                  />
-                </CardActions>
+                <Radio color="default" />
               </Card>
             </Grid>
           ))}
         </Grid>
-        {/* <StripeCheckout
-          token={this.onToken}
-          stripeKey="pk_test_M1Y5kyDDSB7dOAWXIhzOOqMV"
-        /> */}
+        <PaymentButton>
+          <StripeCheckout
+            token={this.onToken}
+            stripeKey="pk_test_M1Y5kyDDSB7dOAWXIhzOOqMV"
+          />
+        </PaymentButton>
       </PaymentContainer>
     )
   }
