@@ -10,8 +10,11 @@ import { Link } from 'react-router-dom'
 
 const styles = theme => ({
   root: {
+    display: 'flex',
+    flexDirection: 'row',
     width: '100%',
-    align: 'center',
+    justifyContent: 'center',
+    alignContent: 'center',
     backgroundColor: theme.palette.background.paper,
   },
   stepButtons: {
@@ -57,6 +60,16 @@ class ProcessStepper extends React.Component {
 
     return (
       <div className={classes.root}>
+        <div className={classes.stepButtons}>
+          <Button
+            variant="outlined"
+            justifyContent="center"
+            disabled={activeStep === 0}
+            onClick={this.handleReset}
+          >
+            Reset
+          </Button>
+        </div>
         <Stepper activeStep={activeStep} alternativeLabel>
           {steps.map(label => (
             <Step>
@@ -67,28 +80,19 @@ class ProcessStepper extends React.Component {
         <div>
           {this.state.activeStep === steps.length ? (
             <div>
-              <Button component={Link} to="/login">
+              <Button variant="outlined" component={Link} to="/login">
                 Sign Up
               </Button>
             </div>
           ) : (
-            <div>
-              <div classname={classes.stepButtons}>
-                <Button
-                  justifyContent="center"
-                  disabled={activeStep === 0}
-                  onClick={this.handleReset}
-                >
-                  Reset
-                </Button>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={this.handleNext}
-                >
-                  {activeStep === steps.length - 1 ? 'Ready?' : 'Next'}
-                </Button>
-              </div>
+            <div classname={classes.stepButtons}>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={this.handleNext}
+              >
+                {activeStep === steps.length - 1 ? 'Ready?' : 'Next'}
+              </Button>
             </div>
           )}
         </div>
