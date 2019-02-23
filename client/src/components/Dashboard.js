@@ -216,16 +216,16 @@ class DashDrawer extends React.Component {
           </ListItem>
           <ListItem button onClick={this.handleHandbook}>
             <ListItemIcon>
-              <LibraryBooksIcon />
+              <SubjectIcon />
             </ListItemIcon>
             <ListItemText primary="Handbook" />
           </ListItem>
-          <ListItem button onClick={this.handleSections}>
+          {/* <ListItem button onClick={this.handleSections}>
             <ListItemIcon>
               <SubjectIcon />
             </ListItemIcon>
             <ListItemText primary="Sections" />
-          </ListItem>
+          </ListItem> */}
           <ListItem button onClick={this.handleBilling}>
             <ListItemIcon>
               <CreditCardIcon />
