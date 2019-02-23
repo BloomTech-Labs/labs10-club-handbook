@@ -37,7 +37,7 @@ const styles = theme => ({
     },
   },
   landingContent: {
-    maxWidth: 600,
+    maxWidth: 500,
     margin: '0 auto',
     padding: `${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 6}px`,
   },
@@ -50,6 +50,15 @@ const styles = theme => ({
     [theme.breakpoints.up('sm')]: {
       paddingBottom: theme.spacing.unit * 2,
     },
+  },
+  processSection: {
+    fullWidth: 'true',
+    margin: '0 auto',
+  },
+  processContent: {
+    maxWidth: 500,
+    margin: '0 auto',
+    padding: `${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 6}px`,
   },
   mainLandingPost: {
     marginBottom: theme.spacing.unit * 4,
@@ -128,6 +137,29 @@ function Landing(props) {
             </Grid>
           </Grid>
         </Paper>
+        <div className={classes.processSection}>
+          <div className={classes.processContent}>
+            <Typography
+              component="h1"
+              variant="h2"
+              align="center"
+              color="textPrimary"
+              gutterBottom
+            >
+              The Process
+            </Typography>
+            <Typography
+              variant="h6"
+              align="center"
+              color="textSecondary"
+              paragraph
+            >
+              With Club.Handbook we make bringing your club members together as
+              easy as possible. Create your handbook, send and magic link, and
+              watch the signatures roll in.
+            </Typography>
+          </div>
+        </div>
         <div className={classes.landingContent}>
           <Typography
             component="h1"
