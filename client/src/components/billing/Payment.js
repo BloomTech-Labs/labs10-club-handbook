@@ -40,31 +40,15 @@ const styles = theme => ({
   },
 })
 
-const subscriptions = [
-  {
-    title: 'Startup',
-    price: '0',
-    description: ['5 members'],
-    buttonText: 'Sign up',
-    buttonVariant: 'outlined',
-  },
-  {
-    title: 'Small Biz',
-    price: '5',
-    description: ['20 members'],
-    buttonText: 'Great value',
-    buttonVariant: 'outlined',
-  },
-  {
-    title: 'Enterprise',
-    price: '20',
-    description: ['500 members'],
-    buttonText: 'Get started',
-    buttonVariant: 'outlined',
-  },
-]
-
 class Payment extends React.Component {
+  state = {
+    selectedValue: 'a',
+  }
+
+  handleChange = event => {
+    this.setState({ selectedValue: event.target.value })
+  }
+
   onToken = token => {
     console.log(token)
     fetch('http://localhost:5000/payments', {
@@ -78,6 +62,36 @@ class Payment extends React.Component {
   }
 
   render() {
+    const subscriptions = [
+      {
+        title: 'Startup',
+        price: '0',
+        description: ['5 members'],
+        buttonText: 'Sign up',
+        buttonVariant: 'outlined',
+        checked: this.state.selectedValue === 'a',
+        value: 'a',
+      },
+      {
+        title: 'Small Biz',
+        price: '5',
+        description: ['20 members'],
+        buttonText: 'Great value',
+        buttonVariant: 'outlined',
+        checked: this.state.selectedValue === 'b',
+        value: 'b',
+      },
+      {
+        title: 'Enterprise',
+        price: '20',
+        description: ['500 members'],
+        buttonText: 'Get started',
+        buttonVariant: 'outlined',
+        checked: this.state.selectedValue === 'c',
+        value: 'c',
+      },
+    ]
+
     return (
       <PaymentContainer>
         <Grid container spacing={40} alignItems="flex-end">
@@ -120,7 +134,12 @@ class Payment extends React.Component {
                     </Typography>
                   ))}
                 </CardContent>
-                <Radio color="default" />
+                <Radio
+                  checked={tier.checked}
+                  color="default"
+                  onChange={this.handleChange}
+                  value={tier.value}
+                />
               </Card>
             </Grid>
           ))}
