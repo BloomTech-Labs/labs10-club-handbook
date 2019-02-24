@@ -10,6 +10,7 @@ import {
   Checkbox,
   Paper,
 } from '@material-ui/core'
+import LeaveTeam from './LeaveTeam'
 
 const styles = theme => ({
   main: {
@@ -52,7 +53,7 @@ class Settings extends React.Component {
     checkedNotifications: false,
   }
 
-  handleChange = event => {
+  handleChange = () => {
     this.setState(state => ({
       disabled: state.disabled ? false : true,
     }))
@@ -109,15 +110,7 @@ class Settings extends React.Component {
             </Button>
           </form>
         </Paper>
-        <Button
-          type="submit"
-          fullWidth
-          variant="outlined"
-          color="secondary"
-          className={classes.submit}
-        >
-          Leave Team
-        </Button>
+        <Button className={classes.submit} component={LeaveTeam} />
       </main>
     )
   }
