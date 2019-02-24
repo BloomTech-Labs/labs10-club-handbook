@@ -46,78 +46,81 @@ const styles = theme => ({
   },
 })
 
-function Settings(props) {
-  const { classes } = props
+class Settings extends React.Component {
+  state = {
+    disabled: true,
+    checkedNotifications: false,
+  }
 
-  //   state = {
-  //     checkedEmail: false,
-  //     checkednText: false,
-  //   }
+  handleChange = event => {
+    this.setState(state => ({
+      disabled: state.disabled ? false : true,
+    }))
+  }
 
-  //   handleChange = name => event => {
-  //     this.setState({ [name]: event.target.checked })
-  //   }
-
-  return (
-    <main className={classes.main}>
-      <CssBaseline />
-      <Paper className={classes.paper}>
-        <form className={classes.form}>
-          <TextField
-            id="outlined-email"
-            label="Email"
-            margin="normal"
-            variant="outlined"
-          />
-          <TextField
-            id="outlined-phone"
-            label="Phone"
-            margin="normal"
-            variant="outlined"
-          />
-          <FormGroup className={classes.formgroup}>
-            <FormControlLabel
-              control={<Checkbox color="primary" />}
-              label="Nofications"
-              color="green"
-            />
-            <FormControlLabel
-              control={<Checkbox disabled color="primary" />}
+  render() {
+    const { classes } = this.props
+    return (
+      <main className={classes.main}>
+        <CssBaseline />
+        <Paper className={classes.paper}>
+          <form className={classes.form}>
+            <TextField
+              id="outlined-email"
               label="Email"
-              labelPlacement="start"
-              //             checked={this.state.checkedEmail}
-              //             onChange={this.handleChange('checkedEmail')}
+              margin="normal"
+              variant="outlined"
             />
-            <FormControlLabel
-              control={<Checkbox disabled color="primary" />}
-              label="Text"
-              labelPlacement="start"
-              //             checked={this.state.checkedText}
-              //             onChange={this.handleChange('checkedText')}
+            <TextField
+              id="outlined-phone"
+              label="Phone"
+              margin="normal"
+              variant="outlined"
             />
-          </FormGroup>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Save
-          </Button>
-        </form>
-      </Paper>
-      <Button
-        type="submit"
-        fullWidth
-        variant="outlined"
-        color="secondary"
-        className={classes.submit}
-      >
-        Leave Team
-      </Button>
-    </main>
-  )
+            <FormGroup className={classes.formgroup}>
+              <FormControlLabel
+                control={<Checkbox color="primary" indeterminate />}
+                label="Nofications"
+                checkedNotifications={this.state.checkedNotifications}
+                onChange={this.handleChange}
+              />
+              <FormControlLabel
+                control={<Checkbox color="secondary" />}
+                label="Email"
+                labelPlacement="start"
+                disabled={this.state.disabled}
+              />
+              <FormControlLabel
+                control={<Checkbox color="secondary" />}
+                label="Text"
+                labelPlacement="start"
+                disabled={this.state.disabled}
+                // onChange={this.handleChange('checkedText')}
+              />
+            </FormGroup>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              Save
+            </Button>
+          </form>
+        </Paper>
+        <Button
+          type="submit"
+          fullWidth
+          variant="outlined"
+          color="secondary"
+          className={classes.submit}
+        >
+          Leave Team
+        </Button>
+      </main>
+    )
+  }
 }
 
 Settings.propTypes = {
