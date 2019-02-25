@@ -17,6 +17,9 @@ import {
 
 import { Link } from 'react-router-dom'
 
+import Login from '../auth/Login'
+import ProcessStepper from './Process'
+
 const styles = theme => ({
   appBar: {
     position: 'relative',
@@ -26,8 +29,6 @@ const styles = theme => ({
   },
   layout: {
     width: 'auto',
-    marginLeft: theme.spacing.unit * 3,
-    marginRight: theme.spacing.unit * 3,
     [theme.breakpoints.up(900 + theme.spacing.unit * 3 * 2)]: {
       width: 900,
       marginLeft: 'auto',
@@ -35,7 +36,7 @@ const styles = theme => ({
     },
   },
   landingContent: {
-    maxWidth: 600,
+    maxWidth: 500,
     margin: '0 auto',
     padding: `${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 6}px`,
   },
@@ -48,6 +49,16 @@ const styles = theme => ({
     [theme.breakpoints.up('sm')]: {
       paddingBottom: theme.spacing.unit * 2,
     },
+  },
+  processSection: {
+    maxWidth: 800,
+    margin: '0 auto',
+    backgroundColor: theme.palette.background.paper,
+  },
+  processContent: {
+    maxWidth: 500,
+    margin: '0 auto',
+    padding: `${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 3}px`,
   },
   mainLandingPost: {
     marginBottom: theme.spacing.unit * 4,
@@ -106,14 +117,7 @@ function Landing(props) {
           <Button component={Link} to="/dashboard" color="inherit">
             Dashboard
           </Button>
-          <Button
-            component={Link}
-            to="/login"
-            color="inherit"
-            variant="outlined"
-          >
-            Login
-          </Button>
+          <Button component={Login} color="inherit" variant="outlined" />
         </Toolbar>
       </AppBar>
       <main className={classes.layout}>
@@ -133,6 +137,29 @@ function Landing(props) {
             </Grid>
           </Grid>
         </Paper>
+        <div className={classes.processSection}>
+          <div className={classes.processContent}>
+            <Typography
+              component="h1"
+              variant="h2"
+              align="center"
+              color="textPrimary"
+              gutterBottom
+            >
+              The Process
+            </Typography>
+            <Typography
+              variant="h6"
+              align="center"
+              color="textSecondary"
+              paragraph
+            >
+              With Club.Handbook we make bringing your club members together as
+              easy as possible. Simple as 1-2-3:
+            </Typography>
+          </div>
+          <ProcessStepper />
+        </div>
         <div className={classes.landingContent}>
           <Typography
             component="h1"
@@ -203,7 +230,7 @@ function Landing(props) {
           <div className={classes.landingContent}>
             <Typography
               component="h1"
-              variant="h2"
+              variant="h3"
               align="center"
               color="textPrimary"
               gutterBottom
