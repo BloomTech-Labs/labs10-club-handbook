@@ -39,7 +39,11 @@ class App extends Component {
               path="/authenticated"
               render={props => <Authenticated {...props} />}
             />
-            <Route path="/section-form" component={SectionForm} />
+            <Route path="/add-section" component={SectionForm} />
+            <Route
+              path="/update-section/:id"
+              render={props => <SectionForm {...props} update={true} />}
+            />
             <Route path="/callback-email" component={CallbackEmail} />
             <Route path="/magic-link-request" component={MagicLinkRequest} />
             <Route path="/section/:id" component={SectionRender} />
