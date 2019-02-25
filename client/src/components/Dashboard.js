@@ -112,7 +112,7 @@ SectionContainer.propTypes = {
 
 class DashDrawer extends React.Component {
   state = {
-    open: true,
+    open: false,
     value: 2,
   }
 
@@ -208,31 +208,31 @@ class DashDrawer extends React.Component {
             </ListItemIcon>
             <ListItemText primary="Dashboard" />
           </ListItem> */}
-          <ListItem button onClick={this.handleHandbook}>
+          <ListItem button component={Link} to="./handbook">
             <ListItemIcon>
               <SubjectIcon />
             </ListItemIcon>
             <ListItemText primary="Handbook" />
           </ListItem>
-          <ListItem button onClick={this.handleMembers}>
+          <ListItem button component={Link} to="./members">
             <ListItemIcon>
               <PeopleIcon />
             </ListItemIcon>
             <ListItemText primary="Members" />
           </ListItem>
-          <ListItem button onClick={this.handleSections}>
+          {/* <ListItem button onClick={this.handleSections}>
             <ListItemIcon>
               <SubjectIcon />
             </ListItemIcon>
             <ListItemText primary="Sections" />
-          </ListItem>
-          <ListItem button onClick={this.handleBilling}>
+          </ListItem> */}
+          <ListItem button component={Link} to="./billing">
             <ListItemIcon>
               <CreditCardIcon />
             </ListItemIcon>
             <ListItemText primary="Billing" />
           </ListItem>
-          <ListItem button onClick={this.handleSettings}>
+          <ListItem button component={Link} to="./settings">
             <ListItemIcon>
               <SettingsIcon />
             </ListItemIcon>
