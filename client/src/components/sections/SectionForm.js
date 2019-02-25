@@ -5,6 +5,8 @@ import { Button } from '@material-ui/core'
 import { connect } from 'react-redux'
 import { addSection, updateSection } from '../../store/actions/clubActions'
 
+import { FormContainer, ActionRow } from '../../style/section-form'
+
 class SectionForm extends Component {
   state = {
     clubId: null,
@@ -20,27 +22,27 @@ class SectionForm extends Component {
     font: null,
   }
 
-  componentDidMount() {
-    const { club_id } = this.props.currentUser
+  // componentDidMount() {
+  //   const { club_id } = this.props.currentUser
 
-    if (this.props.update === true) {
-      const currentSection = this.props.sections.find(
-        section => section.id === this.props.match.params.id
-      )
-      this.setState({
-        clubId: club_id,
-        title: currentSection.title,
-        body: currentSection.bidy,
-        imgPlacement: currentSection.img_placement,
-        image: currentSection.img_url,
-        orderPosition: currentSection.order,
-        contactName: currentSection.contact_name,
-        contactInfo: currentSection.contact_info,
-      })
-    } else {
-      this.setState({ clubId: club_id })
-    }
-  }
+  //   if (this.props.update === true) {
+  //     const currentSection = this.props.sections.find(
+  //       section => section.id === this.props.match.params.id
+  //     )
+  //     this.setState({
+  //       clubId: club_id,
+  //       title: currentSection.title,
+  //       body: currentSection.bidy,
+  //       imgPlacement: currentSection.img_placement,
+  //       image: currentSection.img_url,
+  //       orderPosition: currentSection.order,
+  //       contactName: currentSection.contact_name,
+  //       contactInfo: currentSection.contact_info,
+  //     })
+  //   } else {
+  //     this.setState({ clubId: club_id })
+  //   }
+  // }
 
   changeHandler = e => {
     e.preventDefault()
@@ -104,21 +106,21 @@ class SectionForm extends Component {
   }
 
   render() {
-    const { clubId } = this.state
+    // const { clubId } = this.state
 
-    if (!clubId) {
-      return <h1>Loading...</h1>
-    }
+    // if (!clubId) {
+    //   return <h1>Loading...</h1>
+    // }
 
     return (
-      <div className="section-form">
+      <FormContainer>
         <form
           method="/POST"
           encType="multipart/form-data"
           onSubmit={this.props.update ? this.updateSection : this.addSection}
         >
           <div className="form-group">
-            <div className="action-btns">
+            <ActionRow>
               <Button
                 variant="contained"
                 color="secondary"
@@ -142,7 +144,7 @@ class SectionForm extends Component {
               >
                 Save Section
               </Button>
-            </div>
+            </ActionRow>
 
             <label htmlFor="title">Section Title</label>
             <input
@@ -197,10 +199,10 @@ class SectionForm extends Component {
 
             <label htmlFor="section-type">Section Type</label>
             <select name="section-type" id="section-type">
+              <option value="4">No Image</option>
               <option value="1">Image Background</option>
               <option value="2">Image Left</option>
               <option value="3">Image Right</option>
-              <option value="4">No Image</option>
             </select>
 
             <label htmlFor="background">Background Color</label>
@@ -220,7 +222,7 @@ class SectionForm extends Component {
               <option value="Roboto">Roboto</option>
             </select>
 
-            <div className="action-btns">
+            <ActionRow>
               <Button
                 variant="contained"
                 color="secondary"
@@ -237,10 +239,10 @@ class SectionForm extends Component {
               >
                 Save Section
               </Button>
-            </div>
+            </ActionRow>
           </div>
         </form>
-      </div>
+      </FormContainer>
     )
   }
 }
