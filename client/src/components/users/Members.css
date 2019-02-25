@@ -7,6 +7,11 @@
 h3,
 .links {
   margin: 0 10px;
+  font-size: 20px;
+}
+
+.links {
+  font-size: 14px;
 }
 
 .members-header {
@@ -14,6 +19,7 @@ h3,
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  padding: 10px 0;
 }
 
 .members-list {
@@ -22,20 +28,42 @@ h3,
 }
 
 .members-info {
-  display: flex;
-  align-items: center;
+  /* display: flex; */
+  /* align-items: center; */
+  /* border: 1px solid brown; */
+  width: 75%;
 }
 
 .members-details {
   display: flex;
   flex-direction: column;
+  /* border: 1px solid green; */
 }
 .members-text {
   display: flex;
   align-items: center;
+  margin-bottom: 10px;
+  /* border: 1px solid red; */
 }
+
+.members-name {
+  display: flex;
+  width: 50%;
+  /* border: 1px solid red; */
+}
+
+.members-email {
+  width: 50%;
+}
+
 .members-actions {
   display: flex;
+  justify-content: flex-end;
+  margin: 0 70px 0 0;
+}
+
+.members-actions div {
+  margin-left: 70px;
 }
 
 .members-management {
@@ -61,8 +89,6 @@ h3,
   max-width: 800px;
   margin: 0 auto;
   border: 2px solid black;
-  
-  
 }
 
 .sign-header {
@@ -90,3 +116,14 @@ h3,
 .sign-form {
   margin: 10px;
 }
+
+.status-header {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 40px 0 0;
+}
+
+.status-header h3 {
+  margin-left: 30px;
+}
+

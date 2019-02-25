@@ -55,13 +55,10 @@ export const getUsersByClubId = clubId => dispatch => {
 
   axios
     // .get(`http://localhost:5000/api/users/`, header)
-    .get(`https://club-handbook.herokuapp.com/api/users`)
+    .get(`https://club-handbook.herokuapp.com/api/clubs/${clubId}/members`, header)
     .then(res => {
-      const users = res.data.filter(user => {
-        return user.club_id === clubId
-      })
-
-      dispatch({ type: GET_USERS_BY_CLUB_ID, payload: users })
+      console.log(res)
+      dispatch({ type: GET_USERS_BY_CLUB_ID, payload: res.data })
     })
     .catch(err => {
       dispatch({ type: FAIL, error: err })
@@ -127,17 +124,20 @@ export const deleteUser = id => dispatch => {
       authorization: localStorage.getItem('access_token'),
     },
   }
+  console.log(id);
 
   axios
     .delete(
-      `https://club-handbook.herokuapp.com/api/users/${id}`,
+      `https://club-handbook.herokuapp.com/api/users/addMember/${id}`,
       requestOptions
     )
     .then(res => {
       // returns the user id
+      console.log(res)
       dispatch({ type: DELETE_USER, payload: res.data })
     })
     .catch(err => {
+      console.log(err)
       dispatch({ type: FAIL, error: err })
     })
 }
