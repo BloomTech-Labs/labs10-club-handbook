@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import SectionForm from '../sections/SectionForm'
+import DashDrawer from '../Dashboard'
 
 import {
   getClubById,
@@ -67,6 +68,7 @@ class HandbookPage extends React.Component {
   render() {
     return (
       <div>
+        <DashDrawer />
         <h1>Handbook Page!</h1>
         {this.state.hasClub ? (
           <div>
