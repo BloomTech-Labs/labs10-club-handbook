@@ -7,6 +7,7 @@ export const ADD_MEMBER_SUCCESS = 'ADD_MEMBER_SUCCESS'
 export const ADD_MEMBER_FAIL = 'ADD_MEMBER_FAIL'
 export const GET_USERS = 'GET_USERS'
 export const GET_USER_BY_ID = 'GET_USER_BY_ID'
+export const GET_USERS_BY_CLUB_ID = 'GET_USERS_BY_CLUB_ID'
 export const UPDATE_USER = 'UPDATE_USER'
 export const DELETE_USER = 'DELETE_USER'
 
@@ -32,10 +33,32 @@ export const getUserById = id => dispatch => {
     },
   }
   axios
+    // .get(`http://localhost:5000/api/users/${id}`, header)
     .get(`https://club-handbook.herokuapp.com/api/users/${id}`, header)
     .then(res => {
       // returns a user object
       dispatch({ type: GET_USER_BY_ID, payload: res.data })
+    })
+    .catch(err => {
+      dispatch({ type: FAIL, error: err })
+    })
+}
+
+export const getUsersByClubId = clubId => dispatch => {
+  dispatch({ type: START, message: `Getting users in club` })
+
+  const header = {
+    headers: {
+      authorization: localStorage.getItem('access_token'),
+    },
+  }
+
+  axios
+    // .get(`http://localhost:5000/api/users/`, header)
+    .get(`https://club-handbook.herokuapp.com/api/clubs/${clubId}/members`, header)
+    .then(res => {
+      console.log(res)
+      dispatch({ type: GET_USERS_BY_CLUB_ID, payload: res.data })
     })
     .catch(err => {
       dispatch({ type: FAIL, error: err })
@@ -59,7 +82,7 @@ export const addUser = user => dispatch => {
     )
     .then(res => {
       // returns an object with the added user details
-      dispatch({ type: ADD_MEMBER_SUCCESS, payload: res.data })
+      dispatch({ type: ADD_MEMBER_SUCCESS, payload: res.data.user })
     })
     .catch(err => {
       dispatch({ type: ADD_MEMBER_FAIL, error: err })
@@ -74,6 +97,8 @@ export const updateUser = (id, changes) => dispatch => {
       authorization: localStorage.getItem('access_token'),
     },
   }
+  console.log(id)
+  console.log(changes)
 
   axios
     .patch(
@@ -83,6 +108,7 @@ export const updateUser = (id, changes) => dispatch => {
     )
     .then(res => {
       // returns the user id
+      console.log(res)
       dispatch({ type: UPDATE_USER, payload: res.data })
     })
     .catch(err => {
@@ -98,17 +124,20 @@ export const deleteUser = id => dispatch => {
       authorization: localStorage.getItem('access_token'),
     },
   }
+  console.log(id);
 
   axios
     .delete(
-      `https://club-handbook.herokuapp.com/api/users/${id}`,
+      `https://club-handbook.herokuapp.com/api/users/addMember/${id}`,
       requestOptions
     )
     .then(res => {
       // returns the user id
+      console.log(res)
       dispatch({ type: DELETE_USER, payload: res.data })
     })
     .catch(err => {
+      console.log(err)
       dispatch({ type: FAIL, error: err })
     })
 }
