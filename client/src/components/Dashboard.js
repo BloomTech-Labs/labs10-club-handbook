@@ -27,6 +27,7 @@ import Settings from './Settings'
 import Members from './users/Members'
 import SectionForm from './sections/SectionForm'
 import Billing from './billing/Payment'
+import HandbookPage from './handbook/HandbookPage'
 
 const drawerWidth = 150
 
@@ -112,7 +113,7 @@ SectionContainer.propTypes = {
 class DashDrawer extends React.Component {
   state = {
     open: true,
-    value: 0,
+    value: 2,
   }
 
   handleDash = () => {
@@ -201,11 +202,17 @@ class DashDrawer extends React.Component {
               )}
             </IconButton>
           </div>
-          <ListItem button onClick={this.handleDash}>
+          {/* <ListItem button onClick={this.handleDash}>
             <ListItemIcon>
               <DashboardIcon />
             </ListItemIcon>
             <ListItemText primary="Dashboard" />
+          </ListItem> */}
+          <ListItem button onClick={this.handleHandbook}>
+            <ListItemIcon>
+              <SubjectIcon />
+            </ListItemIcon>
+            <ListItemText primary="Handbook" />
           </ListItem>
           <ListItem button onClick={this.handleMembers}>
             <ListItemIcon>
@@ -213,18 +220,12 @@ class DashDrawer extends React.Component {
             </ListItemIcon>
             <ListItemText primary="Members" />
           </ListItem>
-          <ListItem button onClick={this.handleHandbook}>
-            <ListItemIcon>
-              <LibraryBooksIcon />
-            </ListItemIcon>
-            <ListItemText primary="Handbook" />
-          </ListItem>
-          <ListItem button onClick={this.handleSections}>
+          {/* <ListItem button onClick={this.handleSections}>
             <ListItemIcon>
               <SubjectIcon />
             </ListItemIcon>
             <ListItemText primary="Sections" />
-          </ListItem>
+          </ListItem> */}
           <ListItem button onClick={this.handleBilling}>
             <ListItemIcon>
               <CreditCardIcon />
@@ -246,7 +247,11 @@ class DashDrawer extends React.Component {
               <Members />
             </SectionContainer>
           )}
-          {value === 2 && <SectionContainer>Handbook</SectionContainer>}
+          {value === 2 && (
+            <SectionContainer>
+              <HandbookPage />
+            </SectionContainer>
+          )}
           {value === 3 && (
             <SectionContainer>
               <SectionForm />

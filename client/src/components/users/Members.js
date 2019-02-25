@@ -13,9 +13,6 @@ import './Members.css'
 
 class Members extends React.Component {
   componentDidMount() {
-    // this.props.getUsers()
-
-
     const clubId = this.props.currentUser.club_id
 
     this.props.getUsersByClubId(clubId);

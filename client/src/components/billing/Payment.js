@@ -2,33 +2,181 @@ import React from 'react'
 import StripeCheckout from 'react-stripe-checkout'
 import styled from 'styled-components'
 
+import {
+  Grid,
+  Card,
+  CardActions,
+  CardContent,
+  CardHeader,
+  Typography,
+  Radio,
+} from '@material-ui/core'
+
 const PaymentContainer = styled.div`
   margin: auto;
-  margin-top: 200px;
-  width: 80%;
+  width: 70%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
 `
+
+const PaymentButton = styled.div`
+  margin: auto;
+  margin-top 5%;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+`
+
+const styles = theme => ({
+  cardPricing: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginBottom: theme.spacing.unit * 2,
+  },
+  cardActions: {
+    [theme.breakpoints.up('sm')]: {
+      paddingBottom: theme.spacing.unit * 2,
+    },
+  },
+})
+
 class Payment extends React.Component {
-  onToken = token => {
+  state = {
+    selectedValue: 'a',
+  }
+
+  handleChange = event => {
+    this.setState({ selectedValue: event.target.value })
+  }
+
+  startupToken = token => {
     console.log(token)
     fetch('http://localhost:5000/payments', {
       method: 'POST',
       body: JSON.stringify(token),
     }).then(response => {
       response.json().then(data => {
-        alert(`Thank you for your purchase!`)
+        alert(`Thank you for your Startup subscription purchase!`)
+      })
+    })
+  }
+
+  smallBizToken = token => {
+    console.log(token)
+    fetch('http://localhost:5000/payments', {
+      method: 'POST',
+      body: JSON.stringify(token),
+    }).then(response => {
+      response.json().then(data => {
+        alert(`Thank you for your Small Biz subscription purchase!`)
+      })
+    })
+  }
+
+  enterpriseToken = token => {
+    console.log(token)
+    fetch('http://localhost:5000/payments', {
+      method: 'POST',
+      body: JSON.stringify(token),
+    }).then(response => {
+      response.json().then(data => {
+        alert(`Thank you for your Enterprise subscription purchase!`)
       })
     })
   }
 
   render() {
+    const subscriptions = [
+      {
+        title: 'Startup',
+        price: '0',
+        description: ['5 members'],
+        checked: this.state.selectedValue === 'a',
+        value: 'a',
+        token: this.startupToken,
+      },
+      {
+        title: 'Small Biz',
+        price: '5',
+        description: ['20 members'],
+        checked: this.state.selectedValue === 'b',
+        value: 'b',
+        token: this.smallBizToken,
+      },
+      {
+        title: 'Enterprise',
+        price: '20',
+        description: ['500 members'],
+        checked: this.state.selectedValue === 'c',
+        value: 'c',
+        token: this.enterpriseToken,
+      },
+    ]
+
     return (
       <PaymentContainer>
-        <StripeCheckout
-          token={this.onToken}
-          stripeKey="pk_test_M1Y5kyDDSB7dOAWXIhzOOqMV"
-        />
+        <Grid container spacing={40} alignItems="flex-end">
+          {subscriptions.map(tier => (
+            <Grid
+              item
+              key={tier.title}
+              xs={12}
+              sm={tier.title === 'Enterprise' ? 12 : 6}
+              md={4}
+            >
+              <Card align="center">
+                <CardHeader
+                  title={tier.title}
+                  subheader={tier.subheader}
+                  titleTypographyProps={{ align: 'center' }}
+                  subheaderTypographyProps={{ align: 'center' }}
+                />
+                <CardContent>
+                  <div className={styles.cardPricing}>
+                    <Typography
+                      align="center"
+                      component="h2"
+                      variant="h3"
+                      color="textPrimary"
+                    >
+                      ${tier.price}
+                    </Typography>
+                    <Typography
+                      align="center"
+                      variant="h6"
+                      color="textSecondary"
+                    >
+                      monthly
+                    </Typography>
+                  </div>
+                  {tier.description.map(line => (
+                    <Typography variant="subtitle1" align="center" key={line}>
+                      {line}
+                    </Typography>
+                  ))}
+                  <PaymentButton>
+                    <StripeCheckout
+                      token={tier.token}
+                      stripeKey="pk_test_M1Y5kyDDSB7dOAWXIhzOOqMV"
+                    />
+                  </PaymentButton>
+                </CardContent>
+                <Radio
+                  checked={tier.checked}
+                  color="default"
+                  onChange={this.handleChange}
+                  value={tier.value}
+                />
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+        <PaymentButton>
+          <StripeCheckout
+            // token={tier.token}
+            stripeKey="pk_test_M1Y5kyDDSB7dOAWXIhzOOqMV"
+          />
+        </PaymentButton>
       </PaymentContainer>
     )
   }
