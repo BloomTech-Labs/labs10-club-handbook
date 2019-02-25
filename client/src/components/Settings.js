@@ -11,6 +11,7 @@ import {
   Paper,
 } from '@material-ui/core'
 import LeaveTeam from './LeaveTeam'
+import DashDrawer from './Dashboard'
 
 const styles = theme => ({
   main: {
@@ -62,56 +63,59 @@ class Settings extends React.Component {
   render() {
     const { classes } = this.props
     return (
-      <main className={classes.main}>
-        <CssBaseline />
-        <Paper className={classes.paper}>
-          <form className={classes.form}>
-            <TextField
-              id="outlined-email"
-              label="Email"
-              margin="normal"
-              variant="outlined"
-            />
-            <TextField
-              id="outlined-phone"
-              label="Phone"
-              margin="normal"
-              variant="outlined"
-            />
-            <FormGroup className={classes.formgroup}>
-              <FormControlLabel
-                control={<Checkbox color="primary" indeterminate />}
-                label="Nofications"
-                checkedNotifications={this.state.checkedNotifications}
-                onChange={this.handleChange}
-              />
-              <FormControlLabel
-                control={<Checkbox color="secondary" />}
+      <div>
+        <DashDrawer />
+        <main className={classes.main}>
+          <CssBaseline />
+          <Paper className={classes.paper}>
+            <form className={classes.form}>
+              <TextField
+                id="outlined-email"
                 label="Email"
-                labelPlacement="start"
-                disabled={this.state.disabled}
+                margin="normal"
+                variant="outlined"
               />
-              <FormControlLabel
-                control={<Checkbox color="secondary" />}
-                label="Text"
-                labelPlacement="start"
-                disabled={this.state.disabled}
-                // onChange={this.handleChange('checkedText')}
+              <TextField
+                id="outlined-phone"
+                label="Phone"
+                margin="normal"
+                variant="outlined"
               />
-            </FormGroup>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-            >
-              Save
-            </Button>
-          </form>
-        </Paper>
-        <Button className={classes.submit} component={LeaveTeam} />
-      </main>
+              <FormGroup className={classes.formgroup}>
+                <FormControlLabel
+                  control={<Checkbox color="primary" indeterminate />}
+                  label="Nofications"
+                  checkedNotifications={this.state.checkedNotifications}
+                  onChange={this.handleChange}
+                />
+                <FormControlLabel
+                  control={<Checkbox color="secondary" />}
+                  label="Email"
+                  labelPlacement="start"
+                  disabled={this.state.disabled}
+                />
+                <FormControlLabel
+                  control={<Checkbox color="secondary" />}
+                  label="Text"
+                  labelPlacement="start"
+                  disabled={this.state.disabled}
+                  // onChange={this.handleChange('checkedText')}
+                />
+              </FormGroup>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+              >
+                Save
+              </Button>
+            </form>
+          </Paper>
+          <Button className={classes.submit} component={LeaveTeam} />
+        </main>
+      </div>
     )
   }
 }
