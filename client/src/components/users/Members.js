@@ -11,8 +11,19 @@ import ViewedManual from './ViewedManual'
 import AddMember from './AddMembers'
 import styled from 'styled-components'
 import DashDrawer from '../Dashboard'
+import { size } from '../../style/breakpoints';
 
 import './Members.css'
+
+const MemberInfo = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+
+  @media ${size.tablet} {
+    border: 1px solid red;
+  }
+`;
 
 class Members extends React.Component {
   componentDidMount() {
@@ -54,7 +65,7 @@ class Members extends React.Component {
             {users.reverse().map(user => {
               if (user.admin === false) {
                 return (
-                  <div className="members">
+                  <MemberInfo>
                     <div className="members-info">
                       {/* <Avatar /> */}
 
@@ -89,7 +100,7 @@ class Members extends React.Component {
                         <SignedManual key={user.email} signed={user.signed} />
                       </div>
                     </div>
-                  </div>
+                  </MemberInfo>
                 )
               }
             })}
