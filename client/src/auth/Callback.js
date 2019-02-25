@@ -11,7 +11,7 @@ class Callback extends React.Component {
 
   componentDidUpdate() {
     if (this.props.userLoggedIn) {
-      this.props.history.push('/members')
+      this.props.history.push('/dashboard')
     }
   }
 
