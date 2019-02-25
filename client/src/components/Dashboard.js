@@ -113,7 +113,6 @@ SectionContainer.propTypes = {
 class DashDrawer extends React.Component {
   state = {
     open: false,
-    value: 2,
   }
 
   handleDash = () => {

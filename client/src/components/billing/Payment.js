@@ -1,6 +1,7 @@
 import React from 'react'
 import StripeCheckout from 'react-stripe-checkout'
 import styled from 'styled-components'
+import DashDrawer from '../Dashboard'
 
 import {
   Grid,
@@ -115,6 +116,7 @@ class Payment extends React.Component {
 
     return (
       <PaymentContainer>
+        <DashDrawer />
         <Grid container spacing={40} alignItems="flex-end">
           {subscriptions.map(tier => (
             <Grid
