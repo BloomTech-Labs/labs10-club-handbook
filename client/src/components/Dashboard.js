@@ -208,13 +208,13 @@ class DashDrawer extends React.Component {
             </ListItemIcon>
             <ListItemText primary="Dashboard" />
           </ListItem> */}
-          <ListItem button onClick={this.handleHandbook}>
+          <ListItem button component={Link} to="./handbook">
             <ListItemIcon>
               <SubjectIcon />
             </ListItemIcon>
             <ListItemText primary="Handbook" />
           </ListItem>
-          <ListItem button onClick={this.handleMembers}>
+          <ListItem button component={Link} to="./members">
             <ListItemIcon>
               <PeopleIcon />
             </ListItemIcon>
@@ -226,13 +226,13 @@ class DashDrawer extends React.Component {
             </ListItemIcon>
             <ListItemText primary="Sections" />
           </ListItem> */}
-          <ListItem button onClick={this.handleBilling}>
+          <ListItem button component={Link} to="./billing">
             <ListItemIcon>
               <CreditCardIcon />
             </ListItemIcon>
             <ListItemText primary="Billing" />
           </ListItem>
-          <ListItem button onClick={this.handleSettings}>
+          <ListItem button component={Link} to="./settings">
             <ListItemIcon>
               <SettingsIcon />
             </ListItemIcon>
