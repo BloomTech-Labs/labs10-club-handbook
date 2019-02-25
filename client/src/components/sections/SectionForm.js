@@ -3,7 +3,7 @@ import axios from 'axios'
 import TextEditor from './TextEditor'
 import { Button } from '@material-ui/core'
 import { connect } from 'react-redux'
-import { addSection } from '../../store/actions/clubActions'
+import { addSection, updateSection } from '../../store/actions/clubActions'
 
 class SectionForm extends Component {
   state = {
@@ -22,7 +22,24 @@ class SectionForm extends Component {
 
   componentDidMount() {
     const { club_id } = this.props.currentUser
-    this.setState({ clubId: club_id }) // { clubId: clubId }
+
+    if (this.props.update === true) {
+      const currentSection = this.props.sections.find(
+        section => section.id === this.props.match.params.id
+      )
+      this.setState({
+        clubId: club_id,
+        title: currentSection.title,
+        body: currentSection.bidy,
+        imgPlacement: currentSection.img_placement,
+        image: currentSection.img_url,
+        orderPosition: currentSection.order,
+        contactName: currentSection.contact_name,
+        contactInfo: currentSection.contact_info,
+      })
+    } else {
+      this.setState({ clubId: club_id })
+    }
   }
 
   changeHandler = e => {
@@ -57,11 +74,29 @@ class SectionForm extends Component {
   addSection = ev => {
     ev.preventDefault()
     let sectionInfo = {
+      club_id: this.state.clubId,
       title: this.state.title,
       body: this.state.body,
       img_url: this.state.image,
+      img_placement: this.state.imgPlacement,
+      contact_name: this.state.contactName,
+      contact_info: this.state.contactInfo,
     }
     this.props.addSection(this.state.clubId, sectionInfo)
+  }
+
+  updateSection = ev => {
+    ev.preventDefault()
+    let sectionInfo = {
+      club_id: this.state.clubId,
+      title: this.state.title,
+      body: this.state.body,
+      img_url: this.state.image,
+      img_placement: this.state.imgPlacement,
+      contact_name: this.state.contactName,
+      contact_info: this.state.contactInfo,
+    }
+    this.props.updateSection(this.state.clubId, sectionInfo)
   }
 
   cancel = () => {
@@ -80,7 +115,7 @@ class SectionForm extends Component {
         <form
           method="/POST"
           encType="multipart/form-data"
-          onSubmit={addSection(clubId, this.state)}
+          onSubmit={this.props.update ? this.updateSection : this.addSection}
         >
           <div className="form-group">
             <div className="action-btns">
@@ -92,10 +127,16 @@ class SectionForm extends Component {
                 Cancel
               </Button>
 
-              <h2>Create Section</h2>
+              {this.props.update ? (
+                <h2>Update Section</h2>
+              ) : (
+                <h2>Create Section</h2>
+              )}
 
               <Button
-                onClick={this.addSection}
+                onClick={
+                  this.props.update ? this.updateSection : this.addSection
+                }
                 variant="contained"
                 color="primary"
               >
@@ -188,7 +229,9 @@ class SectionForm extends Component {
                 Cancel
               </Button>
               <Button
-                onClick={this.addSection}
+                onClick={
+                  this.props.update ? this.updateSection : this.addSection
+                }
                 variant="contained"
                 color="primary"
               >
@@ -205,10 +248,11 @@ class SectionForm extends Component {
 const mapStateToProps = state => {
   return {
     currentUser: state.auth.currentUser,
+    sections: state.clubs.sections,
   }
 }
 
 export default connect(
   mapStateToProps,
-  { addSection }
+  { addSection, updateSection }
 )(SectionForm)
