@@ -9,6 +9,7 @@ export const GET_USERS = 'GET_USERS'
 export const GET_USER_BY_ID = 'GET_USER_BY_ID'
 export const UPDATE_USER = 'UPDATE_USER'
 export const DELETE_USER = 'DELETE_USER'
+export const MEMBER_SIGNED = 'MEMBER_SIGNED'
 
 export const getUsers = () => dispatch => {
   dispatch({ type: START, message: `Fetching users` })
@@ -107,6 +108,30 @@ export const deleteUser = id => dispatch => {
     .then(res => {
       // returns the user id
       dispatch({ type: DELETE_USER, payload: res.data })
+    })
+    .catch(err => {
+      dispatch({ type: FAIL, error: err })
+    })
+}
+
+export const memberSigned = (id, signature) => dispatch => {
+  dispatch({ type: START, message: `Member Signature` })
+
+  const requestOptions = {
+    headers: {
+      authorization: localStorage.getItem('access_token'),
+    },
+  }
+
+  axios
+    .post(
+      `https://club-handbook.herokuapp.com/api/clubs/${id}/signature`,
+      requestOptions,
+      signature
+    )
+    .then(res => {
+      // returns the user id
+      dispatch({ type: MEMBER_SIGNED, payload: res.data })
     })
     .catch(err => {
       dispatch({ type: FAIL, error: err })
