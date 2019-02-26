@@ -2,20 +2,19 @@ import React from 'react'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 
+import { RichEditor } from '../../style/section-form'
+
 const TextEditor = props => {
   return (
-    <div className="text-editor" style={{ width: '80%' }}>
-      <label htmlFor="body">Section Body</label>
-      <ReactQuill
-        label="Section Body"
-        modules={TextEditor.modules}
-        formats={TextEditor.formats}
-        id="body"
-        name="body"
-        onChange={props.bodyChangeHandler}
-        value={props.body}
-      />
-    </div>
+    <RichEditor
+      label="Section Body"
+      modules={TextEditor.modules}
+      formats={TextEditor.formats}
+      id="body"
+      name="body"
+      onChange={props.bodyChangeHandler}
+      value={props.body}
+    />
   )
 }
 
