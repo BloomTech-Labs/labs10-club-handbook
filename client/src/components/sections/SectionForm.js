@@ -108,8 +108,8 @@ class SectionForm extends Component {
     this.props.updateSection(this.state.clubId, sectionInfo)
   }
 
-  cancel = () => {
-    this.props.history.push('/')
+  cancel = e => {
+    this.props.cancel(e)
   }
 
   render() {

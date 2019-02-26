@@ -131,8 +131,7 @@ class HandbookPage extends React.Component {
 
         {this.state.editView ? (
           <SectionEditor>
-            <button onClick={this.toggleEditView}>Cancel</button>
-            <SectionForm />
+            <SectionForm cancel={this.toggleEditView} />
           </SectionEditor>
         ) : null}
         <HandbookPreview>
@@ -170,7 +169,7 @@ const HandbookForm = styled.form`
 `
 
 const SectionEditor = styled.div`
-  padding: 30px;
+  padding: 0;
   position: fixed;
   max-width: 600px;
   min-height: 600px;
