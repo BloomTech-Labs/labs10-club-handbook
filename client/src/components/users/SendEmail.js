@@ -12,7 +12,7 @@ class EmailButton extends React.Component {
     }?subject=Here's%20our%20Manual&body=www.google.com`
   }
   render() {
-    return <button onClick={this.onClick}>Send Notification</button>
+    return <button onClick={this.onClick}>Notify</button>
   }
 }
 

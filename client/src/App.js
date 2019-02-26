@@ -18,7 +18,21 @@ import HandbookPage from './components/handbook/HandbookPage'
 import MagicLinkRequest from './components/sections/MagicLinkRequest'
 import SectionRender from './components/sections/SectionRender'
 
+import { connect } from 'react-redux'
+import { getInfoFromToken } from './store/actions/usersActions'
+
 class App extends Component {
+  componentDidMount() {
+    // let token = localStorage.getItem('access_token')
+    if (localStorage.getItem('access_token')) {
+      this.props.getInfoFromToken()
+      // TODO - if on home screen and token stored is still valid
+      // then push user to the dashboard?  must call from inside the router
+    } else {
+      //No Token...
+    }
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -39,7 +53,11 @@ class App extends Component {
               path="/authenticated"
               render={props => <Authenticated {...props} />}
             />
-            <Route path="/section-form" component={SectionForm} />
+            <Route path="/add-section" component={SectionForm} />
+            <Route
+              path="/update-section/:id"
+              render={props => <SectionForm {...props} update={true} />}
+            />
             <Route path="/callback-email" component={CallbackEmail} />
             <Route path="/magic-link-request" component={MagicLinkRequest} />
             <Route path="/section/:id" component={SectionRender} />
@@ -50,4 +68,7 @@ class App extends Component {
   }
 }
 
-export default App
+export default connect(
+  null,
+  { getInfoFromToken }
+)(App)

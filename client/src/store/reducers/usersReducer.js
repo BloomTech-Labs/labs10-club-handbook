@@ -4,10 +4,13 @@ import {
   ADD_MEMBER_FAIL,
   GET_USERS,
   GET_USER_BY_ID,
+  GET_USERS_BY_CLUB_ID,
   UPDATE_USER,
   DELETE_USER,
   START,
   FAIL,
+  GET_INFO_FROM_TOKEN,
+  FAIL_FROM_TOKEN,
 } from '../actions/usersActions'
 
 const initialState = {
@@ -16,6 +19,7 @@ const initialState = {
   loading: false,
   message: null,
   error: null,
+  failFromToken: false,
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -74,14 +78,26 @@ const usersReducer = (state = initialState, action) => {
         message: null,
       }
 
+    case GET_USERS_BY_CLUB_ID:
+      return {
+        ...state,
+        loading: false,
+        message: null,
+        users: action.payload,
+      }
+
     case UPDATE_USER:
       return {
         ...state,
-        users: state.users.map(user => {
-          if (user.id === action.payload.id) {
-            return { user: action.payload }
-          }
-        }),
+        users: [
+          ...state.users.map(user => {
+            if (user.id === action.payload.id) {
+              return action.payload
+            } else {
+              return user
+            }
+          })
+        ],
         loading: false,
         message: null,
       }
@@ -89,9 +105,27 @@ const usersReducer = (state = initialState, action) => {
     case DELETE_USER:
       return {
         ...state,
-        users: state.users.filter(user => user.id !== action.payload),
+        users: [
+          ...state.users.filter(user => {
+          return `${user.id}` !== action.payload.id
+          })
+        ],
         loading: false,
         message: null,
+      }
+
+    case GET_INFO_FROM_TOKEN:
+      return {
+        ...state,
+        loading: false,
+        message: null,
+        userById: action.payload.user,
+      }
+
+    case FAIL_FROM_TOKEN:
+      return {
+        ...state,
+        failFromToken: true,
       }
 
     default:

@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import SectionForm from '../sections/SectionForm'
+import DashDrawer from '../Dashboard'
 
 import {
   getClubById,
@@ -14,6 +15,7 @@ class HandbookPage extends React.Component {
   state = {
     // user has a club?
     sectionView: false,
+    editView: false,
     hasClub: false,
     title: '',
   }
@@ -64,10 +66,18 @@ class HandbookPage extends React.Component {
     })
   }
 
+  toggleEditView = ev => {
+    ev.preventDefault()
+    this.setState({
+      editView: !this.state.editView,
+    })
+  }
+
   render() {
     return (
-      <div>
-        <h1>Handbook Page!</h1>
+      <HandbookPageContainer>
+        <DashDrawer />
+        {/* <h1>Handbook Page!</h1>
         {this.state.hasClub ? (
           <div>
             <h2>You have a Club!</h2>
@@ -75,7 +85,7 @@ class HandbookPage extends React.Component {
           </div>
         ) : (
           <h2>You have NO club...</h2>
-        )}
+        )} */}
 
         <HandbookForm
           onSubmit={this.state.hasClub ? this.updateClub : this.createClub}
@@ -98,6 +108,7 @@ class HandbookPage extends React.Component {
                   <h2>{section.title}</h2>
                 </div>
               ))}
+              <button onClick={this.toggleEditView}>Add Section</button>
             </div>
           ) : (
             //details view display
@@ -118,7 +129,11 @@ class HandbookPage extends React.Component {
           )}
         </HandbookForm>
 
-        {this.state.sectionView ? <SectionForm /> : null}
+        {this.state.editView ? (
+          <SectionEditor>
+            <SectionForm cancel={this.toggleEditView} />
+          </SectionEditor>
+        ) : null}
         <HandbookPreview>
           <h1>{this.props.club.name}</h1>
           {this.props.sections.map(section => (
@@ -128,16 +143,22 @@ class HandbookPage extends React.Component {
             </div>
           ))}
         </HandbookPreview>
-      </div>
+      </HandbookPageContainer>
     )
   }
 }
+const HandbookPageContainer = styled.div`
+  display: flex;
+  align-items: flex-start;
+  margin-top: 100px;
+`
 
 const HandbookForm = styled.form`
+  margin-left: 170px;
   width: 300px;
+  min-height: 400px;
   padding: 20px;
   border: 1px solid black;
-
   .section-block {
     img {
       min-height: 30px;
@@ -145,6 +166,16 @@ const HandbookForm = styled.form`
       max-width: 300px;
     }
   }
+`
+
+const SectionEditor = styled.div`
+  padding: 0;
+  position: fixed;
+  max-width: 600px;
+  min-height: 600px;
+  top: 100px;
+  left: 200px;
+  background: white;
 `
 
 const HandbookPreview = styled.div`

@@ -3,7 +3,15 @@ import axios from 'axios'
 import TextEditor from './TextEditor'
 import { Button } from '@material-ui/core'
 import { connect } from 'react-redux'
-import { addSection } from '../../store/actions/clubActions'
+import { addSection, updateSection } from '../../store/actions/clubActions'
+
+import {
+  FormContainer,
+  Row,
+  Label,
+  SectionInput,
+  ImageInput,
+} from '../../style/section-form'
 
 class SectionForm extends Component {
   state = {
@@ -22,7 +30,24 @@ class SectionForm extends Component {
 
   componentDidMount() {
     const { club_id } = this.props.currentUser
-    this.setState({ clubId: club_id }) // { clubId: clubId }
+
+    if (this.props.update === true) {
+      const currentSection = this.props.sections.find(
+        section => section.id === this.props.match.params.id
+      )
+      this.setState({
+        clubId: club_id,
+        title: currentSection.title,
+        body: currentSection.bidy,
+        imgPlacement: currentSection.img_placement,
+        image: currentSection.img_url,
+        orderPosition: currentSection.order,
+        contactName: currentSection.contact_name,
+        contactInfo: currentSection.contact_info,
+      })
+    } else {
+      this.setState({ clubId: club_id })
+    }
   }
 
   changeHandler = e => {
@@ -42,6 +67,7 @@ class SectionForm extends Component {
 
   uploadImg = e => {
     e.preventDefault()
+    console.log(`upload img`)
 
     const fd = new FormData()
     fd.append('image', this.state.selectedFile)
@@ -57,15 +83,33 @@ class SectionForm extends Component {
   addSection = ev => {
     ev.preventDefault()
     let sectionInfo = {
+      club_id: this.state.clubId,
       title: this.state.title,
       body: this.state.body,
       img_url: this.state.image,
+      img_placement: this.state.imgPlacement,
+      contact_name: this.state.contactName,
+      contact_info: this.state.contactInfo,
     }
     this.props.addSection(this.state.clubId, sectionInfo)
   }
 
-  cancel = () => {
-    this.props.history.push('/')
+  updateSection = ev => {
+    ev.preventDefault()
+    let sectionInfo = {
+      club_id: this.state.clubId,
+      title: this.state.title,
+      body: this.state.body,
+      img_url: this.state.image,
+      img_placement: this.state.imgPlacement,
+      contact_name: this.state.contactName,
+      contact_info: this.state.contactInfo,
+    }
+    this.props.updateSection(this.state.clubId, sectionInfo)
+  }
+
+  cancel = e => {
+    this.props.cancel(e)
   }
 
   render() {
@@ -76,14 +120,14 @@ class SectionForm extends Component {
     }
 
     return (
-      <div className="section-form">
+      <FormContainer>
         <form
           method="/POST"
           encType="multipart/form-data"
-          onSubmit={addSection(clubId, this.state)}
+          onSubmit={this.props.update ? this.updateSection : this.addSection}
         >
           <div className="form-group">
-            <div className="action-btns">
+            <Row>
               <Button
                 variant="contained"
                 color="secondary"
@@ -92,94 +136,110 @@ class SectionForm extends Component {
                 Cancel
               </Button>
 
-              <h2>Create Section</h2>
+              {this.props.update ? (
+                <h2>Update Section</h2>
+              ) : (
+                <h2>Create Section</h2>
+              )}
 
               <Button
-                onClick={this.addSection}
+                onClick={
+                  this.props.update ? this.updateSection : this.addSection
+                }
                 variant="contained"
                 color="primary"
               >
                 Save Section
               </Button>
-            </div>
+            </Row>
 
-            <label htmlFor="title">Section Title</label>
-            <input
-              id="title"
-              name="title"
-              onChange={this.changeHandler}
-              style={{ width: '500px' }}
-              required
-              value={this.state.title}
-            />
+            <Row>
+              <Label htmlFor="title">Section Title</Label>
+              <SectionInput
+                id="title"
+                name="title"
+                onChange={this.changeHandler}
+                required
+                value={this.state.title}
+              />
+            </Row>
 
+            <Label htmlFor="body" marginBottom>
+              Section Body
+            </Label>
             <TextEditor
               bodyChangeHandler={this.bodyChangeHandler}
               body={this.state.body}
             />
 
-            <label htmlFor="contact-name">Contact Name</label>
-            <input
-              id="contact-name"
-              name="contactName"
-              onChange={this.changeHandler}
-              style={{ width: '500px' }}
-              required
-              value={this.state.contactName}
-            />
+            <Row style={{ marginTop: '6rem' }}>
+              <Label htmlFor="contact-name">Contact Name</Label>
+              <SectionInput
+                id="contact-name"
+                name="contactName"
+                onChange={this.changeHandler}
+                required
+                value={this.state.contactName}
+              />
+            </Row>
 
-            <label htmlFor="contact-info">Contact Info</label>
-            <input
-              id="contact-info"
-              name="contactInfo"
-              onChange={this.changeHandler}
-              style={{ width: '500px' }}
-              required
-              value={this.state.contactInfo}
-            />
+            <Row>
+              <Label htmlFor="contact-info">Contact Info</Label>
+              <SectionInput
+                id="contact-info"
+                name="contactInfo"
+                onChange={this.changeHandler}
+                required
+                value={this.state.contactInfo}
+              />
+            </Row>
 
-            <input
-              label="Upload Image"
-              onChange={this.fileHandler}
-              type="file"
-              id="image"
-              name="image"
-              accept="image/*"
-            />
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={this.uploadImg}
-            >
-              Upload
-            </Button>
+            <Row>
+              <ImageInput
+                label="Upload Image"
+                onChange={this.fileHandler}
+                type="file"
+                id="image"
+                name="image"
+                accept="image/*"
+              />
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={this.uploadImg}
+              >
+                Upload
+              </Button>
 
-            <label htmlFor="section-type">Section Type</label>
-            <select name="section-type" id="section-type">
-              <option value="1">Image Background</option>
-              <option value="2">Image Left</option>
-              <option value="3">Image Right</option>
-              <option value="4">No Image</option>
-            </select>
+              <Label htmlFor="section-type">Section Type</Label>
+              <select name="section-type" id="section-type">
+                <option value="4">No Image</option>
+                <option value="1">Image Background</option>
+                <option value="2">Image Left</option>
+                <option value="3">Image Right</option>
+              </select>
+            </Row>
 
-            <label htmlFor="background">Background Color</label>
-            <select name="background" id="background">
-              <option value="white">white</option>
-              <option value="black">black</option>
-              <option value="blue">blue</option>
-              <option value="yellow">yellow</option>
-              <option value="red">red</option>
-              <option value="orange">orange</option>
-            </select>
+            <Row>
+              <Label htmlFor="background">Background Color</Label>
+              <select name="background" id="background">
+                <option value="white">white</option>
+                <option value="black">black</option>
+                <option value="blue">blue</option>
+                <option value="yellow">yellow</option>
+                <option value="red">red</option>
+                <option value="orange">orange</option>
+              </select>
 
-            <label htmlFor="title-font">Title Font</label>
-            <select name="title-font" id="title-font">
-              <option value="Helvetica Neue">Helvetica Neue</option>
-              <option value="Sans Serif">Sans Serif</option>
-              <option value="Roboto">Roboto</option>
-            </select>
+              <Label htmlFor="title-font">Title Font</Label>
+              <select name="title-font" id="title-font">
+                <option value="Helvetica Neue">Helvetica Neue</option>
+                <option value="Sans Serif">Sans Serif</option>
+                <option value="Roboto">Roboto</option>
+              </select>
+            </Row>
 
-            <div className="action-btns">
+            <Row>
               <Button
                 variant="contained"
                 color="secondary"
@@ -188,16 +248,18 @@ class SectionForm extends Component {
                 Cancel
               </Button>
               <Button
-                onClick={this.addSection}
+                onClick={
+                  this.props.update ? this.updateSection : this.addSection
+                }
                 variant="contained"
                 color="primary"
               >
                 Save Section
               </Button>
-            </div>
+            </Row>
           </div>
         </form>
-      </div>
+      </FormContainer>
     )
   }
 }
@@ -205,10 +267,11 @@ class SectionForm extends Component {
 const mapStateToProps = state => {
   return {
     currentUser: state.auth.currentUser,
+    sections: state.clubs.sections,
   }
 }
 
 export default connect(
   mapStateToProps,
-  { addSection }
+  { addSection, updateSection }
 )(SectionForm)
