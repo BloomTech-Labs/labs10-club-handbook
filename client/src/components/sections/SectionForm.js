@@ -28,27 +28,27 @@ class SectionForm extends Component {
     font: null,
   }
 
-  componentDidMount() {
-    const { club_id } = this.props.currentUser
+  // componentDidMount() {
+  //   const { club_id } = this.props.currentUser
 
-    if (this.props.update === true) {
-      const currentSection = this.props.sections.find(
-        section => section.id === this.props.sectionId
-      )
-      this.setState({
-        clubId: club_id,
-        title: currentSection.title,
-        body: currentSection.body,
-        imgPlacement: currentSection.img_placement,
-        image: currentSection.img_url,
-        orderPosition: currentSection.order,
-        contactName: currentSection.contact_name,
-        contactInfo: currentSection.contact_info,
-      })
-    } else {
-      this.setState({ clubId: club_id })
-    }
-  }
+  //   if (this.props.update === true) {
+  //     const currentSection = this.props.sections.find(
+  //       section => section.id === this.props.sectionId
+  //     )
+  //     this.setState({
+  //       clubId: club_id,
+  //       title: currentSection.title,
+  //       body: currentSection.body,
+  //       imgPlacement: currentSection.img_placement,
+  //       image: currentSection.img_url,
+  //       orderPosition: currentSection.order,
+  //       contactName: currentSection.contact_name,
+  //       contactInfo: currentSection.contact_info,
+  //     })
+  //   } else {
+  //     this.setState({ clubId: club_id })
+  //   }
+  // }
 
   changeHandler = e => {
     e.preventDefault()
@@ -96,6 +96,7 @@ class SectionForm extends Component {
   }
 
   updateSection = ev => {
+    console.log('update section')
     ev.preventDefault()
     let sectionInfo = {
       club_id: this.state.clubId,
@@ -106,7 +107,12 @@ class SectionForm extends Component {
       contact_name: this.state.contactName,
       contact_info: this.state.contactInfo,
     }
-    this.props.updateSection(this.state.clubId, sectionInfo)
+    this.props.updateSection(
+      this.state.clubId,
+      this.props.sectionId,
+      sectionInfo
+    )
+    this.props.cancel(ev)
   }
 
   cancel = e => {
@@ -114,11 +120,11 @@ class SectionForm extends Component {
   }
 
   render() {
-    const { clubId } = this.state
+    // const { clubId } = this.state
 
-    if (!clubId) {
-      return <h1>Loading...</h1>
-    }
+    // if (!clubId) {
+    //   return <h1>Loading...</h1>
+    // }
 
     return (
       <FormContainer>
@@ -173,7 +179,7 @@ class SectionForm extends Component {
               body={this.state.body}
             />
 
-            <Row style={{ marginTop: '6rem' }}>
+            <Row marginTop>
               <Label htmlFor="contact-name">Contact Name</Label>
               <SectionInput
                 id="contact-name"
@@ -195,7 +201,7 @@ class SectionForm extends Component {
               />
             </Row>
 
-            <Row>
+            <Row wrap>
               <ImageInput
                 label="Upload Image"
                 onChange={this.fileHandler}
@@ -221,7 +227,7 @@ class SectionForm extends Component {
               </select>
             </Row>
 
-            <Row>
+            <Row wrap>
               <Label htmlFor="background">Background Color</Label>
               <select name="background" id="background">
                 <option value="white">white</option>
