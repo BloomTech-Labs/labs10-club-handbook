@@ -70,11 +70,11 @@ h3,
   display: flex;
 }
 
-.members {
+/* .members {
   display: flex;
   justify-content: space-between;
   margin: 20px;
-}
+} */
 
 .signature-pad {
   border: 2px solid black;

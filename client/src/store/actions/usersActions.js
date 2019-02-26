@@ -102,7 +102,7 @@ export const updateUser = (id, changes) => dispatch => {
 
   axios
     .patch(
-      `https://club-handbook.herokuapp.com/api/users/${id}`,
+      `https://club-handbook.herokuapp.com/api/users/addMember/${id}`,
       changes,
       requestOptions
     )
