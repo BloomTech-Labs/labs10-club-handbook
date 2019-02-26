@@ -19,6 +19,9 @@ import { Link } from 'react-router-dom'
 
 import Login from '../auth/Login'
 import ProcessStepper from './Process'
+import Parallax from './Header'
+import GridContainer from './Grid'
+import Fade from 'react-reveal/Fade'
 
 const styles = theme => ({
   appBar: {
@@ -30,14 +33,16 @@ const styles = theme => ({
   layout: {
     width: 'auto',
     [theme.breakpoints.up(900 + theme.spacing.unit * 3 * 2)]: {
-      width: 900,
+      width: 800,
       marginLeft: 'auto',
       marginRight: 'auto',
     },
   },
   landingContent: {
-    maxWidth: 500,
+    maxWidth: 700,
     margin: '0 auto',
+    marginTop: 20,
+    marginBottom: 30,
     padding: `${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 6}px`,
   },
   cardPricing: {
@@ -53,7 +58,6 @@ const styles = theme => ({
   processSection: {
     maxWidth: 800,
     margin: '0 auto',
-    backgroundColor: theme.palette.background.paper,
   },
   processContent: {
     maxWidth: 500,
@@ -98,47 +102,83 @@ const subscriptions = [
   },
 ]
 
-function Landing(props) {
-  const { classes } = props
+class Landing extends React.Component {
+  state = {
+    open: false,
+  }
 
-  return (
-    <React.Fragment>
-      <CssBaseline />
-      <AppBar position="static" className={classes.appBar}>
-        <Toolbar>
-          <Typography
-            variant="h6"
-            color="inherit"
-            noWrap
-            className={classes.toolbarTitle}
-          >
-            Club.Handbook
-          </Typography>
-          <Button component={Link} to="/dashboard" color="inherit">
-            Dashboard
-          </Button>
-          <Button component={Login} color="inherit" variant="outlined" />
-        </Toolbar>
-      </AppBar>
-      <main className={classes.layout}>
-        <Paper className={classes.mainLandingPost}>
-          <Grid container>
-            <Grid item md={6}>
-              <div className={classes.mainLandingPostContent}>
-                <Typography variant="h3" color="TextPrimary" gutterBottom>
-                  To happier, productive, and loyal employees.
-                </Typography>
-                <Typography variant="h6" color="TextPrimary" paragraph>
-                  Top companies choose Club.Handbook to build their employee
-                  handbooks. Complete templates, beautiful design and easy
-                  customization. Publish as a mobile-friendly digital handbook.
-                </Typography>
-              </div>
+  render() {
+    const { classes } = this.props
+    return (
+      <React.Fragment>
+        <CssBaseline />
+        <Fade top>
+          <AppBar position="static" className={classes.appBar}>
+            <Toolbar>
+              <Typography
+                variant="h6"
+                color="inherit"
+                noWrap
+                className={classes.toolbarTitle}
+              >
+                Club.Handbook
+              </Typography>
+              <Button component={Link} to="/dashboard" color="inherit">
+                Dashboard
+              </Button>
+              <Button component={Login} color="inherit" variant="outlined" />
+            </Toolbar>
+          </AppBar>
+        </Fade>
+        <main className={classes.layout}>
+          <Parallax className={classes.landingContent}>
+            <div className={classes.container}>
+              <GridContainer>
+                <Fade left>
+                  <GridContainer xs={12} sm={12} md={6}>
+                    <Typography variant="h3" color="TextPrimary" gutterBottom>
+                      To happier, productive, and loyal employees.
+                    </Typography>
+                    <Typography variant="h6" color="TextPrimary" paragraph>
+                      Top companies choose Club.Handbook to build their employee
+                      handbooks. Complete templates, beautiful design and easy
+                      customization. Publish as a mobile-friendly digital
+                      handbook.
+                    </Typography>
+                    <br />
+                  </GridContainer>
+                </Fade>
+              </GridContainer>
+            </div>
+          </Parallax>
+          <Paper>
+            <Grid container>
+              <Grid className={classes.processSection}>
+                <div className={classes.processContent}>
+                  <Typography
+                    component="h1"
+                    variant="h2"
+                    align="center"
+                    color="textPrimary"
+                    gutterBottom
+                  >
+                    The Process
+                  </Typography>
+                  <Typography
+                    variant="h6"
+                    align="center"
+                    color="textSecondary"
+                    paragraph
+                  >
+                    With Club.Handbook we make bringing your club members
+                    together as easy as possible. Simple as 1-2-3:
+                  </Typography>
+                </div>
+                <ProcessStepper />
+              </Grid>
             </Grid>
-          </Grid>
-        </Paper>
-        <div className={classes.processSection}>
-          <div className={classes.processContent}>
+          </Paper>
+          <div className={classes.landingContent}>
             <Typography
               component="h1"
               variant="h2"
@@ -146,138 +186,127 @@ function Landing(props) {
               color="textPrimary"
               gutterBottom
             >
-              The Process
+              Packages
             </Typography>
             <Typography
               variant="h6"
               align="center"
               color="textSecondary"
-              paragraph
+              component="p"
             >
-              With Club.Handbook we make bringing your club members together as
-              easy as possible. Simple as 1-2-3:
+              Optimized for desktop, tablet, and mobile viewing. Update in
+              real-time. Password protect your handbook. Custom domains (ie.
+              handbook.yourcompany.com)
             </Typography>
           </div>
-          <ProcessStepper />
-        </div>
-        <div className={classes.landingContent}>
-          <Typography
-            component="h1"
-            variant="h2"
-            align="center"
-            color="textPrimary"
-            gutterBottom
-          >
-            Packages
-          </Typography>
-          <Typography
-            variant="h6"
-            align="center"
-            color="textSecondary"
-            component="p"
-          >
-            Optimized for desktop, tablet, and mobile viewing. Update in
-            real-time. Password protect your handbook. Custom domains (ie.
-            handbook.yourcompany.com)
-          </Typography>
-        </div>
-        <Grid container spacing={40} alignItems="flex-end">
-          {subscriptions.map(tier => (
-            <Grid
-              item
-              key={tier.title}
-              xs={12}
-              sm={tier.title === 'Enterprise' ? 12 : 6}
-              md={4}
-            >
-              <Card>
-                <CardHeader
-                  title={tier.title}
-                  subheader={tier.subheader}
-                  titleTypographyProps={{ align: 'center' }}
-                  subheaderTypographyProps={{ align: 'center' }}
-                  className={classes.cardHeader}
-                />
-                <CardContent>
-                  <div className={classes.cardPricing}>
-                    <Typography component="h2" variant="h3" color="textPrimary">
-                      ${tier.price}
-                    </Typography>
-                    <Typography variant="h6" color="textSecondary">
-                      /mo
-                    </Typography>
-                  </div>
-                  {tier.description.map(line => (
-                    <Typography variant="subtitle1" align="center" key={line}>
-                      {line}
-                    </Typography>
-                  ))}
-                </CardContent>
-                <CardActions className={classes.cardActions}>
-                  <Button
-                    component={Link}
-                    to="/login"
-                    fullWidth
-                    variant={tier.buttonVariant}
-                    color="primary"
-                  >
-                    {tier.buttonText}
-                  </Button>
-                </CardActions>
-              </Card>
-            </Grid>
-          ))}
-          <div className={classes.landingContent}>
-            <Typography
-              component="h1"
-              variant="h3"
-              align="center"
-              color="textPrimary"
-              gutterBottom
-            >
-              All in one easy-to-use platform.
-            </Typography>
-            <Typography
-              variant="h6"
-              align="center"
-              color="textSecondary"
-              paragraph
-            >
-              Optionally add a password to your handbook and change it anytime
-              so you are always in control of who can access it. Require
-              employees to sign your handbook with a legally binding electronic
-              signature. Invite as many people as you'd like to help with the
-              handbook. They'll be able to make changes anytime.
-            </Typography>
-            <div>
-              <Grid container spacing={16} justify="center">
-                <Grid item>
-                  <Button
-                    component={Link}
-                    to="/login"
-                    variant="outlined"
-                    color="primary"
-                  >
-                    Sign Up
-                  </Button>
-                </Grid>
-                <Grid item>
-                  <Button
-                    component={Link}
-                    to="/login"
-                    variant="contained"
-                    color="primary"
-                  >
-                    Contact Us
-                  </Button>
-                </Grid>
+          <Grid container spacing={40} alignItems="flex-end">
+            {subscriptions.map(tier => (
+              <Grid
+                item
+                key={tier.title}
+                xs={12}
+                sm={tier.title === 'Enterprise' ? 12 : 6}
+                md={4}
+              >
+                <Fade bottom>
+                  <Card>
+                    <CardHeader
+                      title={tier.title}
+                      subheader={tier.subheader}
+                      titleTypographyProps={{ align: 'center' }}
+                      subheaderTypographyProps={{ align: 'center' }}
+                      className={classes.cardHeader}
+                    />
+                    <CardContent>
+                      <div className={classes.cardPricing}>
+                        <Typography
+                          component="h2"
+                          variant="h3"
+                          color="textPrimary"
+                        >
+                          ${tier.price}
+                        </Typography>
+                        <Typography variant="h6" color="textSecondary">
+                          /mo
+                        </Typography>
+                      </div>
+                      {tier.description.map(line => (
+                        <Typography
+                          variant="subtitle1"
+                          align="center"
+                          key={line}
+                        >
+                          {line}
+                        </Typography>
+                      ))}
+                    </CardContent>
+                    <CardActions className={classes.cardActions}>
+                      <Button
+                        component={Link}
+                        to="/login"
+                        fullWidth
+                        variant={tier.buttonVariant}
+                        color="primary"
+                      >
+                        {tier.buttonText}
+                      </Button>
+                    </CardActions>
+                  </Card>
+                </Fade>
               </Grid>
+            ))}
+            <div className={classes.landingContent}>
+              <Typography
+                component="h1"
+                variant="h3"
+                align="center"
+                color="textPrimary"
+                gutterBottom
+              >
+                All in one easy-to-use platform.
+              </Typography>
+              <Typography
+                variant="h6"
+                align="center"
+                color="textSecondary"
+                paragraph
+              >
+                Optionally add a password to your handbook and change it anytime
+                so you are always in control of who can access it. Require
+                employees to sign your handbook with a legally binding
+                electronic signature. Invite as many people as you'd like to
+                help with the handbook. They'll be able to make changes anytime.
+              </Typography>
+              <div>
+                <Grid container spacing={16} justify="center">
+                  <Grid item>
+                    <Button
+                      component={Link}
+                      to="/login"
+                      variant="outlined"
+                      color="primary"
+                    >
+                      Sign Up
+                    </Button>
+                  </Grid>
+                  <Grid item>
+                    <Button
+                      component={Link}
+                      to="/login"
+                      variant="contained"
+                      color="primary"
+                    >
+                      Contact Us
+                    </Button>
+                  </Grid>
+                </Grid>
+              </div>
             </div>
-          </div>
-        </Grid>
-      </main>
-    </React.Fragment>
-  )
+          </Grid>
+        </main>
+      </React.Fragment>
+    )
+  }
 }
 
 Landing.propTypes = {
