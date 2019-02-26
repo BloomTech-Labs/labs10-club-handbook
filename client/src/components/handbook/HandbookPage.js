@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import SectionForm from '../sections/SectionForm'
+import DashDrawer from '../Dashboard'
 
 import {
   getClubById,
@@ -75,6 +76,7 @@ class HandbookPage extends React.Component {
   render() {
     return (
       <HandbookPageContainer>
+        <DashDrawer />
         {/* <h1>Handbook Page!</h1>
         {this.state.hasClub ? (
           <div>
@@ -149,6 +151,7 @@ class HandbookPage extends React.Component {
 const HandbookPageContainer = styled.div`
   display: flex;
   align-items: flex-start;
+  margin-top: 100px;
 `
 
 const HandbookForm = styled.form`
@@ -157,7 +160,6 @@ const HandbookForm = styled.form`
   min-height: 400px;
   padding: 20px;
   border: 1px solid black;
-
   .section-block {
     img {
       min-height: 30px;

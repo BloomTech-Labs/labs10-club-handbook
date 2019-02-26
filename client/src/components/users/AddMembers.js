@@ -3,8 +3,42 @@ import { AppBar } from '@material-ui/core'
 
 import { connect } from 'react-redux'
 import { addUser } from '../../store/actions/usersActions'
+import styled from 'styled-components'
 
 import './Members.css'
+
+//#region STYLES
+const SCWrapper = styled.div`
+  width: 95%;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  form {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  button {
+    :hover {
+      cursor: pointer;
+    }
+  }
+`;
+
+const SCName = styled.input`
+  width: 25%;
+  margin-right: 0 10px;
+  line-height: 1.2;
+`;
+
+const SCEmail = styled.input`
+  width: 35%;
+  margin-right: 0 10px;
+  line-height: 1.2;
+`;
+//#endregion
 
 class AddMembers extends React.Component {
   constructor() {
@@ -31,45 +65,48 @@ class AddMembers extends React.Component {
 
     this.props.addUser(user)
 
-    this.props.history.push('/members')
+    this.setState({
+      firstname: '',
+      lastname: '',
+      email: ''
+    });
   }
 
   render() {
-    // console.log('got to render')
     return (
-      <div className="members-container">
-        <AppBar position="static">
+      <SCWrapper>
+        {/* <AppBar position="static">
           <div className="members-header">
             <h1>Add Club Member</h1>
           </div>
-        </AppBar>
+        </AppBar> */}
         <form onSubmit={this.handleSubmit}>
-          <input
+          <SCName
             type="text"
             name="firstname"
             onChange={this.handleChanges}
-            placeholder="firstname"
+            placeholder="First Name"
             value={this.state.firstname}
           />
 
-          <input
+          <SCName
             type="text"
             name="lastname"
             onChange={this.handleChanges}
-            placeholder="lastname"
+            placeholder="Last Name"
             value={this.state.lastname}
           />
 
-          <input
+          <SCEmail
             type="text"
             name="email"
             onChange={this.handleChanges}
-            placeholder="email"
+            placeholder="Email Address"
             value={this.state.email}
           />
-          <button>Add New Club Member</button>
+          <button>Add Member</button>
         </form>
-      </div>
+      </SCWrapper>
     )
   }
 }

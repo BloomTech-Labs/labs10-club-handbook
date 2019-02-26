@@ -112,8 +112,7 @@ SectionContainer.propTypes = {
 
 class DashDrawer extends React.Component {
   state = {
-    open: true,
-    value: 2,
+    open: false,
   }
 
   handleDash = () => {
@@ -208,13 +207,13 @@ class DashDrawer extends React.Component {
             </ListItemIcon>
             <ListItemText primary="Dashboard" />
           </ListItem> */}
-          <ListItem button onClick={this.handleHandbook}>
+          <ListItem button component={Link} to="./handbook">
             <ListItemIcon>
               <SubjectIcon />
             </ListItemIcon>
             <ListItemText primary="Handbook" />
           </ListItem>
-          <ListItem button onClick={this.handleMembers}>
+          <ListItem button component={Link} to="./members">
             <ListItemIcon>
               <PeopleIcon />
             </ListItemIcon>
@@ -226,13 +225,13 @@ class DashDrawer extends React.Component {
             </ListItemIcon>
             <ListItemText primary="Sections" />
           </ListItem> */}
-          <ListItem button onClick={this.handleBilling}>
+          <ListItem button component={Link} to="./billing">
             <ListItemIcon>
               <CreditCardIcon />
             </ListItemIcon>
             <ListItemText primary="Billing" />
           </ListItem>
-          <ListItem button onClick={this.handleSettings}>
+          <ListItem button component={Link} to="./settings">
             <ListItemIcon>
               <SettingsIcon />
             </ListItemIcon>
@@ -248,9 +247,9 @@ class DashDrawer extends React.Component {
             </SectionContainer>
           )}
           {value === 2 && (
-            // <SectionContainer>
-            <HandbookPage />
-            // </SectionContainer>
+            <SectionContainer>
+              <HandbookPage />
+            </SectionContainer>
           )}
           {value === 3 && (
             <SectionContainer>
