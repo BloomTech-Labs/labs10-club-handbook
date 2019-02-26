@@ -1,74 +1,68 @@
-.members-container {
+/* .members-container {
   max-width: 800px;
   margin: 0 auto;
-  /* border: 2px solid black; */
-}
+} */
 
-h3,
+/* h3,
 .links {
   margin: 0 10px;
   font-size: 20px;
-}
+} */
 
-.links {
+/* .links {
   font-size: 14px;
-}
+} */
 
-.members-header {
+/* .members-header {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   padding: 10px 0;
-}
+} */
 
-.members-list {
+/* .members-list {
   display: flex;
   flex-direction: column;
-}
+} */
 
-.members-info {
-  /* display: flex; */
-  /* align-items: center; */
-  /* border: 1px solid brown; */
+/* .members-info {
   width: 75%;
-}
+} */
 
-.members-details {
+/* .members-details {
   display: flex;
   flex-direction: column;
-  /* border: 1px solid green; */
-}
-.members-text {
+} */
+
+/* .members-text {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
-  /* border: 1px solid red; */
-}
+} */
 
-.members-name {
+/* .members-name {
   display: flex;
   width: 50%;
-  /* border: 1px solid red; */
-}
+} */
 
-.members-email {
+/* .members-email {
   width: 50%;
-}
+} */
 
-.members-actions {
+/* .members-actions {
   display: flex;
   justify-content: flex-end;
   margin: 0 70px 0 0;
-}
+} */
 
-.members-actions div {
+/* .members-actions div {
   margin-left: 70px;
-}
+} */
 
-.members-management {
+/* .members-management {
   display: flex;
-}
+} */
 
 /* .members {
   display: flex;
@@ -117,11 +111,11 @@ h3,
   margin: 10px;
 }
 
-.status-header {
+/* .status-header {
   display: flex;
   justify-content: flex-end;
   margin: 0 40px 0 0;
-}
+} */
 
 .status-header h3 {
   margin-left: 30px;

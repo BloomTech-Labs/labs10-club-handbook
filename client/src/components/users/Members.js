@@ -11,19 +11,40 @@ import ViewedManual from './ViewedManual'
 import AddMember from './AddMembers'
 import styled from 'styled-components'
 import DashDrawer from '../Dashboard'
-import { size } from '../../style/breakpoints';
+import { size } from '../../style/breakpoints'
+import Member from './Member'
 
-import './Members.css'
-
-const MemberInfo = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin: 20px;
-
-  @media ${size.tablet} {
-    border: 1px solid red;
-  }
+//#region STYLES
+const H2 = styled.h2`
+  font-size: 1.8rem;
+  margin-left: 22px;
 `;
+const Container = styled.div`
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 2%;
+  @media ${size.tablet} {
+    width: 75%;
+}
+`;
+const HeaderBar = styled.div`
+  width: 100%;
+  background: #3648AC;
+  font-size: 35px;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 10px 0;
+`;
+const MembersList = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+const StatusHeader = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 70px 10px 0;
+`;
+//#endregion
 
 class Members extends React.Component {
   componentDidMount() {
@@ -36,77 +57,33 @@ class Members extends React.Component {
     const { users } = this.props
 
     return (
-      <div>
+      <>
+
         <DashDrawer />
-        <div className="members-container">
-          <AppBar position="static">
-            <div className="members-header">
-              <h1>ClubMembers</h1>
-              {/* <Button
-              variant="text"
-              color="secondary"
-              onClick={() => {
-                this.props.history.push('/add-members')
-              }}
-            >
-              +ADD Member
-            </Button> */}
-            </div>
-          </AppBar>
+        
+        <Container>
+          <HeaderBar>ClubMembers</HeaderBar>
+          <AddMember />
 
-          <div className="members-list">
-            <AddMember />
+          <MembersList>
 
-            <div className="status-header">
-              <h3>Visited</h3>
-              <h3>Signed</h3>
-            </div>
+            <StatusHeader>
+              <H2>Visited</H2>
+              <H2>Signed</H2>
+            </StatusHeader>
 
-            {users.reverse().map(user => {
+            {users.map(user => {
               if (user.admin === false) {
                 return (
-                  <MemberInfo>
-                    <div className="members-info">
-                      {/* <Avatar /> */}
-
-                      <div className="members-details">
-                        <div className="members-text">
-                          <div className="members-name">
-                            <h3>{user.firstname}</h3>
-                            <h3>{user.lastname}</h3>
-                          </div>
-                          <div className="members-email">
-                            <h3>{user.email}</h3>
-                          </div>
-                        </div>
-                        <div className="members-management">
-                          <Link
-                            className="links"
-                            to={`update-members/${user.id}`}
-                          >
-                            Edit
-                          </Link>
-                          <EmailButton email={user.email} />
-                          {/* <DeleteTwoToneIcon /> */}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="members-actions">
-                      <div>
-                        <ViewedManual key={user.email} sub_id={user.sub_id} />
-                      </div>
-                      <div>
-                        <SignedManual key={user.email} signed={user.signed} />
-                      </div>
-                    </div>
-                  </MemberInfo>
+                  <Member key={user.id} user={user} />
                 )
               }
             })}
-          </div>
-        </div>
-      </div>
+
+          </MembersList>
+        </Container>
+
+      </>
     )
   }
 }

@@ -1,10 +1,29 @@
 import React from 'react'
 import { AppBar } from '@material-ui/core'
-
 import { connect } from 'react-redux'
 import { updateUser, deleteUser } from '../../store/actions/usersActions'
+import styled from 'styled-components';
+import { size } from '../../style/breakpoints';
 
-import './Members.css'
+const UpdateContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+`;
+const Form = styled.form`
+  display: flex;
+  justify-content: space-between;
+  @media ${size.tablet} {
+    flex-direction: column;
+}
+`;
+const Input = styled.input`
+  margin-right: 10px;
+`;
+const Button = styled.button`
+
+`;
 
 class UpdateMembers extends React.Component {
   constructor(props) {
@@ -22,8 +41,10 @@ class UpdateMembers extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    
-    const userId = this.props.match.params.id;
+    event.stopPropagation();
+    console.log('handleSubmit() invoked')
+
+    const { userId } = this.props
 
     const userChanges = {};
 
@@ -32,54 +53,55 @@ class UpdateMembers extends React.Component {
     if (this.state.email.length > 0) userChanges.email = this.state.email;
 
     this.props.updateUser(userId, userChanges)
-    this.props.history.push('/members')
+
+    this.setState({
+      firstname: '',
+      lastname: '',
+      email: ''
+    })
   }
 
   handleDeleteClick = event => {
-    event.preventDefault();
+    event.preventDefault()
+    event.stopPropagation();
+    console.log('handleDeleteClick() invoked')
 
-    const userId = this.props.match.params.id;
+    const { userId } = this.props
 
     this.props.deleteUser(userId)
-
   }
 
   render() {
     return (
-      <div className="members-container">
-        <AppBar position="static">
-          <div className="members-header">
-            <h1>Update Club Member Info</h1>
-          </div>
-        </AppBar>
-        <form onSubmit={this.handleSubmit}>
-          <input
+      <UpdateContainer>
+        <Form onSubmit={this.handleSubmit}>
+          <Input
             type="text"
             name="firstname"
             onChange={this.handleChanges}
-            placeholder="firstname"
+            placeholder="First Name"
             value={this.state.firstname}
           />
 
-          <input
+          <Input
             type="text"
             name="lastname"
             onChange={this.handleChanges}
-            placeholder="lastname"
+            placeholder="Last Name"
             value={this.state.lastname}
           />
 
-          <input
+          <Input
             type="text"
             name="email"
             onChange={this.handleChanges}
-            placeholder="email"
+            placeholder="Email Address"
             value={this.state.email}
           />
-          <button>Update Club Member Info</button>
-        </form>
-        <button onClick={this.handleDeleteClick}>Delete Club Member</button>
-      </div>
+          <Button type="submit">Update</Button>
+        </Form>
+          <Button onClick={this.handleDeleteClick}>Delete</Button>
+      </UpdateContainer>
     )
   }
 }
@@ -88,6 +110,7 @@ const mapStateToProps = state => {
   return {
     users: state.users.users,
     loading: state.users.loading,
+    currentUser: state.auth.currentUser,
   }
 }
 
