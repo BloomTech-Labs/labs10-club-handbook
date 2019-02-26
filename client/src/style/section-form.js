@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import ReactQuill from 'react-quill'
+import { size } from './breakpoints'
 
 export const FormContainer = styled.div`
   max-width: 60rem;
@@ -8,6 +9,13 @@ export const FormContainer = styled.div`
   border: 1px solid gray;
   border-radius: 1rem;
   box-shadow: 0 1px 10px gray;
+
+  @media ${size.mobile} {
+    width: 100%;
+    h2 {
+      font-size: 1.8rem;
+    }
+  }
 `
 
 export const Row = styled.div`
@@ -16,18 +24,29 @@ export const Row = styled.div`
   align-items: center;
   margin-bottom: 1.5rem;
   vertical-align: center;
+  margin-top: ${props => (props.marginTop ? '6rem' : '0')};
+
+  @media ${size.mobile} {
+    margin-top: ${props => (props.marginTop ? '8.5rem' : '0')};
+    flex-wrap: ${props => (props.wrap ? 'wrap' : 'no-wrap')};
+  }
 `
 
 export const Label = styled.label`
   font-size: 1.6rem;
   margin-bottom: ${props => (props.marginBottom ? '1rem' : 0)};
+
+  @media ${size.mobile} {
+    width: 60%;
+    font-size: 1.2rem;
+  }
 `
 
 export const RichEditor = styled(ReactQuill)`
   margin-top: 0.7rem;
   margin-bottom: 1rem;
   width: 100%;
-  height: 300px;
+  height: 25rem;
 `
 
 export const SectionInput = styled.input`
@@ -37,6 +56,11 @@ export const SectionInput = styled.input`
 export const ImageInput = styled.input`
   width: 30%;
   font-size: 1rem;
+
+  @media ${size.mobile} {
+    width: 60%;
+    margin-bottom: 2rem;
+  }
 `
 
 // inline styles
