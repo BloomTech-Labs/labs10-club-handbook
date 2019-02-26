@@ -766,6 +766,55 @@
   },
   {
     "type": "get",
+    "url": "/api/users/getInfoFromToken",
+    "title": "Get Users, club, and section info",
+    "group": "users",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "authorization",
+            "description": "<p>access token</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "user",
+            "description": "<p>User info object.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "club",
+            "description": "<p>Club info object.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Array",
+            "optional": false,
+            "field": "sections",
+            "description": "<p>Array of Section info objects.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "api/routes/usersRoute.js",
+    "groupTitle": "users",
+    "name": "GetApiUsersGetinfofromtoken"
+  },
+  {
+    "type": "get",
     "url": "/api/users/:id",
     "title": "Get User by ID",
     "group": "users",
@@ -893,10 +942,17 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "text",
+            "type": "string",
             "optional": false,
-            "field": "n/a",
+            "field": "message",
             "description": "<p>'welcome' or 'welcome back'</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>id of user</p>"
           }
         ]
       }

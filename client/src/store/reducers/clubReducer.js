@@ -12,7 +12,7 @@ import {
   DELETE_SECTION_BY_SECTION_ID,
   CREATE_CLUB,
 } from '../actions/clubActions'
-
+import { GET_INFO_FROM_TOKEN } from '../actions/usersActions'
 const initialState = {
   clubs: [],
   clubById: {},
@@ -130,6 +130,15 @@ const clubReducer = (state = initialState, action) => {
         ),
         loading: false,
         message: null,
+      }
+
+    case GET_INFO_FROM_TOKEN:
+      return {
+        ...state,
+        loading: false,
+        message: null,
+        clubById: action.payload.club,
+        sections: action.payload.sections,
       }
 
     default:

@@ -10,6 +10,8 @@ export const GET_USER_BY_ID = 'GET_USER_BY_ID'
 export const GET_USERS_BY_CLUB_ID = 'GET_USERS_BY_CLUB_ID'
 export const UPDATE_USER = 'UPDATE_USER'
 export const DELETE_USER = 'DELETE_USER'
+export const GET_INFO_FROM_TOKEN = 'GET_INFO_FROM_TOKEN'
+export const FAIL_FROM_TOKEN = 'FAIL_FROM_TOKEN'
 
 export const getUsers = () => dispatch => {
   dispatch({ type: START, message: `Fetching users` })
@@ -138,6 +140,34 @@ export const deleteUser = id => dispatch => {
       dispatch({ type: DELETE_USER, payload: res.data })
     })
     .catch(err => {
+      dispatch({ type: FAIL, error: err })
+    })
+}
+
+export const getInfoFromToken = () => dispatch => {
+  dispatch({ type: START, message: `getting user info...` })
+
+  const header = {
+    headers: {
+      authorization: localStorage.getItem('access_token'),
+    },
+  }
+
+  axios
+    // .get(`http://localhost:5000/api/users/getInfoFromToken`, header)
+    .get(
+      `https://club-handbook.herokuapp.com/api/users/getInfoFromToken`,
+      header
+    )
+    .then(res => {
+      if (res.status == 200) {
+        dispatch({ type: GET_INFO_FROM_TOKEN, payload: res.data })
+      } else {
+        dispatch({ type: FAIL_FROM_TOKEN })
+      }
+    })
+    .catch(err => {
+      dispatch({ type: FAIL_FROM_TOKEN })
       dispatch({ type: FAIL, error: err })
     })
 }

@@ -248,9 +248,9 @@ class DashDrawer extends React.Component {
             </SectionContainer>
           )}
           {value === 2 && (
-            <SectionContainer>
-              <HandbookPage />
-            </SectionContainer>
+            // <SectionContainer>
+            <HandbookPage />
+            // </SectionContainer>
           )}
           {value === 3 && (
             <SectionContainer>
