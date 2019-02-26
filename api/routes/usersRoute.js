@@ -121,6 +121,32 @@ router.post('/register-magiclink', async (req, res) => {
 })
 
 /**
+ * @api {get} /api/users/getInfoFromToken Get Users, club, and section info
+ * @apiGroup users
+ * @apiHeader authorization access token
+ * @apiSuccess {Object} user User info object.
+ * @apiSuccess {Object} club Club info object.
+ * @apiSuccess {Array} sections Array of Section info objects.
+ */
+router.get(
+  '/getInfoFromToken',
+  validateToken,
+  getInfoFromToken,
+  async (req, res) => {
+    try {
+      let user = req.userInfo
+      let club = await db('clubs')
+        .where({ id: user.club_id })
+        .first()
+      let sections = await db('sections').where({ club_id: user.club_id })
+      res.status(200).json({ user, club, sections })
+    } catch (err) {
+      res.status(500).json(err)
+    }
+  }
+)
+
+/**
  * @api {post} /api/users/addMember Add a Club Member
  * @apiGroup members
  * @apiDescription user on token must own a club to add members

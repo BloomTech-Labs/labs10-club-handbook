@@ -9,6 +9,8 @@ import {
   DELETE_USER,
   START,
   FAIL,
+  GET_INFO_FROM_TOKEN,
+  FAIL_FROM_TOKEN,
 } from '../actions/usersActions'
 
 const initialState = {
@@ -17,6 +19,7 @@ const initialState = {
   loading: false,
   message: null,
   error: null,
+  failFromToken: false,
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -80,7 +83,7 @@ const usersReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         message: null,
-        users: action.payload
+        users: action.payload,
       }
 
     case UPDATE_USER:
@@ -101,6 +104,20 @@ const usersReducer = (state = initialState, action) => {
         users: state.users.filter(user => user.id !== action.payload),
         loading: false,
         message: null,
+      }
+
+    case GET_INFO_FROM_TOKEN:
+      return {
+        ...state,
+        loading: false,
+        message: null,
+        userById: action.payload.user,
+      }
+
+    case FAIL_FROM_TOKEN:
+      return {
+        ...state,
+        failFromToken: true,
       }
 
     default:
