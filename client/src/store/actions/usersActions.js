@@ -157,11 +157,11 @@ export const getInfoFromToken = () => dispatch => {
   }
 
   axios
-    .get(`http://localhost:5000/api/users/getInfoFromToken`, header)
-    // .get(
-    //   `https://club-handbook.herokuapp.com/api/users/getInfoFromToken`,
-    //   header
-    // )
+    // .get(`http://localhost:5000/api/users/getInfoFromToken`, header)
+    .get(
+      `https://club-handbook.herokuapp.com/api/users/getInfoFromToken`,
+      header
+    )
     .then(res => {
       if (res.status == 200) {
         dispatch({ type: GET_INFO_FROM_TOKEN, payload: res.data })
