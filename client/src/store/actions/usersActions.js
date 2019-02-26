@@ -112,11 +112,12 @@ export const updateUser = (id, changes) => dispatch => {
       requestOptions
     )
     .then(res => {
-      // returns the user id
-      console.log(res)
-      dispatch({ type: UPDATE_USER, payload: res.data })
+      // returns the user object
+      console.log(res.data.user)
+      dispatch({ type: UPDATE_USER, payload: res.data.user })
     })
     .catch(err => {
+      console.log(err)
       dispatch({ type: FAIL, error: err })
     })
 }
@@ -129,7 +130,6 @@ export const deleteUser = id => dispatch => {
       authorization: localStorage.getItem('access_token'),
     },
   }
-  console.log(id)
 
   axios
     .delete(

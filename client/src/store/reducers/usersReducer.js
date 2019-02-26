@@ -89,11 +89,15 @@ const usersReducer = (state = initialState, action) => {
     case UPDATE_USER:
       return {
         ...state,
-        users: state.users.map(user => {
-          if (user.id === action.payload.id) {
-            return { user: action.payload }
-          }
-        }),
+        users: [
+          ...state.users.map(user => {
+            if (user.id === action.payload.id) {
+              return action.payload
+            } else {
+              return user
+            }
+          })
+        ],
         loading: false,
         message: null,
       }
@@ -101,7 +105,11 @@ const usersReducer = (state = initialState, action) => {
     case DELETE_USER:
       return {
         ...state,
-        users: state.users.filter(user => user.id !== action.payload),
+        users: [
+          ...state.users.filter(user => {
+          return `${user.id}` !== action.payload.id
+          })
+        ],
         loading: false,
         message: null,
       }
