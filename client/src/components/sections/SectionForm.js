@@ -33,12 +33,12 @@ class SectionForm extends Component {
 
     if (this.props.update === true) {
       const currentSection = this.props.sections.find(
-        section => section.id === this.props.match.params.id
+        section => section.id === this.props.sectionId
       )
       this.setState({
         clubId: club_id,
         title: currentSection.title,
-        body: currentSection.bidy,
+        body: currentSection.body,
         imgPlacement: currentSection.img_placement,
         image: currentSection.img_url,
         orderPosition: currentSection.order,
@@ -92,6 +92,7 @@ class SectionForm extends Component {
       contact_info: this.state.contactInfo,
     }
     this.props.addSection(this.state.clubId, sectionInfo)
+    this.props.cancel(ev)
   }
 
   updateSection = ev => {

@@ -16,8 +16,10 @@ class HandbookPage extends React.Component {
     // user has a club?
     sectionView: false,
     editView: false,
+    addView: false,
     hasClub: false,
     title: '',
+    sectionId: '',
   }
 
   componentDidMount() {
@@ -66,10 +68,25 @@ class HandbookPage extends React.Component {
     })
   }
 
-  toggleEditView = ev => {
-    ev.preventDefault()
+  toggleEditView = id => {
     this.setState({
       editView: !this.state.editView,
+      sectionId: id,
+    })
+  }
+
+  toggleAddView = ev => {
+    ev.preventDefault()
+    this.setState({
+      addView: !this.state.addView,
+    })
+  }
+
+  cancel = ev => {
+    ev.preventDefault()
+    this.setState({
+      addView: false,
+      editView: false,
     })
   }
 
@@ -103,12 +120,18 @@ class HandbookPage extends React.Component {
             <div className="section-block">
               <h1>Sections:</h1>
               {this.props.sections.map(section => (
-                <div>
-                  <img src={section.img_url} />
-                  <h2>{section.title}</h2>
-                </div>
+                <>
+                  <div
+                    key={section.id}
+                    onClick={() => this.toggleEditView(section.id)}
+                    style={{ cursor: 'pointer' }}
+                  >
+                    <img src={section.img_url} />
+                    <h2>{section.title}</h2>
+                  </div>
+                </>
               ))}
-              <button onClick={this.toggleEditView}>Add Section</button>
+              <button onClick={this.toggleAddView}>Add Section</button>
             </div>
           ) : (
             //details view display
@@ -131,9 +154,20 @@ class HandbookPage extends React.Component {
 
         {this.state.editView ? (
           <SectionEditor>
-            <SectionForm cancel={this.toggleEditView} />
+            <SectionForm
+              cancel={this.toggleEditView}
+              update
+              sectionId={this.state.sectionId}
+            />
           </SectionEditor>
         ) : null}
+
+        {this.state.addView ? (
+          <SectionEditor>
+            <SectionForm cancel={this.cancel} />
+          </SectionEditor>
+        ) : null}
+
         <HandbookPreview>
           <h1>{this.props.club.name}</h1>
           {this.props.sections.map(section => (

@@ -1,9 +1,27 @@
 import React from 'react'
-import SignaturePad from 'react-signature-pad-wrapper'
 import '../users/Members.css'
 import { AppBar } from '@material-ui/core'
+import { connect } from 'react-redux'
+import { memberSigned } from '../../store/actions/usersActions'
 
 class Signature extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      signature: '',
+    }
+  }
+
+  handleChanges = event => {
+    this.setState({ [event.target.name]: event.target.value })
+  }
+
+  handleSubmit = event => {
+    event.preventDefault()
+
+    const signature = this.state.signature
+    this.props.memberSigned(this.props.id, signature)
+  }
   render() {
     return (
       <div className="signature-page">
@@ -20,20 +38,13 @@ class Signature extends React.Component {
           </p>
         </div>
         <div className="sign-signature">
-          <form>
+          <form onSubmit={this.handleSubmit}>
             <input
               type="text"
               name="signature"
-              // onChange={this.handleChanges}
+              onChange={this.handleChanges}
               placeholder="Sign Here"
-              // value={this.state.firstname}
-            />
-            <input
-              type="date"
-              name="date"
-              // onChange={this.handleChanges}
-              placeholder="Date"
-              // value={this.state.firstname}
+              value={this.state.signature}
             />
             <button>Sign</button>
           </form>
@@ -43,4 +54,17 @@ class Signature extends React.Component {
   }
 }
 
+<<<<<<< HEAD
 export default Signature
+=======
+const mapStateToProps = state => {
+  return {
+    id: state.auth.currentUser.id,
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  { memberSigned }
+)(Signature)
+>>>>>>> 307064f64eccc80e3d26d33f7f6475805389f04d
