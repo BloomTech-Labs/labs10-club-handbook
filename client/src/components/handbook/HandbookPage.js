@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 import SectionForm from '../sections/SectionForm'
 import DashDrawer from '../Dashboard'
+import HandbookForm from './HandbookForm'
+import HandbookRender from './HandbookRender'
 
 import {
   getClubById,
@@ -92,114 +94,56 @@ class HandbookPage extends React.Component {
 
   render() {
     return (
-      <HandbookPageContainer>
+      <>
         <DashDrawer />
-        {/* <h1>Handbook Page!</h1>
-        {this.state.hasClub ? (
-          <div>
-            <h2>You have a Club!</h2>
-            <h2>{this.props.club.id}</h2>
-          </div>
-        ) : (
-          <h2>You have NO club...</h2>
-        )} */}
+        <HandbookPageContainer>
+          <HandbookForm
+            hasClub={this.state.hasClub}
+            updateClub={this.updateClub}
+            createClub={this.createClub}
+            sectionViewOn={this.sectionViewOn}
+            sectionViewOff={this.sectionViewOff}
+            sections={this.props.sections}
+            sectionView={this.state.sectionView}
+            sections={this.props.sections}
+            toggleEditView={this.toggleEditView}
+            toggleAddView={this.toggleAddView}
+            title={this.state.title}
+            handleChange={this.handleChange}
+            hasClub={this.state.hasClub}
+            clubId={this.props.club.id}
+          />
 
-        <HandbookForm
-          onSubmit={this.state.hasClub ? this.updateClub : this.createClub}
-        >
-          <div className="buttons">
-            <button type="button" onClick={this.sectionViewOn}>
-              Sections
-            </button>
-            <button type="button" onClick={this.sectionViewOff}>
-              Details
-            </button>
-          </div>
-          {this.state.sectionView ? (
-            //section view display
-            <div className="section-block">
-              <h1>Sections:</h1>
-              {this.props.sections.map(section => (
-                <>
-                  <div
-                    key={section.id}
-                    onClick={() => this.toggleEditView(section.id)}
-                    style={{ cursor: 'pointer' }}
-                  >
-                    <img src={section.img_url} />
-                    <h2>{section.title}</h2>
-                  </div>
-                </>
-              ))}
-              <button onClick={this.toggleAddView}>Add Section</button>
-            </div>
-          ) : (
-            //details view display
-            <div className="title-input">
-              <h2>Handbook Title:</h2>
-              <input
-                type="text"
-                name="title"
-                value={this.state.title}
-                onChange={this.handleChange}
+          {this.state.editView ? (
+            <SectionEditor>
+              <SectionForm
+                cancel={this.toggleEditView}
+                update
+                sectionId={this.state.sectionId}
               />
-              {this.state.hasClub ? (
-                <button type="submit">Update Handbook</button>
-              ) : (
-                <button type="submit">Create Handbook</button>
-              )}
-            </div>
-          )}
-        </HandbookForm>
+            </SectionEditor>
+          ) : null}
 
-        {this.state.editView ? (
-          <SectionEditor>
-            <SectionForm
-              cancel={this.toggleEditView}
-              update
-              sectionId={this.state.sectionId}
-            />
-          </SectionEditor>
-        ) : null}
+          {this.state.addView ? (
+            <SectionEditor>
+              <SectionForm cancel={this.cancel} />
+            </SectionEditor>
+          ) : null}
 
-        {this.state.addView ? (
-          <SectionEditor>
-            <SectionForm cancel={this.cancel} />
-          </SectionEditor>
-        ) : null}
-
-        <HandbookPreview>
-          <h1>{this.props.club.name}</h1>
-          {this.props.sections.map(section => (
-            <div>
-              <h2>{section.title}</h2>
-              <p>{section.body}</p>
-            </div>
-          ))}
-        </HandbookPreview>
-      </HandbookPageContainer>
+          <HandbookRender />
+        </HandbookPageContainer>
+      </>
     )
   }
 }
 const HandbookPageContainer = styled.div`
   display: flex;
-  align-items: flex-start;
-  margin-top: 100px;
-`
-
-const HandbookForm = styled.form`
-  margin-left: 170px;
-  width: 300px;
-  min-height: 400px;
-  padding: 20px;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 120rem;
+  margin: 0 auto;
+  margin-top: 5rem;
   border: 1px solid black;
-  .section-block {
-    img {
-      min-height: 30px;
-      min-width: 30px;
-      max-width: 300px;
-    }
-  }
 `
 
 const SectionEditor = styled.div`
@@ -212,12 +156,6 @@ const SectionEditor = styled.div`
   background: white;
 `
 
-const HandbookPreview = styled.div`
-  width: 500px;
-  min-height: 400px;
-  padding: 20px;
-  border: 1px solid black;
-`
 const mapStateToProps = state => {
   return {
     currentUser: state.auth.currentUser,
