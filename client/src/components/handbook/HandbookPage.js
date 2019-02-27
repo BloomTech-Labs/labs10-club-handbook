@@ -129,18 +129,7 @@ class HandbookPage extends React.Component {
             </SectionEditor>
           ) : null}
 
-          {/* import handbook render here */}
           <HandbookRender />
-
-          {/* <HandbookPreview>
-            <h1>{this.props.club.name}</h1>
-            {this.props.sections.map(section => (
-              <div>
-                <h2>{section.title}</h2>
-                <p>{section.body}</p>
-              </div>
-            ))}
-          </HandbookPreview> */}
         </HandbookPageContainer>
       </>
     )

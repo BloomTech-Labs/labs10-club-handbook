@@ -29,14 +29,12 @@ const HandbookForm = props => {
         </button>
       </div>
       {props.sectionView ? (
-        //section view display
         <SectionsView
           sections={props.sections}
           toggleEditView={props.toggleEditView}
           toggleAddView={props.toggleAddView}
         />
       ) : (
-        //details view display
         <DetailsView
           title={props.title}
           handleChange={props.handleChange}
