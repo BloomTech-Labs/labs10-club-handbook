@@ -21,7 +21,6 @@ export const getUsers = () => dispatch => {
   axios
     .get('https://club-handbook.herokuapp.com/api/users')
     .then(res => {
-      // returns an array of user objects
       dispatch({ type: GET_USERS, payload: res.data })
     })
     .catch(err => {
@@ -37,10 +36,8 @@ export const getUserById = id => dispatch => {
     },
   }
   axios
-    // .get(`http://localhost:5000/api/users/${id}`, header)
     .get(`https://club-handbook.herokuapp.com/api/users/${id}`, header)
     .then(res => {
-      // returns a user object
       dispatch({ type: GET_USER_BY_ID, payload: res.data })
     })
     .catch(err => {
@@ -58,7 +55,6 @@ export const getUsersByClubId = clubId => dispatch => {
   }
 
   axios
-    // .get(`http://localhost:5000/api/users/`, header)
     .get(
       `https://club-handbook.herokuapp.com/api/clubs/${clubId}/members`,
       header
@@ -88,7 +84,6 @@ export const addUser = user => dispatch => {
       requestOptions
     )
     .then(res => {
-      // returns an object with the added user details
       dispatch({ type: ADD_MEMBER_SUCCESS, payload: res.data.user })
     })
     .catch(err => {
@@ -114,7 +109,6 @@ export const updateUser = (id, changes) => dispatch => {
       requestOptions
     )
     .then(res => {
-      // returns the user object
       console.log(res.data.user)
       dispatch({ type: UPDATE_USER, payload: res.data.user })
     })
@@ -139,7 +133,6 @@ export const deleteUser = id => dispatch => {
       requestOptions
     )
     .then(res => {
-      // returns the user id
       console.log(res)
       dispatch({ type: DELETE_USER, payload: res.data })
     })
@@ -159,7 +152,6 @@ export const getInfoFromToken = () => dispatch => {
   }
 
   axios
-    // .get(`http://localhost:5000/api/users/getInfoFromToken`, header)
     .get(
       `https://club-handbook.herokuapp.com/api/users/getInfoFromToken`,
       header
@@ -189,14 +181,15 @@ export const memberSigned = (id, signature) => dispatch => {
   axios
     .post(
       `https://club-handbook.herokuapp.com/api/clubs/${id}/signature`,
-      requestOptions,
-      signature
+      signature,
+      requestOptions
     )
     .then(res => {
-      // returns the user id
+      console.log(res)
       dispatch({ type: MEMBER_SIGNED, payload: res.data })
     })
     .catch(err => {
+      console.log(err)
       dispatch({ type: FAIL, error: err })
     })
 }

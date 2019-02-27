@@ -1,9 +1,10 @@
-import { MEMBER_SIGNED } from '../actions/usersActions'
+import { MEMBER_SIGNED, START, FAIL } from '../actions/usersActions'
 
 const initialState = {
   signature: {},
   message: null,
-  error: null,
+  error: false,
+  loading: false
 }
 
 const signReducer = (state = initialState, action) => {
@@ -26,6 +27,7 @@ const signReducer = (state = initialState, action) => {
     case MEMBER_SIGNED:
       return {
         ...state,
+        loading: false,
         signature: true,
         message: action.payload,
       }
@@ -35,4 +37,4 @@ const signReducer = (state = initialState, action) => {
   }
 }
 
-export default usersReducer
+export default signReducer

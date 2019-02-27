@@ -2,6 +2,7 @@ import React from 'react'
 import StripeCheckout from 'react-stripe-checkout'
 import styled from 'styled-components'
 import DashDrawer from '../Dashboard'
+import axios from 'axios'
 
 import {
   Grid,
@@ -51,39 +52,81 @@ class Payment extends React.Component {
   }
 
   startupToken = token => {
-    console.log(token)
-    fetch('http://localhost:5000/payments', {
-      method: 'POST',
-      body: JSON.stringify(token),
-    }).then(response => {
-      response.json().then(data => {
-        alert(`Thank you for your Startup subscription purchase!`)
+    let bodyToSend = {
+      ...token,
+      subscription: {
+        plan: 'plan_EanP4aFWnkzGTC',
+      },
+    }
+    let auth = {
+      headers: {
+        authorization: localStorage.getItem('access_token'),
+      },
+    }
+    axios
+      .post(
+        'https://club-handbook.herokuapp.com/api/payments',
+        bodyToSend,
+        auth
+      )
+      // .post('http://localhost:5000/api/payments', bodyToSend, auth)
+      .then(res => {
+        console.log('res', res)
+        alert(`Thank you for your Startup subscription "purchase"!`)
       })
-    })
+      .catch(err => console.log('error', err))
   }
 
   smallBizToken = token => {
-    console.log(token)
-    fetch('http://localhost:5000/payments', {
-      method: 'POST',
-      body: JSON.stringify(token),
-    }).then(response => {
-      response.json().then(data => {
+    let bodyToSend = {
+      ...token,
+      subscription: {
+        plan: 'plan_EanQzBshDkH9Iu',
+      },
+    }
+    let auth = {
+      headers: {
+        authorization: localStorage.getItem('access_token'),
+      },
+    }
+    axios
+      .post(
+        'https://club-handbook.herokuapp.com/api/payments',
+        bodyToSend,
+        auth
+      )
+      // .post('http://localhost:5000/api/payments', bodyToSend, auth)
+      .then(res => {
+        console.log('res', res)
         alert(`Thank you for your Small Biz subscription purchase!`)
       })
-    })
+      .catch(err => console.log('error', err))
   }
 
   enterpriseToken = token => {
-    console.log(token)
-    fetch('http://localhost:5000/payments', {
-      method: 'POST',
-      body: JSON.stringify(token),
-    }).then(response => {
-      response.json().then(data => {
+    let bodyToSend = {
+      ...token,
+      subscription: {
+        plan: 'plan_EanRarp8r1YnYC',
+      },
+    }
+    let auth = {
+      headers: {
+        authorization: localStorage.getItem('access_token'),
+      },
+    }
+    axios
+      .post(
+        'https://club-handbook.herokuapp.com/api/payments',
+        bodyToSend,
+        auth
+      )
+      // .post('http://localhost:5000/api/payments', bodyToSend, auth)
+      .then(res => {
+        console.log('res', res)
         alert(`Thank you for your Enterprise subscription purchase!`)
       })
-    })
+      .catch(err => console.log('error', err))
   }
 
   render() {
@@ -129,7 +172,7 @@ class Payment extends React.Component {
               <Card align="center">
                 <CardHeader
                   title={tier.title}
-                  subheader={tier.subheader}
+                  // subheader={tier.subheader} no subheaders defined
                   titleTypographyProps={{ align: 'center' }}
                   subheaderTypographyProps={{ align: 'center' }}
                 />
