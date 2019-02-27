@@ -57,7 +57,7 @@ class Signature extends React.Component {
                 placeholder="Sign Here"
                 value={this.state.signature}
               />
-              <Button>Sign</Button>
+              <Button type="submit">Sign</Button>
             </form>
           </FormContainer>
           {/* </div> */}
