@@ -7,7 +7,7 @@ import {
 import { START, FAIL, GET_INFO_FROM_TOKEN } from '../actions/usersActions'
 
 const initialState = {
-  currentUser: null,
+  currentUser: {},
   loading: false,
   message: null,
   error: null,
