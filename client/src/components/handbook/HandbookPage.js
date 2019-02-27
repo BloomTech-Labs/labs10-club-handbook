@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import SectionForm from '../sections/SectionForm'
 import DashDrawer from '../Dashboard'
 import HandbookForm from './HandbookForm'
+import HandbookRender from './HandbookRender'
 
 import {
   getClubById,
@@ -129,6 +130,7 @@ class HandbookPage extends React.Component {
           ) : null}
 
           {/* import handbook render here */}
+          <HandbookRender />
 
           {/* <HandbookPreview>
             <h1>{this.props.club.name}</h1>
@@ -164,12 +166,6 @@ const SectionEditor = styled.div`
   background: white;
 `
 
-const HandbookPreview = styled.div`
-  max-width: 70%;
-  min-height: 40rem;
-  padding: 2rem;
-  border: 1px solid red;
-`
 const mapStateToProps = state => {
   return {
     currentUser: state.auth.currentUser,

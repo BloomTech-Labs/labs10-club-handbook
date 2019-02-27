@@ -21,11 +21,11 @@ const HandbookForm = props => {
   return (
     <ClubForm onSubmit={props.hasClub ? props.updateClub : props.createClub}>
       <div className="buttons">
-        <button type="button" onClick={props.sectionViewOn}>
-          Sections
-        </button>
         <button type="button" onClick={props.sectionViewOff}>
           Details
+        </button>
+        <button type="button" onClick={props.sectionViewOn}>
+          Sections
         </button>
       </div>
       {props.sectionView ? (

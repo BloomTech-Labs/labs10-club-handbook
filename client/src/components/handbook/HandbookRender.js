@@ -7,14 +7,14 @@ const SectionRender = props => {
     return <h1>No sections loaded on this component...</h1>
   } else {
     return (
-      <div>
+      <div style={{ width: '75%' }}>
         {props.sections.map(section => {
           const { title, body, img_url } = section
 
           return (
-            <div className="section">
+            <div>
               <h1>{title}</h1>
-              {img_url}
+              <img src={img_url} style={{ width: '10rem' }} />
               <div className="body">{renderHTML(body)}</div>
             </div>
           )
