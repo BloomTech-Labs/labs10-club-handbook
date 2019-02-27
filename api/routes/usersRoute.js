@@ -13,8 +13,8 @@ const env_secret = jwtKey.split(',').join('\n')
  * @apiGroup users
  * @apiParam {string} tokens both idToken and accessToken send in body
  * @apiDescription this is intended for club owners registering and signing in throught auth0, this is not intended for adding members or magic-link login
- * @apiSuccess {string} message 'welcome' or 'welcome back'
- * @apiSuccess {integer} id id of user
+ * @apiSuccess (Success 200 or 201) {string} message 'welcome' or 'welcome back'
+ * @apiSuccess (Success 200 or 201) {integer} id id of user
  */
 router.post('/register', async (req, res) => {
   let userInfo = jwtdecode(req.body.idToken)
@@ -72,7 +72,7 @@ router.post('/register', async (req, res) => {
  * @apiGroup users
  * @apiParam {string} tokens both idToken and accessToken send in body
  * @apiDescription this is intended for magic-link login, their email and club_id have previously been added by club owner through /users/addMember endpoint.
- * @apiSuccess {text} n/a 'welcome' or 'welcome back'
+ * @apiSuccess (Success 200 or 201) {text} n/a 'welcome' or 'welcome back'
  */
 router.post('/register-magiclink', async (req, res) => {
   let userInfo = jwtdecode(req.body.idToken)
@@ -159,8 +159,8 @@ router.get(
  * @apiDescription user on token must own a club to add members
  * @apiHeader authorization access token
  * @apiParam {string} email attach to body.email (req)
- * @apiSuccess {String} message Success message and user object.
- * @apiSuccess {object} user created member object
+ * @apiSuccess (Success 201) {String} message Success message and user object.
+ * @apiSuccess (Success 201) {object} user created member object
  */
 router.post(
   '/addMember',

@@ -92,7 +92,7 @@ router.post('/:id/checkMember', async (req, res, next) => {
  * @apiDescription token owner must belong to club in param
  * @apiHeader authorization access token
  * @apiParam {string} signature what they type into signature field (REQ)
- * @apiSuccess {string} message confirmation message
+ * @apiSuccess (Success 201) {string} message confirmation message
  */
 router.post(
   '/:id/signature',
@@ -131,8 +131,8 @@ router.post(
  * @apiDescription token owner must not be part of a club
  * @apiHeader authorization access token
  * @apiParam {string} name add to body.name (REQ)
- * @apiSuccess {string} message success message
- * @apiSuccess {object} club club object
+ * @apiSuccess (Success 201) {string} message success message
+ * @apiSuccess (Success 201) {object} club club object
  */
 router.post(
   '/',
@@ -280,8 +280,8 @@ router.get(
  * @apiGroup sections
  * @apiDescription only owner of club can access
  * @apiHeader authorization access token
- * @apiSuccess {string} message success message
- * @apiSuccess {object} section section object
+ * @apiSuccess (Success 201) {string} message success message
+ * @apiSuccess (Success 201) {object} section section object
  */
 
 router.post(

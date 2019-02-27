@@ -12,7 +12,7 @@ const { validateToken, getInfoFromToken } = require('../helpers/authHelper')
  * @apiParam {object} body stripe payment info
  * @apiParam {object} subscription object in body, contains "plan" key/value pair
  * @apiDescription this is intended for use through the react-stripe-checkout system
- * @apiSuccess {string} message 'subscription created' (201)
+ * @apiSuccess (Success 201) {string} message 'subscription created'
  */
 router.post(
   '/addSubscription',
@@ -65,13 +65,14 @@ router.post(
  * @apiHeader authorization access token
  * @apiParam {object} subscription object in body, contains "plan" key/value pair
  * @apiDescription sending the subscription.plan in the body will update their subscription to the new plan.  An invoice is created to bill/credit the pro-rated difference.
- * @apiSuccess {string} message 'subscription updated' (200)
- * @apiSuccess {string} type nickname of new subscription (200)
+ * @apiSuccess {string} message 'subscription updated'
+ * @apiSuccess {string} type nickname of new subscription
  */
 router.post(
   '/updateSubscription',
   validateToken,
   getInfoFromToken,
+  checkMemberSizeToDowngrade,
   async (req, res) => {
     let newPlan = req.body.subscription.plan
 
@@ -124,10 +125,11 @@ router.post(
 
 /**
  * @api {delete} /api/payments/cancel Cancel existing subscription
+ * @apiDeprecated let member downgrade to 'free' subscription instead, better handling of member amounts and invoice
  * @apiGroup payments
  * @apiHeader authorization access token
  * @apiDescription invoking this will set a users subscription to cancel at the end of the billing cycle
- * @apiSuccess {object} confirmation stripe confirmation object (200)
+ * @apiSuccess {object} confirmation stripe confirmation object
  */
 router.delete('/cancel', validateToken, getInfoFromToken, async (req, res) => {
   let sub = await db('subscriptions')
@@ -151,7 +153,7 @@ router.delete('/cancel', validateToken, getInfoFromToken, async (req, res) => {
  * @apiGroup payments
  * @apiHeader authorization access token
  * @apiDescription invoking this endpoint will return information about a users current subscription
- * @apiSuccess {object} sub subscription information (200)
+ * @apiSuccess {object} sub subscription information
  */
 router.get('/subInfo', validateToken, getInfoFromToken, async (req, res) => {
   try {
@@ -167,5 +169,42 @@ router.get('/subInfo', validateToken, getInfoFromToken, async (req, res) => {
     res.status(500).json(err)
   }
 })
+
+async function checkMemberSizeToDowngrade(req, res, next) {
+  // user must not have more members than the desired new subscription plan allows
+  req.desiredPlan = req.body.subscription.plan
+
+  let plans = {
+    free: 'plan_EanP4aFWnkzGTC',
+    smallBiz: 'plan_EanQzBshDkH9Iu',
+    enterprise: 'plan_EanRarp8r1YnYC',
+  }
+  let memberLimit = {
+    free: 5,
+    smallBiz: 20,
+    enterprise: 500,
+  }
+
+  try {
+    let members = await db('users').where({ club_id: req.userInfo.club_id })
+
+    if (req.desiredPlan === plans.free && members.length <= memberLimit.free) {
+      next()
+    } else if (
+      req.desiredPlan === plans.smallBiz &&
+      members.length <= memberLimit.smallBiz
+    ) {
+      next()
+    } else if (req.desiredPlan === plans.enterprise) {
+      next()
+    } else {
+      res.status(400).json({
+        message: `you have too many members to downgrade to the selected plan.`,
+      })
+    }
+  } catch (err) {
+    res.status(500).json({ error: err })
+  }
+}
 
 module.exports = router
