@@ -8,7 +8,13 @@ class CallbackEmail extends React.Component {
 
     this.props.handleAuthorizationEmail()
 
-    this.props.history.push('/signature')
+    // this.props.history.push('/handbook/member-view')
+  }
+
+  componentDidUpdate() {
+    if (this.props.userLoggedIn) {
+      this.props.history.push('/handbook/member-view')
+    }
   }
 
   render() {
@@ -16,7 +22,13 @@ class CallbackEmail extends React.Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    userLoggedIn: state.auth.userLoggedIn,
+  }
+}
+
 export default connect(
-  null,
+  mapStateToProps,
   { handleAuthorizationEmail }
 )(CallbackEmail)

@@ -1,27 +1,22 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getClubById } from '../../store/actions/clubActions'
 import DashDrawer from '../Dashboard'
+import { getClubSections } from '../../store/actions/clubActions'
 
 class HandbookMemberView extends React.Component {
   componentDidMount() {
-    const clubId = this.props.currentUser.club_id
+    const handbookId = this.props.match.params.handbookId
 
-    this.props.getClubById(clubId)
+    // if ()
+    getClubSections(handbookId)
+    
   }
 
   render() {
     return (
       <div>
         <DashDrawer />
-        <div>
-          hi
-          {/* if (server is sending the client a handbook, that means this user is authenticated and we know who they are and what group they belong to ) {
-                    display the handbook using the html render component
-                } else {
-                    display <MagicLinkRequest />
-                } */}
-        </div>
+        <div>handbook page</div>
       </div>
     )
   }
@@ -29,12 +24,12 @@ class HandbookMemberView extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    sections: state.clubs.sections,
     currentUser: state.auth.currentUser,
-    club: state.clubs.clubById,
   }
 }
 
 export default connect(
   mapStateToProps,
-  { getClubById }
+  { getClubSections }
 )(HandbookMemberView)
