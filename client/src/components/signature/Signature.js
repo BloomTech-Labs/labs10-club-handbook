@@ -19,8 +19,8 @@ class Signature extends React.Component {
   handleSubmit = event => {
     event.preventDefault()
 
-    const signature = this.state.signature
-    this.props.memberSigned(this.props.id, signature)
+    const signature = this.state
+    this.props.memberSigned(this.props.currentUser.club_id, signature)
   }
   render() {
     return (
@@ -56,7 +56,7 @@ class Signature extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    id: state.auth.currentUser.id,
+    currentUser: state.auth.currentUser,
   }
 }
 
