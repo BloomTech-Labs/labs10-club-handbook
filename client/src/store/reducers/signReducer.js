@@ -37,4 +37,4 @@ const signReducer = (state = initialState, action) => {
   }
 }
 
-export default usersReducer
+export default signReducer
