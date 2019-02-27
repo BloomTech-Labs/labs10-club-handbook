@@ -59,25 +59,4 @@ router.delete('/cancel', validateToken, getInfoFromToken, async (req, res) => {
   )
 })
 
-//example of subscription call to use in login later...
-router.get('/subscription', async (req, res) => {
-  stripe.subscriptions.retrieve('sub_EbRMXm0tPJ9Vam', function(
-    err,
-    subscription
-  ) {
-    // asynchronously called
-    if (err) {
-      console.log('error', err)
-    }
-
-    res.status(200).json({
-      status: subscription.status,
-      type: subscription.plan.nickname,
-      plan: subscription.plan.id,
-      product: subscription.plan.product,
-      customer: subscription.customer,
-    })
-  })
-})
-
 module.exports = router

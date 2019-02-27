@@ -32,11 +32,11 @@ export const handleAuthorization = () => dispatch => {
       }
 
       axios
-        // .post(`http://localhost:5000/api/users/register`, userObject)
-        .post(
-          `https://club-handbook.herokuapp.com/api/users/register`,
-          userObject
-        )
+        .post(`http://localhost:5000/api/users/register`, userObject)
+        // .post(
+        //   `https://club-handbook.herokuapp.com/api/users/register`,
+        //   userObject
+        // )
         .then(res => {
           // can we do history.push from here somehow instead of in callback component?
           // if res.status = 200 => welcome back
@@ -88,7 +88,11 @@ export const handleAuthorizationEmail = () => dispatch => {
         )
         .then(res => {
           console.log(res)
-          dispatch({ type: AUTHORIZATION_SUCCESS, payload: res.data.user, message: 'User authorized.' })
+          dispatch({
+            type: AUTHORIZATION_SUCCESS,
+            payload: res.data.user,
+            message: 'User authorized.',
+          })
         })
         .catch(err => console.log(err))
     })

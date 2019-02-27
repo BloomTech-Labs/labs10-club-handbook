@@ -5,11 +5,11 @@ const jwt = require('jsonwebtoken')
 const db = require('../../config/dbConfig')
 const jwtKey = process.env.JWT_SECRET
 const { validateToken, getInfoFromToken } = require('../helpers/authHelper')
-
+const { updateSubInfo } = require('../helpers/subHelper')
 const env_secret = jwtKey.split(',').join('\n')
 
 /**
- * @api {post} /api/users/register Add a User (Auth0)
+ * @api {post} /api/users/register Add User/Log-In (Auth0)
  * @apiGroup users
  * @apiParam {string} tokens both idToken and accessToken send in body
  * @apiDescription this is intended for club owners registering and signing in throught auth0, this is not intended for adding members or magic-link login
@@ -37,6 +37,13 @@ router.post('/register', async (req, res) => {
           .where({ sub_id: userInfo.sub })
           .first()
         if (findUser) {
+          // check for subscription info
+          let sub = await db('subscriptions')
+            .where({ user_id: findUser.id })
+            .first()
+          if (sub) {
+            updateSubInfo(sub.subscription)
+          }
           res.status(200).json({ message: 'welcome back', user: findUser })
         } else {
           //add new user
