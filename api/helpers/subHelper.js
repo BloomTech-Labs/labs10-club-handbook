@@ -7,16 +7,11 @@ async function updateSubInfo(id) {
       if (err) {
         console.log(err)
       } else {
-        let newInfo = {
-          status: subscription.status,
-          type: subscription.plan.nickname,
-          plan: subscription.plan.id,
-          product: subscription.plan.product,
+        if (subscription.status === 'canceled') {
+          await db('subscriptions')
+            .where({ subscription: id })
+            .delete()
         }
-        console.log(newInfo)
-        await db('subscriptions')
-          .where({ subscription: id })
-          .update(newInfo)
       }
     } catch (err) {
       console.log(err)
