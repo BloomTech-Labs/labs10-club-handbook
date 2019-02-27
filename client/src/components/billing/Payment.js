@@ -64,12 +64,12 @@ class Payment extends React.Component {
       },
     }
     axios
-      .post(
-        'https://club-handbook.herokuapp.com/api/payments',
-        bodyToSend,
-        auth
-      )
-      // .post('http://localhost:5000/api/payments', bodyToSend, auth)
+      // .post(
+      //   'https://club-handbook.herokuapp.com/api/payments',
+      //   bodyToSend,
+      //   auth
+      // )
+      .post('http://localhost:5000/api/payments', bodyToSend, auth)
       .then(res => {
         console.log('res', res)
         alert(`Thank you for your Startup subscription "purchase"!`)
@@ -90,12 +90,12 @@ class Payment extends React.Component {
       },
     }
     axios
-      .post(
-        'https://club-handbook.herokuapp.com/api/payments',
-        bodyToSend,
-        auth
-      )
-      // .post('http://localhost:5000/api/payments', bodyToSend, auth)
+      // .post(
+      //   'https://club-handbook.herokuapp.com/api/payments',
+      //   bodyToSend,
+      //   auth
+      // )
+      .post('http://localhost:5000/api/payments', bodyToSend, auth)
       .then(res => {
         console.log('res', res)
         alert(`Thank you for your Small Biz subscription purchase!`)
@@ -116,12 +116,12 @@ class Payment extends React.Component {
       },
     }
     axios
-      .post(
-        'https://club-handbook.herokuapp.com/api/payments',
-        bodyToSend,
-        auth
-      )
-      // .post('http://localhost:5000/api/payments', bodyToSend, auth)
+      // .post(
+      //   'https://club-handbook.herokuapp.com/api/payments',
+      //   bodyToSend,
+      //   auth
+      // )
+      .post('http://localhost:5000/api/payments', bodyToSend, auth)
       .then(res => {
         console.log('res', res)
         alert(`Thank you for your Enterprise subscription purchase!`)

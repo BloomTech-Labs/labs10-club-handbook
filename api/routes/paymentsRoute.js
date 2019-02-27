@@ -42,6 +42,24 @@ router.post('/', validateToken, getInfoFromToken, (req, res) => {
     })
 })
 
+router.delete('/cancel', validateToken, getInfoFromToken, async (req, res) => {
+  let sub = await db('subscriptions')
+    .where({ user_id: req.userInfo.id, status: 'active' })
+    .first()
+  stripe.subscriptions.update(
+    sub.subscription,
+    { cancel_at_period_end: true },
+    function(err, confirmation) {
+      //asynchronously called
+      if (err) {
+        res.status(500).json({ error: err })
+      }
+      res.status(200).json(confirmation)
+    }
+  )
+})
+
+//example of subscription call to use in login later...
 router.get('/subscription', async (req, res) => {
   stripe.subscriptions.retrieve('sub_EbRMXm0tPJ9Vam', function(
     err,
