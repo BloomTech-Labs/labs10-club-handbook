@@ -66,7 +66,7 @@ router.post(
         subInfo.subscription
       )
 
-      //changes sub but does not charge until new cycle
+      //update subscription plan
       const newSub = await stripe.subscriptions.update(subInfo.subscription, {
         cancel_at_period_end: false,
         items: [
@@ -75,6 +75,11 @@ router.post(
             plan: newPlan,
           },
         ],
+      })
+
+      //create invoice to pay/credit difference
+      await stripe.invoices.create({
+        customer: newSub.customer,
       })
 
       let newInfo = {
