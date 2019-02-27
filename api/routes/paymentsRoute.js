@@ -5,6 +5,15 @@ const stripe = require('stripe')('sk_test_QBcc8So0WjMMIznAloTV3kdv')
 const db = require('../../config/dbConfig')
 const { validateToken, getInfoFromToken } = require('../helpers/authHelper')
 
+/**
+ * @api {post} /api/payments/addSubscription Add Sub Via Stripe
+ * @apiGroup payments
+ * @apiHeader authorization access token
+ * @apiParam {object} body stripe payment info
+ * @apiParam {object} subscription object in body, contains "plan" key/value pair
+ * @apiDescription this is intended for use through the react-stripe-checkout system
+ * @apiSuccess {string} message 'subscription created' (201)
+ */
 router.post(
   '/addSubscription',
   validateToken,
@@ -50,6 +59,15 @@ router.post(
   }
 )
 
+/**
+ * @api {post} /api/payments/updateSubscription Update existing subscription
+ * @apiGroup payments
+ * @apiHeader authorization access token
+ * @apiParam {object} subscription object in body, contains "plan" key/value pair
+ * @apiDescription sending the subscription.plan in the body will update their subscription to the new plan.  An invoice is created to bill/credit the pro-rated difference.
+ * @apiSuccess {string} message 'subscription updated' (200)
+ * @apiSuccess {string} type nickname of new subscription (200)
+ */
 router.post(
   '/updateSubscription',
   validateToken,
@@ -104,6 +122,13 @@ router.post(
   }
 )
 
+/**
+ * @api {delete} /api/payments/cancel Cancel existing subscription
+ * @apiGroup payments
+ * @apiHeader authorization access token
+ * @apiDescription invoking this will set a users subscription to cancel at the end of the billing cycle
+ * @apiSuccess {object} confirmation stripe confirmation object (200)
+ */
 router.delete('/cancel', validateToken, getInfoFromToken, async (req, res) => {
   let sub = await db('subscriptions')
     .where({ user_id: req.userInfo.id, status: 'active' })
@@ -119,6 +144,28 @@ router.delete('/cancel', validateToken, getInfoFromToken, async (req, res) => {
       res.status(200).json(confirmation)
     }
   )
+})
+
+/**
+ * @api {get} /api/payments/subInfo get users subscription information
+ * @apiGroup payments
+ * @apiHeader authorization access token
+ * @apiDescription invoking this endpoint will return information about a users current subscription
+ * @apiSuccess {object} sub subscription information (200)
+ */
+router.get('/subInfo', validateToken, getInfoFromToken, async (req, res) => {
+  try {
+    let sub = await db('subscriptions')
+      .where({ user_id: req.userInfo.id })
+      .first()
+    if (sub) {
+      res.status(200).json(sub)
+    } else {
+      res.status(404).json({ message: `subscription not found` })
+    }
+  } catch (err) {
+    res.status(500).json(err)
+  }
 })
 
 module.exports = router

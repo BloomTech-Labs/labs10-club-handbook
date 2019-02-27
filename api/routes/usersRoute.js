@@ -167,6 +167,7 @@ router.post(
   validateToken,
   getInfoFromToken,
   checkUserHasClub,
+  checkMemberLimit,
   async (req, res, next) => {
     req.body.club_id = req.userInfo.club_id
     try {
@@ -246,14 +247,6 @@ router.delete(
 router.get('/', async (req, res) => {
   try {
     let users = await db('users')
-    // .select(
-    //   'firstname',
-    //   'lastname',
-    //   'email',
-    //   'id',
-    //   'img_url',
-    //   'club_id'
-    // )
     res.status(200).json(users)
   } catch (err) {
     res.status(500).json(err)
@@ -277,7 +270,6 @@ router.get(
     try {
       let user = await db('users')
         .where({ id: req.params.id })
-        // .select('firstname', 'lastname', 'email', 'id', 'img_url', 'club_id')
         .first()
       if (user) {
         res.status(200).json(user)
@@ -314,7 +306,6 @@ router.patch(
 
       let user = await db('users')
         .where({ id: req.params.id })
-        // .select('firstname', 'lastname', 'email', 'id', 'img_url', 'club_id')
         .first()
       res.status(200).json({ message: `user updated`, user })
     } catch (err) {
@@ -395,6 +386,57 @@ async function checkMemberBelongsToUsersClub(req, res, next) {
     }
   } catch (err) {
     res.status(500).json(err)
+  }
+}
+
+async function checkMemberLimit(req, res, next) {
+  let plans = {
+    free: 'plan_EanP4aFWnkzGTC',
+    smallBiz: 'plan_EanQzBshDkH9Iu',
+    enterprise: 'plan_EanRarp8r1YnYC',
+  }
+  let memberLimit = {
+    free: 5,
+    smallBiz: 20,
+    enterprise: 500,
+  }
+
+  try {
+    let subInfo = await db('subscriptions')
+      .where({ user_id: req.userInfo.id })
+      .first()
+    let members = await db('users').where({ club_id: req.userInfo.club_id })
+
+    if (subInfo) {
+      if (subInfo.plan === plans.free && members.length <= memberLimit.free) {
+        next()
+      } else if (
+        subInfo.plan === plans.smallBiz &&
+        members.length <= memberLimit.smallBiz
+      ) {
+        next()
+      } else if (
+        subInfo.plan === plans.enterprise &&
+        members.length <= memberLimit.enterprise
+      ) {
+        next()
+      } else {
+        res.status(400).json({
+          message: `your club is at capacity for your subscription plan`,
+        })
+      }
+    } else {
+      // no sub on file
+      if (members.length <= memberLimit.free) {
+        next()
+      } else {
+        res
+          .status(400)
+          .json({ message: `add a subscription to increase club capacity` })
+      }
+    }
+  } catch (err) {
+    res.status(500).json({ error: err })
   }
 }
 

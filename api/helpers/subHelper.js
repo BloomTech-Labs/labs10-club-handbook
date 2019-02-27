@@ -11,6 +11,17 @@ async function updateSubInfo(id) {
           await db('subscriptions')
             .where({ subscription: id })
             .delete()
+        } else {
+          let newInfo = {
+            status: subscription.status,
+            type: subscription.plan.nickname,
+            plan: subscription.plan.id,
+            product: subscription.plan.product,
+          }
+
+          await db('subscriptions')
+            .where({ subscription: id })
+            .update(newInfo)
         }
       }
     } catch (err) {
