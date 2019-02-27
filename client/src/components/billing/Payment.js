@@ -64,16 +64,16 @@ class Payment extends React.Component {
       },
     }
     axios
-      // .post(
-      //   'https://club-handbook.herokuapp.com/api/payments/addSubscription',
-      //   bodyToSend,
-      //   auth
-      // )
       .post(
-        'http://localhost:5000/api/payments/addSubscription',
+        'https://club-handbook.herokuapp.com/api/payments/addSubscription',
         bodyToSend,
         auth
       )
+      // .post(
+      //   'http://localhost:5000/api/payments/addSubscription',
+      //   bodyToSend,
+      //   auth
+      // )
       .then(res => {
         console.log('res', res)
         alert(`Thank you for your Startup subscription "purchase"!`)
@@ -94,16 +94,16 @@ class Payment extends React.Component {
       },
     }
     axios
-      // .post(
-      //   'https://club-handbook.herokuapp.com/api/payments/addSubscription',
-      //   bodyToSend,
-      //   auth
-      // )
       .post(
-        'http://localhost:5000/api/payments/addSubscription',
+        'https://club-handbook.herokuapp.com/api/payments/addSubscription',
         bodyToSend,
         auth
       )
+      // .post(
+      //   'http://localhost:5000/api/payments/addSubscription',
+      //   bodyToSend,
+      //   auth
+      // )
       .then(res => {
         console.log('res', res)
         alert(`Thank you for your Small Biz subscription purchase!`)
@@ -124,16 +124,16 @@ class Payment extends React.Component {
       },
     }
     axios
-      // .post(
-      //   'https://club-handbook.herokuapp.com/api/payments/addSubscription',
-      //   bodyToSend,
-      //   auth
-      // )
       .post(
-        'http://localhost:5000/api/payments/addSubscription',
+        'https://club-handbook.herokuapp.com/api/payments/addSubscription',
         bodyToSend,
         auth
       )
+      // .post(
+      //   'http://localhost:5000/api/payments/addSubscription',
+      //   bodyToSend,
+      //   auth
+      // )
       .then(res => {
         console.log('res', res)
         alert(`Thank you for your Enterprise subscription purchase!`)
