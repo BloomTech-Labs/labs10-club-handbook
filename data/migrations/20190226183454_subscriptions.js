@@ -8,7 +8,7 @@ exports.up = function(knex, Promise) {
       .references('id')
       .inTable('users')
       .notNullable()
-
+    tbl.string('subscription')
     tbl.string('type')
     tbl.string('plan')
     tbl.string('product')

@@ -2,7 +2,10 @@ const express = require('express')
 const router = express.Router()
 const stripe = require('stripe')('sk_test_QBcc8So0WjMMIznAloTV3kdv')
 
-router.post('/', (req, res) => {
+const db = require('../../config/dbConfig')
+const { validateToken, getInfoFromToken } = require('../helpers/authHelper')
+
+router.post('/', validateToken, getInfoFromToken, (req, res) => {
   let plan = req.body.subscription.plan
 
   stripe.customers
@@ -10,13 +13,29 @@ router.post('/', (req, res) => {
       email: req.body.email,
       source: req.body.id,
     })
-    .then(customer =>
-      stripe.subscriptions.create({
-        customer: customer.id,
-        items: [{ plan }],
-      })
-    )
-    .then(charge => res.send(charge))
+    .then(customer => {
+      stripe.subscriptions
+        .create({
+          customer: customer.id,
+          items: [{ plan }],
+        })
+        .then(charge => {
+          let subInfo = {
+            user_id: req.userInfo.id,
+            customer: charge.customer,
+            subscription: charge.id,
+            status: charge.status,
+            plan: charge.plan.id,
+            product: charge.plan.product,
+            type: charge.plan.nickname,
+          }
+          db('subscriptions')
+            .insert(subInfo)
+            .then(inserted => {
+              res.status(200).json({ inserted })
+            })
+        })
+    })
     .catch(err => {
       console.log('Error:', err)
       res.status(500).json({ error: 'Purchase Failed' })

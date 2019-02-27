@@ -58,8 +58,13 @@ class Payment extends React.Component {
         plan: 'plan_EanP4aFWnkzGTC',
       },
     }
+    let auth = {
+      headers: {
+        authorization: localStorage.getItem('access_token'),
+      },
+    }
     axios
-      .post('http://localhost:5000/api/payments', bodyToSend)
+      .post('http://localhost:5000/api/payments', bodyToSend, auth)
       .then(res => {
         console.log('res', res)
         alert(`Thank you for your Startup subscription "purchase"!`)
@@ -74,8 +79,13 @@ class Payment extends React.Component {
         plan: 'plan_EanQzBshDkH9Iu',
       },
     }
+    let auth = {
+      headers: {
+        authorization: localStorage.getItem('access_token'),
+      },
+    }
     axios
-      .post('http://localhost:5000/api/payments', bodyToSend)
+      .post('http://localhost:5000/api/payments', bodyToSend, auth)
       .then(res => {
         console.log('res', res)
         alert(`Thank you for your Small Biz subscription purchase!`)
@@ -90,8 +100,13 @@ class Payment extends React.Component {
         plan: 'plan_EanRarp8r1YnYC',
       },
     }
+    let auth = {
+      headers: {
+        authorization: localStorage.getItem('access_token'),
+      },
+    }
     axios
-      .post('http://localhost:5000/api/payments', bodyToSend)
+      .post('http://localhost:5000/api/payments', bodyToSend, auth)
       .then(res => {
         console.log('res', res)
         alert(`Thank you for your Enterprise subscription purchase!`)
