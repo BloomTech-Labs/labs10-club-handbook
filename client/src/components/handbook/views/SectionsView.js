@@ -1,4 +1,6 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { deleteSectionById } from '../../../store/actions/clubActions'
 
 const SectionsView = props => {
   return (
@@ -14,6 +16,11 @@ const SectionsView = props => {
             <img src={section.img_url} />
             <h2>{section.title}</h2>
           </div>
+          <button
+            onClick={() => props.deleteSectionById(props.clubId, section.id)}
+          >
+            Delete
+          </button>
         </>
       ))}
       <button onClick={props.toggleAddView}>Add Section</button>
@@ -21,4 +28,7 @@ const SectionsView = props => {
   )
 }
 
-export default SectionsView
+export default connect(
+  null,
+  { deleteSectionById }
+)(SectionsView)

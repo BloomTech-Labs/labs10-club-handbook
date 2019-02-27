@@ -33,6 +33,7 @@ const HandbookForm = props => {
           sections={props.sections}
           toggleEditView={props.toggleEditView}
           toggleAddView={props.toggleAddView}
+          clubId={props.clubId}
         />
       ) : (
         <DetailsView

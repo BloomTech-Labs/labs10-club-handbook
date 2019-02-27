@@ -111,6 +111,7 @@ class HandbookPage extends React.Component {
             title={this.state.title}
             handleChange={this.handleChange}
             hasClub={this.state.hasClub}
+            clubId={this.props.club.id}
           />
 
           {this.state.editView ? (
