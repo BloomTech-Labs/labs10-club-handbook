@@ -1,8 +1,10 @@
 import React from 'react'
 import '../users/Members.css'
-import { AppBar } from '@material-ui/core'
+import { AppBar, Button } from '@material-ui/core'
 import { connect } from 'react-redux'
 import { memberSigned } from '../../store/actions/usersActions'
+
+import { PageContainer, FormContainer } from '../../style/signature'
 
 class Signature extends React.Component {
   constructor() {
@@ -24,32 +26,43 @@ class Signature extends React.Component {
   }
   render() {
     return (
-      <div className="signature-page">
-        <AppBar position="static">
-          <div className="sign-header">
-            <button>Cancel</button>
-            <h1>Sign Handbook</h1>
-          </div>
-        </AppBar>
-        <div className="sign-body">
-          <p>
-            I have read and will comply with the policies herin and any
-            revisions made henceforth and forever
-          </p>
+      <PageContainer>
+        <div className="signature-page">
+          <AppBar position="static">
+            <div className="sign-header">
+              <Button>Cancel</Button>
+              <h1>Sign Handbook</h1>
+            </div>
+          </AppBar>
+
+          {/* <div className="sign-signature"> */}
+          <FormContainer>
+            <h6><strong>
+              I have read and will comply with the policies herin and any
+              revisions made henceforth and forever
+              </strong></h6>
+            
+            <br />
+            <p>
+              Failure to sign this manual may result in your being expunged from
+              the club, orgainization, or click. If you can't follow through,
+              then you're just not made of the stuff we're looking for. Dig it?
+            </p>
+            <br />
+            <form onSubmit={this.handleSubmit}>
+              <input
+                type="text"
+                name="signature"
+                onChange={this.handleChanges}
+                placeholder="Sign Here"
+                value={this.state.signature}
+              />
+              <Button type="submit">Sign</Button>
+            </form>
+          </FormContainer>
+          {/* </div> */}
         </div>
-        <div className="sign-signature">
-          <form onSubmit={this.handleSubmit}>
-            <input
-              type="text"
-              name="signature"
-              onChange={this.handleChanges}
-              placeholder="Sign Here"
-              value={this.state.signature}
-            />
-            <button>Sign</button>
-          </form>
-        </div>
-      </div>
+      </PageContainer>
     )
   }
 }

@@ -171,6 +171,7 @@ export const getInfoFromToken = () => dispatch => {
 }
 
 export const memberSigned = (id, signature) => dispatch => {
+  console.log('memberSigned() invoked in usersActions')
   dispatch({ type: START, message: `Member Signature` })
 
   const requestOptions = {

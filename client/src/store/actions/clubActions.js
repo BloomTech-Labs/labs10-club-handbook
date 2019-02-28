@@ -108,6 +108,8 @@ export const deleteClub = id => dispatch => {
 }
 
 export const getClubSections = id => dispatch => {
+  console.log('getClubSecions invoked in clubActions.js')
+  
   dispatch({ type: START, message: `Getting club sections` })
   const header = {
     headers: {

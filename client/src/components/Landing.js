@@ -127,6 +127,7 @@ class Landing extends React.Component {
                 Dashboard
               </Button>
               <Button component={Login} color="inherit" variant="outlined" />
+              <Button component={Link} to='/handbook/member-view' color="inherit" variant="outlined" >View Handbook </Button>
             </Toolbar>
           </AppBar>
         </Fade>

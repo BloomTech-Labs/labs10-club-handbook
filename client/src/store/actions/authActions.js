@@ -21,10 +21,11 @@ export const signinUser = () => dispatch => {
 }
 
 export const handleAuthorization = () => dispatch => {
+  console.log('handleAuthorization() from authActions invoked')
+
   auth
     .handleAuthentication()
     .then(res => {
-      // dispatch({ type: AUTHORIZATION_SUCCESS, message: 'User authorized.' })
 
       const userObject = {
         accessToken: res.accessToken,
@@ -32,19 +33,14 @@ export const handleAuthorization = () => dispatch => {
       }
 
       axios
-        // .post(`http://localhost:5000/api/users/register`, userObject)
         .post(
           `https://club-handbook.herokuapp.com/api/users/register`,
           userObject
         )
         .then(res => {
-          dispatch({
-            type: AUTHORIZATION_SUCCESS,
-            message: 'User authorized.',
-            payload: res.data.user,
-          })
 
           console.log(res)
+          dispatch({ type: AUTHORIZATION_SUCCESS, payload: res.data.user, message: 'User authorized.'})
         })
         .catch(err => console.log(err))
     })
@@ -65,10 +61,6 @@ export const handleAuthorizationEmail = () => dispatch => {
   authEmail
     .handleAuthentication()
     .then(res => {
-      console.log('authEmail.handleAuthentication() from authActions invoked')
-
-      // moved this to inside the .then() after the axios request, since we need a response from the server before we can set state with the payload
-      // dispatch({ type: AUTHORIZATION_SUCCESS, message: 'User authorized.' })
 
       const userObject = {
         accessToken: res.accessToken,
@@ -76,7 +68,6 @@ export const handleAuthorizationEmail = () => dispatch => {
       }
 
       axios
-        // .post('http://localhost:5000/api/users/register-magiclink', userObject)
         .post(
           `https://club-handbook.herokuapp.com/api/users/register-magiclink`,
           userObject
