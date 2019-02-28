@@ -12,7 +12,7 @@ const DetailsView = props => {
         value={props.title}
         onChange={props.handleChange}
       />
-      {props.club.name.length > 0 ? (
+      {props.club.name ? (
         <button onClick={props.updateClub}>Update Handbook</button>
       ) : (
         <button onClick={props.createClub}>Create Handbook</button>
