@@ -1,21 +1,27 @@
 import React from 'react'
+import { size } from '../../../style/breakpoints'
+import { HandbookButton } from '../../../style/handbook'
 
 const DetailsView = props => {
   return (
-    <div className="title-input">
-      <h2>Handbook Title:</h2>
+    <>
+      <h3>Handbook Title: {props.club.name}</h3>
       <input
         type="text"
         name="title"
         value={props.title}
         onChange={props.handleChange}
       />
-      {props.hasClub ? (
-        <button type="submit">Update Handbook</button>
+      {props.club.name.length > 0 ? (
+        <button onClick={props.updateClub}>Update Handbook</button>
       ) : (
-        <button type="submit">Create Handbook</button>
+        <button onClick={props.createClub}>Create Handbook</button>
       )}
-    </div>
+
+      <HandbookButton onClick={props.displayHandbook}>
+        View Handbook
+      </HandbookButton>
+    </>
   )
 }
 

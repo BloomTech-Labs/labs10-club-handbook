@@ -12,9 +12,12 @@ export const FormContainer = styled.div`
   position: absolute;
   left: 20%;
   z-index: 10;
+  background: white;
 
   @media ${size.mobile} {
     width: 100%;
+    left: 0;
+
     h2 {
       font-size: 1.8rem;
     }
