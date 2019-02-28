@@ -109,7 +109,7 @@ export const deleteClub = id => dispatch => {
 
 export const getClubSections = id => dispatch => {
   console.log('getClubSecions invoked in clubActions.js')
-  
+
   dispatch({ type: START, message: `Getting club sections` })
   const header = {
     headers: {
@@ -208,6 +208,7 @@ export const deleteSectionById = (id, sectionId) => dispatch => {
       header
     )
     .then(res => {
+      console.log('res.data', res.data)
       // returns a message
       dispatch({ type: DELETE_SECTION_BY_SECTION_ID, payload: res.data })
     })
