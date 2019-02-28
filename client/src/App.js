@@ -20,6 +20,7 @@ import SectionRender from './components/sections/SectionRender'
 
 import { connect } from 'react-redux'
 import { getInfoFromToken } from './store/actions/usersActions'
+import HandbookMemberView from './components/handbook/HandbookMemberView';
 
 class App extends Component {
   componentDidMount() {
@@ -61,6 +62,7 @@ class App extends Component {
             <Route path="/callback-email" component={CallbackEmail} />
             <Route path="/magic-link-request" component={MagicLinkRequest} />
             <Route path="/section/:id" component={SectionRender} />
+            <Route path="/handbook/member-view" component={HandbookMemberView}/>
           </Switch>
         </div>
       </BrowserRouter>

@@ -28,6 +28,9 @@ import Members from './users/Members'
 import SectionForm from './sections/SectionForm'
 import Billing from './billing/Payment'
 import HandbookPage from './handbook/HandbookPage'
+import Auth from '../auth/Auth'
+
+const auth = new Auth()
 
 const drawerWidth = 150
 
@@ -141,6 +144,10 @@ class DashDrawer extends React.Component {
     this.setState({ open: false })
   }
 
+  logoutUser = () => {
+    auth.logout()
+  }
+
   render() {
     const { classes, theme } = this.props
     const { open, value } = this.state
@@ -170,15 +177,16 @@ class DashDrawer extends React.Component {
             >
               Club.Handbook
             </Typography>
-            <Button
-              component={Link}
-              to="/"
+            <a href="https://club-handbook.auth0.com/v2/logout"><Button
+              // component={Link}
+              // to="/"
               color="inherit"
               variant="outlined"
               lassName={classes.toolbar}
+              onClick={this.logoutUser}
             >
               Logout
-            </Button>
+            </Button></a>
           </Toolbar>
         </AppBar>
         <Drawer

@@ -18,6 +18,7 @@ class AuthEmail {
   handleAuthentication = () => {
     return new Promise((resolve, reject) => {
       this.auth0.parseHash((err, authResults) => {
+        console.log(authResults)
         if (authResults && authResults.accessToken && authResults.idToken) {
           console.log('handleAuthentication() invoked from AuthEmail.js')
 
