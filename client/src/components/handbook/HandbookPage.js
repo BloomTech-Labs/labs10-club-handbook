@@ -116,7 +116,6 @@ class HandbookPage extends React.Component {
             handleChange={this.handleChange}
             handleTabChange={this.handleTabChange}
             value={this.state.value}
-            hasClub={this.state.hasClub}
             clubId={this.props.club.id}
           />
 
