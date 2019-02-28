@@ -75,7 +75,7 @@ class Members extends React.Component {
             {users.map(user => {
               if (user.admin === false) {
                 return (
-                  <Member key={user.id} user={user} />
+                  <Member key={user.id} user={user} clubName={this.props.clubName} adminFirstName={this.props.currentUser.firstname} adminLastName={this.props.currentUser.lastname} />
                 )
               }
             })}
@@ -93,6 +93,7 @@ const mapStateToProps = state => {
     users: state.users.users,
     loading: state.users.loading,
     currentUser: state.auth.currentUser,
+    clubName: state.clubs.clubById.name,
   }
 }
 

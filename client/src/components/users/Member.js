@@ -69,6 +69,7 @@ class Member extends React.Component {
   }
 
   render() {
+    console.log(this.props.user)
     return (
       <MemberContainer>
         <SCMember key={this.props.user.id}>
@@ -85,7 +86,7 @@ class Member extends React.Component {
           <Actions>
             <ViewedManual sub_id={this.props.user.sub_id} />
             <SignedManual signed={this.props.user.signed} />
-            <EmailButton email={this.props.user.email} />
+            <EmailButton email={this.props.user.email} name={this.props.user.firstname} clubName={this.props.clubName} adminFirstName={this.props.adminFirstName} adminLastName={this.props.adminLastName} />
           </Actions>
 
         </SCMember>
