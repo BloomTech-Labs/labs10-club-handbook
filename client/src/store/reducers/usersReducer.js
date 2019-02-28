@@ -11,6 +11,8 @@ import {
   FAIL,
   GET_INFO_FROM_TOKEN,
   FAIL_FROM_TOKEN,
+  GET_SUBSCRIPTION_INFO,
+  NO_SUBSCRIPTION,
 } from '../actions/usersActions'
 
 const initialState = {
@@ -20,6 +22,7 @@ const initialState = {
   message: null,
   error: null,
   failFromToken: false,
+  subscription: null,
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -96,7 +99,7 @@ const usersReducer = (state = initialState, action) => {
             } else {
               return user
             }
-          })
+          }),
         ],
         loading: false,
         message: null,
@@ -107,8 +110,8 @@ const usersReducer = (state = initialState, action) => {
         ...state,
         users: [
           ...state.users.filter(user => {
-          return `${user.id}` !== action.payload.id
-          })
+            return `${user.id}` !== action.payload.id
+          }),
         ],
         loading: false,
         message: null,
@@ -126,6 +129,22 @@ const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         failFromToken: true,
+      }
+
+    case GET_SUBSCRIPTION_INFO:
+      return {
+        ...state,
+        loading: false,
+        message: null,
+        subscription: action.payload,
+      }
+
+    case NO_SUBSCRIPTION:
+      return {
+        ...state,
+        loading: false,
+        message: null,
+        subscription: null,
       }
 
     default:

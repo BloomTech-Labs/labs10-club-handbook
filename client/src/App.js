@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
+import Billing from './components/billing/Billing'
 import Payment from './components/billing/Payment'
 import Members from './components/users/Members'
 import Login from './auth/Login'
@@ -20,7 +21,7 @@ import SectionRender from './components/sections/SectionRender'
 
 import { connect } from 'react-redux'
 import { getInfoFromToken } from './store/actions/usersActions'
-import HandbookMemberView from './components/handbook/HandbookMemberView';
+import HandbookMemberView from './components/handbook/HandbookMemberView'
 
 class App extends Component {
   componentDidMount() {
@@ -46,7 +47,7 @@ class App extends Component {
             <Route exact path="/add-members" component={AddMembers} />
             <Route exact path="/signature" component={Signature} />
             <Route exact path="/update-members/:id" component={UpdateMembers} />
-            <Route exact path="/billing" component={Payment} />
+            <Route exact path="/billing" component={Billing} />
             <Route exact path="/settings" component={Settings} />
             <Route path="/login" component={Login} />
             <Route path="/callback" component={Callback} />
@@ -62,7 +63,10 @@ class App extends Component {
             <Route path="/callback-email" component={CallbackEmail} />
             <Route path="/magic-link-request" component={MagicLinkRequest} />
             <Route path="/section/:id" component={SectionRender} />
-            <Route path="/handbook/member-view" component={HandbookMemberView}/>
+            <Route
+              path="/handbook/member-view"
+              component={HandbookMemberView}
+            />
           </Switch>
         </div>
       </BrowserRouter>
