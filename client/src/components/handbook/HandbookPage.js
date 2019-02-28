@@ -22,6 +22,7 @@ class HandbookPage extends React.Component {
     hasClub: false,
     title: '',
     sectionId: '',
+    value: 0,
   }
 
   componentDidMount() {
@@ -38,6 +39,10 @@ class HandbookPage extends React.Component {
     this.setState({
       [ev.target.name]: ev.target.value,
     })
+  }
+
+  handleTabChange = (ev, value) => {
+    this.setState({ value })
   }
 
   createClub = ev => {
@@ -105,32 +110,26 @@ class HandbookPage extends React.Component {
             sectionViewOff={this.sectionViewOff}
             sections={this.props.sections}
             sectionView={this.state.sectionView}
-            sections={this.props.sections}
             toggleEditView={this.toggleEditView}
             toggleAddView={this.toggleAddView}
             title={this.state.title}
             handleChange={this.handleChange}
-            hasClub={this.state.hasClub}
+            handleTabChange={this.handleTabChange}
+            value={this.state.value}
             clubId={this.props.club.id}
           />
 
-          {this.state.editView ? (
-            <SectionEditor>
-              <SectionForm
-                cancel={this.toggleEditView}
-                update
-                sectionId={this.state.sectionId}
-              />
-            </SectionEditor>
-          ) : null}
-
-          {this.state.addView ? (
-            <SectionEditor>
-              <SectionForm cancel={this.cancel} />
-            </SectionEditor>
-          ) : null}
-
           <HandbookRender />
+
+          {this.state.editView ? (
+            <SectionForm
+              cancel={this.toggleEditView}
+              update
+              sectionId={this.state.sectionId}
+            />
+          ) : null}
+
+          {this.state.addView ? <SectionForm cancel={this.cancel} /> : null}
         </HandbookPageContainer>
       </>
     )
@@ -138,22 +137,12 @@ class HandbookPage extends React.Component {
 }
 const HandbookPageContainer = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: space-between;
   max-width: 120rem;
+  justify-content: space-between;
   margin: 0 auto;
-  margin-top: 5rem;
-  border: 1px solid black;
-`
-
-const SectionEditor = styled.div`
-  padding: 0;
-  position: fixed;
-  max-width: 600px;
-  min-height: 600px;
-  top: 100px;
-  left: 200px;
-  background: white;
+  margin-top: 3rem;
+  position: relative;
+  z-index: 0;
 `
 
 const mapStateToProps = state => {

@@ -28,27 +28,27 @@ class SectionForm extends Component {
     font: null,
   }
 
-  // componentDidMount() {
-  //   const { club_id } = this.props.currentUser
+  componentDidMount() {
+    const { club_id } = this.props.currentUser
 
-  //   if (this.props.update === true) {
-  //     const currentSection = this.props.sections.find(
-  //       section => section.id === this.props.sectionId
-  //     )
-  //     this.setState({
-  //       clubId: club_id,
-  //       title: currentSection.title,
-  //       body: currentSection.body,
-  //       imgPlacement: currentSection.img_placement,
-  //       image: currentSection.img_url,
-  //       orderPosition: currentSection.order,
-  //       contactName: currentSection.contact_name,
-  //       contactInfo: currentSection.contact_info,
-  //     })
-  //   } else {
-  //     this.setState({ clubId: club_id })
-  //   }
-  // }
+    if (this.props.update === true) {
+      const currentSection = this.props.sections.find(
+        section => section.id === this.props.sectionId
+      )
+      this.setState({
+        clubId: club_id,
+        title: currentSection.title,
+        body: currentSection.body,
+        imgPlacement: currentSection.img_placement,
+        image: currentSection.img_url,
+        orderPosition: currentSection.order,
+        contactName: currentSection.contact_name,
+        contactInfo: currentSection.contact_info,
+      })
+    } else {
+      this.setState({ clubId: club_id })
+    }
+  }
 
   changeHandler = e => {
     e.preventDefault()
@@ -120,11 +120,11 @@ class SectionForm extends Component {
   }
 
   render() {
-    // const { clubId } = this.state
+    const { clubId } = this.state
 
-    // if (!clubId) {
-    //   return <h1>Loading...</h1>
-    // }
+    if (!clubId) {
+      return <h1>Loading...</h1>
+    }
 
     return (
       <FormContainer>
