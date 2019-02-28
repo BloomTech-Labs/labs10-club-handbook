@@ -16,11 +16,14 @@ export const FAIL_FROM_TOKEN = 'FAIL_FROM_TOKEN'
 export const GET_SUBSCRIPTION_INFO = 'GET_SUBSCRIPTION_INFO'
 export const NO_SUBSCRIPTION = 'NO_SUBSCRIPTION'
 
+const baseURL = 'https://club-handbook.herokuapp.com'
+// const baseURL = 'http://localhost:5000'
+
 export const getUsers = () => dispatch => {
   dispatch({ type: START, message: `Fetching users` })
 
   axios
-    .get('https://club-handbook.herokuapp.com/api/users')
+    .get('${baseURL}/api/users')
     .then(res => {
       dispatch({ type: GET_USERS, payload: res.data })
     })
@@ -37,7 +40,7 @@ export const getUserById = id => dispatch => {
     },
   }
   axios
-    .get(`https://club-handbook.herokuapp.com/api/users/${id}`, header)
+    .get(`${baseURL}/api/users/${id}`, header)
     .then(res => {
       dispatch({ type: GET_USER_BY_ID, payload: res.data })
     })
@@ -56,10 +59,7 @@ export const getUsersByClubId = clubId => dispatch => {
   }
 
   axios
-    .get(
-      `https://club-handbook.herokuapp.com/api/clubs/${clubId}/members`,
-      header
-    )
+    .get(`${baseURL}/api/clubs/${clubId}/members`, header)
     .then(res => {
       console.log(res)
       dispatch({ type: GET_USERS_BY_CLUB_ID, payload: res.data })
@@ -79,11 +79,7 @@ export const addUser = user => dispatch => {
   }
 
   axios
-    .post(
-      'https://club-handbook.herokuapp.com/api/users/addMember',
-      user,
-      requestOptions
-    )
+    .post(`${baseURL}/api/users/addMember`, user, requestOptions)
     .then(res => {
       dispatch({ type: ADD_MEMBER_SUCCESS, payload: res.data.user })
     })
@@ -104,11 +100,7 @@ export const updateUser = (id, changes) => dispatch => {
   console.log(changes)
 
   axios
-    .patch(
-      `https://club-handbook.herokuapp.com/api/users/addMember/${id}`,
-      changes,
-      requestOptions
-    )
+    .patch(`${baseURL}/api/users/addMember/${id}`, changes, requestOptions)
     .then(res => {
       console.log(res.data.user)
       dispatch({ type: UPDATE_USER, payload: res.data.user })
@@ -129,10 +121,7 @@ export const deleteUser = id => dispatch => {
   }
 
   axios
-    .delete(
-      `https://club-handbook.herokuapp.com/api/users/addMember/${id}`,
-      requestOptions
-    )
+    .delete(`${baseURL}/api/users/addMember/${id}`, requestOptions)
     .then(res => {
       console.log(res)
       dispatch({ type: DELETE_USER, payload: res.data })
@@ -153,10 +142,7 @@ export const getInfoFromToken = () => dispatch => {
   }
 
   axios
-    .get(
-      `https://club-handbook.herokuapp.com/api/users/getInfoFromToken`,
-      header
-    )
+    .get(`${baseURL}/api/users/getInfoFromToken`, header)
     .then(res => {
       if (res.status == 200) {
         dispatch({ type: GET_INFO_FROM_TOKEN, payload: res.data })
@@ -181,11 +167,7 @@ export const memberSigned = (id, signature) => dispatch => {
   }
 
   axios
-    .post(
-      `https://club-handbook.herokuapp.com/api/clubs/${id}/signature`,
-      signature,
-      requestOptions
-    )
+    .post(`${baseURL}/api/clubs/${id}/signature`, signature, requestOptions)
     .then(res => {
       console.log(res)
       dispatch({ type: MEMBER_SIGNED, payload: res.data })
@@ -205,10 +187,7 @@ export const getSubscription = () => dispatch => {
     },
   }
   axios
-    .get(
-      `https://club-handbook.herokuapp.com/api/payments/subInfo`,
-      requestOptions
-    )
+    .get(`${baseURL}/api/payments/subInfo`, requestOptions)
     .then(res => {
       if (res.status == 200) {
         dispatch({ type: GET_SUBSCRIPTION_INFO, payload: res.data })
