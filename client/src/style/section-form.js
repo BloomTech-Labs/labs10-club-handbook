@@ -9,6 +9,9 @@ export const FormContainer = styled.div`
   border: 1px solid gray;
   border-radius: 1rem;
   box-shadow: 0 1px 10px gray;
+  position: absolute;
+  left: 20%;
+  z-index: 10;
 
   @media ${size.mobile} {
     width: 100%;
@@ -62,5 +65,3 @@ export const ImageInput = styled.input`
     margin-bottom: 2rem;
   }
 `
-
-// inline styles

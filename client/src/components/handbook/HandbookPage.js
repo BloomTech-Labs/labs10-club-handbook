@@ -122,20 +122,14 @@ class HandbookPage extends React.Component {
           <HandbookRender />
 
           {this.state.editView ? (
-            <FormContainer>
-              <SectionForm
-                cancel={this.toggleEditView}
-                update
-                sectionId={this.state.sectionId}
-              />
-            </FormContainer>
+            <SectionForm
+              cancel={this.toggleEditView}
+              update
+              sectionId={this.state.sectionId}
+            />
           ) : null}
 
-          {this.state.addView ? (
-            <FormContainer>
-              <SectionForm cancel={this.cancel} />
-            </FormContainer>
-          ) : null}
+          {this.state.addView ? <SectionForm cancel={this.cancel} /> : null}
         </HandbookPageContainer>
       </>
     )
@@ -147,21 +141,8 @@ const HandbookPageContainer = styled.div`
   justify-content: space-between;
   margin: 0 auto;
   margin-top: 3rem;
-  position: relative;
-  z-index: 0;
-`
-
-const FormContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  top: 6.4rem;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  border: 1px dashed red;
-  z-index: 2000000;
+  /* position: relative;
+  z-index: 0; */
 `
 
 const mapStateToProps = state => {
