@@ -17,8 +17,22 @@ export const HandbookPreview = styled.div`
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   box-shadow: 0 1px 1px gray;
+  background: white;
 
   @media ${size.tablet} {
-    display: none;
+    display: ${props => (props.displayOn ? 'block' : 'none')};
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+  }
+`
+
+export const HandbookButton = styled.button`
+  display: none;
+
+  @media ${size.tablet} {
+    display: block;
   }
 `

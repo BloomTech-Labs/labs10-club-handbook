@@ -15,7 +15,7 @@ const ClubForm = styled.form`
   box-shadow: 0 1px 1px gray;
 
   @media ${size.tablet} {
-    width: 40%;
+    width: 60%;
     margin: 0 auto;
   }
 
@@ -60,6 +60,7 @@ const HandbookForm = props => {
               updateClub={props.updateClub}
               createClub={props.createClub}
               club={props.club}
+              displayHandbook={props.displayHandbook}
             />
           )}
         </div>

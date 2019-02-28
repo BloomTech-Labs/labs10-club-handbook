@@ -1,6 +1,6 @@
 import React from 'react'
-import styled from 'styled-components'
 import { size } from '../../../style/breakpoints'
+import { HandbookButton } from '../../../style/handbook'
 
 const DetailsView = props => {
   return (
@@ -17,6 +17,10 @@ const DetailsView = props => {
       ) : (
         <button onClick={props.createClub}>Create Handbook</button>
       )}
+
+      <HandbookButton onClick={props.displayHandbook}>
+        View Handbook
+      </HandbookButton>
     </>
   )
 }
