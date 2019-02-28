@@ -8,7 +8,7 @@ import { Row, Column, iconSize, SectionBox } from '../../../style/layout'
 
 const SectionsView = props => {
   return (
-    <div className="section-block">
+    <>
       <Row>
         <Column>
           <AddCircle onClick={props.toggleAddView} style={iconSize} />
@@ -21,22 +21,26 @@ const SectionsView = props => {
         </Column>
       </Row>
       {props.sections.map(section => (
-        <Row
-          key={section.id}
-          onClick={() => props.toggleEditView(section.id)}
-          style={{ cursor: 'pointer' }}
-        >
-          <SectionBox>
-            {/* <img src={section.img_url} /> */}
-            <Typography variant="header4">{section.title}</Typography>
-          </SectionBox>
-
-          <Delete
-            onClick={() => props.deleteSectionById(props.clubId, section.id)}
-          />
-        </Row>
+        <>
+          <Row
+            key={section.id}
+            onClick={() => props.toggleEditView(section.id)}
+            style={{ cursor: 'pointer' }}
+          >
+            <SectionBox>
+              {/* <img src={section.img_url} /> */}
+              <Typography variant="header4">{section.title}</Typography>
+            </SectionBox>
+            <Delete
+              onClick={ev => {
+                ev.stopPropagation()
+                props.deleteSectionById(props.clubId, section.id)
+              }}
+            />
+          </Row>
+        </>
       ))}
-    </div>
+    </>
   )
 }
 

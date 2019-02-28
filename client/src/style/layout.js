@@ -21,9 +21,6 @@ export const Column = styled.div`
   justify-content: center;
   align-items: center;
   vertical-align: center;
-
-  @media ${size.mobile} {
-  }
 `
 
 export const SectionBox = styled.div`
@@ -34,6 +31,10 @@ export const SectionBox = styled.div`
   border-radius: 3px;
   box-shadow: 0 1px 1px grey;
   margin-top: 1rem;
+
+  @media ${size.tablet} {
+    width: 100%;
+  }
 `
 
 // inline styles
