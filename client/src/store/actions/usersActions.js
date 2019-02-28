@@ -13,7 +13,8 @@ export const DELETE_USER = 'DELETE_USER'
 export const MEMBER_SIGNED = 'MEMBER_SIGNED'
 export const GET_INFO_FROM_TOKEN = 'GET_INFO_FROM_TOKEN'
 export const FAIL_FROM_TOKEN = 'FAIL_FROM_TOKEN'
-
+export const GET_SUBSCRIPTION_INFO = 'GET_SUBSCRIPTION_INFO'
+export const NO_SUBSCRIPTION = 'NO_SUBSCRIPTION'
 
 export const getUsers = () => dispatch => {
   dispatch({ type: START, message: `Fetching users` })
@@ -190,6 +191,28 @@ export const memberSigned = (id, signature) => dispatch => {
     })
     .catch(err => {
       console.log(err)
+      dispatch({ type: FAIL, error: err })
+    })
+}
+
+export const getSubscription = () => dispatch => {
+  dispatch({ type: START, message: `getting subscription info...` })
+
+  const requestOptions = {
+    headers: {
+      authorization: localStorage.getItem('access_token'),
+    },
+  }
+  axios
+    .get(`https://club-handbook.herokuapp.com/api/payments/subInfo`, header)
+    .then(res => {
+      if (res.status == 200) {
+        dispatch({ type: GET_SUBSCRIPTION_INFO, payload: res.data })
+      } else {
+        dispatch({ type: NO_SUBSCRIPTION })
+      }
+    })
+    .catch(err => {
       dispatch({ type: FAIL, error: err })
     })
 }
