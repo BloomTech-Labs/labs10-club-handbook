@@ -141,8 +141,8 @@ const HandbookPageContainer = styled.div`
   justify-content: space-between;
   margin: 0 auto;
   margin-top: 3rem;
-  /* position: relative;
-  z-index: 0; */
+  position: relative;
+  z-index: 0;
 `
 
 const mapStateToProps = state => {
