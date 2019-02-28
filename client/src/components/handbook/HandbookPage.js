@@ -15,7 +15,6 @@ import {
 
 class HandbookPage extends React.Component {
   state = {
-    // user has a club?
     sectionView: false,
     editView: false,
     addView: false,
@@ -116,6 +115,7 @@ class HandbookPage extends React.Component {
             handleChange={this.handleChange}
             handleTabChange={this.handleTabChange}
             value={this.state.value}
+            club={this.props.club}
             clubId={this.props.club.id}
           />
 

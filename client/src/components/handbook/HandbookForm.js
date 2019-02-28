@@ -4,22 +4,23 @@ import SectionsView from './views/SectionsView'
 import DetailsView from './views/DetailsView'
 
 import { Paper, Tabs, Tab } from '@material-ui/core'
+import { size } from '../../style/breakpoints'
 
 const ClubForm = styled.form`
-  max-width: 25%;
+  width: 25%;
   min-height: 40rem;
   border: 1px solid gray;
-  /* border-radius: 7px; */
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   box-shadow: 0 1px 1px gray;
 
-  .section-block {
-    img {
-      min-height: 30px;
-      min-width: 30px;
-      max-width: 300px;
-    }
+  @media ${size.tablet} {
+    width: 40%;
+    margin: 0 auto;
+  }
+
+  @media ${size.mobile} {
+    width: 90%;
   }
 `
 
@@ -56,6 +57,9 @@ const HandbookForm = props => {
               title={props.title}
               handleChange={props.handleChange}
               hasClub={props.hasClub}
+              updateClub={props.updateClub}
+              createClub={props.createClub}
+              club={props.club}
             />
           )}
         </div>

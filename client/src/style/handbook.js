@@ -14,8 +14,11 @@ export const HandbookPreview = styled.div`
   padding: 1rem 4rem;
   width: 70%;
   border: 1px solid gray;
-  /* border-radius: 5px; */
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   box-shadow: 0 1px 1px gray;
+
+  @media ${size.tablet} {
+    display: none;
+  }
 `

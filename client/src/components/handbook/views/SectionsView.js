@@ -8,7 +8,7 @@ import { Row, Column, iconSize, SectionBox } from '../../../style/layout'
 
 const SectionsView = props => {
   return (
-    <div className="section-block">
+    <>
       <Row>
         <Column>
           <AddCircle onClick={props.toggleAddView} style={iconSize} />
@@ -36,7 +36,7 @@ const SectionsView = props => {
           />
         </Row>
       ))}
-    </div>
+    </>
   )
 }
 
