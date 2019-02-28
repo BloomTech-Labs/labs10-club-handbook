@@ -44,23 +44,30 @@ class ChangeSub extends React.Component {
   }
 
   changeSub = async () => {
-    const auth = {
-      headers: {
-        authorization: localStorage.getItem('access_token'),
-      },
+    try {
+      const auth = {
+        headers: {
+          authorization: localStorage.getItem('access_token'),
+        },
+      }
+      const body = {
+        subscription: {
+          plan: this.state.desiredPlan.plan,
+        },
+      }
+      console.log(body)
+      let whatever = await axios.post(
+        'https://club-handbook.herokuapp.com/api/payments/updateSubscription',
+        // 'http://localhost:5000/api/payments/updateSubscription',
+        body,
+        auth
+      )
+
+      this.props.getSubscription()
+      this.cancelStage()
+    } catch (err) {
+      console.log('error', err)
     }
-    const body = {
-      subscription: {
-        plan: this.state.desiredPlan.plan,
-      },
-    }
-    await axios.post(
-      'https://club-handbook.herokuapp.com/api/payments/updateSubscription',
-      body,
-      auth
-    )
-    this.props.getSubscription()
-    this.cancelStage()
   }
 
   render() {
