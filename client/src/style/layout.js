@@ -33,10 +33,12 @@ export const SectionBox = styled.div`
   width: 80%;
   border-radius: 3px;
   box-shadow: 0 1px 1px grey;
+  margin-top: 1rem;
 `
 
 // inline styles
 export const iconSize = {
   fontSize: 35,
   marginBottom: 7,
+  cursor: 'pointer',
 }

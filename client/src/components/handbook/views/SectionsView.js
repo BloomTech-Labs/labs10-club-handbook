@@ -10,8 +10,8 @@ const SectionsView = props => {
   return (
     <div className="section-block">
       <Row>
-        <Column onClick={props.toggleAddView} style={{ cursor: 'pointer' }}>
-          <AddCircle style={iconSize} />
+        <Column>
+          <AddCircle onClick={props.toggleAddView} style={iconSize} />
           <Typography variant="header6">Add</Typography>
         </Column>
 

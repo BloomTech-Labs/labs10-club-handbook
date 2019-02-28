@@ -144,12 +144,10 @@ class HandbookPage extends React.Component {
 }
 const HandbookPageContainer = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: space-between;
   max-width: 120rem;
+  justify-content: space-between;
   margin: 0 auto;
   margin-top: 3rem;
-  border: 1px solid black;
   position: relative;
   z-index: 0;
 `

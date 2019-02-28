@@ -8,7 +8,11 @@ import { Paper, Tabs, Tab } from '@material-ui/core'
 const ClubForm = styled.form`
   max-width: 25%;
   min-height: 40rem;
-  border: 1px solid blue;
+  border: 1px solid gray;
+  /* border-radius: 7px; */
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  box-shadow: 0 1px 1px gray;
 
   .section-block {
     img {
@@ -30,7 +34,11 @@ const HandbookForm = props => {
             textColor="primary"
             onChange={props.handleTabChange}
           >
-            <Tab label="Overview" onClick={props.sectionViewOff} />
+            <Tab
+              label="Overview"
+              onClick={props.sectionViewOff}
+              fontSize="large"
+            />
             <Tab label="Sections" onClick={props.sectionViewOn} />
           </Tabs>
         </Paper>
