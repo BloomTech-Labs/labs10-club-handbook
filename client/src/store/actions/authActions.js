@@ -38,11 +38,6 @@ export const handleAuthorization = () => dispatch => {
           userObject
         )
         .then(res => {
-          // can we do history.push from here somehow instead of in callback component?
-          // if res.status = 200 => welcome back
-          // if res.status = 201 => welcome first time
-          // if res.status = 400 => invalid token
-          // if res.status = 500 => other error
           dispatch({
             type: AUTHORIZATION_SUCCESS,
             message: 'User authorized.',
@@ -88,7 +83,11 @@ export const handleAuthorizationEmail = () => dispatch => {
         )
         .then(res => {
           console.log(res)
-          dispatch({ type: AUTHORIZATION_SUCCESS, payload: res.data.user, message: 'User authorized.' })
+          dispatch({
+            type: AUTHORIZATION_SUCCESS,
+            payload: res.data.user,
+            message: 'User authorized.',
+          })
         })
         .catch(err => console.log(err))
     })

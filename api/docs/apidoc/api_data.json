@@ -180,16 +180,16 @@
     },
     "success": {
       "fields": {
-        "Success 200": [
+        "Success 201": [
           {
-            "group": "Success 200",
+            "group": "Success 201",
             "type": "string",
             "optional": false,
             "field": "message",
             "description": "<p>success message</p>"
           },
           {
-            "group": "Success 200",
+            "group": "Success 201",
             "type": "object",
             "optional": false,
             "field": "club",
@@ -425,9 +425,9 @@
     },
     "success": {
       "fields": {
-        "Success 200": [
+        "Success 201": [
           {
-            "group": "Success 200",
+            "group": "Success 201",
             "type": "string",
             "optional": false,
             "field": "message",
@@ -474,16 +474,16 @@
     },
     "success": {
       "fields": {
-        "Success 200": [
+        "Success 201": [
           {
-            "group": "Success 200",
+            "group": "Success 201",
             "type": "String",
             "optional": false,
             "field": "message",
             "description": "<p>Success message and user object.</p>"
           },
           {
-            "group": "Success 200",
+            "group": "Success 201",
             "type": "object",
             "optional": false,
             "field": "user",
@@ -496,6 +496,193 @@
     "filename": "api/routes/usersRoute.js",
     "groupTitle": "members",
     "name": "PostApiUsersAddmember"
+  },
+  {
+    "type": "delete",
+    "url": "/api/payments/cancel",
+    "title": "Cancel existing subscription",
+    "deprecated": {
+      "content": "let member downgrade to 'free' subscription instead, better handling of member amounts and invoice"
+    },
+    "group": "payments",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "authorization",
+            "description": "<p>access token</p>"
+          }
+        ]
+      }
+    },
+    "description": "<p>invoking this will set a users subscription to cancel at the end of the billing cycle</p>",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "object",
+            "optional": false,
+            "field": "confirmation",
+            "description": "<p>stripe confirmation object</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "api/routes/paymentsRoute.js",
+    "groupTitle": "payments",
+    "name": "DeleteApiPaymentsCancel"
+  },
+  {
+    "type": "get",
+    "url": "/api/payments/subInfo",
+    "title": "get users subscription information",
+    "group": "payments",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "authorization",
+            "description": "<p>access token</p>"
+          }
+        ]
+      }
+    },
+    "description": "<p>invoking this endpoint will return information about a users current subscription</p>",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "object",
+            "optional": false,
+            "field": "sub",
+            "description": "<p>subscription information</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "api/routes/paymentsRoute.js",
+    "groupTitle": "payments",
+    "name": "GetApiPaymentsSubinfo"
+  },
+  {
+    "type": "post",
+    "url": "/api/payments/addSubscription",
+    "title": "Add Sub Via Stripe",
+    "group": "payments",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "authorization",
+            "description": "<p>access token</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "object",
+            "optional": false,
+            "field": "body",
+            "description": "<p>stripe payment info</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "object",
+            "optional": false,
+            "field": "subscription",
+            "description": "<p>object in body, contains &quot;plan&quot; key/value pair</p>"
+          }
+        ]
+      }
+    },
+    "description": "<p>this is intended for use through the react-stripe-checkout system</p>",
+    "success": {
+      "fields": {
+        "Success 201": [
+          {
+            "group": "Success 201",
+            "type": "string",
+            "optional": false,
+            "field": "message",
+            "description": "<p>'subscription created'</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "api/routes/paymentsRoute.js",
+    "groupTitle": "payments",
+    "name": "PostApiPaymentsAddsubscription"
+  },
+  {
+    "type": "post",
+    "url": "/api/payments/updateSubscription",
+    "title": "Update existing subscription",
+    "group": "payments",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "authorization",
+            "description": "<p>access token</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "object",
+            "optional": false,
+            "field": "subscription",
+            "description": "<p>object in body, contains &quot;plan&quot; key/value pair</p>"
+          }
+        ]
+      }
+    },
+    "description": "<p>sending the subscription.plan in the body will update their subscription to the new plan.  An invoice is created to bill/credit the pro-rated difference.</p>",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "message",
+            "description": "<p>'subscription updated'</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "type",
+            "description": "<p>nickname of new subscription</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "api/routes/paymentsRoute.js",
+    "groupTitle": "payments",
+    "name": "PostApiPaymentsUpdatesubscription"
   },
   {
     "type": "delete",
@@ -675,16 +862,16 @@
     },
     "success": {
       "fields": {
-        "Success 200": [
+        "Success 201": [
           {
-            "group": "Success 200",
+            "group": "Success 201",
             "type": "string",
             "optional": false,
             "field": "message",
             "description": "<p>success message</p>"
           },
           {
-            "group": "Success 200",
+            "group": "Success 201",
             "type": "object",
             "optional": false,
             "field": "section",
@@ -921,7 +1108,7 @@
   {
     "type": "post",
     "url": "/api/users/register",
-    "title": "Add a User (Auth0)",
+    "title": "Add User/Log-In (Auth0)",
     "group": "users",
     "parameter": {
       "fields": {
@@ -939,16 +1126,16 @@
     "description": "<p>this is intended for club owners registering and signing in throught auth0, this is not intended for adding members or magic-link login</p>",
     "success": {
       "fields": {
-        "Success 200": [
+        "Success 200 or 201": [
           {
-            "group": "Success 200",
+            "group": "Success 200 or 201",
             "type": "string",
             "optional": false,
             "field": "message",
             "description": "<p>'welcome' or 'welcome back'</p>"
           },
           {
-            "group": "Success 200",
+            "group": "Success 200 or 201",
             "type": "integer",
             "optional": false,
             "field": "id",
@@ -983,9 +1170,9 @@
     "description": "<p>this is intended for magic-link login, their email and club_id have previously been added by club owner through /users/addMember endpoint.</p>",
     "success": {
       "fields": {
-        "Success 200": [
+        "Success 200 or 201": [
           {
-            "group": "Success 200",
+            "group": "Success 200 or 201",
             "type": "text",
             "optional": false,
             "field": "n/a",
