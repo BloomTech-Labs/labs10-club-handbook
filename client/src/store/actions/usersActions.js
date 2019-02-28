@@ -204,7 +204,10 @@ export const getSubscription = () => dispatch => {
     },
   }
   axios
-    .get(`https://club-handbook.herokuapp.com/api/payments/subInfo`, header)
+    .get(
+      `https://club-handbook.herokuapp.com/api/payments/subInfo`,
+      requestOptions
+    )
     .then(res => {
       if (res.status == 200) {
         dispatch({ type: GET_SUBSCRIPTION_INFO, payload: res.data })
