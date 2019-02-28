@@ -4,7 +4,7 @@ import { deleteSectionById } from '../../../store/actions/clubActions'
 import { Typography } from '@material-ui/core'
 import { AddCircle, Delete, FormatLineSpacing } from '@material-ui/icons'
 
-import { Row, Column, iconSize } from '../../../style/layout'
+import { Row, Column, iconSize, SectionBox } from '../../../style/layout'
 
 const SectionsView = props => {
   return (
@@ -21,21 +21,20 @@ const SectionsView = props => {
         </Column>
       </Row>
       {props.sections.map(section => (
-        <>
-          <div
-            key={section.id}
-            onClick={() => props.toggleEditView(section.id)}
-            style={{ cursor: 'pointer' }}
-          >
+        <Row
+          key={section.id}
+          onClick={() => props.toggleEditView(section.id)}
+          style={{ cursor: 'pointer' }}
+        >
+          <SectionBox>
             {/* <img src={section.img_url} /> */}
-            <h2>{section.title}</h2>
-          </div>
-          <button
+            <Typography variant="header4">{section.title}</Typography>
+          </SectionBox>
+
+          <Delete
             onClick={() => props.deleteSectionById(props.clubId, section.id)}
-          >
-            <Delete />
-          </button>
-        </>
+          />
+        </Row>
       ))}
     </div>
   )

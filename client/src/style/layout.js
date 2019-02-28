@@ -26,8 +26,17 @@ export const Column = styled.div`
   }
 `
 
+export const SectionBox = styled.div`
+  padding: 3rem 0.5rem;
+  border: 1px solid gray;
+  text-align: center;
+  width: 80%;
+  border-radius: 3px;
+  box-shadow: 0 1px 1px grey;
+`
+
 // inline styles
 export const iconSize = {
-  fontSize: 40,
+  fontSize: 35,
   marginBottom: 7,
 }
