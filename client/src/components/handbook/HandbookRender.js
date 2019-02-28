@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import renderHTML from 'react-render-html'
+import { relative } from 'path'
 
 const SectionRender = props => {
   if (props.sections.length === 0) {

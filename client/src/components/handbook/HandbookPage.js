@@ -22,6 +22,7 @@ class HandbookPage extends React.Component {
     hasClub: false,
     title: '',
     sectionId: '',
+    value: 0,
   }
 
   componentDidMount() {
@@ -38,6 +39,10 @@ class HandbookPage extends React.Component {
     this.setState({
       [ev.target.name]: ev.target.value,
     })
+  }
+
+  handleTabChange = (ev, value) => {
+    this.setState({ value })
   }
 
   createClub = ev => {
@@ -105,32 +110,33 @@ class HandbookPage extends React.Component {
             sectionViewOff={this.sectionViewOff}
             sections={this.props.sections}
             sectionView={this.state.sectionView}
-            sections={this.props.sections}
             toggleEditView={this.toggleEditView}
             toggleAddView={this.toggleAddView}
             title={this.state.title}
             handleChange={this.handleChange}
+            handleTabChange={this.handleTabChange}
+            value={this.state.value}
             hasClub={this.state.hasClub}
             clubId={this.props.club.id}
           />
 
+          <HandbookRender />
+
           {this.state.editView ? (
-            <SectionEditor>
+            <FormContainer>
               <SectionForm
                 cancel={this.toggleEditView}
                 update
                 sectionId={this.state.sectionId}
               />
-            </SectionEditor>
+            </FormContainer>
           ) : null}
 
           {this.state.addView ? (
-            <SectionEditor>
+            <FormContainer>
               <SectionForm cancel={this.cancel} />
-            </SectionEditor>
+            </FormContainer>
           ) : null}
-
-          <HandbookRender />
         </HandbookPageContainer>
       </>
     )
@@ -142,18 +148,23 @@ const HandbookPageContainer = styled.div`
   justify-content: space-between;
   max-width: 120rem;
   margin: 0 auto;
-  margin-top: 5rem;
+  margin-top: 3rem;
   border: 1px solid black;
+  position: relative;
+  z-index: 0;
 `
 
-const SectionEditor = styled.div`
-  padding: 0;
-  position: fixed;
-  max-width: 600px;
-  min-height: 600px;
-  top: 100px;
-  left: 200px;
-  background: white;
+const FormContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 6.4rem;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border: 1px dashed red;
+  z-index: 2000000;
 `
 
 const mapStateToProps = state => {
