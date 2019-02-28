@@ -38,6 +38,7 @@ export const handleAuthorization = () => dispatch => {
           userObject
         )
         .then(res => {
+
           console.log(res)
           dispatch({ type: AUTHORIZATION_SUCCESS, payload: res.data.user, message: 'User authorized.'})
         })
@@ -73,7 +74,11 @@ export const handleAuthorizationEmail = () => dispatch => {
         )
         .then(res => {
           console.log(res)
-          dispatch({ type: AUTHORIZATION_SUCCESS, payload: res.data.user, message: 'User authorized.' })
+          dispatch({
+            type: AUTHORIZATION_SUCCESS,
+            payload: res.data.user,
+            message: 'User authorized.',
+          })
         })
         .catch(err => console.log(err))
     })
