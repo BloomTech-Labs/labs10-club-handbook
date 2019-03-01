@@ -36,9 +36,8 @@ const Button = styled.button`
     @media ${size.tablet} {
     width: 150px;
     margin: 10px 0 0 0;
-}
+  }
 `;
-
 const SContainer = styled.div`
   background: lightgrey;
   border: 1px solid black;
@@ -55,6 +54,10 @@ const SContainer = styled.div`
 const ContentContainer = styled.div`
   padding: 10%;
 `;
+const Notification = styled.div`
+  color: red;
+  margin: 20px 0 0 0;
+`;
 // #endregion
 
 const authEmail = new AuthEmail()
@@ -69,9 +72,25 @@ class MagicLinkRequest extends React.Component {
     this.setState({ [event.target.name]: event.target.value })
   }
 
+  emailSentConfirmation = () => {
+    if (this.state.email.length > 0 && this.state.email.includes('@')) {
+      this.setState({ emailStatus: true })
+    }
+    
+    setTimeout(
+      function() {
+          this.setState({emailStatus: false});
+      }
+      .bind(this),
+      2000
+    );
+  }
+
   handleSubmit = event => {
     event.preventDefault()
     authEmail.sendEmail(this.state.email)
+    this.setState({ email: '' })
+    this.emailSentConfirmation()
   }
 
   render() {
@@ -92,11 +111,11 @@ class MagicLinkRequest extends React.Component {
               name="email"
               onChange={this.handleChanges}
               placeholder="Email Address"
-              value={this.props.email}
+              value={this.state.email}
             />
             <Button type="submit">Send Magic Link</Button>
-            <P>{this.state.emailStatus === true && 'email sent!'}</P>
           </Form>
+          <Notification>{this.state.emailStatus === true && 'Email sent!'}</Notification>
         </ContentContainer>
       </SContainer>
     )

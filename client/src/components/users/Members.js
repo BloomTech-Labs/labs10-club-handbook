@@ -47,10 +47,15 @@ const StatusHeader = styled.div`
 //#endregion
 
 class Members extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   componentDidMount() {
     const clubId = this.props.currentUser.club_id
 
     this.props.getUsersByClubId(clubId)
+
   }
 
   render() {
