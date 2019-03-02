@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { addUser } from '../../store/actions/usersActions'
 import styled from 'styled-components'
 import { size } from '../../style/breakpoints';
+import Button from '@material-ui/core/Button'
 
 //#region STYLES
 const SCWrapper = styled.div`
@@ -39,14 +40,14 @@ const SCEmail = styled.input`
     width: 50%;
 }
 `;
-const Button = styled.button`
-  @media ${size.tablet} {
-    width: 100px;
-}
-  :hover {
-      cursor: pointer;
-    }
-`;
+// const Button = styled.button`
+//   @media ${size.tablet} {
+//     width: 100px;
+// }
+//   :hover {
+//       cursor: pointer;
+//     }
+// `;
 //#endregion
 
 class AddMembers extends React.Component {
@@ -113,7 +114,8 @@ class AddMembers extends React.Component {
             placeholder="Email Address"
             value={this.state.email}
           />
-          <Button>Add Member</Button>
+          {/* <Button>Add Member</Button> */}
+          <Button color="inherit" variant="outlined" type="submit">Add Member</Button>
         </Form>
       </SCWrapper>
     )

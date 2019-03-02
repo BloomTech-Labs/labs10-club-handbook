@@ -12,7 +12,14 @@ const H3 = styled.h3`
   margin-right: 5px;
 `;
 const MemberContainer = styled.div`
-  margin: 0 0 15px 0;
+  /* margin: 0 0 15px 0; */
+  padding: 10px 2px;
+  background: ${props => props.editVisible === true && "#3648AC"};
+  color: ${props => props.editVisible === true && "white"};
+  :hover {
+    background: #3648AC;
+    color: white;
+  }
 `;
 const SCMember = styled.div`
   display: flex;
@@ -71,12 +78,12 @@ class Member extends React.Component {
   render() {
     console.log(this.props.user)
     return (
-      <MemberContainer>
+      <MemberContainer onClick={this.showEditField} editVisible={this.state.open}>
         <SCMember key={this.props.user.id}>
           <MemberInfo>
             <Name>
-              <H3 onClick={this.showEditField}>{this.props.user.firstname}</H3>
-              <H3 onClick={this.showEditField}>{this.props.user.lastname}</H3>
+              <H3>{this.props.user.firstname}</H3>
+              <H3>{this.props.user.lastname}</H3>
             </Name>
             <Email>
               <H3 onClick={this.showEditField}>{this.props.user.email}</H3>

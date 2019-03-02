@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from '@material-ui/core/Button'
 
 class EmailButton extends React.Component {
   constructor(props) {
@@ -15,7 +16,11 @@ class EmailButton extends React.Component {
 
 
   render() {
-    return <button onClick={this.onClick}>Notify</button>
+    return (
+      // <button onClick={this.onClick}>Notify</button>
+
+      <Button color="inherit" variant="outlined" onClick={this.onClick}>Notify</Button>
+    )
   }
 }
 
