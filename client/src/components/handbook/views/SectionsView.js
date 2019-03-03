@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import SectionItem from './SectionItem'
 import { deleteSectionById } from '../../../store/actions/clubActions'
 import { Typography } from '@material-ui/core'
 import { AddCircle, Delete, FormatLineSpacing } from '@material-ui/icons'
@@ -20,25 +21,14 @@ const SectionsView = props => {
           <Typography variant="header6">Reorder</Typography>
         </Column>
       </Row>
+
       {props.sections.map(section => (
-        <>
-          <Row
-            key={section.id}
-            onClick={() => props.toggleEditView(section.id)}
-            style={{ cursor: 'pointer' }}
-          >
-            <SectionBox>
-              {/* <img src={section.img_url} /> */}
-              <Typography variant="header4">{section.title}</Typography>
-            </SectionBox>
-            <Delete
-              onClick={ev => {
-                ev.stopPropagation()
-                props.deleteSectionById(props.clubId, section.id)
-              }}
-            />
-          </Row>
-        </>
+        <SectionItem
+          section={section}
+          deleteSectionById={props.deleteSectionById}
+          toggleEditView={props.toggleEditView}
+          clubId={props.clubId}
+        />
       ))}
     </>
   )
