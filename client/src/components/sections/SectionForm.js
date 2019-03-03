@@ -21,7 +21,7 @@ class SectionForm extends Component {
     imgPlacement: 4,
     selectedFile: null,
     image: '',
-    orderPosition: null,
+    orderPosition: this.props.sections.length + 1,
     contactName: '',
     contactInfo: '',
     color: null,
