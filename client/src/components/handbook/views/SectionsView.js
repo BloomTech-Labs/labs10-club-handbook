@@ -53,7 +53,7 @@ class SectionsView extends Component {
           </Column>
         </Row>
 
-        {this.state.sections.map((section, idx) => (
+        {this.props.sections.map((section, idx) => (
           <SectionItem
             key={section.id}
             index={idx}
