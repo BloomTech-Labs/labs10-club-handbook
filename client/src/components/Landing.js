@@ -23,6 +23,10 @@ import Parallax from './Header'
 import GridContainer from './Grid'
 import Fade from 'react-reveal/Fade'
 import styled from 'styled-components'
+import { red } from '@material-ui/core/colors'
+
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
+import Theme from '../style/colors'
 
 const CardContainer = styled.div`
   margin: auto;
@@ -36,6 +40,9 @@ const styles = theme => ({
   appBar: {
     position: 'fixed',
     zIndex: 1,
+  },
+  navButton: {
+    margin: 20,
   },
   toolbarTitle: {
     flex: 1,
@@ -115,10 +122,10 @@ class Landing extends React.Component {
   render() {
     const { classes } = this.props
     return (
-      <React.Fragment>
-        <CssBaseline />
-        {/* Navbar */}
-        <Fade top>
+      <MuiThemeProvider theme={Theme}>
+        <React.Fragment>
+          <CssBaseline />
+          {/* Navbar */}
           <AppBar className={classes.appBar}>
             <Toolbar>
               <Typography
@@ -140,191 +147,195 @@ class Landing extends React.Component {
               </Button>
             </Toolbar>
           </AppBar>
-        </Fade>
-        <main>
-          {/* Parallax Header */}
-          <Parallax className={classes.mainContent}>
-            <div className={classes.container}>
-              <GridContainer>
-                <Fade left>
-                  <GridContainer xs={12} sm={12} md={6}>
-                    <Typography variant="h3" color="TextPrimary" gutterBottom>
-                      To happier, productive, and loyal employees.
-                    </Typography>
-                    <Typography variant="h6" color="TextPrimary" paragraph>
-                      Top companies choose Club.Handbook to build their employee
-                      handbooks. Complete templates, beautiful design and easy
-                      customization. Publish as a mobile-friendly digital
-                      handbook.
-                    </Typography>
-                    <br />
-                  </GridContainer>
-                </Fade>
-              </GridContainer>
-            </div>
-          </Parallax>
-          {/* Process Section */}
-          <Paper className={classes.mainContent}>
-            <Grid container xl={12}>
-              <div className={classes.processContent}>
-                <Typography
-                  component="h1"
-                  variant="h2"
-                  align="center"
-                  color="textPrimary"
-                  gutterBottom
-                >
-                  The Process
-                </Typography>
-                <Typography
-                  variant="h6"
-                  align="center"
-                  color="textSecondary"
-                  paragraph
-                >
-                  With Club.Handbook we make bringing your club members together
-                  as easy as possible:
-                </Typography>
-              </div>
-            </Grid>
-            <ProcessStepper />
-          </Paper>
-          {/* Package Section */}
-          <div className={classes.packagesContent}>
-            <Typography
-              component="h1"
-              variant="h2"
-              align="center"
-              color="textPrimary"
-              gutterBottom
-            >
-              Packages
-            </Typography>
-            <Typography
-              variant="h6"
-              align="center"
-              color="textSecondary"
-              component="p"
-            >
-              Optimized for desktop, tablet, and mobile viewing. Update in
-              real-time. Password protect your handbook. Custom domains (ie.
-              handbook.yourcompany.com)
-            </Typography>
-          </div>
-          {/* Price Cards */}
-          <CardContainer>
-            <Grid
-              container
-              spacing={40}
-              xl={6}
-              alignItems="flex-end"
+          <main>
+            {/* Parallax Header */}
+            <Parallax
               className={classes.mainContent}
+              filter
+              image={require('../assets/images/pexels-photo-1289898.jpeg')}
             >
-              {subscriptions.map(tier => (
-                <Grid
-                  item
-                  key={tier.title}
-                  xs={12}
-                  sm={tier.title === 'Enterprise' ? 12 : 6}
-                  md={4}
-                >
-                  <Fade bottom>
-                    <Card>
-                      <CardHeader
-                        title={tier.title}
-                        subheader={tier.subheader}
-                        titleTypographyProps={{ align: 'center' }}
-                        subheaderTypographyProps={{ align: 'center' }}
-                        className={classes.cardHeader}
-                      />
-                      <CardContent>
-                        <div className={classes.cardPricing}>
-                          <Typography
-                            component="h2"
-                            variant="h3"
-                            color="textPrimary"
-                          >
-                            ${tier.price}
-                          </Typography>
-                          <Typography variant="h6" color="textSecondary">
-                            /mo
-                          </Typography>
-                        </div>
-                        {tier.description.map(line => (
-                          <Typography
-                            variant="subtitle1"
-                            align="center"
-                            key={line}
-                          >
-                            {line}
-                          </Typography>
-                        ))}
-                      </CardContent>
-                      <CardActions className={classes.cardActions}>
-                        <Button
-                          component={Link}
-                          to="/login"
-                          fullWidth
-                          variant={tier.buttonVariant}
-                          color="primary"
-                        >
-                          {tier.buttonText}
-                        </Button>
-                      </CardActions>
-                    </Card>
+              <div className={classes.container}>
+                <GridContainer>
+                  <Fade left>
+                    <GridContainer xs={12} sm={12} md={6}>
+                      <Typography variant="h3" color="Primary" gutterBottom>
+                        To happier, productive, and loyal employees.
+                      </Typography>
+                      <Typography variant="h6" color="Primary" paragraph>
+                        Top companies choose Club.Handbook to build their
+                        employee handbooks. Complete templates, beautiful design
+                        and easy customization. Publish as a mobile-friendly
+                        digital handbook.
+                      </Typography>
+                      <br />
+                    </GridContainer>
                   </Fade>
+                </GridContainer>
+              </div>
+            </Parallax>
+            {/* Process Section */}
+            <Paper className={classes.mainContent}>
+              <Grid container xl={12}>
+                <div className={classes.processContent}>
+                  <Typography
+                    component="h1"
+                    variant="h2"
+                    align="center"
+                    color="textPrimary"
+                    gutterBottom
+                  >
+                    The Process
+                  </Typography>
+                  <Typography
+                    variant="h6"
+                    align="center"
+                    color="textSecondary"
+                    paragraph
+                  >
+                    With Club.Handbook we make bringing your club members
+                    together as easy as possible:
+                  </Typography>
+                </div>
+              </Grid>
+              <ProcessStepper />
+            </Paper>
+            {/* Package Section */}
+            <div className={classes.packagesContent}>
+              <Typography
+                component="h1"
+                variant="h2"
+                align="center"
+                color="textPrimary"
+                gutterBottom
+              >
+                Packages
+              </Typography>
+              <Typography
+                variant="h6"
+                align="center"
+                color="textSecondary"
+                component="p"
+              >
+                Optimized for desktop, tablet, and mobile viewing. Update in
+                real-time. Password protect your handbook. Custom domains (ie.
+                handbook.yourcompany.com)
+              </Typography>
+            </div>
+            {/* Price Cards */}
+            <CardContainer>
+              <Grid
+                container
+                spacing={40}
+                xl={6}
+                alignItems="flex-end"
+                className={classes.mainContent}
+              >
+                {subscriptions.map(tier => (
+                  <Grid
+                    item
+                    key={tier.title}
+                    xs={12}
+                    sm={tier.title === 'Enterprise' ? 12 : 6}
+                    md={4}
+                  >
+                    <Fade bottom>
+                      <Card>
+                        <CardHeader
+                          title={tier.title}
+                          subheader={tier.subheader}
+                          titleTypographyProps={{ align: 'center' }}
+                          subheaderTypographyProps={{ align: 'center' }}
+                          className={classes.cardHeader}
+                        />
+                        <CardContent>
+                          <div className={classes.cardPricing}>
+                            <Typography
+                              component="h2"
+                              variant="h3"
+                              color="textPrimary"
+                            >
+                              ${tier.price}
+                            </Typography>
+                            <Typography variant="h6" color="textSecondary">
+                              /mo
+                            </Typography>
+                          </div>
+                          {tier.description.map(line => (
+                            <Typography
+                              variant="subtitle1"
+                              align="center"
+                              key={line}
+                            >
+                              {line}
+                            </Typography>
+                          ))}
+                        </CardContent>
+                        <CardActions className={classes.cardActions}>
+                          <Button
+                            component={Link}
+                            to="/login"
+                            fullWidth
+                            variant={tier.buttonVariant}
+                            color="primary"
+                          >
+                            {tier.buttonText}
+                          </Button>
+                        </CardActions>
+                      </Card>
+                    </Fade>
+                  </Grid>
+                ))}
+              </Grid>
+            </CardContainer>
+            {/* Bottom Section */}
+            <div className={classes.packagesContent}>
+              <Typography
+                component="h1"
+                variant="h3"
+                align="center"
+                color="textPrimary"
+                gutterBottom
+              >
+                All in one easy-to-use platform.
+              </Typography>
+              <Typography
+                variant="h6"
+                align="center"
+                color="textSecondary"
+                paragraph
+              >
+                Optionally add a password to your handbook and change it anytime
+                so you are always in control of who can access it. Require
+                employees to sign your handbook with a legally binding
+                electronic signature. Invite as many people as you'd like to
+                help with the handbook. They'll be able to make changes anytime.
+              </Typography>
+              <Grid container spacing={16} justify="center">
+                <Grid item>
+                  <Button
+                    component={Link}
+                    to="/login"
+                    variant="outlined"
+                    color="primary"
+                  >
+                    Sign Up
+                  </Button>
                 </Grid>
-              ))}
-            </Grid>
-          </CardContainer>
-          {/* Bottom Section */}
-          <div className={classes.packagesContent}>
-            <Typography
-              component="h1"
-              variant="h3"
-              align="center"
-              color="textPrimary"
-              gutterBottom
-            >
-              All in one easy-to-use platform.
-            </Typography>
-            <Typography
-              variant="h6"
-              align="center"
-              color="textSecondary"
-              paragraph
-            >
-              Optionally add a password to your handbook and change it anytime
-              so you are always in control of who can access it. Require
-              employees to sign your handbook with a legally binding electronic
-              signature. Invite as many people as you'd like to help with the
-              handbook. They'll be able to make changes anytime.
-            </Typography>
-            <Grid container spacing={16} justify="center">
-              <Grid item>
-                <Button
-                  component={Link}
-                  to="/login"
-                  variant="outlined"
-                  color="primary"
-                >
-                  Sign Up
-                </Button>
+                <Grid item>
+                  <Button
+                    component={Link}
+                    to="/login"
+                    variant="contained"
+                    color="primary"
+                  >
+                    Contact Us
+                  </Button>
+                </Grid>
               </Grid>
-              <Grid item>
-                <Button
-                  component={Link}
-                  to="/login"
-                  variant="contained"
-                  color="primary"
-                >
-                  Contact Us
-                </Button>
-              </Grid>
-            </Grid>
-          </div>
-        </main>
-      </React.Fragment>
+            </div>
+          </main>
+        </React.Fragment>
+      </MuiThemeProvider>
     )
   }
 }

@@ -3,14 +3,13 @@ import SectionItem from './SectionItem'
 import { Typography } from '@material-ui/core'
 import { AddCircle, FormatLineSpacing } from '@material-ui/icons'
 import { Row, Column, iconSize } from '../../../style/layout'
+import { connect } from 'react-redux'
+import { updateSection } from '../../../store/actions/clubActions'
 const update = require('immutability-helper')
 
 class SectionsView extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      sections: this.props.sections,
-    }
+  state = {
+    sections: this.props.sections,
   }
 
   moveSection = (dragIndex, hoverIndex) => {
@@ -24,6 +23,19 @@ class SectionsView extends Component {
         },
       })
     )
+
+    this.updateSectionOrder(this.state.sections)
+  }
+
+  updateSectionOrder = sections => {
+    console.log('updating section after dnd')
+    sections.map((section, idx) => {
+      // console.log('section order', section.title, section.order)
+      const orderUpdate = { order: idx + 1 }
+      // console.log('section order', section.title, section.order)
+      console.log(section.club_id, section.id, orderUpdate)
+      this.props.updateSection(section.club_id, section.id, orderUpdate)
+    })
   }
 
   render() {
@@ -41,7 +53,7 @@ class SectionsView extends Component {
           </Column>
         </Row>
 
-        {this.state.sections.map((section, idx) => (
+        {this.props.sections.map((section, idx) => (
           <SectionItem
             key={section.id}
             index={idx}
@@ -58,4 +70,7 @@ class SectionsView extends Component {
   }
 }
 
-export default SectionsView
+export default connect(
+  null,
+  { updateSection }
+)(SectionsView)

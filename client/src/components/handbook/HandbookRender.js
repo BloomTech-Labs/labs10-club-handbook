@@ -1,13 +1,14 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import renderHTML from 'react-render-html'
 import { HandbookContainer, HandbookPreview } from '../../style/handbook'
 import { Close } from '@material-ui/icons'
 
 const SectionRender = props => {
-  if (props.sections.length === 0) {
-    return <h1>No sections loaded on this component...</h1>
-  } else if (props.displayHandbook) {
+  if (props.loading) {
+    return <h1>Loading...</h1>
+  } else if (props.sections.length === 0) {
+    return <h1>Please create a handbook and add some sections.</h1>
+  } else if (props.displayHandbook && props.sections) {
     return (
       <HandbookPreview displayOn>
         <Close onClick={props.cancel} />
@@ -24,8 +25,7 @@ const SectionRender = props => {
         })}
       </HandbookPreview>
     )
-  }
-  {
+  } else {
     return (
       <HandbookPreview>
         {props.sections.map(section => {
@@ -44,13 +44,4 @@ const SectionRender = props => {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    sections: state.clubs.sections,
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  {}
-)(SectionRender)
+export default SectionRender

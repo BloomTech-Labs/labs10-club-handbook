@@ -29,7 +29,7 @@ class Login extends React.Component {
     return (
       <>
         <Button color="inherit" variant="outlined" onClick={this.handleSubmit}>
-          Login | Register
+          Admin Portal
         </Button>
       </>
     )

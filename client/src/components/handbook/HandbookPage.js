@@ -133,6 +133,8 @@ class HandbookPage extends React.Component {
           <HandbookRender
             displayHandbook={this.state.displayHandbook}
             cancel={this.cancel}
+            sections={this.props.sections}
+            loading={this.props.loading}
           />
 
           {this.state.editView ? (
@@ -164,6 +166,7 @@ const mapStateToProps = state => {
     currentUser: state.auth.currentUser,
     club: state.clubs.clubById,
     sections: state.clubs.sections,
+    loading: state.clubs.loading,
   }
 }
 
