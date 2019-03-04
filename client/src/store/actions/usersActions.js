@@ -199,3 +199,22 @@ export const getSubscription = () => dispatch => {
       dispatch({ type: FAIL, error: err })
     })
 }
+
+export const changeSubscription = body => dispatch => {
+  dispatch({ type: START, message: `changing subscription...` })
+
+  const auth = {
+    headers: {
+      authorization: localStorage.getItem('access_token'),
+    },
+  }
+
+  axios
+    .post(`${baseURL}/api/payments/updateSubscription`, body, auth)
+    .then(res => {
+      dispatch(getSubscription())
+    })
+    .catch(err => {
+      dispatch({ type: FAIL, error: err })
+    })
+}

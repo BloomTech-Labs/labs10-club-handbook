@@ -1,8 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getSubscription } from '../../store/actions/usersActions'
+import {
+  getSubscription,
+  changeSubscription,
+} from '../../store/actions/usersActions'
 import Subscribe from './Payment'
 import ChangeSub from './ChangeSub'
+import ReactLoading from 'react-loading'
+import styled from 'styled-components'
 
 class Billing extends React.Component {
   state = {
@@ -27,23 +32,39 @@ class Billing extends React.Component {
         {this.state.hasSubscription ? (
           <ChangeSub
             subscription={this.props.subscription}
-            getSubscription={this.props.getSubscription}
+            changeSubscription={this.props.changeSubscription}
           />
         ) : (
           <Subscribe />
         )}
+        {this.props.loading ? (
+          <LoadingWindow>
+            <ReactLoading type={'spokes'} color={'rgb(65,82,179)'} />
+          </LoadingWindow>
+        ) : null}
       </div>
     )
   }
 }
+const LoadingWindow = styled.div`
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(50, 50, 50, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
 
 const mapStateToProps = state => {
   return {
     subscription: state.users.subscription,
+    loading: state.users.loading,
   }
 }
 
 export default connect(
   mapStateToProps,
-  { getSubscription }
+  { getSubscription, changeSubscription }
 )(Billing)
