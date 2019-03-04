@@ -6,7 +6,7 @@ import withStyles from '@material-ui/core/styles/withStyles'
 
 const style = {
   parallax: {
-    height: '80vh',
+    height: '90vh',
     maxHeight: '900px',
     position: 'relative',
     display: 'flex',
@@ -40,10 +40,19 @@ class Parallax extends React.Component {
     })
   }
   render() {
-    const { classes, className, children, style, small } = this.props
+    const {
+      classes,
+      filter,
+      className,
+      children,
+      image,
+      style,
+      small,
+    } = this.props
     const parallaxClasses = classNames({
       [classes.parallax]: true,
       [classes.small]: small,
+      [classes.filter]: filter,
       [className]: className !== undefined,
     })
     return (
@@ -51,6 +60,7 @@ class Parallax extends React.Component {
         className={parallaxClasses}
         style={{
           ...style,
+          backgroundImage: 'url(' + image + ')',
           ...this.state,
         }}
         ref="parallax"
@@ -65,7 +75,9 @@ Parallax.propTypes = {
   classes: PropTypes.object.isRequired,
   className: PropTypes.string,
   children: PropTypes.node,
+  filter: PropTypes.bool,
   style: PropTypes.string,
+  image: PropTypes.string,
 }
 
 export default withStyles(style)(Parallax)
