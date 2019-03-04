@@ -14,6 +14,14 @@ export const FormContainer = styled.div`
   z-index: 10;
   background: white;
 
+  @media ${size.laptop} {
+    left: 10%;
+  }
+
+  @media (max-width: 660px) {
+    left: 2%;
+  }
+
   @media ${size.mobile} {
     width: 100%;
     left: 0;

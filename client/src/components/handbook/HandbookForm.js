@@ -14,6 +14,10 @@ const ClubForm = styled.form`
   border-top-right-radius: 0;
   box-shadow: 0 1px 1px gray;
 
+  @media ${size.laptop} {
+    width: 29%;
+  }
+
   @media ${size.tablet} {
     width: 60%;
     margin: 0 auto;
