@@ -15,7 +15,6 @@ import {
 
 class HandbookPage extends React.Component {
   state = {
-    // user has a club?
     sectionView: false,
     editView: false,
     addView: false,
@@ -23,6 +22,7 @@ class HandbookPage extends React.Component {
     title: '',
     sectionId: '',
     value: 0,
+    displayHandbook: false,
   }
 
   componentDidMount() {
@@ -94,6 +94,15 @@ class HandbookPage extends React.Component {
     this.setState({
       addView: false,
       editView: false,
+      displayHandbook: false,
+    })
+  }
+
+  displayHandbook = ev => {
+    console.log('display handbook')
+    ev.preventDefault()
+    this.setState({
+      displayHandbook: true,
     })
   }
 
@@ -116,10 +125,17 @@ class HandbookPage extends React.Component {
             handleChange={this.handleChange}
             handleTabChange={this.handleTabChange}
             value={this.state.value}
+            club={this.props.club}
             clubId={this.props.club.id}
+            displayHandbook={this.displayHandbook}
           />
 
-          <HandbookRender />
+          <HandbookRender
+            displayHandbook={this.state.displayHandbook}
+            cancel={this.cancel}
+            sections={this.props.sections}
+            loading={this.props.loading}
+          />
 
           {this.state.editView ? (
             <SectionForm
@@ -150,6 +166,7 @@ const mapStateToProps = state => {
     currentUser: state.auth.currentUser,
     club: state.clubs.clubById,
     sections: state.clubs.sections,
+    loading: state.clubs.loading,
   }
 }
 

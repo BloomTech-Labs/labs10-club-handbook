@@ -97,9 +97,13 @@ router.post(
       })
 
       //create invoice to pay/credit difference
-      await stripe.invoices.create({
-        customer: newSub.customer,
-      })
+      try {
+        await stripe.invoices.create({
+          customer: newSub.customer,
+        })
+      } catch (err) {
+        console.log(err)
+      }
 
       let newInfo = {
         customer: newSub.customer,

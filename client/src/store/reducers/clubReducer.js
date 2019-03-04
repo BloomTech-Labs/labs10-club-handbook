@@ -126,7 +126,7 @@ const clubReducer = (state = initialState, action) => {
       return {
         ...state,
         sections: state.sections.filter(
-          section => section.id !== action.payload
+          section => section.id.toString() !== action.payload.id.toString()
         ),
         loading: false,
         message: null,
