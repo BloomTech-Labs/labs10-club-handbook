@@ -15,6 +15,7 @@ const styles = theme => ({
     width: '100%',
     justifyContent: 'center',
     alignContent: 'center',
+    padding: 30,
     backgroundColor: theme.palette.background.paper,
   },
   stepButtons: {
