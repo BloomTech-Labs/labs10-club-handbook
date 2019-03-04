@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import SectionsView from './views/SectionsView'
 import DetailsView from './views/DetailsView'
+import { connect } from 'react-redux'
+import { deleteSectionById } from '../../store/actions/clubActions'
 
 import { Paper, Tabs, Tab } from '@material-ui/core'
 import { size } from '../../style/breakpoints'
@@ -55,6 +57,7 @@ const HandbookForm = props => {
               toggleEditView={props.toggleEditView}
               toggleAddView={props.toggleAddView}
               clubId={props.clubId}
+              deleteSectionById={props.deleteSectionById}
             />
           ) : (
             <DetailsView
@@ -73,4 +76,7 @@ const HandbookForm = props => {
   )
 }
 
-export default HandbookForm
+export default connect(
+  null,
+  { deleteSectionById }
+)(HandbookForm)

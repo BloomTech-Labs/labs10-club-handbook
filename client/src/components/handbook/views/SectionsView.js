@@ -1,40 +1,61 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React, { Component } from 'react'
 import SectionItem from './SectionItem'
-import { deleteSectionById } from '../../../store/actions/clubActions'
 import { Typography } from '@material-ui/core'
-import { AddCircle, Delete, FormatLineSpacing } from '@material-ui/icons'
+import { AddCircle, FormatLineSpacing } from '@material-ui/icons'
+import { Row, Column, iconSize } from '../../../style/layout'
+const update = require('immutability-helper')
 
-import { Row, Column, iconSize, SectionBox } from '../../../style/layout'
+class SectionsView extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      sections: this.props.sections,
+    }
+  }
 
-const SectionsView = props => {
-  return (
-    <>
-      <Row>
-        <Column>
-          <AddCircle onClick={props.toggleAddView} style={iconSize} />
-          <Typography variant="header6">Add</Typography>
-        </Column>
+  moveSection = (dragIndex, hoverIndex) => {
+    const { sections } = this.state
+    const dragSection = sections[dragIndex]
 
-        <Column>
-          <FormatLineSpacing style={iconSize} />
-          <Typography variant="header6">Reorder</Typography>
-        </Column>
-      </Row>
+    this.setState(
+      update(this.state, {
+        sections: {
+          $splice: [[dragIndex, 1], [hoverIndex, 0, dragSection]],
+        },
+      })
+    )
+  }
 
-      {props.sections.map(section => (
-        <SectionItem
-          section={section}
-          deleteSectionById={props.deleteSectionById}
-          toggleEditView={props.toggleEditView}
-          clubId={props.clubId}
-        />
-      ))}
-    </>
-  )
+  render() {
+    return (
+      <div>
+        <Row>
+          <Column>
+            <AddCircle onClick={this.props.toggleAddView} style={iconSize} />
+            <Typography variant="header6">Add</Typography>
+          </Column>
+
+          <Column>
+            <FormatLineSpacing style={iconSize} />
+            <Typography variant="header6">Reorder</Typography>
+          </Column>
+        </Row>
+
+        {this.state.sections.map((section, idx) => (
+          <SectionItem
+            key={section.id}
+            index={idx}
+            id={section.id}
+            section={section}
+            deleteSectionById={this.props.deleteSectionById}
+            toggleEditView={this.props.toggleEditView}
+            clubId={this.props.clubId}
+            moveSection={this.moveSection}
+          />
+        ))}
+      </div>
+    )
+  }
 }
 
-export default connect(
-  null,
-  { deleteSectionById }
-)(SectionsView)
+export default SectionsView
