@@ -38,7 +38,6 @@ export const getClubById = id => dispatch => {
     },
   }
   axios
-    // .get(`http://localhost:5000/api/clubs/${id}`, header)
     .get(`${baseURL}/api/clubs/${id}`, header)
     .then(res => {
       // returns an object with the club details
@@ -57,7 +56,6 @@ export const createClub = clubInfo => dispatch => {
     },
   }
   axios
-    // .post(`http://localhost:5000/api/clubs`, clubInfo, header)
     .post(`${baseURL}/api/clubs`, clubInfo, header)
     .then(res => {
       // returns an object with the club details
@@ -76,7 +74,6 @@ export const updateClub = (id, clubInfo) => dispatch => {
     },
   }
   axios
-    // .patch(`http://localhost:5000/api/clubs/${id}`, clubInfo, header)
     .patch(`${baseURL}/api/clubs/${id}`, clubInfo, header)
     .then(res => {
       // returns an object with the club details
@@ -116,7 +113,6 @@ export const getClubSections = id => dispatch => {
     },
   }
   axios
-    // .get(`http://localhost:5000/api/clubs/${id}/sections`, header)
     .get(`${baseURL}/api/clubs/${id}/sections`, header)
     .then(res => {
       // returns an array of section objects
