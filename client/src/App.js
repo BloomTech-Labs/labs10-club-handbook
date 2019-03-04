@@ -23,6 +23,10 @@ import { connect } from 'react-redux'
 import { getInfoFromToken } from './store/actions/usersActions'
 import HandbookMemberView from './components/handbook/HandbookMemberView'
 
+import { compose } from 'redux'
+import HTML5Backend from 'react-dnd-html5-backend'
+import { DragDropContext } from 'react-dnd'
+
 class App extends Component {
   componentDidMount() {
     // let token = localStorage.getItem('access_token')
@@ -74,7 +78,10 @@ class App extends Component {
   }
 }
 
-export default connect(
-  null,
-  { getInfoFromToken }
+export default compose(
+  DragDropContext(HTML5Backend),
+  connect(
+    null,
+    { getInfoFromToken }
+  )
 )(App)

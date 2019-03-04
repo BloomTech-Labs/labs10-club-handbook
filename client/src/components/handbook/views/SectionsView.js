@@ -1,46 +1,61 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { deleteSectionById } from '../../../store/actions/clubActions'
+import React, { Component } from 'react'
+import SectionItem from './SectionItem'
 import { Typography } from '@material-ui/core'
-import { AddCircle, Delete, FormatLineSpacing } from '@material-ui/icons'
+import { AddCircle, FormatLineSpacing } from '@material-ui/icons'
+import { Row, Column, iconSize } from '../../../style/layout'
+const update = require('immutability-helper')
 
-import { Row, Column, iconSize, SectionBox } from '../../../style/layout'
+class SectionsView extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      sections: this.props.sections,
+    }
+  }
 
-const SectionsView = props => {
-  return (
-    <div className="section-block">
-      <Row>
-        <Column>
-          <AddCircle onClick={props.toggleAddView} style={iconSize} />
-          <Typography variant="header6">Add</Typography>
-        </Column>
+  moveSection = (dragIndex, hoverIndex) => {
+    const { sections } = this.state
+    const dragSection = sections[dragIndex]
 
-        <Column>
-          <FormatLineSpacing style={iconSize} />
-          <Typography variant="header6">Reorder</Typography>
-        </Column>
-      </Row>
-      {props.sections.map(section => (
-        <Row
-          key={section.id}
-          onClick={() => props.toggleEditView(section.id)}
-          style={{ cursor: 'pointer' }}
-        >
-          <SectionBox>
-            {/* <img src={section.img_url} /> */}
-            <Typography variant="header4">{section.title}</Typography>
-          </SectionBox>
+    this.setState(
+      update(this.state, {
+        sections: {
+          $splice: [[dragIndex, 1], [hoverIndex, 0, dragSection]],
+        },
+      })
+    )
+  }
 
-          <Delete
-            onClick={() => props.deleteSectionById(props.clubId, section.id)}
-          />
+  render() {
+    return (
+      <div>
+        <Row>
+          <Column>
+            <AddCircle onClick={this.props.toggleAddView} style={iconSize} />
+            <Typography variant="header6">Add</Typography>
+          </Column>
+
+          <Column>
+            <FormatLineSpacing style={iconSize} />
+            <Typography variant="header6">Reorder</Typography>
+          </Column>
         </Row>
-      ))}
-    </div>
-  )
+
+        {this.state.sections.map((section, idx) => (
+          <SectionItem
+            key={section.id}
+            index={idx}
+            id={section.id}
+            section={section}
+            deleteSectionById={this.props.deleteSectionById}
+            toggleEditView={this.props.toggleEditView}
+            clubId={this.props.clubId}
+            moveSection={this.moveSection}
+          />
+        ))}
+      </div>
+    )
+  }
 }
 
-export default connect(
-  null,
-  { deleteSectionById }
-)(SectionsView)
+export default SectionsView

@@ -12,9 +12,20 @@ export const FormContainer = styled.div`
   position: absolute;
   left: 20%;
   z-index: 10;
+  background: white;
+
+  @media ${size.laptop} {
+    left: 10%;
+  }
+
+  @media (max-width: 660px) {
+    left: 2%;
+  }
 
   @media ${size.mobile} {
     width: 100%;
+    left: 0;
+
     h2 {
       font-size: 1.8rem;
     }
