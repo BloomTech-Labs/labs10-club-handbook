@@ -21,6 +21,7 @@ router.post(
   async (req, res) => {
     let plan = req.body.subscription.plan
 
+    //check Database for a subscription
     let subOnDB = await db('subscriptions')
       .where({ user_id: req.userInfo.id })
       .first()
@@ -190,13 +191,21 @@ async function checkMemberSizeToDowngrade(req, res, next) {
   }
 
   try {
+    if (!req.userInfo.club_id) {
+      // no club => no members
+      next()
+    }
     let members = await db('users').where({ club_id: req.userInfo.club_id })
 
-    if (req.desiredPlan === plans.free && members.length <= memberLimit.free) {
+    if (
+      req.desiredPlan === plans.free &&
+      members.length <= memberLimit.free + 1
+    ) {
+      //+1 is to account for the club owner
       next()
     } else if (
       req.desiredPlan === plans.smallBiz &&
-      members.length <= memberLimit.smallBiz
+      members.length <= memberLimit.smallBiz + 1
     ) {
       next()
     } else if (req.desiredPlan === plans.enterprise) {
