@@ -8,6 +8,9 @@ export const AUTHORIZATION_SUCCESS = 'AUTHORIZATION_SUCCESS'
 export const AUTHORIZATION_FAIL = 'AUTHORIZATION_FAIL'
 export const LOGOUT_USER = 'LOGOUT_USER'
 
+const baseURL = 'https://club-handbook.herokuapp.com'
+// const baseURL = 'http://localhost:5000'
+
 const auth = new Auth()
 
 const authEmail = new AuthEmail()
@@ -26,21 +29,20 @@ export const handleAuthorization = () => dispatch => {
   auth
     .handleAuthentication()
     .then(res => {
-
       const userObject = {
         accessToken: res.accessToken,
         idToken: res.idToken,
       }
 
       axios
-        .post(
-          `https://club-handbook.herokuapp.com/api/users/register`,
-          userObject
-        )
+        .post(`${baseURL}/api/users/register`, userObject)
         .then(res => {
-
           console.log(res)
-          dispatch({ type: AUTHORIZATION_SUCCESS, payload: res.data.user, message: 'User authorized.'})
+          dispatch({
+            type: AUTHORIZATION_SUCCESS,
+            payload: res.data.user,
+            message: 'User authorized.',
+          })
         })
         .catch(err => console.log(err))
     })
@@ -61,17 +63,13 @@ export const handleAuthorizationEmail = () => dispatch => {
   authEmail
     .handleAuthentication()
     .then(res => {
-
       const userObject = {
         accessToken: res.accessToken,
         idToken: res.idToken,
       }
 
       axios
-        .post(
-          `https://club-handbook.herokuapp.com/api/users/register-magiclink`,
-          userObject
-        )
+        .post(`${baseURL}/api/users/register-magiclink`, userObject)
         .then(res => {
           console.log(res)
           dispatch({

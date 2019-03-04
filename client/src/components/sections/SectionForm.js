@@ -21,7 +21,7 @@ class SectionForm extends Component {
     imgPlacement: 4,
     selectedFile: null,
     image: '',
-    orderPosition: null,
+    orderPosition: this.props.sections ? this.props.sections.length + 1 : 1,
     contactName: '',
     contactInfo: '',
     color: null,
@@ -90,6 +90,7 @@ class SectionForm extends Component {
       img_placement: this.state.imgPlacement,
       contact_name: this.state.contactName,
       contact_info: this.state.contactInfo,
+      order: this.state.orderPosition,
     }
     this.props.addSection(this.state.clubId, sectionInfo)
     this.props.cancel(ev)

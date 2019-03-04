@@ -23,6 +23,7 @@ import Parallax from './Header'
 import GridContainer from './Grid'
 import Fade from 'react-reveal/Fade'
 import styled from 'styled-components'
+import { red } from '@material-ui/core/colors'
 
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
 import Theme from '../style/colors'
@@ -39,6 +40,9 @@ const styles = theme => ({
   appBar: {
     position: 'fixed',
     zIndex: 1,
+  },
+  navButton: {
+    margin: 20,
   },
   toolbarTitle: {
     flex: 1,

@@ -268,6 +268,7 @@ router.get(
           'sections.order',
           'sections.club_id'
         )
+        .orderBy('order')
       res.status(200).json(sections)
     } catch (err) {
       res.status(500).json(err)
