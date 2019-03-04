@@ -23,6 +23,7 @@ import Parallax from './Header'
 import GridContainer from './Grid'
 import Fade from 'react-reveal/Fade'
 import styled from 'styled-components'
+import { red } from '@material-ui/core/colors'
 
 const CardContainer = styled.div`
   margin: auto;
@@ -36,6 +37,9 @@ const styles = theme => ({
   appBar: {
     position: 'fixed',
     zIndex: 1,
+  },
+  navButton: {
+    margin: 20,
   },
   toolbarTitle: {
     flex: 1,
@@ -118,29 +122,30 @@ class Landing extends React.Component {
       <React.Fragment>
         <CssBaseline />
         {/* Navbar */}
-        <Fade top>
-          <AppBar className={classes.appBar}>
-            <Toolbar>
-              <Typography
-                variant="h6"
-                color="inherit"
-                noWrap
-                className={classes.toolbarTitle}
-              >
-                Club.Handbook
-              </Typography>
-              <Button component={Login} color="inherit" variant="outlined" />
-              <Button
-                component={Link}
-                to="/handbook/member-view"
-                color="inherit"
-                variant="outlined"
-              >
-                View Handbook{' '}
-              </Button>
-            </Toolbar>
-          </AppBar>
-        </Fade>
+
+        <AppBar className={classes.appBar}>
+          <Toolbar>
+            <Typography
+              variant="h6"
+              color="inherit"
+              noWrap
+              className={classes.toolbarTitle}
+            >
+              Clique.Book
+            </Typography>
+            <Button
+              className={classes.navButton}
+              component={Link}
+              to="/handbook/member-view"
+              color="secondary"
+              variant="contained"
+            >
+              Find My Handbook{' '}
+            </Button>
+            <Button variant="contained" color="primary" component={Login} />
+          </Toolbar>
+        </AppBar>
+
         <main>
           {/* Parallax Header */}
           <Parallax className={classes.mainContent}>
