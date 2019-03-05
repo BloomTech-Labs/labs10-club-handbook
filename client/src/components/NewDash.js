@@ -2,26 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
-import Drawer from '@material-ui/core/Drawer'
 import AppBar from '@material-ui/core/AppBar'
 import Button from '@material-ui/core/Button'
 import Toolbar from '@material-ui/core/Toolbar'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Typography from '@material-ui/core/Typography'
-import IconButton from '@material-ui/core/IconButton'
-import MenuIcon from '@material-ui/icons/Menu'
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
-import ChevronRightIcon from '@material-ui/icons/ChevronRight'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
-import ListItemText from '@material-ui/core/ListItemText'
-import DashboardIcon from '@material-ui/icons/Dashboard'
-import PeopleIcon from '@material-ui/icons/People'
-import SettingsIcon from '@material-ui/icons/Settings'
-import SubjectIcon from '@material-ui/icons/Subject'
-import CreditCardIcon from '@material-ui/icons/CreditCard'
-import LibraryBooksIcon from '@material-ui/icons/LibraryBooks'
-import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 import Settings from './Settings'
 import Members from './users/Members'
@@ -29,7 +15,10 @@ import SectionForm from './sections/SectionForm'
 import Billing from './billing/Payment'
 import HandbookPage from './handbook/HandbookPage'
 import Auth from '../auth/Auth'
-import MenuPopupState from './NewDashMenu'
+// import RenderPropsMenu from './NewDashMenu'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
+import RenderPropsMenu from './NewDashMenu'
 
 const auth = new Auth()
 
@@ -47,7 +36,7 @@ const styles = theme => ({
     }),
   },
   navButton: {
-    margin: 10,
+    marginRight: 10,
   },
   navButtons: {
     marginRight: 40,
@@ -108,6 +97,10 @@ const styles = theme => ({
     }),
     marginLeft: 0,
   },
+  root: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.paper,
+  },
 })
 
 function SectionContainer(props) {
@@ -122,39 +115,25 @@ SectionContainer.propTypes = {
   children: PropTypes.node.isRequired,
 }
 
+function TabContainer(props) {
+  return (
+    <Typography component="div" style={{ padding: 8 * 3 }}>
+      {props.children}
+    </Typography>
+  )
+}
+
+TabContainer.propTypes = {
+  children: PropTypes.node.isRequired,
+}
+
 class DashBar extends React.Component {
   state = {
-    open: false,
+    value: 0,
   }
 
-  handleDash = () => {
-    this.setState({ value: 0 })
-  }
-  handleMembers = () => {
-    this.setState({ value: 1 })
-  }
-  handleHandbook = () => {
-    this.setState({ value: 2 })
-  }
-  handleSections = () => {
-    this.setState({ value: 3 })
-  }
-  handleSettings = () => {
-    this.setState({ value: 4 })
-  }
-  handleBilling = () => {
-    this.setState({ value: 5 })
-  }
-  handleDrawerOpen = () => {
-    this.setState({ open: true })
-  }
-
-  handleDrawerClose = () => {
-    this.setState({ open: false })
-  }
-
-  logoutUser = () => {
-    auth.logout()
+  handleChange = (event, value) => {
+    this.setState({ value })
   }
 
   render() {
@@ -188,30 +167,40 @@ class DashBar extends React.Component {
             </Typography>
 
             <div className={classes.navButtons}>
-              <Button
-                className={classes.navButton}
-                component={Link}
-                to="/members"
-                color="secondary"
-                variant="contained"
-                // lassName={classes.toolbar}
-                // onClick={this.logoutUser}
-              >
-                Manage Members
-              </Button>
-              <Button
+              {/* <Button
                 className={classes.navButton}
                 component={Link}
                 to="/handbook"
-                color="primary"
+                color="secondary"
                 variant="contained"
                 // lassName={classes.toolbar}
                 // onClick={this.logoutUser}
               >
                 Manage Handbook
               </Button>
+              <Button
+                className={classes.navButton}
+                component={Link}
+                to="/members"
+                color="primary"
+                variant="contained"
+                // lassName={classes.toolbar}
+                // onClick={this.logoutUser}
+              >
+                Manage Members
+              </Button> */}
             </div>
-            <MenuPopupState />
+            <Tabs value={value} onChange={this.handleChange}>
+              <Tab
+                label="Manage Handbook"
+                onClick={() => this.props.history.push('/handbook')}
+              />
+              <Tab
+                label="Manage Members"
+                onClick={() => this.props.history.push('/members')}
+              />
+            </Tabs>
+            <RenderPropsMenu />
             {/* <a href="https://club-handbook.auth0.com/v2/logout">
               <Button
                 // component={Link}
@@ -226,82 +215,9 @@ class DashBar extends React.Component {
             </a> */}
           </Toolbar>
         </AppBar>
-        <Drawer
-          className={classes.drawer}
-          variant="persistent"
-          anchor="left"
-          open={open}
-          value={value}
-          onChange={this.handleChange}
-          classes={{
-            paper: classes.drawerPaper,
-          }}
-        >
-          <div className={classes.drawerHeader}>
-            <IconButton onClick={this.handleDrawerClose}>
-              {theme.direction === 'ltr' ? (
-                <ChevronLeftIcon />
-              ) : (
-                <ChevronRightIcon />
-              )}
-            </IconButton>
-          </div>
 
-          <ListItem button component={Link} to="./handbook">
-            <ListItemIcon>
-              <SubjectIcon />
-            </ListItemIcon>
-            <ListItemText primary="Handbook" />
-          </ListItem>
-          <ListItem button component={Link} to="./members">
-            <ListItemIcon>
-              <PeopleIcon />
-            </ListItemIcon>
-            <ListItemText primary="Members" />
-          </ListItem>
-
-          <ListItem button component={Link} to="./billing">
-            <ListItemIcon>
-              <CreditCardIcon />
-            </ListItemIcon>
-            <ListItemText primary="Billing" />
-          </ListItem>
-          <ListItem button component={Link} to="./settings">
-            <ListItemIcon>
-              <SettingsIcon />
-            </ListItemIcon>
-            <ListItemText primary="Settings" />
-          </ListItem>
-        </Drawer>
-        <main className={classes.content}>
-          <div className={classes.toolbar} />
-          {value === 0 && <SectionContainer>Dashboard</SectionContainer>}
-          {value === 1 && (
-            <SectionContainer>
-              <Members />
-            </SectionContainer>
-          )}
-          {value === 2 && (
-            <SectionContainer>
-              <HandbookPage />
-            </SectionContainer>
-          )}
-          {value === 3 && (
-            <SectionContainer>
-              <SectionForm />
-            </SectionContainer>
-          )}
-          {value === 4 && (
-            <SectionContainer>
-              <Settings />
-            </SectionContainer>
-          )}
-          {value === 5 && (
-            <SectionContainer>
-              <Billing />
-            </SectionContainer>
-          )}
-        </main>
+        {value === 0 && <TabContainer>Manage Handbook</TabContainer>}
+        {value === 1 && <TabContainer>Manage Members</TabContainer>}
       </div>
     )
   }
@@ -312,4 +228,4 @@ DashBar.propTypes = {
   theme: PropTypes.object.isRequired,
 }
 
-export default withStyles(styles, { withTheme: true })(DashBar)
+export default withRouter(withStyles(styles, { withTheme: true })(DashBar))
