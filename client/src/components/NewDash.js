@@ -7,10 +7,15 @@ import Button from '@material-ui/core/Button'
 import Toolbar from '@material-ui/core/Toolbar'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Typography from '@material-ui/core/Typography'
-import { Link } from 'react-router-dom'
+
+import { withRouter } from 'react-router-dom'
+
 
 import Auth from '../auth/Auth'
-import MenuPopupState from './NewDashMenu'
+// import RenderPropsMenu from './NewDashMenu'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
+import RenderPropsMenu from './NewDashMenu'
 
 const auth = new Auth()
 
@@ -28,7 +33,7 @@ const styles = theme => ({
     }),
   },
   navButton: {
-    margin: 10,
+    marginRight: 10,
   },
   navButtons: {
     marginRight: 40,
@@ -88,6 +93,10 @@ const styles = theme => ({
     }),
     marginLeft: 0,
   },
+  root: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.paper,
+  },
 })
 
 function SectionContainer(props) {
@@ -102,10 +111,31 @@ SectionContainer.propTypes = {
   children: PropTypes.node.isRequired,
 }
 
+
+function TabContainer(props) {
+  return (
+    <Typography component="div" style={{ padding: 8 * 3 }}>
+      {props.children}
+    </Typography>
+  )
+}
+
+TabContainer.propTypes = {
+  children: PropTypes.node.isRequired,
+}
+
 class DashBar extends React.Component {
-  logoutUser = () => {
+  state = {
+    value: 0,
+  }
+
+logoutUser = () => {
     auth.logout()
   }
+
+
+  handleChange = (event, value) => {
+    this.setState({ value })
 
   render() {
     const { classes } = this.props
@@ -125,30 +155,40 @@ class DashBar extends React.Component {
             </Typography>
 
             <div className={classes.navButtons}>
-              <Button
-                className={classes.navButton}
-                component={Link}
-                to="/members"
-                color="secondary"
-                variant="contained"
-                // lassName={classes.toolbar}
-                // onClick={this.logoutUser}
-              >
-                Manage Members
-              </Button>
-              <Button
+              {/* <Button
                 className={classes.navButton}
                 component={Link}
                 to="/handbook"
-                color="primary"
+                color="secondary"
                 variant="contained"
                 // lassName={classes.toolbar}
                 // onClick={this.logoutUser}
               >
                 Manage Handbook
               </Button>
+              <Button
+                className={classes.navButton}
+                component={Link}
+                to="/members"
+                color="primary"
+                variant="contained"
+                // lassName={classes.toolbar}
+                // onClick={this.logoutUser}
+              >
+                Manage Members
+              </Button> */}
             </div>
-            <MenuPopupState />
+            <Tabs value={value} onChange={this.handleChange}>
+              <Tab
+                label="Manage Handbook"
+                onClick={() => this.props.history.push('/handbook')}
+              />
+              <Tab
+                label="Manage Members"
+                onClick={() => this.props.history.push('/members')}
+              />
+            </Tabs>
+            <RenderPropsMenu />
             {/* <a href="https://club-handbook.auth0.com/v2/logout">
               <Button
                 // component={Link}
@@ -163,6 +203,11 @@ class DashBar extends React.Component {
             </a> */}
           </Toolbar>
         </AppBar>
+
+
+        {value === 0 && <TabContainer>Manage Handbook</TabContainer>}
+        {value === 1 && <TabContainer>Manage Members</TabContainer>}
+
       </div>
     )
   }
@@ -173,4 +218,4 @@ DashBar.propTypes = {
   theme: PropTypes.object.isRequired,
 }
 
-export default withStyles(styles, { withTheme: true })(DashBar)
+export default withRouter(withStyles(styles, { withTheme: true })(DashBar))
