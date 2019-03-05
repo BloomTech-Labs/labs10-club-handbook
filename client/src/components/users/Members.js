@@ -67,7 +67,7 @@ class Members extends React.Component {
         <DashDrawer />
         
         <Container>
-          <HeaderBar>ClubMembers</HeaderBar>
+          <HeaderBar>{this.props.clubName} Members</HeaderBar>
           <AddMember />
 
           <MembersList>
