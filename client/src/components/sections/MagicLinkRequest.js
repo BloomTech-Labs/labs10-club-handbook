@@ -1,49 +1,69 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import AuthEmail from '../../auth/AuthEmail';
-import styled from 'styled-components';
+import AuthEmail from '../../auth/AuthEmail'
+import styled from 'styled-components'
 
 // #region Styled Components
 const SContainer = styled.div`
-  background: lightgrey;
-  border: 1px solid black;
-  width: 700px;
-  height: 300px;
   position: fixed;
-  top: 50%;
-  left: 50%;
-  margin-top: -150px;
-  margin-left: -350px;
-  z-index: 10;
-`;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(75, 75, 75, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
 
 const ContentContainer = styled.div`
-  padding: 10%;
+  padding: 20px;
+  background: linear-gradient(to right, rgb(65, 82, 179), rgb(78, 98, 215));
+  max-width: 700px;
+  border-radius: 10px;
+  color: white;
 
   h2 {
+    margin: 0;
     margin-bottom: 30px;
   }
 
   p {
+    margin: 0;
     margin-bottom: 30px;
+    font-size: 16px;
   }
 
   input {
-    width: 50%;
+    width: 70%;
+    max-width: 400px;
+    padding: 4px;
   }
 
   button {
-    margin-left: 5%;
-    border-radius: 4%;
+    margin-left: 10px;
+    border-radius: 5px;
     font-size: 1.6rem;
-    :hover {
+    border: 2px solid rgb(65, 82, 179);
+    box-shadow: 0 0 5px 5px rgba(65, 82, 179, 0.5) inset;
+    background: white;
+    color: rgb(65, 82, 179);
+    font-weight: bold;
+    padding: 8px 10px;
+
+    &:hover {
       cursor: pointer;
-      background: darkgrey;
+      background: rgb(65, 82, 179);
       color: white;
+      box-shadow: 0 0 5px 5px rgba(255, 255, 255, 0.5) inset;
+    }
+
+    &:active {
+      box-shadow: 0 0 5px 5px rgba(40, 40, 40, 0.5) inset;
+      color: black;
+      border: 2px solid black;
     }
   }
-`;
-
+`
 
 // #endregion
 
@@ -84,7 +104,7 @@ class MagicLinkRequest extends React.Component {
               placeholder="Email Address"
               value={this.props.email}
             />
-            <button type="submit">Send Magic Link</button>
+            <button type="submit">Send Link</button>
             <p>{this.state.emailStatus === true && 'email sent!'}</p>
           </form>
         </ContentContainer>
