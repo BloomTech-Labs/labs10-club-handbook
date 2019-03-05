@@ -7,13 +7,10 @@ import Button from '@material-ui/core/Button'
 import Toolbar from '@material-ui/core/Toolbar'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Typography from '@material-ui/core/Typography'
+
 import { withRouter } from 'react-router-dom'
 
-import Settings from './Settings'
-import Members from './users/Members'
-import SectionForm from './sections/SectionForm'
-import Billing from './billing/Payment'
-import HandbookPage from './handbook/HandbookPage'
+
 import Auth from '../auth/Auth'
 // import RenderPropsMenu from './NewDashMenu'
 import Tabs from '@material-ui/core/Tabs'
@@ -83,7 +80,6 @@ const styles = theme => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing.unit * 3,
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -115,6 +111,7 @@ SectionContainer.propTypes = {
   children: PropTypes.node.isRequired,
 }
 
+
 function TabContainer(props) {
   return (
     <Typography component="div" style={{ padding: 8 * 3 }}>
@@ -132,31 +129,22 @@ class DashBar extends React.Component {
     value: 0,
   }
 
-  handleChange = (event, value) => {
-    this.setState({ value })
+logoutUser = () => {
+    auth.logout()
   }
 
+
+  handleChange = (event, value) => {
+    this.setState({ value })
+
   render() {
-    const { classes, theme } = this.props
-    const { open, value } = this.state
+    const { classes } = this.props
 
     return (
       <div className={classes.root}>
         <CssBaseline />
-        <AppBar
-          position="fixed"
-          className={classNames(classes.appBar, {
-            [classes.appBarShift]: open,
-          })}
-        >
+        <AppBar position="fixed" className={classNames(classes.appBar)}>
           <Toolbar>
-            {/* <IconButton
-              color="inherit"
-              onClick={this.handleDrawerOpen}
-              className={classNames(classes.menuButton, open && classes.hide)}
-            >
-              <MenuIcon />
-            </IconButton> */}
             <Typography
               variant="h6"
               color="inherit"
@@ -216,8 +204,10 @@ class DashBar extends React.Component {
           </Toolbar>
         </AppBar>
 
+
         {value === 0 && <TabContainer>Manage Handbook</TabContainer>}
         {value === 1 && <TabContainer>Manage Members</TabContainer>}
+
       </div>
     )
   }

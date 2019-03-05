@@ -5,6 +5,7 @@ import SectionForm from '../sections/SectionForm'
 import DashBar from '../NewDash'
 import HandbookForm from './HandbookForm'
 import HandbookRender from './HandbookRender'
+import LoadingPage from '../loading/loading'
 
 import {
   getClubById,
@@ -128,13 +129,14 @@ class HandbookPage extends React.Component {
             club={this.props.club}
             clubId={this.props.club.id}
             displayHandbook={this.displayHandbook}
+            sectionView={this.state.sectionView}
           />
 
           <HandbookRender
             displayHandbook={this.state.displayHandbook}
             cancel={this.cancel}
             sections={this.props.sections}
-            loading={this.props.loading}
+            // loading={this.props.loading}
           />
 
           {this.state.editView ? (
@@ -147,16 +149,15 @@ class HandbookPage extends React.Component {
 
           {this.state.addView ? <SectionForm cancel={this.cancel} /> : null}
         </HandbookPageContainer>
+        {this.props.loading ? <LoadingPage /> : null}
       </>
     )
   }
 }
 const HandbookPageContainer = styled.div`
   display: flex;
-  max-width: 120rem;
-  justify-content: space-between;
-  margin: 0 auto;
-  margin-top: 3rem;
+  width: 100%;
+  margin-top: 6.4rem;
   position: relative;
   z-index: 0;
 `

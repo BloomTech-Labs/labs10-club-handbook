@@ -11,6 +11,7 @@ export const FormContainer = styled.div`
   box-shadow: 0 1px 10px gray;
   position: absolute;
   left: 20%;
+  top: 1rem;
   z-index: 10;
   background: white;
 
@@ -49,7 +50,7 @@ export const Row = styled.div`
 export const Label = styled.label`
   font-size: 1.6rem;
   margin-bottom: ${props => (props.marginBottom ? '1rem' : 0)};
-
+  padding-right: 10px;
   @media ${size.mobile} {
     width: 60%;
     font-size: 1.2rem;
@@ -68,8 +69,7 @@ export const SectionInput = styled.input`
 `
 
 export const ImageInput = styled.input`
-  width: 30%;
-  font-size: 1rem;
+  font-size: 12px;
 
   @media ${size.mobile} {
     width: 60%;
