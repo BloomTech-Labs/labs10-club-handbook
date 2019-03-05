@@ -26,6 +26,7 @@ import HandbookMemberView from './components/handbook/HandbookMemberView'
 import { compose } from 'redux'
 import HTML5Backend from 'react-dnd-html5-backend'
 import { DragDropContext } from 'react-dnd'
+import AddMembersMobile from './components/users/AddMembersMobile'
 
 class App extends Component {
   componentDidMount() {
@@ -71,6 +72,7 @@ class App extends Component {
               path="/handbook/member-view"
               component={HandbookMemberView}
             />
+            <Route path="/add-members-mobile" component={AddMembersMobile} />
           </Switch>
         </div>
       </BrowserRouter>

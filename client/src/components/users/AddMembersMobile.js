@@ -7,41 +7,29 @@ import { size } from '../../style/breakpoints';
 
 //#region STYLES
 const SCWrapper = styled.div`
-  width: 100%;
-  margin: 0 auto;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  width: 100vw;
+  height: 100vh;
   display: flex;
-  justify-content: center;
-  @media ${size.mobile} {
-    display: none;
-  }
+  flex-direction: column;
 `;
 const Form = styled.form`
-  width: 100%;
   display: flex;
-  justify-content: space-between;
-  @media ${size.tablet} {
-    flex-direction: column;
-}
+  flex-direction: column;
+  margin-top: 50px;
+  align-items: center;
+  /* border: 1px solid red; */
+  width: 100%;
 `;
 const SCName = styled.input`
-  width: 25%;
-  margin-right: 0 10px;
+  width: 75%;
   line-height: 1.2;
   border-radius: 3px;
-  @media ${size.tablet} {
-    width: 50%;
-}
+  margin-bottom: 10px;
 `;
 const SCEmail = styled.input`
-  width: 35%;
-  margin-right: 0 10px;
+  width: 75%;
   line-height: 1.2;
   border-radius: 3px;
-  @media ${size.tablet} {
-    width: 50%;
-}
 `;
 const StyledButton = styled.button`
   color: #000000;
@@ -52,7 +40,7 @@ const StyledButton = styled.button`
   min-width: 64px;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   text-transform: uppercase;
-  background-color: transparent;
+  background-color: white;
   :hover {
     background-color: #384AA6;
     color: white;
@@ -63,11 +51,21 @@ const StyledButton = styled.button`
     width: 100px;
 }
 `;
+const HeaderBar = styled.div`
+  width: 100%;
+  background: #3648AC;
+  font-size: 35px;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
+`;
 //#endregion
 
-class AddMembers extends React.Component {
-  constructor() {
-    super()
+class AddMembersMobile extends React.Component {
+  constructor(props) {
+    super(props)
     this.state = {
       firstname: '',
       lastname: '',
@@ -101,7 +99,10 @@ class AddMembers extends React.Component {
   render() {
     return (
       <SCWrapper>
-       
+        <HeaderBar>
+          <StyledButton onClick={() => this.props.history.push('/members')}>BACK</StyledButton>
+          <StyledButton onClick={this.handleSubmit}>ADD MEMBER</StyledButton>
+        </HeaderBar>
         <Form onSubmit={this.handleSubmit}>
           <SCName
             type="text"
@@ -131,8 +132,7 @@ class AddMembers extends React.Component {
             value={this.state.email}
             required
           />
-          {/* <Button>Add Member</Button> */}
-          <StyledButton>ADD MEMBER</StyledButton>
+          {/* <StyledButton>ADD MEMBER</StyledButton> */}
         </Form>
       </SCWrapper>
     )
@@ -149,4 +149,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { addUser }
-)(AddMembers)
+)(AddMembersMobile)

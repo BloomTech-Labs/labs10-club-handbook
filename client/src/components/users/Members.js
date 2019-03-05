@@ -45,6 +45,25 @@ const StatusHeader = styled.div`
   justify-content: flex-end;
   margin: 0 70px 10px 0;
 `;
+const PopupButton = styled.div`
+  display: none;
+  color: white;
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 10px 16px;
+  font-size: 0.875rem;
+  min-width: 64px;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  text-transform: uppercase;
+  background-color: #384AA6;
+  @media ${size.mobile} {
+    display: block;
+    position: fixed;
+    bottom: 10px;
+    right: 15px;
+    z-index: 10;
+  }
+`;
 //#endregion
 
 class Members extends React.Component {
@@ -68,7 +87,8 @@ class Members extends React.Component {
         
         <Container>
           <HeaderBar>{this.props.clubName} Members</HeaderBar>
-          <AddMember />
+          
+            <AddMember />
 
           <MembersList>
 
@@ -91,6 +111,7 @@ class Members extends React.Component {
               }
             })}
           </MembersList>
+          <Link to={'/add-members-mobile'}><PopupButton>ADD MEMBER</PopupButton></Link>
         </Container>
         {this.props.loading ? <LoadingPage /> : null}
       </>
