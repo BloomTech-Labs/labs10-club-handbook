@@ -10,7 +10,6 @@ import Typography from '@material-ui/core/Typography'
 
 import { withRouter } from 'react-router-dom'
 
-
 import Auth from '../auth/Auth'
 // import RenderPropsMenu from './NewDashMenu'
 import Tabs from '@material-ui/core/Tabs'
@@ -111,7 +110,6 @@ SectionContainer.propTypes = {
   children: PropTypes.node.isRequired,
 }
 
-
 function TabContainer(props) {
   return (
     <Typography component="div" style={{ padding: 8 * 3 }}>
@@ -129,16 +127,17 @@ class DashBar extends React.Component {
     value: 0,
   }
 
-logoutUser = () => {
+  logoutUser = () => {
     auth.logout()
   }
 
-
   handleChange = (event, value) => {
     this.setState({ value })
+  }
 
   render() {
     const { classes } = this.props
+    const { value } = this.state
 
     return (
       <div className={classes.root}>
@@ -204,10 +203,8 @@ logoutUser = () => {
           </Toolbar>
         </AppBar>
 
-
         {value === 0 && <TabContainer>Manage Handbook</TabContainer>}
         {value === 1 && <TabContainer>Manage Members</TabContainer>}
-
       </div>
     )
   }
