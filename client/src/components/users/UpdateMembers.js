@@ -21,6 +21,7 @@ const Form = styled.form`
 `;
 const Input = styled.input`
   margin-right: 10px;
+  border-radius: 3px;
 `;
 // const Button = styled.button`
 

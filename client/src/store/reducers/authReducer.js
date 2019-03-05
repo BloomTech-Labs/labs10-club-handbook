@@ -14,6 +14,7 @@ const initialState = {
   authorizingUser: false,
   userAuthorized: false,
   userLoggedIn: false,
+  authError: false,
 }
 
 const authReducer = (state = initialState, action) => {
@@ -34,6 +35,7 @@ const authReducer = (state = initialState, action) => {
         userLoggedIn: true,
         message: action.message,
         currentUser: action.payload,
+        authError: false,
       }
 
     case AUTHORIZATION_FAIL:
@@ -43,6 +45,7 @@ const authReducer = (state = initialState, action) => {
         userAuthorized: false,
         userLoggedIn: false,
         message: action.message,
+        authError: true,
       }
 
     case LOGOUT_USER:

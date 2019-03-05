@@ -116,10 +116,21 @@ class MagicLinkRequest extends React.Component {
             <Button type="submit">Send Magic Link</Button>
           </Form>
           <Notification>{this.state.emailStatus === true && 'Email sent!'}</Notification>
+          <Notification>{this.props.authError === true && 'Something whent wrong. Please try again.'}</Notification>
         </ContentContainer>
       </SContainer>
     )
   }
 }
 
-export default MagicLinkRequest
+const mapStateToProps = state => {
+  return {
+    userLoggedIn: state.auth.userLoggedIn,
+    authError: state.auth.authError,
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  {}
+)(MagicLinkRequest)

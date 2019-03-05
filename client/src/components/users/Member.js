@@ -40,6 +40,7 @@ const Name = styled.div`
   }
 `;
 const Email = styled.div`
+  display: flex;
   width: 50%;
   :hover {
     cursor: pointer;
@@ -64,6 +65,8 @@ class Member extends React.Component {
     super(props)
     this.state = {
       open: false,
+      // editEmail: false,
+      // email: '',
     }
   }
 
@@ -75,17 +78,53 @@ class Member extends React.Component {
     }
   }
 
+  // editEmailField = event => {
+  //   if (this.state.editEmail === false) {
+  //     this.setState({ editEmail: true })
+  //   } else {
+  //     this. setState({ editEmail: false })
+  //   }
+  //   this.setState({ email: this.props.user.email })
+  // }
+
+  // handleChanges = event => {
+  //   this.setState({ [event.target.name]: event.target.value })
+  // }
+
+  // handleSubmit = event => {
+  //   event.preventDefault()
+  //   event.stopPropagation();
+  //   console.log('handleSubmit() invoked')
+
+  //   const { userId } = this.props
+
+  //   const userChanges = {};
+
+  //   if (this.state.firstname.length > 0) userChanges.firstname = this.state.firstname;
+  //   if (this.state.lastname.length > 0) userChanges.lastname = this.state.lastname;
+  //   if (this.state.email.length > 0) userChanges.email = this.state.email;
+
+  //   this.props.updateUser(userId, userChanges)
+
+  //   this.setState({
+  //     firstname: '',
+  //     lastname: '',
+  //     email: ''
+  //   })
+  // }
+
   render() {
     console.log(this.props.user)
     return (
-      <MemberContainer onClick={this.showEditField} editVisible={this.state.open}>
-        <SCMember key={this.props.user.id}>
+      <MemberContainer editVisible={this.state.open}>
+        <SCMember onClick={this.showEditField} key={this.props.user.id}>
           <MemberInfo>
             <Name>
               <H3>{this.props.user.firstname}</H3>
               <H3>{this.props.user.lastname}</H3>
             </Name>
             <Email>
+            {/* {this.state.editEmail === false ? <H3 onClick={this.editEmailField}>{this.props.user.email}</H3> : <input type="text" name="email" onChange={this.handleChanges} value={this.state.email} />} */}
               <H3 onClick={this.showEditField}>{this.props.user.email}</H3>
             </Email>
           </MemberInfo>

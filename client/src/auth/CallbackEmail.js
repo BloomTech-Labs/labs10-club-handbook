@@ -8,14 +8,16 @@ class CallbackEmail extends React.Component {
 
     this.props.handleAuthorizationEmail()
 
-    // this.props.history.push('/handbook/member-view')
+    this.props.history.push('/handbook/member-view')
   }
 
-  componentDidUpdate() {
-    if (this.props.userLoggedIn) {
-      this.props.history.push('/handbook/member-view')
-    }
-  }
+  // componentDidUpdate() {
+  //   if (this.props.userLoggedIn) {
+  //     this.props.history.push('/handbook/member-view')
+  //   } else {
+  //     this.props.history.push('/handbook/member-view')
+  //   }
+  // }
 
   render() {
     return <div>Loading...</div>
@@ -25,6 +27,7 @@ class CallbackEmail extends React.Component {
 const mapStateToProps = state => {
   return {
     userLoggedIn: state.auth.userLoggedIn,
+    error: state.auth.error,
   }
 }
 

@@ -28,6 +28,7 @@ const SCName = styled.input`
   width: 25%;
   margin-right: 0 10px;
   line-height: 1.2;
+  border-radius: 3px;
   @media ${size.tablet} {
     width: 50%;
 }
@@ -36,6 +37,7 @@ const SCEmail = styled.input`
   width: 35%;
   margin-right: 0 10px;
   line-height: 1.2;
+  border-radius: 3px;
   @media ${size.tablet} {
     width: 50%;
 }
