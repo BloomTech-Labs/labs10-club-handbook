@@ -46,8 +46,8 @@ class LeaveTeam extends React.Component {
               Cancel
             </Button>
             <Button
-              component={Link}
-              to="https://club-handbook.auth0.com/v2/logout"
+              onClick={Link}
+              href="https://club-handbook.auth0.com/v2/logout"
               color="secondary"
               autoFocus
             >
