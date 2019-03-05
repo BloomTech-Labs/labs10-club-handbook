@@ -14,7 +14,7 @@ const ClubForm = styled.form`
   height: 100%;
   z-index: 1;
   left: 0;
-  background-color: rgb(60, 63, 67);
+  background: rgb(30, 32, 34, 0.7);
   color: white;
   overflow-x: hidden;
   overflow: scroll;
@@ -25,7 +25,7 @@ const ClubForm = styled.form`
 const Tabs = styled.div`
   display: flex;
   height: 5rem;
-  background: rgb(76, 81, 91);
+  background: rgb(255, 255, 255, 0.1);
 `
 
 const Tab = styled.div`
