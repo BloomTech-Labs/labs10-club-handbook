@@ -17,6 +17,15 @@ const PaymentContainer = styled.div`
   width: 70%;
   display: flex;
   flex-direction: column;
+
+  .card {
+    border: 2px solid rgb(65, 82, 179);
+    box-shadow: 7px 7px 7px 0 lightgray;
+  }
+
+  .MuiCardHeader-root-262 {
+    padding-bottom: 0;
+  }
 `
 
 const PaymentButton = styled.div`
@@ -25,6 +34,7 @@ const PaymentButton = styled.div`
   width: 40%;
   display: flex;
   flex-direction: column;
+
 `
 
 const styles = theme => ({
@@ -108,7 +118,7 @@ class Payment extends React.Component {
               sm={tier.title === 'Enterprise' ? 12 : 6}
               md={4}
             >
-              <Card align="center">
+              <Card className="card" align="center">
                 <CardHeader
                   title={tier.title}
                   // subheader={tier.subheader} no subheaders defined
