@@ -22,8 +22,7 @@ const ContentContainer = styled.div`
   border-radius: 10px;
   color: white;
   h2 {
-    margin: 0;
-    margin-bottom: 30px;
+    margin: 20px 0 30px;
   }
   p {
     margin: 0;
