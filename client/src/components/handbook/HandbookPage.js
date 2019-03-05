@@ -23,7 +23,6 @@ class HandbookPage extends React.Component {
     title: '',
     sectionId: '',
     value: 0,
-    displayHandbook: false,
   }
 
   componentDidMount() {
@@ -99,13 +98,6 @@ class HandbookPage extends React.Component {
     })
   }
 
-  displayHandbook = ev => {
-    console.log('display handbook')
-    ev.preventDefault()
-    this.setState({
-      displayHandbook: true,
-    })
-  }
 
   render() {
     return (
@@ -128,7 +120,6 @@ class HandbookPage extends React.Component {
             value={this.state.value}
             club={this.props.club}
             clubId={this.props.club.id}
-            displayHandbook={this.displayHandbook}
             sectionView={this.state.sectionView}
           />
 
