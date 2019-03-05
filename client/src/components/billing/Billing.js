@@ -8,9 +8,8 @@ import {
 } from '../../store/actions/usersActions'
 import Subscribe from './Payment'
 import ChangeSub from './ChangeSub'
-import ReactLoading from 'react-loading'
-import { LoadingWindow } from '../../style/loading'
-import styled from 'styled-components'
+
+import LoadingPage from '../loading/loading'
 
 class Billing extends React.Component {
   state = {
@@ -43,11 +42,7 @@ class Billing extends React.Component {
         ) : (
           <Subscribe createSubscription={this.props.createSubscription} />
         )}
-        {this.props.loading ? (
-          <LoadingWindow>
-            <ReactLoading type={'spokes'} color={'rgb(65,82,179)'} />
-          </LoadingWindow>
-        ) : null}
+        {this.props.loading ? <LoadingPage /> : null}
       </div>
     )
   }
