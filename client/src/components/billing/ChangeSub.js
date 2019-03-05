@@ -1,5 +1,5 @@
 import React from 'react'
-import DashDrawer from '../Dashboard'
+import DashBar from '../NewDash'
 import styled from 'styled-components'
 import axios from 'axios'
 
@@ -73,7 +73,7 @@ class ChangeSub extends React.Component {
   render() {
     return (
       <PaymentContainer>
-        <DashDrawer />
+        <DashBar />
 
         <h1>Your Subscription</h1>
         {this.state.subscriptionTypes

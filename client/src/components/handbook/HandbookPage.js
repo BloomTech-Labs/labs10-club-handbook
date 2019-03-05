@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import SectionForm from '../sections/SectionForm'
-import DashDrawer from '../Dashboard'
+import DashBar from '../NewDash'
 import HandbookForm from './HandbookForm'
 import HandbookRender from './HandbookRender'
 
@@ -109,7 +109,7 @@ class HandbookPage extends React.Component {
   render() {
     return (
       <>
-        <DashDrawer />
+        <DashBar />
         <HandbookPageContainer>
           <HandbookForm
             hasClub={this.state.hasClub}
