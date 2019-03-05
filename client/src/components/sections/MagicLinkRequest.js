@@ -21,23 +21,19 @@ const ContentContainer = styled.div`
   max-width: 700px;
   border-radius: 10px;
   color: white;
-
   h2 {
     margin: 20px 0 30px;
   }
-
   p {
     margin: 0;
     margin-bottom: 30px;
     font-size: 16px;
   }
-
   input {
     width: 70%;
     max-width: 400px;
     padding: 4px;
   }
-
   button {
     margin-left: 10px;
     border-radius: 5px;
@@ -48,14 +44,12 @@ const ContentContainer = styled.div`
     color: rgb(65, 82, 179);
     font-weight: bold;
     padding: 8px 10px;
-
     &:hover {
       cursor: pointer;
       background: rgb(65, 82, 179);
       color: white;
       box-shadow: 0 0 5px 5px rgba(255, 255, 255, 0.5) inset;
     }
-
     &:active {
       box-shadow: 0 0 5px 5px rgba(40, 40, 40, 0.5) inset;
       color: black;

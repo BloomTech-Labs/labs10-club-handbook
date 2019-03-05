@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { updateUser, deleteUser } from '../../store/actions/usersActions'
 import styled from 'styled-components';
 import { size } from '../../style/breakpoints';
+import Button from '@material-ui/core/Button'
 
 const UpdateContainer = styled.div`
   width: 100%;
@@ -20,10 +21,11 @@ const Form = styled.form`
 `;
 const Input = styled.input`
   margin-right: 10px;
+  border-radius: 3px;
 `;
-const Button = styled.button`
+// const Button = styled.button`
 
-`;
+// `;
 
 class UpdateMembers extends React.Component {
   constructor(props) {
@@ -98,9 +100,11 @@ class UpdateMembers extends React.Component {
             placeholder="Email Address"
             value={this.state.email}
           />
-          <Button type="submit">Update</Button>
+          {/* <Button type="submit">Update</Button> */}
+          <Button color="inherit" variant="outlined" type="submit">Update</Button>
         </Form>
-          <Button onClick={this.handleDeleteClick}>Delete</Button>
+          {/* <Button onClick={this.handleDeleteClick}>Delete</Button> */}
+          <Button color="inherit" variant="outlined" onClick={this.handleDeleteClick}>Delete</Button>
       </UpdateContainer>
     )
   }

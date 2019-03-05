@@ -1,18 +1,26 @@
 import React from 'react'
+import Button from '@material-ui/core/Button'
 
 class EmailButton extends React.Component {
   constructor(props) {
     super(props)
-    this.onClick = this.onClick.bind(this)
+    
   }
-  onClick() {
-    console.log('this.props.email', this.props.email)
-    window.location.href = `mailto:${
-      this.props.email
-    }?subject=Here's%20our%20Manual&body=www.google.com`
+  onClick = () => {
+    const subject = this.props.clubName;
+    
+    const body = `Hello ${this.props.name},%0D%0A%0DPlease click the link to view the ${this.props.clubName} handbook:%0D%0A%0Dhttps://clubhandbook.netlify.com/handbook/member-view%0D%0A%0DThank you,%0D%0A%0D ${this.props.adminFirstName} ${this.props.adminLastName}`;
+
+    window.location.href = `mailto:${this.props.email}?subject=${subject}&body=${body}`
   }
+
+
   render() {
-    return <button onClick={this.onClick}>Notify</button>
+    return (
+      // <button onClick={this.onClick}>Notify</button>
+
+      <Button color="inherit" variant="outlined" onClick={this.onClick}>Notify</Button>
+    )
   }
 }
 

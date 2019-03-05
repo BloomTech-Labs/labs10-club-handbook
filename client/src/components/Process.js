@@ -26,7 +26,8 @@ const styles = theme => ({
 function getSteps() {
   return [
     'Create your handbook',
-    'Send a magic link',
+    'Add members to your club',  
+    'Members can view the handbook by authenticating themselves with a magic link',
     'Watch the signatures roll in!',
   ]
 }

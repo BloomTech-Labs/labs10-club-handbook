@@ -5,6 +5,23 @@ import { getClubSections } from '../../store/actions/clubActions'
 import HandbookRender from './HandbookRender';
 import MagicLinkRequest from '../sections/MagicLinkRequest';
 import Signature from '../signature/Signature'
+import styled from 'styled-components';
+import { size } from '../../style/breakpoints'
+
+const HandbookViewContainer = styled.div`
+  margin: 0 auto;
+  max-width: 800px;
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+`;
+const SignatureContainer = styled.div`
+`;
+const HandbookRenderContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
 
 class HandbookMemberView extends React.Component {
   componentDidMount() {
@@ -17,9 +34,15 @@ class HandbookMemberView extends React.Component {
       return (
         <>
           <DashDrawer />
-          {/* add in code to render the proper handbook component */}
-          <Signature />
-          <HandbookRender />
+
+          <HandbookViewContainer>
+            <SignatureContainer>
+              {this.props.signed === false && <Signature />}
+            </SignatureContainer>
+            <HandbookRenderContainer>
+              <HandbookRender />
+            </HandbookRenderContainer>
+          </HandbookViewContainer>
         </>
       )
     } else {
@@ -35,7 +58,8 @@ const mapStateToProps = state => {
     sections: state.clubs.sections,
     currentUser: state.auth.currentUser,
     club_id: state.auth.currentUser.club_id,
-    authorized: state.auth.userAuthorized
+    authorized: state.auth.userAuthorized,
+    signed: state.auth.currentUser.signed
   }
 }
 
