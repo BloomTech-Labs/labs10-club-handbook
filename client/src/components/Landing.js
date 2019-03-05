@@ -134,7 +134,7 @@ class Landing extends React.Component {
                 noWrap
                 className={classes.toolbarTitle}
               >
-                Club.Handbook
+                CliqueBook
               </Typography>
               <Button component={Login} color="inherit" variant="outlined" />
               <Button
