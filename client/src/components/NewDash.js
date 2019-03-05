@@ -2,25 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
-import Drawer from '@material-ui/core/Drawer'
 import AppBar from '@material-ui/core/AppBar'
 import Button from '@material-ui/core/Button'
 import Toolbar from '@material-ui/core/Toolbar'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Typography from '@material-ui/core/Typography'
-import IconButton from '@material-ui/core/IconButton'
-import MenuIcon from '@material-ui/icons/Menu'
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
-import ChevronRightIcon from '@material-ui/icons/ChevronRight'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
-import ListItemText from '@material-ui/core/ListItemText'
-import DashboardIcon from '@material-ui/icons/Dashboard'
-import PeopleIcon from '@material-ui/icons/People'
-import SettingsIcon from '@material-ui/icons/Settings'
-import SubjectIcon from '@material-ui/icons/Subject'
-import CreditCardIcon from '@material-ui/icons/CreditCard'
-import LibraryBooksIcon from '@material-ui/icons/LibraryBooks'
 import { Link } from 'react-router-dom'
 
 import Settings from './Settings'
@@ -122,61 +108,18 @@ SectionContainer.propTypes = {
 }
 
 class DashBar extends React.Component {
-  state = {
-    open: false,
-  }
-
-  handleDash = () => {
-    this.setState({ value: 0 })
-  }
-  handleMembers = () => {
-    this.setState({ value: 1 })
-  }
-  handleHandbook = () => {
-    this.setState({ value: 2 })
-  }
-  handleSections = () => {
-    this.setState({ value: 3 })
-  }
-  handleSettings = () => {
-    this.setState({ value: 4 })
-  }
-  handleBilling = () => {
-    this.setState({ value: 5 })
-  }
-  handleDrawerOpen = () => {
-    this.setState({ open: true })
-  }
-
-  handleDrawerClose = () => {
-    this.setState({ open: false })
-  }
-
   logoutUser = () => {
     auth.logout()
   }
 
   render() {
-    const { classes, theme } = this.props
-    const { open, value } = this.state
+    const { classes } = this.props
 
     return (
       <div className={classes.root}>
         <CssBaseline />
-        <AppBar
-          position="fixed"
-          className={classNames(classes.appBar, {
-            [classes.appBarShift]: open,
-          })}
-        >
+        <AppBar position="fixed" className={classNames(classes.appBar)}>
           <Toolbar>
-            {/* <IconButton
-              color="inherit"
-              onClick={this.handleDrawerOpen}
-              className={classNames(classes.menuButton, open && classes.hide)}
-            >
-              <MenuIcon />
-            </IconButton> */}
             <Typography
               variant="h6"
               color="inherit"
@@ -225,35 +168,6 @@ class DashBar extends React.Component {
             </a> */}
           </Toolbar>
         </AppBar>
-        <main className={classes.content}>
-          <div className={classes.toolbar} />
-          {value === 0 && <SectionContainer>Dashboard</SectionContainer>}
-          {value === 1 && (
-            <SectionContainer>
-              <Members />
-            </SectionContainer>
-          )}
-          {value === 2 && (
-            <SectionContainer>
-              <HandbookPage />
-            </SectionContainer>
-          )}
-          {value === 3 && (
-            <SectionContainer>
-              <SectionForm />
-            </SectionContainer>
-          )}
-          {value === 4 && (
-            <SectionContainer>
-              <Settings />
-            </SectionContainer>
-          )}
-          {value === 5 && (
-            <SectionContainer>
-              <Billing />
-            </SectionContainer>
-          )}
-        </main>
       </div>
     )
   }
