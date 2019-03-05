@@ -86,7 +86,7 @@ const styles = theme => ({
   },
   mainContent: {
     position: 'relative',
-    zIndex: -1,
+    zIndex: 0,
   },
 })
 
