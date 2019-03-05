@@ -187,7 +187,6 @@ class DashDrawer extends React.Component {
                   // to="/"
                   color="inherit"
                   variant="outlined"
-                  lassName={classes.toolbar}
                   onClick={this.logoutUser}
                 >
                   Logout
