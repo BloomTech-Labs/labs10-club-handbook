@@ -9,6 +9,7 @@ import {
 import Subscribe from './Payment'
 import ChangeSub from './ChangeSub'
 import ReactLoading from 'react-loading'
+import { LoadingWindow } from '../../style/loading'
 import styled from 'styled-components'
 
 class Billing extends React.Component {
@@ -51,16 +52,6 @@ class Billing extends React.Component {
     )
   }
 }
-const LoadingWindow = styled.div`
-  position: fixed;
-  top: 0;
-  height: 100vh;
-  width: 100vw;
-  background: rgba(50, 50, 50, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
 
 const mapStateToProps = state => {
   return {

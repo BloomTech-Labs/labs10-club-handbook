@@ -202,3 +202,7 @@ export const deleteSectionById = (id, sectionId) => dispatch => {
       dispatch({ type: FAIL, error: err })
     })
 }
+
+export const startLoading = () => dispatch => {
+  dispatch({ type: START, message: `converting image file` })
+}
