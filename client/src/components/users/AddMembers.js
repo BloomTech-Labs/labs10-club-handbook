@@ -82,16 +82,13 @@ class AddMembers extends React.Component {
       lastname: '',
       email: '',
     });
+    this.nameInput.focus();
   }
 
   render() {
     return (
       <SCWrapper>
-        {/* <AppBar position="static">
-          <div className="members-header">
-            <h1>Add Club Member</h1>
-          </div>
-        </AppBar> */}
+       
         <Form onSubmit={this.handleSubmit}>
           <SCName
             type="text"
@@ -99,7 +96,9 @@ class AddMembers extends React.Component {
             onChange={this.handleChanges}
             placeholder="First Name"
             value={this.state.firstname}
+            ref={(input) => { this.nameInput = input; }}
             required
+            autofocus
           />
 
           <SCName
