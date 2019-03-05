@@ -8,8 +8,8 @@ import {
 } from '../../store/actions/usersActions'
 import Subscribe from './Payment'
 import ChangeSub from './ChangeSub'
-import ReactLoading from 'react-loading'
-import styled from 'styled-components'
+
+import LoadingPage from '../loading/loading'
 
 class Billing extends React.Component {
   state = {
@@ -42,25 +42,11 @@ class Billing extends React.Component {
         ) : (
           <Subscribe createSubscription={this.props.createSubscription} />
         )}
-        {this.props.loading ? (
-          <LoadingWindow>
-            <ReactLoading type={'spokes'} color={'rgb(65,82,179)'} />
-          </LoadingWindow>
-        ) : null}
+        {this.props.loading ? <LoadingPage /> : null}
       </div>
     )
   }
 }
-const LoadingWindow = styled.div`
-  position: fixed;
-  top: 0;
-  height: 100vh;
-  width: 100vw;
-  background: rgba(50, 50, 50, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
 
 const mapStateToProps = state => {
   return {

@@ -145,7 +145,9 @@ router.get(
       let club = await db('clubs')
         .where({ id: user.club_id })
         .first()
-      let sections = await db('sections').where({ club_id: user.club_id })
+      let sections = await db('sections')
+        .where({ club_id: user.club_id })
+        .orderBy('order')
       res.status(200).json({ user, club, sections })
     } catch (err) {
       res.status(500).json(err)

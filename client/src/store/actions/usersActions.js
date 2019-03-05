@@ -148,6 +148,9 @@ export const getInfoFromToken = () => dispatch => {
     .then(res => {
       if (res.status == 200) {
         dispatch({ type: GET_INFO_FROM_TOKEN, payload: res.data })
+        if (res.data.club) {
+          dispatch(getUsersByClubId(res.data.club.id))
+        }
       } else {
         dispatch({ type: FAIL_FROM_TOKEN })
       }
