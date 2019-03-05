@@ -129,16 +129,26 @@ const PaymentContainer = styled.div`
     border: 3px solid rgb(65, 82, 179);
     border-radius: 5px;
     padding: 20px;
-    box-shadow: 5px 5px 5px 0px lightgray;
+    box-shadow: 7px 7px 7px 0px lightgray;
+    min-width: 300px;
 
     h1 {
-      margin-left: 20px;
-      font-weight: bold;
-      margin-bottom: 10px;
+      /* margin-left: 20px; */
+      /* font-weight: bold; */
+      margin-bottom: 15px;
+      color: black;
+
+      @media (max-width: 550px) {
+        font-size: 30px;
+      }
     }
     h3 {
-      margin-left: 60px;
+      margin-left: 30px;
       margin-top: 10px;
+
+      @media (max-width: 550px) {
+        font-size: 24px;
+      }
     }
   }
 
@@ -152,22 +162,26 @@ const SubscriptionHolder = styled.div`
   margin-left: 30px;
   display: flex;
   justify-content: space-around;
+  margin-bottom: 30px;
 
   div {
     min-width: 200px;
     padding: 20px;
     border-radius: 5px;
     cursor: pointer;
-    background: rgb(65, 82, 179);
+    background: linear-gradient(to right, rgb(65, 82, 179), rgb(78, 98, 215));
     color: white;
     box-shadow: 5px 5px 5px 0px lightgray;
     margin-left: 10px;
+    box-shadow: 0 0 3px 3px rgb(255, 255, 255, 0.5) inset;
+    margin-bottom: 10px;
+    /* border: 2px solid black; */
 
     h3 {
       margin: 0 0 10px 0;
     }
     &:hover {
-      box-shadow: 0 0 0 10px rgb(255, 255, 255, 0.5) inset;
+      box-shadow: 0 0 7px 7px rgb(255, 255, 255, 0.5) inset;
     }
   }
   @media (max-width: 500px) {
@@ -200,6 +214,8 @@ const ConfirmationPopUp = styled.div`
     h2 {
       margin-top: 0;
       font-weight: bold;
+      padding-bottom: 15px;
+      text-decoration: underline;
     }
 
     p {
