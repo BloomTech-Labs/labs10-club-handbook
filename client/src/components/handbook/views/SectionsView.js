@@ -53,18 +53,21 @@ class SectionsView extends Component {
           </Column>
         </Row>
 
-        {this.props.sections.map((section, idx) => (
-          <SectionItem
-            key={section.id}
-            index={idx}
-            id={section.id}
-            section={section}
-            deleteSectionById={this.props.deleteSectionById}
-            toggleEditView={this.props.toggleEditView}
-            clubId={this.props.clubId}
-            moveSection={this.moveSection}
-          />
-        ))}
+        {this.props.sections.map((section, idx) => {
+          console.log('sections view: section:', section)
+          return (
+            <SectionItem
+              key={section.id}
+              index={idx}
+              id={section.id}
+              section={section}
+              deleteSectionById={this.props.deleteSectionById}
+              toggleEditView={this.props.toggleEditView}
+              clubId={this.props.clubId}
+              moveSection={this.moveSection}
+            />
+          )
+        })}
       </div>
     )
   }
