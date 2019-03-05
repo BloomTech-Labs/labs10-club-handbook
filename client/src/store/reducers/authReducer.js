@@ -4,7 +4,7 @@ import {
   AUTHORIZATION_FAIL,
   LOGOUT_USER,
 } from '../actions/authActions'
-import { START, FAIL, GET_INFO_FROM_TOKEN } from '../actions/usersActions'
+import { USERS_START, FAIL, GET_INFO_FROM_TOKEN } from '../actions/usersActions'
 
 const initialState = {
   currentUser: {},
@@ -56,7 +56,7 @@ const authReducer = (state = initialState, action) => {
         message: action.message,
       }
 
-    case START:
+    case USERS_START:
       return {
         ...state,
         loading: true,
