@@ -30,6 +30,9 @@ import Billing from './billing/Payment'
 import HandbookPage from './handbook/HandbookPage'
 import Auth from '../auth/Auth'
 
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
+import Theme from '../style/colors'
+
 const auth = new Auth()
 
 const drawerWidth = 150
@@ -153,129 +156,132 @@ class DashDrawer extends React.Component {
     const { open, value } = this.state
 
     return (
-      <div className={classes.root}>
-        <CssBaseline />
-        <AppBar
-          position="fixed"
-          className={classNames(classes.appBar, {
-            [classes.appBarShift]: open,
-          })}
-        >
-          <Toolbar>
-            <IconButton
-              color="inherit"
-              onClick={this.handleDrawerOpen}
-              className={classNames(classes.menuButton, open && classes.hide)}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography
-              variant="h6"
-              color="inherit"
-              noWrap
-              className={classes.toolbarTitle}
-            >
-              Club.Handbook
-            </Typography>
-            <a href="https://club-handbook.auth0.com/v2/logout"><Button
-              // component={Link}
-              // to="/"
-              color="inherit"
-              variant="outlined"
-              lassName={classes.toolbar}
-              onClick={this.logoutUser}
-            >
-              Logout
-            </Button></a>
-          </Toolbar>
-        </AppBar>
-        <Drawer
-          className={classes.drawer}
-          variant="persistent"
-          anchor="left"
-          open={open}
-          value={value}
-          onChange={this.handleChange}
-          classes={{
-            paper: classes.drawerPaper,
-          }}
-        >
-          <div className={classes.drawerHeader}>
-            <IconButton onClick={this.handleDrawerClose}>
-              {theme.direction === 'ltr' ? (
-                <ChevronLeftIcon />
-              ) : (
-                <ChevronRightIcon />
-              )}
-            </IconButton>
-          </div>
-          {/* <ListItem button onClick={this.handleDash}>
+      <MuiThemeProvider theme={Theme}>
+        <div className={classes.root}>
+          <CssBaseline />
+          <AppBar
+            position="fixed"
+            className={classNames(classes.appBar, {
+              [classes.appBarShift]: open,
+            })}
+          >
+            <Toolbar>
+              <IconButton
+                color="inherit"
+                onClick={this.handleDrawerOpen}
+                className={classNames(classes.menuButton, open && classes.hide)}
+              >
+                <MenuIcon />
+              </IconButton>
+              <Typography
+                variant="h6"
+                color="inherit"
+                noWrap
+                className={classes.toolbarTitle}
+              >
+                Club.Handbook
+              </Typography>
+              <a href="https://club-handbook.auth0.com/v2/logout">
+                <Button
+                  // component={Link}
+                  // to="/"
+                  color="inherit"
+                  variant="outlined"
+                  onClick={this.logoutUser}
+                >
+                  Logout
+                </Button>
+              </a>
+            </Toolbar>
+          </AppBar>
+          <Drawer
+            className={classes.drawer}
+            variant="persistent"
+            anchor="left"
+            open={open}
+            value={value}
+            onChange={this.handleChange}
+            classes={{
+              paper: classes.drawerPaper,
+            }}
+          >
+            <div className={classes.drawerHeader}>
+              <IconButton onClick={this.handleDrawerClose}>
+                {theme.direction === 'ltr' ? (
+                  <ChevronLeftIcon />
+                ) : (
+                  <ChevronRightIcon />
+                )}
+              </IconButton>
+            </div>
+            {/* <ListItem button onClick={this.handleDash}>
             <ListItemIcon>
               <DashboardIcon />
             </ListItemIcon>
             <ListItemText primary="Dashboard" />
           </ListItem> */}
-          <ListItem button component={Link} to="./handbook">
-            <ListItemIcon>
-              <SubjectIcon />
-            </ListItemIcon>
-            <ListItemText primary="Handbook" />
-          </ListItem>
-          <ListItem button component={Link} to="./members">
-            <ListItemIcon>
-              <PeopleIcon />
-            </ListItemIcon>
-            <ListItemText primary="Members" />
-          </ListItem>
-          {/* <ListItem button onClick={this.handleSections}>
+            <ListItem button component={Link} to="./handbook">
+              <ListItemIcon>
+                <SubjectIcon />
+              </ListItemIcon>
+              <ListItemText primary="Handbook" />
+            </ListItem>
+            <ListItem button component={Link} to="./members">
+              <ListItemIcon>
+                <PeopleIcon />
+              </ListItemIcon>
+              <ListItemText primary="Members" />
+            </ListItem>
+            {/* <ListItem button onClick={this.handleSections}>
             <ListItemIcon>
               <SubjectIcon />
             </ListItemIcon>
             <ListItemText primary="Sections" />
           </ListItem> */}
-          <ListItem button component={Link} to="./billing">
-            <ListItemIcon>
-              <CreditCardIcon />
-            </ListItemIcon>
-            <ListItemText primary="Billing" />
-          </ListItem>
-          <ListItem button component={Link} to="./settings">
-            <ListItemIcon>
-              <SettingsIcon />
-            </ListItemIcon>
-            <ListItemText primary="Settings" />
-          </ListItem>
-        </Drawer>
-        <main className={classes.content}>
-          <div className={classes.toolbar} />
-          {value === 0 && <SectionContainer>Dashboard</SectionContainer>}
-          {value === 1 && (
-            <SectionContainer>
-              <Members />
-            </SectionContainer>
-          )}
-          {value === 2 && (
-            <SectionContainer>
-              <HandbookPage />
-            </SectionContainer>
-          )}
-          {value === 3 && (
-            <SectionContainer>
-              <SectionForm />
-            </SectionContainer>
-          )}
-          {value === 4 && (
-            <SectionContainer>
-              <Settings />
-            </SectionContainer>
-          )}
-          {value === 5 && (
-            <SectionContainer>
-              <Billing />
-            </SectionContainer>
-          )}
-        </main>
-      </div>
+            <ListItem button component={Link} to="./billing">
+              <ListItemIcon>
+                <CreditCardIcon />
+              </ListItemIcon>
+              <ListItemText primary="Billing" />
+            </ListItem>
+            <ListItem button component={Link} to="./settings">
+              <ListItemIcon>
+                <SettingsIcon />
+              </ListItemIcon>
+              <ListItemText primary="Settings" />
+            </ListItem>
+          </Drawer>
+          <main className={classes.content}>
+            <div className={classes.toolbar} />
+            {value === 0 && <SectionContainer>Dashboard</SectionContainer>}
+            {value === 1 && (
+              <SectionContainer>
+                <Members />
+              </SectionContainer>
+            )}
+            {value === 2 && (
+              <SectionContainer>
+                <HandbookPage />
+              </SectionContainer>
+            )}
+            {value === 3 && (
+              <SectionContainer>
+                <SectionForm />
+              </SectionContainer>
+            )}
+            {value === 4 && (
+              <SectionContainer>
+                <Settings />
+              </SectionContainer>
+            )}
+            {value === 5 && (
+              <SectionContainer>
+                <Billing />
+              </SectionContainer>
+            )}
+          </main>
+        </div>
+      </MuiThemeProvider>
     )
   }
 }
