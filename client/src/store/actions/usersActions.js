@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const START = 'START'
+export const USERS_START = 'USERS_START'
 export const FAIL = 'FAIL'
 export const ADD_MEMBER_START = 'ADD_MEMBER_START'
 export const ADD_MEMBER_SUCCESS = 'ADD_MEMBER_SUCCESS'
@@ -22,7 +22,7 @@ const baseURL = 'https://club-handbook.herokuapp.com'
 // const baseURL = 'http://localhost:5000'
 
 export const getUsers = () => dispatch => {
-  dispatch({ type: START, message: `Fetching users` })
+  dispatch({ type: USERS_START, message: `Fetching users` })
 
   axios
     .get('${baseURL}/api/users')
@@ -35,7 +35,7 @@ export const getUsers = () => dispatch => {
 }
 
 export const getUserById = id => dispatch => {
-  dispatch({ type: START, message: `Getting user` })
+  dispatch({ type: USERS_START, message: `Getting user` })
   const header = {
     headers: {
       authorization: localStorage.getItem('access_token'),
@@ -52,7 +52,7 @@ export const getUserById = id => dispatch => {
 }
 
 export const getUsersByClubId = clubId => dispatch => {
-  dispatch({ type: START, message: `Getting users in club` })
+  dispatch({ type: USERS_START, message: `Getting users in club` })
 
   const header = {
     headers: {
@@ -91,7 +91,7 @@ export const addUser = user => dispatch => {
 }
 
 export const updateUser = (id, changes) => dispatch => {
-  dispatch({ type: START, message: `Updating user` })
+  dispatch({ type: USERS_START, message: `Updating user` })
 
   const requestOptions = {
     headers: {
@@ -114,7 +114,7 @@ export const updateUser = (id, changes) => dispatch => {
 }
 
 export const deleteUser = id => dispatch => {
-  dispatch({ type: START, message: `Deleting user` })
+  dispatch({ type: USERS_START, message: `Deleting user` })
 
   const requestOptions = {
     headers: {
@@ -135,7 +135,7 @@ export const deleteUser = id => dispatch => {
 }
 
 export const getInfoFromToken = () => dispatch => {
-  dispatch({ type: START, message: `getting user info...` })
+  dispatch({ type: USERS_START, message: `getting user info...` })
 
   const header = {
     headers: {
@@ -163,7 +163,7 @@ export const getInfoFromToken = () => dispatch => {
 
 export const memberSigned = (id, signature) => dispatch => {
   console.log('memberSigned() invoked in usersActions')
-  dispatch({ type: START, message: `Member Signature` })
+  dispatch({ type: USERS_START, message: `Member Signature` })
 
   const requestOptions = {
     headers: {
@@ -184,7 +184,7 @@ export const memberSigned = (id, signature) => dispatch => {
 }
 
 export const getSubscription = () => dispatch => {
-  dispatch({ type: START, message: `getting subscription info...` })
+  dispatch({ type: USERS_START, message: `getting subscription info...` })
 
   const requestOptions = {
     headers: {
@@ -206,7 +206,7 @@ export const getSubscription = () => dispatch => {
 }
 
 export const changeSubscription = body => dispatch => {
-  dispatch({ type: START, message: `changing subscription...` })
+  dispatch({ type: USERS_START, message: `changing subscription...` })
 
   const auth = {
     headers: {
@@ -229,7 +229,7 @@ export const cancelFail = () => dispatch => {
 }
 
 export const createSubscription = body => dispatch => {
-  dispatch({ type: START, message: `creating subscription...` })
+  dispatch({ type: USERS_START, message: `creating subscription...` })
 
   let auth = {
     headers: {

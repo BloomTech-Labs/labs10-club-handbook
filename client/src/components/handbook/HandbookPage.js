@@ -148,7 +148,7 @@ class HandbookPage extends React.Component {
 
           {this.state.addView ? <SectionForm cancel={this.cancel} /> : null}
         </HandbookPageContainer>
-        {this.props.loading ? <LoadingPage /> : null}
+        {this.props.loading || this.props.usersLoading ? <LoadingPage /> : null}
       </>
     )
   }
@@ -169,6 +169,7 @@ const mapStateToProps = state => {
     club: state.clubs.clubById,
     sections: state.clubs.sections,
     loading: state.clubs.loading,
+    usersLoading: state.users.loading,
   }
 }
 

@@ -1,15 +1,15 @@
-import { MEMBER_SIGNED, START, FAIL } from '../actions/usersActions'
+import { MEMBER_SIGNED, USERS_START, FAIL } from '../actions/usersActions'
 
 const initialState = {
   signature: {},
   message: null,
   error: false,
-  loading: false
+  loading: false,
 }
 
 const signReducer = (state = initialState, action) => {
   switch (action.type) {
-    case START:
+    case USERS_START:
       return {
         ...state,
         loading: true,
