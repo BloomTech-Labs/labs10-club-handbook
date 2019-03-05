@@ -72,7 +72,7 @@ class AddMembers extends React.Component {
     const user = {
       firstname: this.state.firstname,
       lastname: this.state.lastname,
-      email: this.state.email
+      email: this.state.email,
     }
 
     this.props.addUser(user)
@@ -80,7 +80,7 @@ class AddMembers extends React.Component {
     this.setState({
       firstname: '',
       lastname: '',
-      email: ''
+      email: '',
     });
   }
 
@@ -99,6 +99,7 @@ class AddMembers extends React.Component {
             onChange={this.handleChanges}
             placeholder="First Name"
             value={this.state.firstname}
+            required
           />
 
           <SCName
@@ -107,6 +108,7 @@ class AddMembers extends React.Component {
             onChange={this.handleChanges}
             placeholder="Last Name"
             value={this.state.lastname}
+            required
           />
 
           <SCEmail
@@ -115,6 +117,7 @@ class AddMembers extends React.Component {
             onChange={this.handleChanges}
             placeholder="Email Address"
             value={this.state.email}
+            required
           />
           {/* <Button>Add Member</Button> */}
           <Button color="inherit" variant="outlined" type="submit">Add Member</Button>

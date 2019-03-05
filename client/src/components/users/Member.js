@@ -114,7 +114,7 @@ class Member extends React.Component {
   // }
 
   render() {
-    console.log(this.props.user)
+    // console.log(this.props.user)
     return (
       <MemberContainer editVisible={this.state.open}>
         <SCMember onClick={this.showEditField} key={this.props.user.id}>
