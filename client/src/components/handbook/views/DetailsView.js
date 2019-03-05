@@ -1,6 +1,5 @@
 import React from 'react'
-import { size } from '../../../style/breakpoints'
-import { HandbookButton } from '../../../style/handbook'
+import { HandbookButton } from '../../../style/handbook-page/handbook'
 
 const DetailsView = props => {
   return (
