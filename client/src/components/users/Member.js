@@ -21,8 +21,8 @@ const MemberContainer = styled.div`
   background: ${props => props.editVisible === true && "#3648AC"};
   color: ${props => props.editVisible === true && "white"};
   :hover {
-    background: #3648AC;
-    color: white;
+    /* background: #3648AC; */
+    /* color: white; */
   }
 `;
 const SCMember = styled.div`
@@ -35,23 +35,38 @@ const SCMember = styled.div`
 const MemberInfo = styled.div`
   width: 75%;
   display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  @media ${size.tablet} {
+    flex-direction: column;
+    align-items: flex-start
+  }
 `;
 const Name = styled.div`
   display: flex;
-  width: 50%;
+  width: 40%;
+  @media ${size.tablet} {
+    width: 100%;
+    margin-bottom: 5px;
+  }
   :hover {
     cursor: pointer;
   }
 `;
 const Email = styled.div`
   display: flex;
-  width: 50%;
+  width: 60%;
+  max-width: 275px;
+  overflow: hidden;
   :hover {
     cursor: pointer;
   }
   @media ${size.tablet} {
-    display: none;
-}
+    width: 275px;
+  }
+  @media ${size.mobile} {
+    width: 210px;
+  }
 `;
 const UpdateMember = styled.div`
   display: ${props => props.visible === true ? "block" : "none"};
@@ -61,6 +76,7 @@ const Actions = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 0 0 0 0;
+  align-items: center;
 `;
 //#endregion
 
@@ -78,6 +94,7 @@ class Member extends React.Component {
     }
   }
 
+  //#region METHODS
   showEditField = event => {
     if (this.state.open === false) {
       this.setState({ open: true })
@@ -145,11 +162,11 @@ class Member extends React.Component {
     //   email: ''
     // })
   }
+//#endregion
 
   render() {
-    // console.log(this.props.user)
     return (
-      <Paper style={{ marginBottom: 10 }}>
+      <Paper style={{ marginBottom: 10, padding: 5 }}>
       <MemberContainer editVisible={this.state.open}>
         {/* <SCMember onClick={this.showEditField} key={this.props.user.id}> */}
         <SCMember key={this.props.user.id}>

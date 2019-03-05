@@ -3,7 +3,11 @@ import axios from 'axios'
 import TextEditor from './TextEditor'
 import { Button } from '@material-ui/core'
 import { connect } from 'react-redux'
-import { addSection, updateSection } from '../../store/actions/clubActions'
+import {
+  addSection,
+  updateSection,
+  startLoading,
+} from '../../store/actions/clubActions'
 
 import {
   FormContainer,
@@ -65,23 +69,30 @@ class SectionForm extends Component {
     this.setState({ selectedFile: e.target.files[0] })
   }
 
-  uploadImg = e => {
-    e.preventDefault()
+  uploadImg = async () => {
     console.log(`upload img`)
 
     const fd = new FormData()
     fd.append('image', this.state.selectedFile)
 
-    axios
-      .post('https://club-handbook.herokuapp.com/api/images/upload', fd)
-      .then(res => {
-        this.setState({ image: res.data.image })
-      })
-      .catch(err => console.log(err))
+    try {
+      let res = await axios.post(
+        'https://club-handbook.herokuapp.com/api/images/upload',
+        fd
+      )
+
+      this.setState({ image: res.data.image })
+    } catch (err) {
+      console.log(err)
+    }
   }
 
-  addSection = ev => {
+  addSection = async ev => {
     ev.preventDefault()
+    if (this.state.selectedFile) {
+      this.props.startLoading()
+      await this.uploadImg()
+    }
     let sectionInfo = {
       club_id: this.state.clubId,
       title: this.state.title,
@@ -96,9 +107,13 @@ class SectionForm extends Component {
     this.props.cancel(ev)
   }
 
-  updateSection = ev => {
+  updateSection = async ev => {
     console.log('update section')
     ev.preventDefault()
+    if (this.state.selectedFile) {
+      this.props.startLoading()
+      await this.uploadImg()
+    }
     let sectionInfo = {
       club_id: this.state.clubId,
       title: this.state.title,
@@ -211,40 +226,37 @@ class SectionForm extends Component {
                 name="image"
                 accept="image/*"
               />
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={this.uploadImg}
-              >
-                Upload
-              </Button>
-
-              <Label htmlFor="section-type">Section Type</Label>
-              <select name="section-type" id="section-type">
-                <option value="4">No Image</option>
-                <option value="1">Image Background</option>
-                <option value="2">Image Left</option>
-                <option value="3">Image Right</option>
-              </select>
+              <div>
+                <Label htmlFor="section-type">Image Placement</Label>
+                <select name="section-type" id="section-type">
+                  <option value="4">No Image</option>
+                  <option value="1">Image Background</option>
+                  <option value="2">Image Left</option>
+                  <option value="3">Image Right</option>
+                </select>
+              </div>
             </Row>
 
             <Row wrap>
-              <Label htmlFor="background">Background Color</Label>
-              <select name="background" id="background">
-                <option value="white">white</option>
-                <option value="black">black</option>
-                <option value="blue">blue</option>
-                <option value="yellow">yellow</option>
-                <option value="red">red</option>
-                <option value="orange">orange</option>
-              </select>
-
-              <Label htmlFor="title-font">Title Font</Label>
-              <select name="title-font" id="title-font">
-                <option value="Helvetica Neue">Helvetica Neue</option>
-                <option value="Sans Serif">Sans Serif</option>
-                <option value="Roboto">Roboto</option>
-              </select>
+              <div>
+                <Label htmlFor="background">Background Color</Label>
+                <select name="background" id="background">
+                  <option value="white">white</option>
+                  <option value="black">black</option>
+                  <option value="blue">blue</option>
+                  <option value="yellow">yellow</option>
+                  <option value="red">red</option>
+                  <option value="orange">orange</option>
+                </select>
+              </div>
+              <div>
+                <Label htmlFor="title-font">Title Font</Label>
+                <select name="title-font" id="title-font">
+                  <option value="Helvetica Neue">Helvetica Neue</option>
+                  <option value="Sans Serif">Sans Serif</option>
+                  <option value="Roboto">Roboto</option>
+                </select>
+              </div>
             </Row>
 
             <Row>
@@ -281,5 +293,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { addSection, updateSection }
+  { addSection, updateSection, startLoading }
 )(SectionForm)

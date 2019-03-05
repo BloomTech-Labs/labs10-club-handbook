@@ -47,30 +47,18 @@ const StyledButton = styled.button`
   padding: 5px 16px;
   font-size: 0.875rem;
   min-width: 64px;
-  /* transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; */
-  line-height: 1.75;
-  font-weight: 500;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   text-transform: uppercase;
-  display: inline-flex;
-  position: relative;
-  align-items: center;
-  user-select: none;
-  vertical-align: middle;
-  justify-content: center;
-  text-decoration: none;
   background-color: transparent;
   :hover {
     background-color: #384AA6;
     color: white;
     border: 1px solid #384AA6;
+    cursor: pointer;
   }
   @media ${size.tablet} {
     width: 100px;
 }
-  :hover {
-      cursor: pointer;
-    }
 `;
 //#endregion
 

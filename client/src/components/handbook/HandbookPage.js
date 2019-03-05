@@ -5,6 +5,7 @@ import SectionForm from '../sections/SectionForm'
 import DashBar from '../NewDash'
 import HandbookForm from './HandbookForm'
 import HandbookRender from './HandbookRender'
+import LoadingPage from '../loading/loading'
 
 import {
   getClubById,
@@ -134,7 +135,7 @@ class HandbookPage extends React.Component {
             displayHandbook={this.state.displayHandbook}
             cancel={this.cancel}
             sections={this.props.sections}
-            loading={this.props.loading}
+            // loading={this.props.loading}
           />
 
           {this.state.editView ? (
@@ -147,6 +148,7 @@ class HandbookPage extends React.Component {
 
           {this.state.addView ? <SectionForm cancel={this.cancel} /> : null}
         </HandbookPageContainer>
+        {this.props.loading ? <LoadingPage /> : null}
       </>
     )
   }

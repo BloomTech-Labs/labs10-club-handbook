@@ -13,6 +13,7 @@ import styled from 'styled-components'
 import DashDrawer from '../Dashboard'
 import { size } from '../../style/breakpoints'
 import Member from './Member'
+import LoadingPage from '../loading/loading'
 
 //#region STYLES
 const H2 = styled.h2`
@@ -24,7 +25,7 @@ const Container = styled.div`
   margin: 0 auto;
   padding: 0 2%;
   @media ${size.tablet} {
-    width: 75%;
+    /* width: 75%; */
 }
 `;
 const HeaderBar = styled.div`
@@ -48,14 +49,13 @@ const StatusHeader = styled.div`
 
 class Members extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
   }
 
   componentDidMount() {
     const clubId = this.props.currentUser.club_id
 
     this.props.getUsersByClubId(clubId)
-
   }
 
   render() {
@@ -80,14 +80,19 @@ class Members extends React.Component {
             {users.map(user => {
               if (user.admin === false) {
                 return (
-                  <Member key={user.id} user={user} clubName={this.props.clubName} adminFirstName={this.props.currentUser.firstname} adminLastName={this.props.currentUser.lastname} />
+                  <Member
+                    key={user.id}
+                    user={user}
+                    clubName={this.props.clubName}
+                    adminFirstName={this.props.currentUser.firstname}
+                    adminLastName={this.props.currentUser.lastname}
+                  />
                 )
               }
             })}
-
           </MembersList>
         </Container>
-
+        {this.props.loading ? <LoadingPage /> : null}
       </>
     )
   }
