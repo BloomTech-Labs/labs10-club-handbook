@@ -155,9 +155,9 @@ class HandbookPage extends React.Component {
   }
 }
 const HandbookPageContainer = styled.div`
-  /* display: flex; */
+  display: flex;
   width: 100%;
-  margin: 0;
+  margin-top: 6.4rem;
   position: relative;
   z-index: 0;
 `
