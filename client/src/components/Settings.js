@@ -11,7 +11,7 @@ import {
   Paper,
 } from '@material-ui/core'
 import LeaveTeam from './LeaveTeam'
-import DashDrawer from './Dashboard'
+import DashBar from './NewDash'
 
 const styles = theme => ({
   main: {
@@ -64,7 +64,7 @@ class Settings extends React.Component {
     const { classes } = this.props
     return (
       <div>
-        <DashDrawer />
+        <DashBar />
         <main className={classes.main}>
           <CssBaseline />
           <Paper className={classes.paper}>
