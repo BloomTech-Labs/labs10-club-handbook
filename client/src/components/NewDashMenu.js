@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
@@ -21,8 +22,15 @@ function MenuPopupState() {
           </Button>
           <Menu {...bindMenu(popupState)}>
             <MenuItem onClick={popupState.close}>My Account</MenuItem>
-            <MenuItem onClick={popupState.close}>Settings</MenuItem>
-            <MenuItem onClick={popupState.close}>Logout</MenuItem>
+            <MenuItem component={Link} to="/settings">
+              Settings
+            </MenuItem>
+            <MenuItem
+              component={Link}
+              to="https://club-handbook.auth0.com/v2/logout"
+            >
+              Logout
+            </MenuItem>
           </Menu>
         </React.Fragment>
       )}
