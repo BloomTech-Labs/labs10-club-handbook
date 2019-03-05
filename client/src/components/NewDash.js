@@ -9,11 +9,6 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import Typography from '@material-ui/core/Typography'
 import { Link } from 'react-router-dom'
 
-import Settings from './Settings'
-import Members from './users/Members'
-import SectionForm from './sections/SectionForm'
-import Billing from './billing/Payment'
-import HandbookPage from './handbook/HandbookPage'
 import Auth from '../auth/Auth'
 import MenuPopupState from './NewDashMenu'
 
