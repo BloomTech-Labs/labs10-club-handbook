@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import {
   getSubscription,
   changeSubscription,
+  cancelFail,
 } from '../../store/actions/usersActions'
 import Subscribe from './Payment'
 import ChangeSub from './ChangeSub'
@@ -33,6 +34,9 @@ class Billing extends React.Component {
           <ChangeSub
             subscription={this.props.subscription}
             changeSubscription={this.props.changeSubscription}
+            changeFail={this.props.changeFail}
+            cancelFail={this.props.cancelFail}
+            message={this.props.message}
           />
         ) : (
           <Subscribe />
@@ -61,10 +65,12 @@ const mapStateToProps = state => {
   return {
     subscription: state.users.subscription,
     loading: state.users.loading,
+    changeFail: state.users.changeFail,
+    message: state.users.message,
   }
 }
 
 export default connect(
   mapStateToProps,
-  { getSubscription, changeSubscription }
+  { getSubscription, changeSubscription, cancelFail }
 )(Billing)

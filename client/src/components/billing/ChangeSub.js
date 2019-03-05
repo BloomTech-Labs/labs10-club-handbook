@@ -90,13 +90,26 @@ class ChangeSub extends React.Component {
 
         {this.state.changeStaged ? (
           <ConfirmationPopUp>
-            <h2>PLEASE CONFIRM</h2>
-            <h4>Would You Like To Change Subscription To:</h4>
-            <p>{this.state.desiredPlan.title}</p>
-            <p>{this.state.desiredPlan.description}</p>
-            <p>${this.state.desiredPlan.price}/month</p>
-            <button onClick={this.changeSub}>Yes, Change to this Plan!</button>
-            <button onClick={this.cancelStage}>Cancel</button>
+            <div>
+              <h2>PLEASE CONFIRM</h2>
+              <h4>Would You Like To Change Subscription To:</h4>
+              <p>{this.state.desiredPlan.title}</p>
+              <p>{this.state.desiredPlan.description}</p>
+              <p>${this.state.desiredPlan.price}/month</p>
+              <button onClick={this.changeSub}>
+                Yes, Change to this Plan!
+              </button>
+              <button onClick={this.cancelStage}>Cancel</button>
+            </div>
+          </ConfirmationPopUp>
+        ) : null}
+
+        {this.props.changeFail ? (
+          <ConfirmationPopUp>
+            <div>
+              <h3>{this.props.message}</h3>
+              <button onClick={this.props.cancelFail}>Close</button>
+            </div>
           </ConfirmationPopUp>
         ) : null}
       </PaymentContainer>
@@ -167,13 +180,56 @@ const SubscriptionHolder = styled.div`
 
 const ConfirmationPopUp = styled.div`
   position: fixed;
-  top: 200px;
-  background: white;
-  z-index: 2;
-  border: 1px solid black;
-  margin: 0 auto;
-  min-width: 200px;
-  min-height: 200px;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(75, 75, 75, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  div {
+    max-width: 700px;
+    background: white;
+    z-index: 2;
+    border-radius: 5px;
+    min-width: 200px;
+    min-height: 200px;
+    padding: 30px;
+
+    h2 {
+      margin-top: 0;
+      font-weight: bold;
+    }
+
+    p {
+      margin-left: 30px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px;
+      border: 2px solid rgb(65, 82, 179);
+      color: rgb(65, 82, 179);
+      border-radius: 5px;
+      background: white;
+      cursor: pointer;
+      font-size: 14px;
+      margin: 20px;
+      font-weight: bold;
+
+      &:hover {
+        background: rgb(65, 82, 179);
+        color: white;
+        box-shadow: 0 0 0 5px rgb(255, 255, 255, 0.5) inset;
+        border: 2px solid white;
+      }
+      &:active {
+        background: white;
+        color: black;
+      }
+    }
+  }
 `
 
 export default ChangeSub

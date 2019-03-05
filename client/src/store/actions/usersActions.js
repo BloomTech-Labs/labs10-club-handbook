@@ -15,6 +15,8 @@ export const GET_INFO_FROM_TOKEN = 'GET_INFO_FROM_TOKEN'
 export const FAIL_FROM_TOKEN = 'FAIL_FROM_TOKEN'
 export const GET_SUBSCRIPTION_INFO = 'GET_SUBSCRIPTION_INFO'
 export const NO_SUBSCRIPTION = 'NO_SUBSCRIPTION'
+export const CHANGE_SUB_FAIL = 'CHANGE_SUB_FAIL'
+export const RESET_CHANGE_FAIL = 'RESET_CHANGE_FAIL'
 
 const baseURL = 'https://club-handbook.herokuapp.com'
 // const baseURL = 'http://localhost:5000'
@@ -215,6 +217,10 @@ export const changeSubscription = body => dispatch => {
       dispatch(getSubscription())
     })
     .catch(err => {
-      dispatch({ type: FAIL, error: err })
+      dispatch({ type: CHANGE_SUB_FAIL })
     })
+}
+
+export const cancelFail = () => dispatch => {
+  dispatch({ type: RESET_CHANGE_FAIL })
 }
