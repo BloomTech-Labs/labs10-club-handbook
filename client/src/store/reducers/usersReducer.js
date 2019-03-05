@@ -13,6 +13,8 @@ import {
   FAIL_FROM_TOKEN,
   GET_SUBSCRIPTION_INFO,
   NO_SUBSCRIPTION,
+  CHANGE_SUB_FAIL,
+  RESET_CHANGE_FAIL,
 } from '../actions/usersActions'
 
 const initialState = {
@@ -23,6 +25,7 @@ const initialState = {
   error: null,
   failFromToken: false,
   subscription: null,
+  changeFail: false,
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -145,6 +148,21 @@ const usersReducer = (state = initialState, action) => {
         loading: false,
         message: null,
         subscription: null,
+      }
+
+    case CHANGE_SUB_FAIL:
+      return {
+        ...state,
+        loading: false,
+        message: `Subscription Change Failed:  Please ensure you do not have too many members for the selected plan`,
+        changeFail: true,
+      }
+
+    case RESET_CHANGE_FAIL:
+      return {
+        ...state,
+        message: null,
+        changeFail: false,
       }
 
     default:

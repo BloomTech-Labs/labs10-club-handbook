@@ -10,7 +10,6 @@ import {
   CardContent,
   CardHeader,
   Typography,
-  Radio,
 } from '@material-ui/core'
 
 const PaymentContainer = styled.div`
@@ -42,14 +41,6 @@ const styles = theme => ({
 })
 
 class Payment extends React.Component {
-  state = {
-    selectedValue: 'a',
-  }
-
-  handleChange = event => {
-    this.setState({ selectedValue: event.target.value })
-  }
-
   startupToken = token => {
     let bodyToSend = {
       ...token,
@@ -57,27 +48,7 @@ class Payment extends React.Component {
         plan: 'plan_EanP4aFWnkzGTC',
       },
     }
-    let auth = {
-      headers: {
-        authorization: localStorage.getItem('access_token'),
-      },
-    }
-    axios
-      .post(
-        'https://club-handbook.herokuapp.com/api/payments/addSubscription',
-        bodyToSend,
-        auth
-      )
-      // .post(
-      //   'http://localhost:5000/api/payments/addSubscription',
-      //   bodyToSend,
-      //   auth
-      // )
-      .then(res => {
-        console.log('res', res)
-        alert(`Thank you for your Startup subscription "purchase"!`)
-      })
-      .catch(err => console.log('error', err))
+    this.props.createSubscription(bodyToSend)
   }
 
   smallBizToken = token => {
@@ -87,27 +58,7 @@ class Payment extends React.Component {
         plan: 'plan_EanQzBshDkH9Iu',
       },
     }
-    let auth = {
-      headers: {
-        authorization: localStorage.getItem('access_token'),
-      },
-    }
-    axios
-      .post(
-        'https://club-handbook.herokuapp.com/api/payments/addSubscription',
-        bodyToSend,
-        auth
-      )
-      // .post(
-      //   'http://localhost:5000/api/payments/addSubscription',
-      //   bodyToSend,
-      //   auth
-      // )
-      .then(res => {
-        console.log('res', res)
-        alert(`Thank you for your Small Biz subscription purchase!`)
-      })
-      .catch(err => console.log('error', err))
+    this.props.createSubscription(bodyToSend)
   }
 
   enterpriseToken = token => {
@@ -117,27 +68,7 @@ class Payment extends React.Component {
         plan: 'plan_EanRarp8r1YnYC',
       },
     }
-    let auth = {
-      headers: {
-        authorization: localStorage.getItem('access_token'),
-      },
-    }
-    axios
-      .post(
-        'https://club-handbook.herokuapp.com/api/payments/addSubscription',
-        bodyToSend,
-        auth
-      )
-      // .post(
-      //   'http://localhost:5000/api/payments/addSubscription',
-      //   bodyToSend,
-      //   auth
-      // )
-      .then(res => {
-        console.log('res', res)
-        alert(`Thank you for your Enterprise subscription purchase!`)
-      })
-      .catch(err => console.log('error', err))
+    this.props.createSubscription(bodyToSend)
   }
 
   render() {
@@ -146,7 +77,6 @@ class Payment extends React.Component {
         title: 'Startup',
         price: '0',
         description: ['5 members'],
-        checked: this.state.selectedValue === 'a',
         value: 'a',
         token: this.startupToken,
       },
@@ -154,7 +84,6 @@ class Payment extends React.Component {
         title: 'Small Biz',
         price: '5',
         description: ['20 members'],
-        checked: this.state.selectedValue === 'b',
         value: 'b',
         token: this.smallBizToken,
       },
@@ -162,7 +91,6 @@ class Payment extends React.Component {
         title: 'Enterprise',
         price: '20',
         description: ['500 members'],
-        checked: this.state.selectedValue === 'c',
         value: 'c',
         token: this.enterpriseToken,
       },
@@ -184,14 +112,14 @@ class Payment extends React.Component {
                 <CardHeader
                   title={tier.title}
                   // subheader={tier.subheader} no subheaders defined
-                  titleTypographyProps={{ align: 'center' }}
+                  titleTypographyProps={{ align: 'center', variant: 'h3' }}
                   subheaderTypographyProps={{ align: 'center' }}
                 />
                 <CardContent>
                   <div className={styles.cardPricing}>
                     <Typography
                       align="center"
-                      component="h2"
+                      // component="h2"
                       variant="h3"
                       color="textPrimary"
                     >
@@ -199,53 +127,37 @@ class Payment extends React.Component {
                     </Typography>
                     <Typography
                       align="center"
-                      variant="h6"
+                      variant="h5"
                       color="textSecondary"
                     >
                       monthly
                     </Typography>
                   </div>
                   {tier.description.map(line => (
-                    <Typography variant="subtitle1" align="center" key={line}>
+                    <Typography variant="h6" align="center" key={line}>
                       {line}
                     </Typography>
                   ))}
                   <PaymentButton>
                     <StripeCheckout
+                      label="BUY"
+                      panelLabel="SUBSCRIBE"
                       token={tier.token}
                       stripeKey="pk_test_M1Y5kyDDSB7dOAWXIhzOOqMV"
+                      name={tier.title}
+                      description={tier.description}
+                      amount={tier.price * 100}
+                      allowRememberMe={false}
                     />
                   </PaymentButton>
                 </CardContent>
-                <Radio
-                  checked={tier.checked}
-                  color="default"
-                  onChange={this.handleChange}
-                  value={tier.value}
-                />
               </Card>
             </Grid>
           ))}
         </Grid>
-        <PaymentButton>
-          <StripeCheckout
-            // token={tier.token}
-            stripeKey="pk_test_M1Y5kyDDSB7dOAWXIhzOOqMV"
-          />
-        </PaymentButton>
       </PaymentContainer>
     )
   }
 }
-
-// function Payment() {
-//   return (
-//     <PaymentContainer>
-//       <StripeProvider apiKey="pk_test_M1Y5kyDDSB7dOAWXIhzOOqMV">
-//         <Checkout />
-//       </StripeProvider>
-//     </PaymentContainer>
-//   )
-// }
 
 export default Payment

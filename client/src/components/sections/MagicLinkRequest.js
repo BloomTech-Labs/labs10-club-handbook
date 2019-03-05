@@ -1,63 +1,64 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import AuthEmail from '../../auth/AuthEmail';
-import styled from 'styled-components';
-import { size } from '../../style/breakpoints'
+import AuthEmail from '../../auth/AuthEmail'
+import styled from 'styled-components'
 
 // #region Styled Components
-const H2 = styled.h2`
-  margin-bottom: 30px;
-  text-align: center;
-`;
-const P = styled.p`
-  margin-bottom: 30px;
-`;
-const Form = styled.form`
-  display: flex;
-  @media ${size.tablet} {
-    flex-direction: column;
-}
-`;
-const Input = styled.input`
-  width: 50%;
-  @media ${size.tablet} {
-    width: 80%;
-}
-`;
-const Button = styled.button`
-  margin-left: 5%;
-    border-radius: 4%;
-    font-size: 1.6rem;
-    :hover {
-      cursor: pointer;
-      background: darkgrey;
-      color: white;
-    }
-    @media ${size.tablet} {
-    width: 150px;
-    margin: 10px 0 0 0;
-  }
-`;
 const SContainer = styled.div`
-  background: lightgrey;
-  border: 1px solid black;
-  max-width: 700px;
-  width: 75%;
-  z-index: 10;
-  margin: 30px auto;
-  /* position: fixed; */
-  /* top: 50%; */
-  /* left: 50%; */
-  /* margin-top: -150px; */
-  /* margin-left: -350px; */
-`;
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(75, 75, 75, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
 const ContentContainer = styled.div`
-  padding: 10%;
-`;
-const Notification = styled.div`
-  color: red;
-  margin: 20px 0 0 0;
-`;
+  padding: 20px;
+  background: linear-gradient(to right, rgb(65, 82, 179), rgb(78, 98, 215));
+  max-width: 700px;
+  border-radius: 10px;
+  color: white;
+  h2 {
+    margin: 0;
+    margin-bottom: 30px;
+  }
+  p {
+    margin: 0;
+    margin-bottom: 30px;
+    font-size: 16px;
+  }
+  input {
+    width: 70%;
+    max-width: 400px;
+    padding: 4px;
+  }
+  button {
+    margin-left: 10px;
+    border-radius: 5px;
+    font-size: 1.6rem;
+    border: 2px solid rgb(65, 82, 179);
+    box-shadow: 0 0 5px 5px rgba(65, 82, 179, 0.5) inset;
+    background: white;
+    color: rgb(65, 82, 179);
+    font-weight: bold;
+    padding: 8px 10px;
+    &:hover {
+      cursor: pointer;
+      background: rgb(65, 82, 179);
+      color: white;
+      box-shadow: 0 0 5px 5px rgba(255, 255, 255, 0.5) inset;
+    }
+    &:active {
+      box-shadow: 0 0 5px 5px rgba(40, 40, 40, 0.5) inset;
+      color: black;
+      border: 2px solid black;
+    }
+  }
+`
+
 // #endregion
 
 const authEmail = new AuthEmail()
@@ -72,65 +73,38 @@ class MagicLinkRequest extends React.Component {
     this.setState({ [event.target.name]: event.target.value })
   }
 
-  emailSentConfirmation = () => {
-    if (this.state.email.length > 0 && this.state.email.includes('@')) {
-      this.setState({ emailStatus: true })
-    }
-    
-    setTimeout(
-      function() {
-          this.setState({emailStatus: false});
-      }
-      .bind(this),
-      2000
-    );
-  }
-
   handleSubmit = event => {
     event.preventDefault()
     authEmail.sendEmail(this.state.email)
-    this.setState({ email: '' })
-    this.emailSentConfirmation()
   }
 
   render() {
     return (
       <SContainer>
         <ContentContainer>
-          <H2>Sign in to view this handbook</H2>
+          <h2>To access this handbook you must sign in</h2>
 
-          <P>
+          <p>
             Enter your email address below. We will send an email to you with a
             link. Clicking that link we authorize you to see this handbook and
             redirect you back to the handbook where you can view and sign it.
-          </P>
+          </p>
 
-          <Form onSubmit={this.handleSubmit}>
-            <Input
+          <form onSubmit={this.handleSubmit}>
+            <input
               type="email"
               name="email"
               onChange={this.handleChanges}
               placeholder="Email Address"
-              value={this.state.email}
+              value={this.props.email}
             />
-            <Button type="submit">Send Magic Link</Button>
-          </Form>
-          <Notification>{this.state.emailStatus === true && 'Email sent!'}</Notification>
-          <Notification>{this.props.authError === true && 'Something whent wrong. Please try again.'}</Notification>
+            <button type="submit">Send Link</button>
+            <p>{this.state.emailStatus === true && 'email sent!'}</p>
+          </form>
         </ContentContainer>
       </SContainer>
     )
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    userLoggedIn: state.auth.userLoggedIn,
-    authError: state.auth.authError,
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  {}
-)(MagicLinkRequest)
+export default MagicLinkRequest
