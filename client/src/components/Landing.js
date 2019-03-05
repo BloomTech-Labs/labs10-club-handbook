@@ -134,7 +134,7 @@ class Landing extends React.Component {
                 noWrap
                 className={classes.toolbarTitle}
               >
-                Club.Handbook
+                CliqueBook
               </Typography>
               <Button component={Login} color="inherit" variant="outlined" />
               <Button
@@ -158,10 +158,10 @@ class Landing extends React.Component {
                 <GridContainer>
                   <Fade left>
                     <GridContainer xs={12} sm={12} md={6}>
-                      <Typography variant="h3" color="Primary" gutterBottom>
+                      <Typography variant="h3" color="primary" gutterBottom>
                         To happier, productive, and loyal employees.
                       </Typography>
-                      <Typography variant="h6" color="Primary" paragraph>
+                      <Typography variant="h6" color="primary" paragraph>
                         Top companies choose Club.Handbook to build their
                         employee handbooks. Complete templates, beautiful design
                         and easy customization. Publish as a mobile-friendly
