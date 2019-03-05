@@ -1,13 +1,24 @@
 import React from 'react'
 import renderHTML from 'react-render-html'
-import { HandbookContainer, HandbookPreview } from '../../style/handbook'
+import {
+  SectionContainer,
+  HandbookPreview,
+} from '../../style/handbook-page/handbook'
 import { Close } from '@material-ui/icons'
 
 const SectionRender = props => {
   if (props.loading) {
-    return <h1>Loading...</h1>
+    return (
+      <HandbookPreview>
+        <h1>Loading...</h1>
+      </HandbookPreview>
+    )
   } else if (props.sections.length === 0) {
-    return <h1>Please create a handbook and add some sections.</h1>
+    return (
+      <HandbookPreview>
+        <h1>Please create a handbook and add some sections.</h1>
+      </HandbookPreview>
+    )
   } else if (props.displayHandbook && props.sections) {
     return (
       <HandbookPreview displayOn>
@@ -16,11 +27,11 @@ const SectionRender = props => {
           const { title, body, img_url } = section
 
           return (
-            <HandbookContainer>
+            <SectionContainer>
               <h1>{title}</h1>
               <img src={img_url} style={{ width: '10rem' }} />
               <div className="body">{renderHTML(body)}</div>
-            </HandbookContainer>
+            </SectionContainer>
           )
         })}
       </HandbookPreview>
@@ -32,11 +43,11 @@ const SectionRender = props => {
           const { title, body, img_url } = section
 
           return (
-            <HandbookContainer>
+            <SectionContainer>
               <h1>{title}</h1>
               <img src={img_url} style={{ width: '10rem' }} />
               <div className="body">{renderHTML(body)}</div>
-            </HandbookContainer>
+            </SectionContainer>
           )
         })}
       </HandbookPreview>

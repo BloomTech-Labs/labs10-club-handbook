@@ -3,8 +3,16 @@ import { findDOMNode } from 'react-dom'
 import { DragSource, DropTarget } from 'react-dnd'
 import flow from 'lodash/flow'
 import { Typography } from '@material-ui/core'
-import { Delete } from '@material-ui/icons'
-import { Row, SectionBox } from '../../../style/layout'
+import { Delete, Edit, FormatAlignCenter } from '@material-ui/icons'
+import { Row } from '../../../style/layout'
+import {
+  SectionBox,
+  DeleteBtn,
+  EditBtn,
+  TitleBox,
+  SectionHead,
+  headerIcon,
+} from '../../../style/section'
 
 const sectionSource = {
   beginDrag(props) {
@@ -82,21 +90,34 @@ class SectionItem extends Component {
       connectDragSource(
         connectDropTarget(
           <div>
-            <Row
-              key={section.id}
-              onClick={() => toggleEditView(section.id)}
-              style={{ cursor: 'move' }}
-            >
+            <Row key={section.id} style={{ cursor: 'move' }}>
               <SectionBox>
-                {/* <img src={section.img_url} /> */}
-                <Typography variant="header4">{section.title}</Typography>
+                <SectionHead>
+                  <FormatAlignCenter style={headerIcon} />
+                </SectionHead>
+
+                <TitleBox>
+                  <Typography variant="header4">{section.title}</Typography>
+                </TitleBox>
+
+                <EditBtn>
+                  <Edit
+                    onClick={ev => {
+                      ev.stopPropagation()
+                      toggleEditView(section.id)
+                    }}
+                  />
+                </EditBtn>
+
+                <DeleteBtn>
+                  <Delete
+                    onClick={ev => {
+                      ev.stopPropagation()
+                      deleteSectionById(clubId, section.id)
+                    }}
+                  />
+                </DeleteBtn>
               </SectionBox>
-              <Delete
-                onClick={ev => {
-                  ev.stopPropagation()
-                  deleteSectionById(clubId, section.id)
-                }}
-              />
             </Row>
           </div>
         )

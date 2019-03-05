@@ -129,6 +129,7 @@ class HandbookPage extends React.Component {
             club={this.props.club}
             clubId={this.props.club.id}
             displayHandbook={this.displayHandbook}
+            sectionView={this.state.sectionView}
           />
 
           <HandbookRender
@@ -148,17 +149,15 @@ class HandbookPage extends React.Component {
 
           {this.state.addView ? <SectionForm cancel={this.cancel} /> : null}
         </HandbookPageContainer>
-        {this.props.loading ? <LoadingPage /> : null}
+        {this.props.loading || this.props.usersLoading ? <LoadingPage /> : null}
       </>
     )
   }
 }
 const HandbookPageContainer = styled.div`
   display: flex;
-  max-width: 120rem;
-  justify-content: space-between;
-  margin: 0 auto;
-  margin-top: 3rem;
+  width: 100%;
+  margin-top: 6.4rem;
   position: relative;
   z-index: 0;
 `
@@ -169,6 +168,7 @@ const mapStateToProps = state => {
     club: state.clubs.clubById,
     sections: state.clubs.sections,
     loading: state.clubs.loading,
+    usersLoading: state.users.loading,
   }
 }
 

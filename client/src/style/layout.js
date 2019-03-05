@@ -23,23 +23,9 @@ export const Column = styled.div`
   vertical-align: center;
 `
 
-export const SectionBox = styled.div`
-  padding: 3rem 0.5rem;
-  border: 1px solid gray;
-  text-align: center;
-  width: 80%;
-  border-radius: 3px;
-  box-shadow: 0 1px 1px grey;
-  margin-top: 1rem;
-
-  @media ${size.tablet} {
-    width: 100%;
-  }
-`
-
 // inline styles
 export const iconSize = {
-  fontSize: 35,
-  marginBottom: 7,
+  fontSize: 50,
+  marginBottom: 1,
   cursor: 'pointer',
 }

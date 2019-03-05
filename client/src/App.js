@@ -28,6 +28,9 @@ import HTML5Backend from 'react-dnd-html5-backend'
 import { DragDropContext } from 'react-dnd'
 import AddMembersMobile from './components/users/AddMembersMobile'
 
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
+import Theme from './style/colors'
+
 class App extends Component {
   componentDidMount() {
     // let token = localStorage.getItem('access_token')
@@ -42,40 +45,45 @@ class App extends Component {
 
   render() {
     return (
-      <BrowserRouter>
-        <div className="App">
-          <Switch>
-            <Route exact path="/" component={Landing} />
-            <Route exact path="/Dashboard" component={DashBar} />
-            <Route exact path="/handbook" component={HandbookPage} />
-            <Route exact path="/members" component={Members} />
-            <Route exact path="/add-members" component={AddMembers} />
-            <Route exact path="/signature" component={Signature} />
-            <Route exact path="/update-members/:id" component={UpdateMembers} />
-            <Route exact path="/billing" component={Billing} />
-            <Route exact path="/settings" component={Settings} />
-            <Route path="/login" component={Login} />
-            <Route path="/callback" component={Callback} />
-            <Route
-              path="/authenticated"
-              render={props => <Authenticated {...props} />}
-            />
-            <Route path="/add-section" component={SectionForm} />
-            <Route
-              path="/update-section/:id"
-              render={props => <SectionForm {...props} update={true} />}
-            />
-            <Route path="/callback-email" component={CallbackEmail} />
-            <Route path="/magic-link-request" component={MagicLinkRequest} />
-            <Route path="/section/:id" component={SectionRender} />
-            <Route
-              path="/handbook/member-view"
-              component={HandbookMemberView}
-            />
-            <Route path="/add-members-mobile" component={AddMembersMobile} />
-          </Switch>
-        </div>
-      </BrowserRouter>
+      <MuiThemeProvider theme={Theme}>
+        <BrowserRouter>
+          <div className="App">
+            <Switch>
+              <Route exact path="/" component={Landing} />
+              <Route exact path="/Dashboard" component={DashBar} />
+              <Route exact path="/handbook" component={HandbookPage} />
+              <Route exact path="/members" component={Members} />
+              <Route exact path="/add-members" component={AddMembers} />
+              <Route exact path="/signature" component={Signature} />
+              <Route
+                exact
+                path="/update-members/:id"
+                component={UpdateMembers}
+              />
+              <Route exact path="/billing" component={Billing} />
+              <Route exact path="/settings" component={Settings} />
+              <Route path="/login" component={Login} />
+              <Route path="/callback" component={Callback} />
+              <Route
+                path="/authenticated"
+                render={props => <Authenticated {...props} />}
+              />
+              <Route path="/add-section" component={SectionForm} />
+              <Route
+                path="/update-section/:id"
+                render={props => <SectionForm {...props} update={true} />}
+              />
+              <Route path="/callback-email" component={CallbackEmail} />
+              <Route path="/magic-link-request" component={MagicLinkRequest} />
+              <Route path="/section/:id" component={SectionRender} />
+              <Route
+                path="/handbook/member-view"
+                component={HandbookMemberView}
+              />
+            </Switch>
+          </div>
+        </BrowserRouter>
+      </MuiThemeProvider>
     )
   }
 }

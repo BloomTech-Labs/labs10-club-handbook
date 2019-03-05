@@ -1,33 +1,59 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
-import PopupState, {
-  bindTrigger,
-  bindMenu,
-} from 'material-ui-popup-state/index'
+import toRenderProps from 'recompose/toRenderProps'
+import withState from 'recompose/withState'
 
-function MenuPopupState() {
+const WithState = toRenderProps(withState('anchorEl', 'updateAnchorEl', null))
+
+function RenderPropsMenu() {
   return (
-    <PopupState variant="popover" popupId="demo-popup-menu">
-      {popupState => (
-        <React.Fragment>
-          <Button
-            variant="outlined"
-            color="inherit"
-            {...bindTrigger(popupState)}
-          >
-            User Account
-          </Button>
-          <Menu {...bindMenu(popupState)}>
-            <MenuItem onClick={popupState.close}>My Account</MenuItem>
-            <MenuItem onClick={popupState.close}>Settings</MenuItem>
-            <MenuItem onClick={popupState.close}>Logout</MenuItem>
-          </Menu>
-        </React.Fragment>
-      )}
-    </PopupState>
+
+    <WithState>
+      {({ anchorEl, updateAnchorEl }) => {
+        const open = Boolean(anchorEl)
+        const handleClose = () => {
+          updateAnchorEl(null)
+        }
+
+        return (
+          <React.Fragment>
+            <Button
+              aria-owns={open ? 'render-props-menu' : undefined}
+              aria-haspopup="true"
+              onClick={event => {
+                updateAnchorEl(event.currentTarget)
+              }}
+              variant="outlined"
+              color="inherit"
+            >
+              User
+            </Button>
+            <Menu
+              id="render-props-menu"
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+            >
+              <MenuItem onClick={handleClose}>Profile</MenuItem>
+              <MenuItem component={Link} to="/settings">
+              Settings
+            </MenuItem>
+              <MenuItem
+              component={Link}
+              to="https://club-handbook.auth0.com/v2/logout"
+            >
+              Logout
+            </MenuItem>
+            </Menu>
+          </React.Fragment>
+        )
+      }}
+    </WithState>
+
   )
 }
 
-export default MenuPopupState
+export default RenderPropsMenu

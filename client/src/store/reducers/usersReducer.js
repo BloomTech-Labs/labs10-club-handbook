@@ -7,7 +7,7 @@ import {
   GET_USERS_BY_CLUB_ID,
   UPDATE_USER,
   DELETE_USER,
-  START,
+  USERS_START,
   FAIL,
   GET_INFO_FROM_TOKEN,
   FAIL_FROM_TOKEN,
@@ -30,7 +30,7 @@ const initialState = {
 
 const usersReducer = (state = initialState, action) => {
   switch (action.type) {
-    case START:
+    case USERS_START:
       return {
         ...state,
         loading: true,

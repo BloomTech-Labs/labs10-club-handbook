@@ -29,6 +29,7 @@
       "react-signature-pad-wrapper": "^1.2.4",
       "react-stripe-checkout": "^2.6.3",
       "react-stripe-elements": "^2.0.3",
+      "recompose": "^0.30.0",
       "redux": "^4.0.1",
       "redux-thunk": "^2.3.0",
       "signature_pad": "^3.0.0-beta.3",
