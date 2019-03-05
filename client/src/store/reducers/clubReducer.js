@@ -105,11 +105,7 @@ const clubReducer = (state = initialState, action) => {
     case UPDATE_SECTION_BY_CLUB_ID:
       return {
         ...state,
-        sections: state.sections.map(section => {
-          if (section.id === action.payload.id) {
-            return { section: action.payload }
-          }
-        }),
+        sections: [...state.sections],
         loading: false,
         message: null,
       }
