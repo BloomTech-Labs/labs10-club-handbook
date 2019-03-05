@@ -1,7 +1,7 @@
 import React from 'react'
 import StripeCheckout from 'react-stripe-checkout'
 import styled from 'styled-components'
-import DashDrawer from '../Dashboard'
+import DashBar from '../NewDash'
 import axios from 'axios'
 
 import {
@@ -108,7 +108,7 @@ class Payment extends React.Component {
 
     return (
       <PaymentContainer>
-        <DashDrawer />
+        <DashBar />
         <Grid container spacing={40} alignItems="flex-end">
           {subscriptions.map(tier => (
             <Grid

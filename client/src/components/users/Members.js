@@ -10,7 +10,7 @@ import EmailButton from './SendEmail'
 import ViewedManual from './ViewedManual'
 import AddMember from './AddMembers'
 import styled from 'styled-components'
-import DashDrawer from '../Dashboard'
+import DashBar from '../NewDash'
 import { size } from '../../style/breakpoints'
 import Member from './Member'
 
@@ -18,32 +18,32 @@ import Member from './Member'
 const H2 = styled.h2`
   font-size: 1.8rem;
   margin-left: 22px;
-`;
+`
 const Container = styled.div`
   max-width: 800px;
   margin: 0 auto;
   padding: 0 2%;
   @media ${size.tablet} {
     width: 75%;
-}
-`;
+  }
+`
 const HeaderBar = styled.div`
   width: 100%;
-  background: #3648AC;
+  background: #3648ac;
   font-size: 35px;
-  color: #FFFFFF;
+  color: #ffffff;
   text-align: center;
   padding: 10px 0;
-`;
+`
 const MembersList = styled.div`
   display: flex;
   flex-direction: column;
-`;
+`
 const StatusHeader = styled.div`
   display: flex;
   justify-content: flex-end;
   margin: 0 70px 10px 0;
-`;
+`
 //#endregion
 
 class Members extends React.Component {
@@ -63,15 +63,13 @@ class Members extends React.Component {
 
     return (
       <>
+        <DashBar />
 
-        <DashDrawer />
-        
         <Container>
           <HeaderBar>ClubMembers</HeaderBar>
           <AddMember />
 
           <MembersList>
-
             <StatusHeader>
               <H2>Visited</H2>
               <H2>Signed</H2>
@@ -84,10 +82,9 @@ class Members extends React.Component {
                 )
               }
             })}
-
+            
           </MembersList>
         </Container>
-
       </>
     )
   }
