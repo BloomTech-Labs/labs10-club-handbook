@@ -26,6 +26,7 @@ import HandbookMemberView from './components/handbook/HandbookMemberView'
 import { compose } from 'redux'
 import HTML5Backend from 'react-dnd-html5-backend'
 import { DragDropContext } from 'react-dnd'
+import AddMembersMobile from './components/users/AddMembersMobile'
 
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
 import Theme from './style/colors'

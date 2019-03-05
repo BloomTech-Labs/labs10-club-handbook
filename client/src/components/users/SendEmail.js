@@ -1,5 +1,28 @@
 import React from 'react'
-import Button from '@material-ui/core/Button'
+// import Button from '@material-ui/core/Button'
+import styled from 'styled-components'
+import { size } from '../../style/breakpoints';
+
+const StyledButton = styled.button`
+  color: #000000;
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 3px 5px;
+  line-height: 3;
+  font-size: 0.875rem;
+  width: 65px;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  text-transform: uppercase;
+  :hover {
+    background-color: #384AA6;
+    color: white;
+    border: 1px solid #384AA6;
+    cursor: pointer;
+  }
+  @media ${size.tablet} {
+    /* width: 100px; */
+}
+`;
 
 class EmailButton extends React.Component {
   constructor(props) {
@@ -19,7 +42,7 @@ class EmailButton extends React.Component {
     return (
       // <button onClick={this.onClick}>Notify</button>
 
-      <Button color="inherit" variant="outlined" onClick={this.onClick}>Notify</Button>
+      <StyledButton color="inherit" variant="outlined" onClick={this.onClick}>Notify</StyledButton>
     )
   }
 }

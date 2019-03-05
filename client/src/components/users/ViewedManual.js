@@ -9,7 +9,7 @@ class ViewedManual extends React.Component {
 
   render() {
     if (this.props.sub_id) {
-      console.log('signed props', this.props.signed)
+      // console.log('signed props', this.props.signed)
       return <Checkbox />
     } else {
       return <CheckBoxOutlineBlank />
