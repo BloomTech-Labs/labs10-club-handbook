@@ -94,7 +94,6 @@ const styles = theme => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing.unit * 3,
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -226,53 +225,6 @@ class DashBar extends React.Component {
             </a> */}
           </Toolbar>
         </AppBar>
-        <Drawer
-          className={classes.drawer}
-          variant="persistent"
-          anchor="left"
-          open={open}
-          value={value}
-          onChange={this.handleChange}
-          classes={{
-            paper: classes.drawerPaper,
-          }}
-        >
-          <div className={classes.drawerHeader}>
-            <IconButton onClick={this.handleDrawerClose}>
-              {theme.direction === 'ltr' ? (
-                <ChevronLeftIcon />
-              ) : (
-                <ChevronRightIcon />
-              )}
-            </IconButton>
-          </div>
-
-          <ListItem button component={Link} to="./handbook">
-            <ListItemIcon>
-              <SubjectIcon />
-            </ListItemIcon>
-            <ListItemText primary="Handbook" />
-          </ListItem>
-          <ListItem button component={Link} to="./members">
-            <ListItemIcon>
-              <PeopleIcon />
-            </ListItemIcon>
-            <ListItemText primary="Members" />
-          </ListItem>
-
-          <ListItem button component={Link} to="./billing">
-            <ListItemIcon>
-              <CreditCardIcon />
-            </ListItemIcon>
-            <ListItemText primary="Billing" />
-          </ListItem>
-          <ListItem button component={Link} to="./settings">
-            <ListItemIcon>
-              <SettingsIcon />
-            </ListItemIcon>
-            <ListItemText primary="Settings" />
-          </ListItem>
-        </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />
           {value === 0 && <SectionContainer>Dashboard</SectionContainer>}
