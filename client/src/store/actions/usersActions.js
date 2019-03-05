@@ -224,3 +224,22 @@ export const changeSubscription = body => dispatch => {
 export const cancelFail = () => dispatch => {
   dispatch({ type: RESET_CHANGE_FAIL })
 }
+
+export const createSubscription = body => dispatch => {
+  dispatch({ type: START, message: `creating subscription...` })
+
+  let auth = {
+    headers: {
+      authorization: localStorage.getItem('access_token'),
+    },
+  }
+
+  axios
+    .post(`${baseURL}/api/payments/addSubscription`, body, auth)
+    .then(res => {
+      dispatch(getSubscription())
+    })
+    .catch(err => {
+      dispatch({ type: FAIL, error: err })
+    })
+}

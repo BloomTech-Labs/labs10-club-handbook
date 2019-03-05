@@ -4,6 +4,7 @@ import {
   getSubscription,
   changeSubscription,
   cancelFail,
+  createSubscription,
 } from '../../store/actions/usersActions'
 import Subscribe from './Payment'
 import ChangeSub from './ChangeSub'
@@ -39,7 +40,7 @@ class Billing extends React.Component {
             message={this.props.message}
           />
         ) : (
-          <Subscribe />
+          <Subscribe createSubscription={this.props.createSubscription} />
         )}
         {this.props.loading ? (
           <LoadingWindow>
@@ -72,5 +73,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getSubscription, changeSubscription, cancelFail }
+  { getSubscription, changeSubscription, cancelFail, createSubscription }
 )(Billing)
