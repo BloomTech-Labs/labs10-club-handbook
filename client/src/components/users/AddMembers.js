@@ -1,11 +1,9 @@
 import React from 'react'
-import { AppBar } from '@material-ui/core'
-
 import { connect } from 'react-redux'
+import { Button } from '@material-ui/core'
 import { addUser } from '../../store/actions/usersActions'
 import styled from 'styled-components'
 import { size } from '../../style/breakpoints';
-import Button from '@material-ui/core/Button'
 
 //#region STYLES
 const SCWrapper = styled.div`
@@ -42,14 +40,38 @@ const SCEmail = styled.input`
     width: 50%;
 }
 `;
-// const Button = styled.button`
-//   @media ${size.tablet} {
-//     width: 100px;
-// }
-//   :hover {
-//       cursor: pointer;
-//     }
-// `;
+const StyledButton = styled.button`
+  color: #000000;
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 5px 16px;
+  font-size: 0.875rem;
+  min-width: 64px;
+  /* transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; */
+  line-height: 1.75;
+  font-weight: 500;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  text-transform: uppercase;
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  user-select: none;
+  vertical-align: middle;
+  justify-content: center;
+  text-decoration: none;
+  background-color: transparent;
+  :hover {
+    background-color: #384AA6;
+    color: white;
+    border: 1px solid #384AA6;
+  }
+  @media ${size.tablet} {
+    width: 100px;
+}
+  :hover {
+      cursor: pointer;
+    }
+`;
 //#endregion
 
 class AddMembers extends React.Component {
@@ -119,7 +141,7 @@ class AddMembers extends React.Component {
             required
           />
           {/* <Button>Add Member</Button> */}
-          <Button color="inherit" variant="outlined" type="submit">Add Member</Button>
+          <StyledButton>ADD MEMBER</StyledButton>
         </Form>
       </SCWrapper>
     )
