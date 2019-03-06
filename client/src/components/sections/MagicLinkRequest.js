@@ -75,6 +75,10 @@ class MagicLinkRequest extends React.Component {
   handleSubmit = event => {
     event.preventDefault()
     authEmail.sendEmail(this.state.email)
+
+    this.setState({
+      emailStatus: true,
+    })
   }
 
   render() {
@@ -96,9 +100,10 @@ class MagicLinkRequest extends React.Component {
               onChange={this.handleChanges}
               placeholder="Email Address"
               value={this.props.email}
+              required
             />
             <button type="submit">Send Link</button>
-            <p>{this.state.emailStatus === true && 'email sent!'}</p>
+            <p style={{marginTop: 10}}>{this.state.emailStatus === true && 'Link sent! Check your email inbox.'}</p>
           </form>
         </ContentContainer>
       </SContainer>
