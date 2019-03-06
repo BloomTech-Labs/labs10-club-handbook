@@ -26,11 +26,3 @@ export const SectionContainer = styled.div`
     margin-bottom: 1.5rem;
   }
 `
-
-export const HandbookButton = styled.button`
-  display: none;
-
-  /* @media ${size.mobile} {
-    display: block;
-  } */
-`

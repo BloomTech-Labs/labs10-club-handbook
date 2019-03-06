@@ -10,7 +10,7 @@ import EmailButton from './SendEmail'
 import ViewedManual from './ViewedManual'
 import AddMember from './AddMembers'
 import styled from 'styled-components'
-import DashDrawer from '../Dashboard'
+import DashBar from '../NewDash'
 import { size } from '../../style/breakpoints'
 import Member from './Member'
 import LoadingPage from '../loading/loading'
@@ -83,7 +83,7 @@ class Members extends React.Component {
     return (
       <>
 
-        <DashDrawer />
+        <DashBar />
         
         <Container>
           <HeaderBar>{this.props.clubName} Members</HeaderBar>
