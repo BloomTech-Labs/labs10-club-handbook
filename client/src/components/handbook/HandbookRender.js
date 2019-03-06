@@ -6,7 +6,9 @@ import {
   Title,
 } from '../../style/handbook-page/handbook'
 
+
 import styled from 'styled-components'
+
 
 const SectionRender = props => {
   if (props.sections.length === 0) {
