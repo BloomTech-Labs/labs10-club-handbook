@@ -61,8 +61,6 @@ class ChangeSub extends React.Component {
   render() {
     return (
       <PaymentContainer>
-        <DashBar />
-
         <div className="mySub">
           <h1>Your Subscription</h1>
           {this.state.subscriptionTypes

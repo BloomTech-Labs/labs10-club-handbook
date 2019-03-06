@@ -216,8 +216,8 @@ class DashBar extends React.Component {
           </AppBar>
         </NoSsr>
 
-        {value === 0 && <TabContainer>Manage Handbook</TabContainer>}
-        {value === 1 && <TabContainer>Manage Members</TabContainer>}
+        {/* {value === 0 && <TabContainer>Manage Handbook</TabContainer>}
+        {value === 1 && <TabContainer>Manage Members</TabContainer>} */}
       </div>
     )
   }
