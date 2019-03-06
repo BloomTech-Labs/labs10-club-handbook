@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import AuthEmail from '../../auth/AuthEmail'
 import styled from 'styled-components'
+import { size } from '../../style/breakpoints';
 
 // #region Styled Components
 const SContainer = styled.div`
@@ -25,17 +26,26 @@ const ContentContainer = styled.div`
     margin: 20px 0 30px;
   }
   p {
-    margin: 0;
-    margin-bottom: 30px;
-    font-size: 16px;
+    display: ${props => props.visible === true ? "block" : "none"};
+    margin-top: 10px;
+    color: orange;
   }
   input {
     width: 70%;
     max-width: 400px;
     padding: 4px;
   }
+  li {
+    margin-bottom: 15px;
+  }
+  span {
+    font-style: italic;
+  }
+  form {
+    margin: 30px 0;
+  }
   button {
-    margin-left: 10px;
+    margin-left: 30px;
     border-radius: 5px;
     font-size: 1.6rem;
     border: 2px solid rgb(65, 82, 179);
@@ -56,12 +66,11 @@ const ContentContainer = styled.div`
       border: 2px solid black;
     }
   }
-`
-const Li = styled.li`
-  margin-bottom: 15px;
 `;
-const Span = styled.span`
-  font-style: italic;
+const EmailSent = styled.div`
+  display: ${props => props.visible === true ? "block" : "none"};
+  margin-top: 10px;
+  color: orange;
 `;
 // #endregion
 
@@ -93,9 +102,9 @@ class MagicLinkRequest extends React.Component {
           <h2>You must sign in to access your Clique Book</h2>
 
           <ol>
-            <Li>Enter your email address and click <Span>Send Link</Span>. We will send an email to you with a link.</Li>
-            <Li>Clicking that link will redirect you back here.</Li>
-            <Li>Then you'll be able to read and digitally sign off on your Clique Book!</Li>
+            <li>Enter your email address and click <span>Send Link</span>. We will send an email to you with a link.</li>
+            <li>Clicking that link will redirect you back here.</li>
+            <li>Then you'll be able to read and digitally sign off on your Clique Book!</li>
           </ol>
 
           <form onSubmit={this.handleSubmit}>
@@ -108,8 +117,8 @@ class MagicLinkRequest extends React.Component {
               required
             />
             <button type="submit">Send Link</button>
-            <p style={{marginTop: 10}}>{this.state.emailStatus === true && 'Link sent! Check your email inbox.'}</p>
           </form>
+          <EmailSent visible={this.state.emailStatus}>Link sent! Check your email inbox.</EmailSent>
         </ContentContainer>
       </SContainer>
     )
