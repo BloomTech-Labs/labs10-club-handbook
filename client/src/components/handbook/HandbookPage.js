@@ -13,6 +13,7 @@ import {
   createClub,
   getClubSections,
 } from '../../store/actions/clubActions'
+import { getFormatStyles } from '../../store/actions/formatActions'
 
 class HandbookPage extends React.Component {
   state = {
@@ -29,6 +30,7 @@ class HandbookPage extends React.Component {
     if (this.props.currentUser) {
       if (this.props.currentUser.club_id) {
         this.setState({ hasClub: true })
+        this.props.getFormatStyles()
         this.props.getClubById(this.props.currentUser.club_id)
         this.props.getClubSections(this.props.currentUser.club_id)
       }
@@ -98,7 +100,6 @@ class HandbookPage extends React.Component {
     })
   }
 
-
   render() {
     return (
       <>
@@ -148,7 +149,6 @@ class HandbookPage extends React.Component {
 const HandbookPageContainer = styled.div`
   display: flex;
   width: 100%;
-  /* margin-top: 6.4rem; */
   position: relative;
   z-index: 0;
 `
@@ -165,5 +165,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getClubById, updateClub, createClub, getClubSections }
+  { getClubById, updateClub, createClub, getClubSections, getFormatStyles }
 )(HandbookPage)

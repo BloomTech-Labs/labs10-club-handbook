@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { handleAuthorization } from '../store/actions/authActions'
+import LoadingPage from '../components/loading/loading'
 
 class Callback extends React.Component {
   componentDidMount() {
@@ -16,7 +17,7 @@ class Callback extends React.Component {
   }
 
   render() {
-    return <div>Loading...</div>
+    return <LoadingPage />
   }
 }
 

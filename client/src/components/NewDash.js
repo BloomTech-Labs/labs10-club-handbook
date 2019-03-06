@@ -8,13 +8,16 @@ import Toolbar from '@material-ui/core/Toolbar'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Typography from '@material-ui/core/Typography'
 
-import { withRouter } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import Auth from '../auth/Auth'
 // import RenderPropsMenu from './NewDashMenu'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 import RenderPropsMenu from './NewDashMenu'
+import PersonPinIcon from '@material-ui/icons/PersonPin'
+import Book from '@material-ui/icons/Book'
+import NoSsr from '@material-ui/core/NoSsr'
 
 const auth = new Auth()
 
@@ -122,6 +125,12 @@ TabContainer.propTypes = {
   children: PropTypes.node.isRequired,
 }
 
+function LinkTab(props) {
+  return (
+    <Tab component="a" onClick={event => event.preventDefault()} {...props} />
+  )
+}
+
 class DashBar extends React.Component {
   state = {
     value: 0,
@@ -142,19 +151,20 @@ class DashBar extends React.Component {
     return (
       <div className={classes.root}>
         <CssBaseline />
-        <AppBar position="fixed" className={classNames(classes.appBar)}>
-          <Toolbar>
-            <Typography
-              variant="h6"
-              color="inherit"
-              noWrap
-              className={classes.toolbarTitle}
-            >
-              Clique.Book
-            </Typography>
+        <NoSsr>
+          <AppBar position="fixed" className={classNames(classes.appBar)}>
+            <Toolbar>
+              <Typography
+                variant="h6"
+                color="inherit"
+                noWrap
+                className={classes.toolbarTitle}
+              >
+                Clique.Book
+              </Typography>
 
-            <div className={classes.navButtons}>
-              {/* <Button
+              <div className={classes.navButtons}>
+                {/* <Button
                 className={classes.navButton}
                 component={Link}
                 to="/handbook"
@@ -176,19 +186,21 @@ class DashBar extends React.Component {
               >
                 Manage Members
               </Button> */}
-            </div>
-            <Tabs value={value} onChange={this.handleChange}>
-              <Tab
-                label="Manage Handbook"
-                onClick={() => this.props.history.push('/handbook')}
-              />
-              <Tab
-                label="Manage Members"
-                onClick={() => this.props.history.push('/members')}
-              />
-            </Tabs>
-            <RenderPropsMenu />
-            {/* <a href="https://club-handbook.auth0.com/v2/logout">
+              </div>
+              <Tabs value={value} onChange={this.handleChange}>
+                <LinkTab
+                  href="https://clubhandbook.netlify.com/handbook"
+                  label="Manage Handbook"
+                  icon={<Book />}
+                />
+                <LinkTab
+                  href="https://clubhandbook.netlify.com/members"
+                  label="Manage Members"
+                  icon={<PersonPinIcon />}
+                />
+              </Tabs>
+              <RenderPropsMenu />
+              {/* <a href="https://club-handbook.auth0.com/v2/logout">
               <Button
                 // component={Link}
                 // to="/"
@@ -200,11 +212,12 @@ class DashBar extends React.Component {
                 Do Not Logout
               </Button>
             </a> */}
-          </Toolbar>
-        </AppBar>
+            </Toolbar>
+          </AppBar>
+        </NoSsr>
 
-        {value === 0 && <TabContainer>Manage Handbook</TabContainer>}
-        {value === 1 && <TabContainer>Manage Members</TabContainer>}
+        {/* {value === 0 && <TabContainer>Manage Handbook</TabContainer>}
+        {value === 1 && <TabContainer>Manage Members</TabContainer>} */}
       </div>
     )
   }
@@ -215,4 +228,4 @@ DashBar.propTypes = {
   theme: PropTypes.object.isRequired,
 }
 
-export default withRouter(withStyles(styles, { withTheme: true })(DashBar))
+export default withStyles(styles, { withTheme: true })(DashBar)

@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import { size } from './breakpoints'
-import { PlayCircleFilledWhite } from '@material-ui/icons'
 
 export const EditBtn = styled.div`
   display: none;
