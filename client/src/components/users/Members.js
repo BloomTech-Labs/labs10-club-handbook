@@ -22,7 +22,7 @@ const H2 = styled.h2`
 `;
 const Container = styled.div`
   max-width: 800px;
-  margin: 0 auto;
+  margin: 20px auto;
   padding: 0 2%;
   @media ${size.tablet} {
     /* width: 75%; */
@@ -87,7 +87,7 @@ class Members extends React.Component {
         <DashBar />
         
         <Container>
-          <HeaderBar>{this.props.clubName} Members</HeaderBar>
+          {/* <HeaderBar>{this.props.clubName} Members</HeaderBar> */}
           
             <AddMember />
 

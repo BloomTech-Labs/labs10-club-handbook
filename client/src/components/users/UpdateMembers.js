@@ -4,28 +4,82 @@ import { connect } from 'react-redux'
 import { updateUser, deleteUser } from '../../store/actions/usersActions'
 import styled from 'styled-components';
 import { size } from '../../style/breakpoints';
-import Button from '@material-ui/core/Button'
+// import Button from '@material-ui/core/Button'
 
-const UpdateContainer = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 5px;
-`;
+// const UpdateContainer = styled.div`
+//   width: 100%;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-between;
+//   margin-top: 5px;
+// `;
+
 const Form = styled.form`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  /* margin-bottom: 20px; */
   @media ${size.tablet} {
-    flex-direction: column;
+
 }
 `;
-const Input = styled.input`
-  margin-right: 10px;
-  border-radius: 3px;
-`;
-// const Button = styled.button`
 
-// `;
+const InputWrapper = styled.div`
+  /* display: flex; */
+  /* width: 100%; */
+  margin-bottom: 15px;
+  @media ${size.mobile} {
+    display: flex;
+    flex-direction: column;
+  }
+`;
+
+const InputName = styled.input`
+  margin-right: 1%;
+  border-radius: 3px;
+  width: 29%;
+  line-height: 1.5;
+  @media ${size.mobile} {
+    width: 90%;
+    margin-bottom: 10px;
+  }
+`;
+
+const InputEmail = styled.input`
+  margin-right: 1%;
+  border-radius: 3px;
+  width: 39%;
+  line-height: 1.5;
+  @media ${size.mobile} {
+    width: 90%;
+  }
+`;
+
+const ButtonWrapper = styled.div`
+  
+`;
+
+const StyledButton = styled.button`
+  width: 100px;
+  color: #000000;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  text-transform: uppercase;
+  padding: 10px 0;
+  margin-right: 30px;
+  :hover {
+    background-color: orange;
+    color: black;
+    border: 1px solid #384AA6;
+    cursor: pointer;
+  }
+  @media ${size.tablet} {
+    width: 100px;
+}
+`;
 
 class UpdateMembers extends React.Component {
   constructor(props) {
@@ -75,37 +129,46 @@ class UpdateMembers extends React.Component {
 
   render() {
     return (
-      <UpdateContainer>
+      // <UpdateContainer>
+        
         <Form onSubmit={this.handleSubmit}>
-          <Input
-            type="text"
-            name="firstname"
-            onChange={this.handleChanges}
-            placeholder="First Name"
-            value={this.state.firstname}
-          />
 
-          <Input
-            type="text"
-            name="lastname"
-            onChange={this.handleChanges}
-            placeholder="Last Name"
-            value={this.state.lastname}
-          />
+          <InputWrapper>
+            <InputName
+              type="text"
+              name="firstname"
+              onChange={this.handleChanges}
+              placeholder="First Name"
+              value={this.state.firstname}
+            />
 
-          <Input
-            type="text"
-            name="email"
-            onChange={this.handleChanges}
-            placeholder="Email Address"
-            value={this.state.email}
-          />
-          {/* <Button type="submit">Update</Button> */}
-          <Button color="inherit" variant="outlined" type="submit">Update</Button>
+            <InputName
+              type="text"
+              name="lastname"
+              onChange={this.handleChanges}
+              placeholder="Last Name"
+              value={this.state.lastname}
+            />
+
+            <InputEmail
+              type="text"
+              name="email"
+              onChange={this.handleChanges}
+              placeholder="Email Address"
+              value={this.state.email}
+            />
+          </InputWrapper>
+
+          <ButtonWrapper>
+            <StyledButton type="submit">Update</StyledButton>
+            {/* <Button color="inherit" variant="outlined" type="submit">Update</Button> */}
+            <StyledButton onClick={this.handleDeleteClick}>Delete</StyledButton>
+            {/* <Button color="inherit" variant="outlined" onClick={this.handleDeleteClick}>Delete</Button> */}
+          </ButtonWrapper>
+
         </Form>
-          {/* <Button onClick={this.handleDeleteClick}>Delete</Button> */}
-          <Button color="inherit" variant="outlined" onClick={this.handleDeleteClick}>Delete</Button>
-      </UpdateContainer>
+
+      // </UpdateContainer>
     )
   }
 }

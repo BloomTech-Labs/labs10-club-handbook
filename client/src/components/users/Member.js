@@ -17,12 +17,12 @@ const H3 = styled.h3`
 `;
 const MemberContainer = styled.div`
   /* margin: 0 0 15px 0; */
-  padding: 10px 2px;
+  padding: 10px;
   background: ${props => props.editVisible === true && "#3648AC"};
   color: ${props => props.editVisible === true && "white"};
   :hover {
-    /* background: #3648AC; */
-    /* color: white; */
+    background: #3648AC;
+    color: white;
   }
 `;
 const SCMember = styled.div`
@@ -70,6 +70,7 @@ const Email = styled.div`
 `;
 const UpdateMember = styled.div`
   display: ${props => props.visible === true ? "block" : "none"};
+  margin-top: 20px;
 `;
 const Actions = styled.div`
   width: 200px;
@@ -103,32 +104,32 @@ class Member extends React.Component {
     }
   }
 
-  editEmailField = event => {
-    if (this.state.editEmail === false) {
-      this.setState({ editEmail: true })
-    } else {
-      this.setState({ editEmail: false })
-    }
-    this.setState({ email: this.props.user.email })
-  }
+  // editEmailField = event => {
+  //   if (this.state.editEmail === false) {
+  //     this.setState({ editEmail: true })
+  //   } else {
+  //     this.setState({ editEmail: false })
+  //   }
+  //   this.setState({ email: this.props.user.email })
+  // }
 
-  editFirstNameField = event => {
-    if (this.state.editFirstName === false) {
-      this.setState({ editFirstName: true })
-    } else {
-      this.setState({ editFirstName: false })
-    }
-    this.setState({ firstname: this.props.user.firstname })
-  }
+  // editFirstNameField = event => {
+  //   if (this.state.editFirstName === false) {
+  //     this.setState({ editFirstName: true })
+  //   } else {
+  //     this.setState({ editFirstName: false })
+  //   }
+  //   this.setState({ firstname: this.props.user.firstname })
+  // }
 
-  editLastNameField = event => {
-    if (this.state.editLastName === false) {
-      this.setState({ editLastName: true })
-    } else {
-      this.setState({ editLastName: false })
-    }
-    this.setState({ lastname: this.props.user.lastname })
-  }
+  // editLastNameField = event => {
+  //   if (this.state.editLastName === false) {
+  //     this.setState({ editLastName: true })
+  //   } else {
+  //     this.setState({ editLastName: false })
+  //   }
+  //   this.setState({ lastname: this.props.user.lastname })
+  // }
 
   handleChanges = event => {
     this.setState({ [event.target.name]: event.target.value })
@@ -166,13 +167,13 @@ class Member extends React.Component {
 
   render() {
     return (
-      <Paper style={{ marginBottom: 10, paddingTop: 5, paddingBottom: 5, paddingRight: 10, paddingLeft: 10 }}>
+      // <Paper style={{ marginBottom: 10, paddingTop: 5, paddingBottom: 5, paddingRight: 10, paddingLeft: 10 }}>
       <MemberContainer editVisible={this.state.open}>
-        {/* <SCMember onClick={this.showEditField} key={this.props.user.id}> */}
-        <SCMember key={this.props.user.id}>
+        <SCMember onClick={this.showEditField} key={this.props.user.id}>
+        {/* <SCMember key={this.props.user.id}> */}
           <MemberInfo>
             <Name>
-              {
+              {/* {
                 this.state.editFirstName === false
                   ? <H3 onDoubleClick={this.editFirstNameField}>{this.props.user.firstname}</H3>
                   : <form onSubmit={this.handleSubmit}><input type="text" name="firstname" onChange={this.handleChanges} value={this.state.firstname} /></form>
@@ -181,17 +182,17 @@ class Member extends React.Component {
                 this.state.editLastName === false
                   ? <H3 onDoubleClick={this.editLastNameField}>{this.props.user.lastname}</H3>
                   : <form onSubmit={this.handleSubmit}><input type="text" name="lastname" onChange={this.handleChanges} value={this.state.lastname} /></form>
-              }
-              {/* <H3>{this.props.user.firstname}</H3> */}
-              {/* <H3>{this.props.user.lastname}</H3> */}
+              } */}
+              <H3>{this.props.user.firstname}</H3>
+              <H3>{this.props.user.lastname}</H3>
             </Name>
             <Email>
-              {
+              {/* {
                 this.state.editEmail === false
                   ? <H3 onDoubleClick={this.editEmailField}>{this.props.user.email}</H3>
                   : <form onSubmit={this.handleSubmit}><input type="text" name="email" onChange={this.handleChanges} value={this.state.email} /></form>
-              }
-              {/* <H3 onClick={this.showEditField}>{this.props.user.email}</H3> */}
+              } */}
+              <H3 onClick={this.showEditField}>{this.props.user.email}</H3>
             </Email>
           </MemberInfo>
 
@@ -206,7 +207,7 @@ class Member extends React.Component {
             <UpdateMembers userId={this.props.user.id}/>
         </UpdateMember>
       </MemberContainer>
-      </Paper>
+      // </Paper>
     )
   }
 }
