@@ -15,5 +15,8 @@ export const getFormatStyles = () => dispatch => {
       console.log('getFormatStyles', res.data)
       dispatch({ type: GET_FORMATS_SUCCESS, payload: res.data })
     })
-    .catch(err => dispatch({ type: GET_FORMATS_FAIL, error: err }))
+    .catch(err => {
+      console.log('getFormatStyles error')
+      dispatch({ type: GET_FORMATS_FAIL, error: err })
+    })
 }
