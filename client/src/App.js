@@ -50,7 +50,7 @@ class App extends Component {
           <div className="App">
             <Switch>
               <Route exact path="/" component={Landing} />
-              <Route exact path="/Dashboard" component={DashBar} />
+              <Route exact path="/dashboard" component={DashBar} />
               <Route exact path="/handbook" component={HandbookPage} />
               <Route exact path="/members" component={Members} />
               <Route exact path="/add-members" component={AddMembers} />
