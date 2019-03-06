@@ -108,7 +108,6 @@ class Payment extends React.Component {
 
     return (
       <PaymentContainer>
-        <DashBar />
         <Grid container spacing={40} alignItems="flex-end">
           {subscriptions.map(tier => (
             <Grid

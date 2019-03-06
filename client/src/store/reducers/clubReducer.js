@@ -129,12 +129,22 @@ const clubReducer = (state = initialState, action) => {
       }
 
     case GET_INFO_FROM_TOKEN:
-      return {
-        ...state,
-        loading: false,
-        message: null,
-        clubById: action.payload.club,
-        sections: action.payload.sections,
+      if (action.payload.club) {
+        return {
+          ...state,
+          loading: false,
+          message: null,
+          clubById: action.payload.club,
+          sections: action.payload.sections,
+        }
+      } else {
+        return {
+          ...state,
+          loading: false,
+          message: null,
+          clubById: {},
+          sections: [],
+        }
       }
 
     default:

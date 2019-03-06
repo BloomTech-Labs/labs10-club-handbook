@@ -142,11 +142,7 @@ class Settings extends React.Component {
             <Button className={classes.submit} component={LeaveTeam} />
           </SettingsContainer>
         )}
-        {value === 1 && (
-          <SettingsContainer>
-            <Billing />
-          </SettingsContainer>
-        )}
+        {value === 1 && <Billing />}
       </div>
     )
   }

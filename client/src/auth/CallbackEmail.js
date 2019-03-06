@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { handleAuthorizationEmail } from '../store/actions/authActions'
+import LoadingPage from '../components/loading/loading'
 
 class CallbackEmail extends React.Component {
   componentDidMount() {
@@ -20,7 +21,7 @@ class CallbackEmail extends React.Component {
   // }
 
   render() {
-    return <div>Loading...</div>
+    return <LoadingPage />
   }
 }
 
