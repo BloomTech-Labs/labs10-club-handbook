@@ -80,6 +80,7 @@ class App extends Component {
                 path="/handbook/member-view"
                 component={HandbookMemberView}
               />
+              <Route exact path="/add-members-mobile" component={AddMembersMobile} />
             </Switch>
           </div>
         </BrowserRouter>
