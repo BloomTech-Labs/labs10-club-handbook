@@ -27,10 +27,11 @@ class HandbookPage extends React.Component {
   }
 
   componentDidMount() {
+    console.log('handbook page cdm')
+    this.props.getFormatStyles()
     if (this.props.currentUser) {
       if (this.props.currentUser.club_id) {
         this.setState({ hasClub: true })
-        this.props.getFormatStyles()
         this.props.getClubById(this.props.currentUser.club_id)
         this.props.getClubSections(this.props.currentUser.club_id)
       }
@@ -149,6 +150,7 @@ class HandbookPage extends React.Component {
 const HandbookPageContainer = styled.div`
   display: flex;
   width: 100%;
+  margin-top: 7.2rem;
   position: relative;
   z-index: 0;
 `

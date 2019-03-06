@@ -28,8 +28,9 @@ class SectionForm extends Component {
     orderPosition: this.props.sections ? this.props.sections.length + 1 : 1,
     contactName: '',
     contactInfo: '',
-    color: null,
-    font: null,
+    titleColor: 'black',
+    bgColor: 'none',
+    font: 'roboto',
   }
 
   componentDidMount() {
@@ -137,6 +138,7 @@ class SectionForm extends Component {
 
   render() {
     const { clubId } = this.state
+    const { fonts, colors } = this.props
 
     if (!clubId) {
       return <h1>Loading...</h1>
@@ -201,7 +203,6 @@ class SectionForm extends Component {
                 id="contact-name"
                 name="contactName"
                 onChange={this.changeHandler}
-                required
                 value={this.state.contactName}
               />
             </Row>
@@ -212,7 +213,6 @@ class SectionForm extends Component {
                 id="contact-info"
                 name="contactInfo"
                 onChange={this.changeHandler}
-                required
                 value={this.state.contactInfo}
               />
             </Row>
@@ -226,13 +226,41 @@ class SectionForm extends Component {
                 name="image"
                 accept="image/*"
               />
+            </Row>
+
+            <Row wrap>
               <div>
-                <Label htmlFor="section-type">Image Placement</Label>
-                <select name="section-type" id="section-type">
-                  <option value="4">No Image</option>
+                <Label htmlFor="imgPlacement">Image Placement</Label>
+                <select
+                  name="imgPlacement"
+                  id="imgPlacement"
+                  onChange={this.changeHandler}
+                  required
+                  value={this.state.imgPlacement}
+                >
+                  <option selected="selected" value="4">
+                    No Image
+                  </option>
                   <option value="1">Image Background</option>
                   <option value="2">Image Left</option>
                   <option value="3">Image Right</option>
+                </select>
+              </div>
+
+              <div>
+                <Label htmlFor="title-font">Font</Label>
+                <select name="title-font" id="title-font">
+                  {fonts.map(font => {
+                    if (font.font.toLowerCase() === 'roboto') {
+                      return (
+                        <option selected="selected" value={font.font}>
+                          {font.font}
+                        </option>
+                      )
+                    } else {
+                      return <option value={font.font}>{font.font}</option>
+                    }
+                  })}
                 </select>
               </div>
             </Row>
@@ -241,20 +269,34 @@ class SectionForm extends Component {
               <div>
                 <Label htmlFor="background">Background Color</Label>
                 <select name="background" id="background">
-                  <option value="white">white</option>
-                  <option value="black">black</option>
-                  <option value="blue">blue</option>
-                  <option value="yellow">yellow</option>
-                  <option value="red">red</option>
-                  <option value="orange">orange</option>
+                  {colors.map(color => {
+                    if (color.color.toLowerCase() === 'black') {
+                      return (
+                        <option selected="selected" value={color.color}>
+                          {color.color}
+                        </option>
+                      )
+                    } else {
+                      return <option value={color.color}>{color.color}</option>
+                    }
+                  })}
                 </select>
               </div>
+
               <div>
-                <Label htmlFor="title-font">Title Font</Label>
-                <select name="title-font" id="title-font">
-                  <option value="Helvetica Neue">Helvetica Neue</option>
-                  <option value="Sans Serif">Sans Serif</option>
-                  <option value="Roboto">Roboto</option>
+                <Label htmlFor="title-color">Title Color</Label>
+                <select name="title-color" id="title-color">
+                  {colors.map(color => {
+                    if (color.color.toLowerCase() === 'black') {
+                      return (
+                        <option selected="selected" value={color.color}>
+                          {color.color}
+                        </option>
+                      )
+                    } else {
+                      return <option value={color.color}>{color.color}</option>
+                    }
+                  })}
                 </select>
               </div>
             </Row>
@@ -288,6 +330,8 @@ const mapStateToProps = state => {
   return {
     currentUser: state.auth.currentUser,
     sections: state.clubs.sections,
+    fonts: state.format.fonts,
+    colors: state.format.colors,
   }
 }
 
