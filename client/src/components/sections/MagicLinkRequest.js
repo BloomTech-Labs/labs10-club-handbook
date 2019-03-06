@@ -22,13 +22,24 @@ const ContentContainer = styled.div`
   max-width: 700px;
   border-radius: 10px;
   color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   h2 {
     margin: 20px 0 30px;
+    text-align: center;
   }
   p {
     display: ${props => props.visible === true ? "block" : "none"};
     margin-top: 10px;
     color: orange;
+    border: 1px solid red;
+  }
+  form {
+    /* margin: 30px 0; */
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
   input {
     width: 70%;
@@ -40,9 +51,6 @@ const ContentContainer = styled.div`
   }
   span {
     font-style: italic;
-  }
-  form {
-    margin: 30px 0;
   }
   button {
     margin-left: 30px;
@@ -68,9 +76,10 @@ const ContentContainer = styled.div`
   }
 `;
 const EmailSent = styled.div`
-  display: ${props => props.visible === true ? "block" : "none"};
-  margin-top: 10px;
+  visibility: ${props => props.visible === true ? "visible" : "hidden"};
+  margin-top: 50px;
   color: orange;
+  align-self: flex-start;
 `;
 // #endregion
 
