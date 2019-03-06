@@ -18,7 +18,7 @@ import LoadingPage from '../loading/loading'
 //#region STYLES
 const Container = styled.div`
   max-width: 800px;
-  margin: 50px auto;
+  margin: 115px auto;
   padding: 0 2%;
   @media ${size.tablet} {
     /* width: 75%; */
