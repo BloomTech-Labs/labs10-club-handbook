@@ -5,11 +5,15 @@ import ViewedManual from './ViewedManual'
 import styled from 'styled-components'
 import { size } from '../../style/breakpoints'
 import UpdateMembers from './UpdateMembers'
+import { updateUser } from '../../store/actions/usersActions'
+import { connect } from 'react-redux'
+import { Paper } from '@material-ui/core'
 
 //#region STYLES
 const H3 = styled.h3`
   font-size: 1.8rem;
   margin-right: 5px;
+  overflow: hidden;
 `;
 const MemberContainer = styled.div`
   /* margin: 0 0 15px 0; */
@@ -17,8 +21,8 @@ const MemberContainer = styled.div`
   background: ${props => props.editVisible === true && "#3648AC"};
   color: ${props => props.editVisible === true && "white"};
   :hover {
-    background: #3648AC;
-    color: white;
+    /* background: #3648AC; */
+    /* color: white; */
   }
 `;
 const SCMember = styled.div`
@@ -31,23 +35,38 @@ const SCMember = styled.div`
 const MemberInfo = styled.div`
   width: 75%;
   display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  @media ${size.tablet} {
+    flex-direction: column;
+    align-items: flex-start
+  }
 `;
 const Name = styled.div`
   display: flex;
-  width: 50%;
+  width: 40%;
+  @media ${size.tablet} {
+    width: 100%;
+    margin-bottom: 5px;
+  }
   :hover {
     cursor: pointer;
   }
 `;
 const Email = styled.div`
   display: flex;
-  width: 50%;
+  width: 60%;
+  max-width: 275px;
+  overflow: hidden;
   :hover {
     cursor: pointer;
   }
   @media ${size.tablet} {
-    display: none;
-}
+    width: 275px;
+  }
+  @media ${size.mobile} {
+    width: 210px;
+  }
 `;
 const UpdateMember = styled.div`
   display: ${props => props.visible === true ? "block" : "none"};
@@ -57,6 +76,7 @@ const Actions = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 0 0 0 0;
+  align-items: center;
 `;
 //#endregion
 
@@ -65,11 +85,16 @@ class Member extends React.Component {
     super(props)
     this.state = {
       open: false,
-      // editEmail: false,
-      // email: '',
+      editEmail: false,
+      editFirstName: false,
+      editLastName: false,
+      firstname: '',
+      lastname: '',
+      email: '',
     }
   }
 
+  //#region METHODS
   showEditField = event => {
     if (this.state.open === false) {
       this.setState({ open: true })
@@ -78,54 +103,95 @@ class Member extends React.Component {
     }
   }
 
-  // editEmailField = event => {
-  //   if (this.state.editEmail === false) {
-  //     this.setState({ editEmail: true })
-  //   } else {
-  //     this. setState({ editEmail: false })
-  //   }
-  //   this.setState({ email: this.props.user.email })
-  // }
+  editEmailField = event => {
+    if (this.state.editEmail === false) {
+      this.setState({ editEmail: true })
+    } else {
+      this.setState({ editEmail: false })
+    }
+    this.setState({ email: this.props.user.email })
+  }
 
-  // handleChanges = event => {
-  //   this.setState({ [event.target.name]: event.target.value })
-  // }
+  editFirstNameField = event => {
+    if (this.state.editFirstName === false) {
+      this.setState({ editFirstName: true })
+    } else {
+      this.setState({ editFirstName: false })
+    }
+    this.setState({ firstname: this.props.user.firstname })
+  }
 
-  // handleSubmit = event => {
-  //   event.preventDefault()
-  //   event.stopPropagation();
-  //   console.log('handleSubmit() invoked')
+  editLastNameField = event => {
+    if (this.state.editLastName === false) {
+      this.setState({ editLastName: true })
+    } else {
+      this.setState({ editLastName: false })
+    }
+    this.setState({ lastname: this.props.user.lastname })
+  }
 
-  //   const { userId } = this.props
+  handleChanges = event => {
+    this.setState({ [event.target.name]: event.target.value })
+  }
 
-  //   const userChanges = {};
+  handleSubmit = event => {
+    event.preventDefault()
+    event.stopPropagation();
+    console.log('handleSubmit() invoked')
 
-  //   if (this.state.firstname.length > 0) userChanges.firstname = this.state.firstname;
-  //   if (this.state.lastname.length > 0) userChanges.lastname = this.state.lastname;
-  //   if (this.state.email.length > 0) userChanges.email = this.state.email;
+    // const { userId } = this.props
+    const userId = this.props.user.id
 
-  //   this.props.updateUser(userId, userChanges)
+    const userChanges = {};
 
-  //   this.setState({
-  //     firstname: '',
-  //     lastname: '',
-  //     email: ''
-  //   })
-  // }
+    if (this.state.firstname.length > 0) userChanges.firstname = this.state.firstname;
+    if (this.state.lastname.length > 0) userChanges.lastname = this.state.lastname;
+    if (this.state.email.length > 0) userChanges.email = this.state.email;
+
+    this.props.updateUser(userId, userChanges)
+
+    this.setState({
+      editEmail: false,
+      editFirstName: false,
+      editLastName: false,
+    })
+
+    // this.setState({
+    //   firstname: '',
+    //   lastname: '',
+    //   email: ''
+    // })
+  }
+//#endregion
 
   render() {
-    console.log(this.props.user)
     return (
+      <Paper style={{ marginBottom: 10, padding: 5 }}>
       <MemberContainer editVisible={this.state.open}>
-        <SCMember onClick={this.showEditField} key={this.props.user.id}>
+        {/* <SCMember onClick={this.showEditField} key={this.props.user.id}> */}
+        <SCMember key={this.props.user.id}>
           <MemberInfo>
             <Name>
-              <H3>{this.props.user.firstname}</H3>
-              <H3>{this.props.user.lastname}</H3>
+              {
+                this.state.editFirstName === false
+                  ? <H3 onDoubleClick={this.editFirstNameField}>{this.props.user.firstname}</H3>
+                  : <form onSubmit={this.handleSubmit}><input type="text" name="firstname" onChange={this.handleChanges} value={this.state.firstname} /></form>
+              }
+              {
+                this.state.editLastName === false
+                  ? <H3 onDoubleClick={this.editLastNameField}>{this.props.user.lastname}</H3>
+                  : <form onSubmit={this.handleSubmit}><input type="text" name="lastname" onChange={this.handleChanges} value={this.state.lastname} /></form>
+              }
+              {/* <H3>{this.props.user.firstname}</H3> */}
+              {/* <H3>{this.props.user.lastname}</H3> */}
             </Name>
             <Email>
-            {/* {this.state.editEmail === false ? <H3 onClick={this.editEmailField}>{this.props.user.email}</H3> : <input type="text" name="email" onChange={this.handleChanges} value={this.state.email} />} */}
-              <H3 onClick={this.showEditField}>{this.props.user.email}</H3>
+              {
+                this.state.editEmail === false
+                  ? <H3 onDoubleClick={this.editEmailField}>{this.props.user.email}</H3>
+                  : <form onSubmit={this.handleSubmit}><input type="text" name="email" onChange={this.handleChanges} value={this.state.email} /></form>
+              }
+              {/* <H3 onClick={this.showEditField}>{this.props.user.email}</H3> */}
             </Email>
           </MemberInfo>
 
@@ -140,8 +206,12 @@ class Member extends React.Component {
             <UpdateMembers userId={this.props.user.id}/>
         </UpdateMember>
       </MemberContainer>
+      </Paper>
     )
   }
 }
 
-export default Member
+export default connect(
+  null,
+  { updateUser }
+)(Member)

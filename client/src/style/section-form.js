@@ -11,6 +11,7 @@ export const FormContainer = styled.div`
   box-shadow: 0 1px 10px gray;
   position: absolute;
   left: 20%;
+  top: 1rem;
   z-index: 10;
   background: white;
 

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import SectionItem from './SectionItem'
-import { Typography } from '@material-ui/core'
 import { AddCircle, FormatLineSpacing } from '@material-ui/icons'
 import { Row, Column, iconSize } from '../../../style/layout'
 import { connect } from 'react-redux'
@@ -30,9 +29,7 @@ class SectionsView extends Component {
   updateSectionOrder = sections => {
     console.log('updating section after dnd')
     sections.map((section, idx) => {
-      // console.log('section order', section.title, section.order)
       const orderUpdate = { order: idx + 1 }
-      // console.log('section order', section.title, section.order)
       console.log(section.club_id, section.id, orderUpdate)
       this.props.updateSection(section.club_id, section.id, orderUpdate)
     })
@@ -44,12 +41,6 @@ class SectionsView extends Component {
         <Row>
           <Column>
             <AddCircle onClick={this.props.toggleAddView} style={iconSize} />
-            <Typography variant="header6">Add</Typography>
-          </Column>
-
-          <Column>
-            <FormatLineSpacing style={iconSize} />
-            <Typography variant="header6">Reorder</Typography>
           </Column>
         </Row>
 

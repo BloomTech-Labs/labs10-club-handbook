@@ -32,7 +32,7 @@ class LeaveTeam extends React.Component {
           color="secondary"
           onClick={this.handleOpen}
         >
-          Leave Team
+          Logout
         </Button>
         <Dialog open={this.state.open} onClose={this.handleClose}>
           <DialogContent>
@@ -40,18 +40,18 @@ class LeaveTeam extends React.Component {
               <p>Are you sure you would like to continue?</p>
             </DialogContentText>
             <Divider />
-            <DialogContentText>
-              <br />
-              This action is permanent, all clubs and handbooks will be lost.
-              Club will remain active if you have assigned an administrator.
-            </DialogContentText>
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleClose} color="primary">
               Cancel
             </Button>
-            <Button component={Link} to="/" color="secondary" autoFocus>
-              Leave Team
+            <Button
+              onClick={Link}
+              href="https://club-handbook.auth0.com/v2/logout"
+              color="secondary"
+              autoFocus
+            >
+              Logout
             </Button>
           </DialogActions>
         </Dialog>

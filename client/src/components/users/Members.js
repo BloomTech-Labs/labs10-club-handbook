@@ -10,7 +10,7 @@ import EmailButton from './SendEmail'
 import ViewedManual from './ViewedManual'
 import AddMember from './AddMembers'
 import styled from 'styled-components'
-import DashBar from '../NewDash'
+import DashDrawer from '../Dashboard'
 import { size } from '../../style/breakpoints'
 import Member from './Member'
 import LoadingPage from '../loading/loading'
@@ -19,32 +19,51 @@ import LoadingPage from '../loading/loading'
 const H2 = styled.h2`
   font-size: 1.8rem;
   margin-left: 22px;
-`
+`;
 const Container = styled.div`
   max-width: 800px;
   margin: 0 auto;
   padding: 0 2%;
   @media ${size.tablet} {
-    width: 75%;
-  }
-`
+    /* width: 75%; */
+}
+`;
 const HeaderBar = styled.div`
   width: 100%;
-  background: #3648ac;
+  background: #3648AC;
   font-size: 35px;
-  color: #ffffff;
+  color: #FFFFFF;
   text-align: center;
   padding: 10px 0;
-`
+`;
 const MembersList = styled.div`
   display: flex;
   flex-direction: column;
-`
+`;
 const StatusHeader = styled.div`
   display: flex;
   justify-content: flex-end;
   margin: 0 70px 10px 0;
-`
+`;
+const PopupButton = styled.div`
+  display: none;
+  color: white;
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 10px 16px;
+  font-size: 0.875rem;
+  min-width: 64px;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  text-transform: uppercase;
+  background-color: #384AA6;
+  @media ${size.mobile} {
+    display: block;
+    position: fixed;
+    bottom: 10px;
+    right: 15px;
+    z-index: 10;
+  }
+`;
 //#endregion
 
 class Members extends React.Component {
@@ -63,13 +82,16 @@ class Members extends React.Component {
 
     return (
       <>
-        <DashBar />
 
+        <DashDrawer />
+        
         <Container>
-          <HeaderBar>ClubMembers</HeaderBar>
-          <AddMember />
+          <HeaderBar>{this.props.clubName} Members</HeaderBar>
+          
+            <AddMember />
 
           <MembersList>
+
             <StatusHeader>
               <H2>Visited</H2>
               <H2>Signed</H2>
@@ -89,6 +111,7 @@ class Members extends React.Component {
               }
             })}
           </MembersList>
+          <Link to={'/add-members-mobile'}><PopupButton>ADD MEMBER</PopupButton></Link>
         </Container>
         {this.props.loading ? <LoadingPage /> : null}
       </>

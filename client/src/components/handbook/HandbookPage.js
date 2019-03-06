@@ -129,6 +129,7 @@ class HandbookPage extends React.Component {
             club={this.props.club}
             clubId={this.props.club.id}
             displayHandbook={this.displayHandbook}
+            sectionView={this.state.sectionView}
           />
 
           <HandbookRender
@@ -155,10 +156,8 @@ class HandbookPage extends React.Component {
 }
 const HandbookPageContainer = styled.div`
   display: flex;
-  max-width: 120rem;
-  justify-content: space-between;
-  margin: 0 auto;
-  margin-top: 3rem;
+  width: 100%;
+  margin-top: 6.4rem;
   position: relative;
   z-index: 0;
 `
