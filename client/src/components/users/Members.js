@@ -72,6 +72,10 @@ const PopupButton = styled.div`
     z-index: 10;
   }
 `;
+const AddMembersWarning = styled.h3`
+  font-size: 2rem;
+  margin-top: 100px;
+`;
 //#endregion
 
 class Members extends React.Component {
@@ -100,10 +104,17 @@ class Members extends React.Component {
 
           <MembersList>
 
-            <StatusHeader>
-              <Visited>Visited</Visited>
-              <Signed>Signed</Signed>
-            </StatusHeader>
+            {
+            users.length > 1 &&
+              <StatusHeader>
+                <Visited>Visited</Visited>
+                <Signed>Signed</Signed>
+              </StatusHeader>
+            }
+
+            {
+              users.length <= 1 && <AddMembersWarning>You need some members! They'll show up here when you add some.</AddMembersWarning>
+            }
 
             {users.map(user => {
               if (user.admin === false) {
