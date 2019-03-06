@@ -1,12 +1,16 @@
 import React from 'react'
 import renderHTML from 'react-render-html'
-import { SectionContainer, Handbook } from '../../style/handbook-page/handbook'
+import {
+  SectionContainer,
+  Handbook,
+  Title,
+} from '../../style/handbook-page/handbook'
 
 const SectionRender = props => {
   if (props.sections.length === 0) {
     return (
       <Handbook>
-        <h1>Please create a handbook and add some sections.</h1>
+        <Title>Please create a handbook and add some sections.</Title>
       </Handbook>
     )
   } else {

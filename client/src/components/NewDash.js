@@ -126,9 +126,7 @@ TabContainer.propTypes = {
 }
 
 function LinkTab(props) {
-  return (
-    <Tab component="a" onClick={event => event.preventDefault()} {...props} />
-  )
+  return <Tab component="a" {...props} />
 }
 
 class DashBar extends React.Component {
@@ -151,20 +149,20 @@ class DashBar extends React.Component {
     return (
       <div className={classes.root}>
         <CssBaseline />
-        <NoSsr>
-          <AppBar position="fixed" className={classNames(classes.appBar)}>
-            <Toolbar>
-              <Typography
-                variant="h6"
-                color="inherit"
-                noWrap
-                className={classes.toolbarTitle}
-              >
-                Clique.Book
-              </Typography>
 
-              <div className={classes.navButtons}>
-                {/* <Button
+        <AppBar position="fixed" className={classNames(classes.appBar)}>
+          <Toolbar>
+            <Typography
+              variant="h6"
+              color="inherit"
+              noWrap
+              className={classes.toolbarTitle}
+            >
+              Clique.Book
+            </Typography>
+
+            <div className={classes.navButtons}>
+              {/* <Button
                 className={classes.navButton}
                 component={Link}
                 to="/handbook"
@@ -186,21 +184,25 @@ class DashBar extends React.Component {
               >
                 Manage Members
               </Button> */}
-              </div>
-              <Tabs value={value} onChange={this.handleChange}>
-                <LinkTab
-                  href="https://clubhandbook.netlify.com/handbook"
-                  label="Manage Handbook"
-                  icon={<Book />}
-                />
-                <LinkTab
-                  href="https://clubhandbook.netlify.com/members"
-                  label="Manage Members"
-                  icon={<PersonPinIcon />}
-                />
-              </Tabs>
-              <RenderPropsMenu />
-              {/* <a href="https://club-handbook.auth0.com/v2/logout">
+            </div>
+            <Tabs
+              variant="fullWidth"
+              value={value}
+              onChange={this.handleChange}
+            >
+              <LinkTab
+                label="Manage Handbook"
+                href="https://clubhandbook.netlify.com/handbook"
+                icon={<Book />}
+              />
+              <LinkTab
+                label="Manage Members"
+                href="https://clubhandbook.netlify.com/members"
+                icon={<PersonPinIcon />}
+              />
+            </Tabs>
+            <RenderPropsMenu />
+            {/* <a href="https://club-handbook.auth0.com/v2/logout">
               <Button
                 // component={Link}
                 // to="/"
@@ -212,9 +214,8 @@ class DashBar extends React.Component {
                 Do Not Logout
               </Button>
             </a> */}
-            </Toolbar>
-          </AppBar>
-        </NoSsr>
+          </Toolbar>
+        </AppBar>
 
         {value === 0 && <TabContainer>Manage Handbook</TabContainer>}
         {value === 1 && <TabContainer>Manage Members</TabContainer>}
