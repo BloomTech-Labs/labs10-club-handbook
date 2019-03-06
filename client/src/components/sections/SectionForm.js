@@ -49,6 +49,9 @@ class SectionForm extends Component {
         orderPosition: currentSection.order,
         contactName: currentSection.contact_name,
         contactInfo: currentSection.contact_info,
+        titleColor: currentSection.title_color,
+        bgColor: currentSection.bg_color,
+        font: currentSection.font,
       })
     } else {
       this.setState({ clubId: club_id })
@@ -103,6 +106,9 @@ class SectionForm extends Component {
       contact_name: this.state.contactName,
       contact_info: this.state.contactInfo,
       order: this.state.orderPosition,
+      title_color: this.state.titleColor,
+      bg_color: this.state.bgColor,
+      font: this.state.font,
     }
     this.props.addSection(this.state.clubId, sectionInfo)
     this.props.cancel(ev)
@@ -123,6 +129,10 @@ class SectionForm extends Component {
       img_placement: this.state.imgPlacement,
       contact_name: this.state.contactName,
       contact_info: this.state.contactInfo,
+      order: this.state.orderPosition,
+      title_color: this.state.titleColor,
+      bg_color: this.state.bgColor,
+      font: this.state.font,
     }
     this.props.updateSection(
       this.state.clubId,
@@ -235,12 +245,9 @@ class SectionForm extends Component {
                   name="imgPlacement"
                   id="imgPlacement"
                   onChange={this.changeHandler}
-                  required
                   value={this.state.imgPlacement}
                 >
-                  <option selected="selected" value="4">
-                    No Image
-                  </option>
+                  <option value="4">No Image</option>
                   <option value="1">Image Background</option>
                   <option value="2">Image Left</option>
                   <option value="3">Image Right</option>
@@ -249,15 +256,15 @@ class SectionForm extends Component {
 
               <div>
                 <Label htmlFor="title-font">Font</Label>
-                <select name="title-font" id="title-font">
+                <select
+                  name="title-font"
+                  id="title-font"
+                  onChange={this.changeHandler}
+                  value={this.state.font}
+                >
+                  <option value="Roboto">Roboto</option>
                   {fonts.map(font => {
-                    if (font.font.toLowerCase() === 'roboto') {
-                      return (
-                        <option selected="selected" value={font.font}>
-                          {font.font}
-                        </option>
-                      )
-                    } else {
+                    if (font.font.toLowerCase() !== 'roboto') {
                       return <option value={font.font}>{font.font}</option>
                     }
                   })}
@@ -267,33 +274,33 @@ class SectionForm extends Component {
 
             <Row wrap>
               <div>
-                <Label htmlFor="background">Background Color</Label>
-                <select name="background" id="background">
+                <Label htmlFor="bgColor">Background Color</Label>
+                <select
+                  name="bgColor"
+                  id="bgColor"
+                  onChange={this.changeHandler}
+                  value={this.state.bgColor}
+                >
+                  <option value="none">none</option>
+                  <option value="white">white</option>
                   {colors.map(color => {
-                    if (color.color.toLowerCase() === 'black') {
-                      return (
-                        <option selected="selected" value={color.color}>
-                          {color.color}
-                        </option>
-                      )
-                    } else {
-                      return <option value={color.color}>{color.color}</option>
-                    }
+                    return <option value={color.color}>{color.color}</option>
                   })}
                 </select>
               </div>
 
               <div>
-                <Label htmlFor="title-color">Title Color</Label>
-                <select name="title-color" id="title-color">
+                <Label htmlFor="titleColor">Title Color</Label>
+                <select
+                  name="titleColor"
+                  id="titleColor"
+                  onChange={this.changeHandler}
+                  value={this.state.titleColor}
+                >
+                  <option value="black">black</option>
+                  <option value="white">white</option>
                   {colors.map(color => {
-                    if (color.color.toLowerCase() === 'black') {
-                      return (
-                        <option selected="selected" value={color.color}>
-                          {color.color}
-                        </option>
-                      )
-                    } else {
+                    if (color.color.toLowerCase() !== 'black') {
                       return <option value={color.color}>{color.color}</option>
                     }
                   })}
