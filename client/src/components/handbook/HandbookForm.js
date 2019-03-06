@@ -36,6 +36,8 @@ const Tab = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  text-transform: uppercase;
+  font-size: 1.2rem;
 `
 
 const HandbookForm = props => {
@@ -87,7 +89,6 @@ const HandbookForm = props => {
               updateClub={props.updateClub}
               createClub={props.createClub}
               club={props.club}
-              displayHandbook={props.displayHandbook}
             />
           )}
         </div>
