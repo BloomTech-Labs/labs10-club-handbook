@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import SectionItem from './SectionItem'
-import { AddCircle, FormatLineSpacing } from '@material-ui/icons'
+import { AddCircle } from '@material-ui/icons'
 import { Row, Column, iconSize } from '../../../style/layout'
+import { addIcon } from '../../../style/section'
 import { connect } from 'react-redux'
 import { updateSection } from '../../../store/actions/clubActions'
 const update = require('immutability-helper')
@@ -40,7 +41,11 @@ class SectionsView extends Component {
       <div>
         <Row>
           <Column>
-            <AddCircle onClick={this.props.toggleAddView} style={iconSize} />
+            <AddCircle
+              onClick={this.props.toggleAddView}
+              style={addIcon}
+              color="primary"
+            />
           </Column>
         </Row>
 

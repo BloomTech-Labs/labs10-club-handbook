@@ -3,7 +3,9 @@ import styled from 'styled-components'
 
 const Title = styled.h3`
   text-align: center;
+  margin-top: -2rem;
   margin-bottom: 2rem;
+  letter-spacing: 1px;
 `
 
 const InputField = styled.input`
@@ -13,19 +15,22 @@ const InputField = styled.input`
   border-radius: 5px;
   box-shadow: 0 1px 1px black;
   margin-bottom: 2rem;
+  font-size: 1.2rem;
 `
 
 const Button = styled.button`
   width: 100%;
   margin: 0 auto;
   padding: 1rem 2rem;
-  border: 0.5px solid black;
+  border: 0px solid black;
   border-radius: 5px;
-  box-shadow: 0 1px 1px black;
+  box-shadow: 0 1px 5px black;
   background: cornflowerblue;
   color: white;
   font-size: 1.4rem;
+  font-weight: 900;
   text-transform: uppercase;
+  letter-spacing: 1px;
 `
 
 const DetailsView = props => {
@@ -36,6 +41,7 @@ const DetailsView = props => {
         type="text"
         name="title"
         value={props.title}
+        placeholder="...handbook name"
         onChange={props.handleChange}
       />
       {props.club.name || props.club.name == '' ? (

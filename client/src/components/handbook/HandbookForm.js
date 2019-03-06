@@ -5,27 +5,29 @@ import DetailsView from './views/DetailsView'
 import { connect } from 'react-redux'
 import { deleteSectionById } from '../../store/actions/clubActions'
 
-// import { Paper, Tabs, Tab } from '@material-ui/core'
-import { size } from '../../style/breakpoints'
-
 const ClubForm = styled.form`
   position: fixed;
-  width: 20rem;
-  height: 100%;
+  width: 22rem;
+  height: 94%;
   z-index: 1;
   left: 0;
-  background: rgb(30, 32, 34, 0.7);
+  background: rgb(60, 67, 75);
   color: white;
   overflow-x: hidden;
-  overflow: scroll;
-  border-left: 1px solid gray;
+  overflow-y: scroll;
+  border-left: 0px solid gray;
   box-shadow: 0 1px 1px gray;
+`
+const FixedContainer = styled.div`
+  position: fixed;
+  z-index: 3;
+  width: 22rem;
 `
 
 const Tabs = styled.div`
   display: flex;
   height: 5rem;
-  background: rgb(255, 255, 255, 0.1);
+  background: rgb(75, 83, 92);
 `
 
 const Tab = styled.div`
@@ -37,42 +39,48 @@ const Tab = styled.div`
   align-items: center;
   cursor: pointer;
   text-transform: uppercase;
+  letter-spacing: 1px;
   font-size: 1.2rem;
+`
+
+const Container = styled.div`
+  padding: 2rem;
+  margin-top: 8rem;
 `
 
 const HandbookForm = props => {
   return (
     <>
       <ClubForm onSubmit={props.hasClub ? props.updateClub : props.createClub}>
-        {/* <Paper square> */}
-        <Tabs
-          value={props.value}
-          indicatorColor="primary"
-          textColor="inherit"
-          variant="fullWidth"
-          onChange={props.handleTabChange}
-        >
-          {props.sectionView ? (
-            <>
-              <Tab onClick={props.sectionViewOff}>Overview</Tab>
-              <Tab selected label="Sections" onClick={props.sectionViewOn}>
-                Sections
-              </Tab>
-            </>
-          ) : (
-            <>
-              <Tab selected onClick={props.sectionViewOff}>
-                Overview
-              </Tab>
-              <Tab label="Sections" onClick={props.sectionViewOn}>
-                Sections
-              </Tab>
-            </>
-          )}
-        </Tabs>
-        {/* </Paper> */}
+        <FixedContainer>
+          <Tabs
+            value={props.value}
+            indicatorColor="primary"
+            textColor="inherit"
+            variant="fullWidth"
+            onChange={props.handleTabChange}
+          >
+            {props.sectionView ? (
+              <>
+                <Tab onClick={props.sectionViewOff}>Overview</Tab>
+                <Tab selected label="Sections" onClick={props.sectionViewOn}>
+                  Sections
+                </Tab>
+              </>
+            ) : (
+              <>
+                <Tab selected onClick={props.sectionViewOff}>
+                  Overview
+                </Tab>
+                <Tab label="Sections" onClick={props.sectionViewOn}>
+                  Sections
+                </Tab>
+              </>
+            )}
+          </Tabs>
+        </FixedContainer>
 
-        <div style={{ padding: '2rem' }}>
+        <Container>
           {props.sectionView ? (
             <SectionsView
               sections={props.sections}
@@ -91,7 +99,7 @@ const HandbookForm = props => {
               club={props.club}
             />
           )}
-        </div>
+        </Container>
       </ClubForm>
     </>
   )
