@@ -16,8 +16,9 @@ const H3 = styled.h3`
   overflow: hidden;
 `;
 const MemberContainer = styled.div`
-  /* margin: 0 0 15px 0; */
-  padding: 10px;
+  margin: 10px 2%;
+  padding: 5px 1%;
+  border-left: 1px solid #3648AC;
   background: ${props => props.editVisible === true && "#3648AC"};
   color: ${props => props.editVisible === true && "white"};
   :hover {
