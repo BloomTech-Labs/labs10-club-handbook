@@ -2,6 +2,7 @@ import axios from 'axios'
 import Auth from '../../auth/Auth'
 
 import AuthEmail from '../../auth/AuthEmail'
+import { getInfoFromToken } from './usersActions'
 
 export const AUTHORIZATION_START = 'AUTHORIZATION_START'
 export const AUTHORIZATION_SUCCESS = 'AUTHORIZATION_SUCCESS'
@@ -43,6 +44,9 @@ export const handleAuthorization = () => dispatch => {
             payload: res.data.user,
             message: 'User authorized.',
           })
+        })
+        .then(() => {
+          dispatch(getInfoFromToken())
         })
         .catch(err => console.log(err))
     })
