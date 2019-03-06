@@ -56,11 +56,12 @@ const PopupButton = styled.div`
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   text-transform: uppercase;
   background-color: #384AA6;
+  font-size: 1.7rem;
   @media ${size.mobile} {
     display: block;
     position: fixed;
-    bottom: 10px;
-    right: 15px;
+    bottom: 20px;
+    right: 30px;
     z-index: 10;
   }
 `;

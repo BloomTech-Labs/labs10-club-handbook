@@ -22,7 +22,7 @@ const Form = styled.form`
   display: flex;
   justify-content: space-between;
   @media ${size.tablet} {
-    flex-direction: column;
+    /* flex-direction: column; */
 }
 `;
 const SCName = styled.input`
@@ -31,7 +31,7 @@ const SCName = styled.input`
   line-height: 1.2;
   border-radius: 3px;
   @media ${size.tablet} {
-    width: 50%;
+    /* width: 50%; */
 }
 `;
 const SCEmail = styled.input`
@@ -40,7 +40,7 @@ const SCEmail = styled.input`
   line-height: 1.2;
   border-radius: 3px;
   @media ${size.tablet} {
-    width: 50%;
+    /* width: 50%; */
 }
 `;
 const StyledButton = styled.button`

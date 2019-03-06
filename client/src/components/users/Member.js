@@ -166,7 +166,7 @@ class Member extends React.Component {
 
   render() {
     return (
-      <Paper style={{ marginBottom: 10, padding: 5 }}>
+      <Paper style={{ marginBottom: 10, paddingTop: 5, paddingBottom: 5, paddingRight: 10, paddingLeft: 10 }}>
       <MemberContainer editVisible={this.state.open}>
         {/* <SCMember onClick={this.showEditField} key={this.props.user.id}> */}
         <SCMember key={this.props.user.id}>
