@@ -17,6 +17,14 @@ exports.up = function(knex, Promise) {
     tbl.integer('order')
     tbl.string('contact_name')
     tbl.string('contact_info')
+
+    tbl
+      .integer('color_id')
+      .unsigned()
+      .references('id')
+      .inTable('colors')
+
+    tbl.string('color_string')
   })
 }
 
