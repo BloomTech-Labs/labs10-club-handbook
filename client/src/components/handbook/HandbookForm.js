@@ -37,6 +37,7 @@ const Tab = styled.div`
   align-items: center;
   cursor: pointer;
   text-transform: uppercase;
+  letter-spacing: 1px;
   font-size: 1.2rem;
 `
 
