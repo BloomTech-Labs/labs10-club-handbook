@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { size } from './breakpoints'
+import { PlayCircleFilledWhite } from '@material-ui/icons'
 
 export const EditBtn = styled.div`
   display: none;
@@ -69,4 +70,16 @@ export const TitleBox = styled.div`
 // inline styles
 export const headerIcon = {
   fontSize: 50,
+}
+
+export const addIcon = {
+  fontSize: 50,
+  marginBottom: 1,
+  cursor: 'pointer',
+  borderRadius: '100%',
+  background: 'white',
+  boxShadow: '0 1px 5px black',
+  position: 'fixed',
+  marginTop: '-1rem',
+  zIndex: 1,
 }

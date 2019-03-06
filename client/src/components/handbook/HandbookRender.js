@@ -1,20 +1,17 @@
 import React from 'react'
 import renderHTML from 'react-render-html'
-import {
-  SectionContainer,
-  HandbookPreview,
-} from '../../style/handbook-page/handbook'
+import { SectionContainer, Handbook } from '../../style/handbook-page/handbook'
 
 const SectionRender = props => {
   if (props.sections.length === 0) {
     return (
-      <HandbookPreview>
+      <Handbook>
         <h1>Please create a handbook and add some sections.</h1>
-      </HandbookPreview>
+      </Handbook>
     )
   } else {
     return (
-      <HandbookPreview>
+      <Handbook>
         {props.sections.map(section => {
           const { title, body, img_url } = section
 
@@ -26,7 +23,7 @@ const SectionRender = props => {
             </SectionContainer>
           )
         })}
-      </HandbookPreview>
+      </Handbook>
     )
   }
 }
