@@ -57,7 +57,12 @@ const ContentContainer = styled.div`
     }
   }
 `
-
+const Li = styled.li`
+  margin-bottom: 15px;
+`;
+const Span = styled.span`
+  font-style: italic;
+`;
 // #endregion
 
 const authEmail = new AuthEmail()
@@ -85,13 +90,13 @@ class MagicLinkRequest extends React.Component {
     return (
       <SContainer>
         <ContentContainer>
-          <h2>To access this handbook you must sign in</h2>
+          <h2>You must sign in to access your Clique Book</h2>
 
-          <p>
-            Enter your email address below. We will send an email to you with a
-            link. Clicking that link we authorize you to see this handbook and
-            redirect you back to the handbook where you can view and sign it.
-          </p>
+          <ol>
+            <Li>Enter your email address and click <Span>Send Link</Span>. We will send an email to you with a link.</Li>
+            <Li>Clicking that link will redirect you back here.</Li>
+            <Li>Then you'll be able to read and digitally sign off on your Clique Book!</Li>
+          </ol>
 
           <form onSubmit={this.handleSubmit}>
             <input
