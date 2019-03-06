@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import AuthEmail from '../../auth/AuthEmail'
 import styled from 'styled-components'
+import { size } from '../../style/breakpoints';
 
 // #region Styled Components
 const SContainer = styled.div`
@@ -21,21 +22,38 @@ const ContentContainer = styled.div`
   max-width: 700px;
   border-radius: 10px;
   color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   h2 {
     margin: 20px 0 30px;
+    text-align: center;
   }
   p {
-    margin: 0;
-    margin-bottom: 30px;
-    font-size: 16px;
+    display: ${props => props.visible === true ? "block" : "none"};
+    margin-top: 10px;
+    color: orange;
+    border: 1px solid red;
+  }
+  form {
+    /* margin: 30px 0; */
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
   input {
     width: 70%;
     max-width: 400px;
     padding: 4px;
   }
+  li {
+    margin-bottom: 15px;
+  }
+  span {
+    font-style: italic;
+  }
   button {
-    margin-left: 10px;
+    margin-left: 30px;
     border-radius: 5px;
     font-size: 1.6rem;
     border: 2px solid rgb(65, 82, 179);
@@ -56,8 +74,13 @@ const ContentContainer = styled.div`
       border: 2px solid black;
     }
   }
-`
-
+`;
+const EmailSent = styled.div`
+  visibility: ${props => props.visible === true ? "visible" : "hidden"};
+  margin-top: 50px;
+  color: orange;
+  align-self: flex-start;
+`;
 // #endregion
 
 const authEmail = new AuthEmail()
@@ -75,19 +98,23 @@ class MagicLinkRequest extends React.Component {
   handleSubmit = event => {
     event.preventDefault()
     authEmail.sendEmail(this.state.email)
+
+    this.setState({
+      emailStatus: true,
+    })
   }
 
   render() {
     return (
       <SContainer>
         <ContentContainer>
-          <h2>To access this handbook you must sign in</h2>
+          <h2>You must sign in to access your Clique Book</h2>
 
-          <p>
-            Enter your email address below. We will send an email to you with a
-            link. Clicking that link we authorize you to see this handbook and
-            redirect you back to the handbook where you can view and sign it.
-          </p>
+          <ol>
+            <li>Enter your email address and click <span>Send Link</span>. We will send an email to you with a link.</li>
+            <li>Clicking that link will redirect you back here.</li>
+            <li>Then you'll be able to read and digitally sign off on your Clique Book!</li>
+          </ol>
 
           <form onSubmit={this.handleSubmit}>
             <input
@@ -96,10 +123,11 @@ class MagicLinkRequest extends React.Component {
               onChange={this.handleChanges}
               placeholder="Email Address"
               value={this.props.email}
+              required
             />
             <button type="submit">Send Link</button>
-            <p>{this.state.emailStatus === true && 'email sent!'}</p>
           </form>
+          <EmailSent visible={this.state.emailStatus}>Link sent! Check your email inbox.</EmailSent>
         </ContentContainer>
       </SContainer>
     )

@@ -13,9 +13,14 @@ const SCWrapper = styled.div`
   margin-bottom: 20px;
   display: flex;
   justify-content: center;
+  flex-direction: column;
   @media ${size.mobile} {
     display: none;
   }
+`;
+const StyledH6 = styled.h6`
+  font-size: 1rem;
+  margin-bottom: 8px;
 `;
 const Form = styled.form`
   width: 100%;
@@ -100,7 +105,7 @@ class AddMembers extends React.Component {
   render() {
     return (
       <SCWrapper>
-       
+        <StyledH6>Add some members to your clique</StyledH6>
         <Form onSubmit={this.handleSubmit}>
           <SCName
             type="text"
