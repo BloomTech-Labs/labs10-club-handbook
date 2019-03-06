@@ -15,7 +15,7 @@ import {
 } from '@material-ui/core'
 import LeaveTeam from './LeaveTeam'
 import DashBar from './NewDash'
-import Payment from './billing/Payment'
+import Billing from './billing/Billing'
 
 const styles = theme => ({
   main: {
@@ -144,10 +144,7 @@ class Settings extends React.Component {
         )}
         {value === 1 && (
           <SettingsContainer>
-            {' '}
-            <Paper className={classes.paper}>
-              <Payment />
-            </Paper>
+            <Billing />
           </SettingsContainer>
         )}
       </div>
