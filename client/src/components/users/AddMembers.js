@@ -22,32 +22,31 @@ const Form = styled.form`
   display: flex;
   justify-content: space-between;
   @media ${size.tablet} {
-    flex-direction: column;
+    /* flex-direction: column; */
 }
 `;
 const SCName = styled.input`
   width: 25%;
   margin-right: 0 10px;
-  line-height: 1.2;
+  line-height: 1.5;
   border-radius: 3px;
   @media ${size.tablet} {
-    width: 50%;
+    /* width: 50%; */
 }
 `;
 const SCEmail = styled.input`
   width: 35%;
   margin-right: 0 10px;
-  line-height: 1.2;
+  line-height: 1.5;
   border-radius: 3px;
   @media ${size.tablet} {
-    width: 50%;
+    /* width: 50%; */
 }
 `;
 const StyledButton = styled.button`
   color: #000000;
   border: 1px solid black;
   border-radius: 4px;
-  padding: 5px 16px;
   font-size: 0.875rem;
   min-width: 64px;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;

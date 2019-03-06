@@ -16,13 +16,9 @@ import Member from './Member'
 import LoadingPage from '../loading/loading'
 
 //#region STYLES
-const H2 = styled.h2`
-  font-size: 1.8rem;
-  margin-left: 22px;
-`;
 const Container = styled.div`
   max-width: 800px;
-  margin: 0 auto;
+  margin: 50px auto;
   padding: 0 2%;
   @media ${size.tablet} {
     /* width: 75%; */
@@ -40,11 +36,22 @@ const MembersList = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
 const StatusHeader = styled.div`
+  width: 100%;
   display: flex;
   justify-content: flex-end;
-  margin: 0 70px 10px 0;
 `;
+
+const Visited = styled.h2`
+  font-size: 1.8rem;
+  margin-right: 15px;
+`;
+const Signed = styled.h2`
+  font-size: 1.8rem;
+  margin-right: 14%;
+`;
+
 const PopupButton = styled.div`
   display: none;
   color: white;
@@ -56,11 +63,12 @@ const PopupButton = styled.div`
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   text-transform: uppercase;
   background-color: #384AA6;
+  font-size: 1.7rem;
   @media ${size.mobile} {
     display: block;
     position: fixed;
-    bottom: 10px;
-    right: 15px;
+    bottom: 20px;
+    right: 30px;
     z-index: 10;
   }
 `;
@@ -86,15 +94,15 @@ class Members extends React.Component {
         <DashBar />
         
         <Container>
-          <HeaderBar>{this.props.clubName} Members</HeaderBar>
+          {/* <HeaderBar>{this.props.clubName} Members</HeaderBar> */}
           
             <AddMember />
 
           <MembersList>
 
             <StatusHeader>
-              <H2>Visited</H2>
-              <H2>Signed</H2>
+              <Visited>Visited</Visited>
+              <Signed>Signed</Signed>
             </StatusHeader>
 
             {users.map(user => {

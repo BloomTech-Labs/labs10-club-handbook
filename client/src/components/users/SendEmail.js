@@ -4,18 +4,18 @@ import styled from 'styled-components'
 import { size } from '../../style/breakpoints';
 
 const StyledButton = styled.button`
+  width: 65px;
   color: #000000;
+  background-color: white;
   border: 1px solid black;
   border-radius: 4px;
-  padding: 3px 5px;
-  line-height: 3;
   font-size: 0.875rem;
-  width: 65px;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   text-transform: uppercase;
+  padding: 10px 0;
   :hover {
-    background-color: #384AA6;
-    color: white;
+    background-color: orange;
+    color: black;
     border: 1px solid #384AA6;
     cursor: pointer;
   }
@@ -42,7 +42,7 @@ class EmailButton extends React.Component {
     return (
       // <button onClick={this.onClick}>Notify</button>
 
-      <StyledButton color="inherit" variant="outlined" onClick={this.onClick}>Notify</StyledButton>
+      <StyledButton onClick={this.onClick}>Notify</StyledButton>
     )
   }
 }
