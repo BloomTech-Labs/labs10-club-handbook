@@ -17,6 +17,7 @@ const ClubForm = styled.form`
   overflow-y: scroll;
   border-left: 0px solid gray;
   box-shadow: 0 1px 1px gray;
+  text-align: center;
 `
 const FixedContainer = styled.div`
   position: fixed;
@@ -32,7 +33,7 @@ const Tabs = styled.div`
 
 const Tab = styled.div`
   width: 50%;
-  color: ${props => (props.selected ? 'white' : 'whitesmoke')};
+  color: white;
   border-bottom: ${props => (props.selected ? '2px solid red' : 'none')};
   display: flex;
   justify-content: center;
@@ -40,7 +41,8 @@ const Tab = styled.div`
   cursor: pointer;
   text-transform: uppercase;
   letter-spacing: 1px;
-  font-size: 1.2rem;
+  font-size: ${props => (props.selected ? '1.3rem' : '1.2rem')};
+  text-shadow: 0 1px 5px black;
 `
 
 const Container = styled.div`

@@ -77,10 +77,14 @@ export const SectionInput = styled.input`
 `
 
 export const ImageInput = styled.input`
-  font-size: 12px;
+  font-size: 1.4rem;
 
   @media ${size.mobile} {
     width: 60%;
     margin-bottom: 2rem;
   }
+`
+
+export const Select = styled.select`
+  font-size: 1.4rem;
 `

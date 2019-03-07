@@ -38,6 +38,7 @@ const SectionRender = props => {
               text-align: center;
               color: ${title_color};
               font-size: 6rem;
+              text-shadow: 0 1px 3px black;
             }
 
             p {
@@ -64,18 +65,19 @@ const SectionRender = props => {
             min-height: 50vh;
 
             .img {
-              width: 25%;
+              width: 40%;
               height: auto;
               margin-right: 1.5rem;
 
               img {
                 width: 100%;
                 height: auto;
+                box-shadow: -1px 1px 10px black;
               }
             }
 
             .body {
-              width: 65%;
+              width: 55%;
               min-height: 60%;
             }
           `
