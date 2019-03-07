@@ -12,7 +12,11 @@ class Callback extends React.Component {
 
   componentDidUpdate() {
     if (this.props.userLoggedIn) {
-      this.props.history.push('/clique/handbook')
+      if (this.props.currentUser.club_id && !this.props.currentUser.admin) {
+        this.props.history.push('/handbook/member-view')
+      } else {
+        this.props.history.push('/clique/handbook')
+      }
     }
   }
 
@@ -24,6 +28,7 @@ class Callback extends React.Component {
 const mapStateToProps = state => {
   return {
     userLoggedIn: state.auth.userLoggedIn,
+    currentUser: state.auth.currentUser,
   }
 }
 
