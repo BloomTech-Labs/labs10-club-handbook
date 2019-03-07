@@ -259,15 +259,6 @@ router.get(
       let sections = await db('clubs')
         .join('sections', 'clubs.id', '=', 'sections.club_id')
         .where({ 'clubs.id': req.params.id })
-        .select(
-          'sections.id',
-          'sections.title',
-          'sections.body',
-          'sections.img_url',
-          'sections.img_placement',
-          'sections.order',
-          'sections.club_id'
-        )
         .orderBy('order')
       res.status(200).json(sections)
     } catch (err) {
