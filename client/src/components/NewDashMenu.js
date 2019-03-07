@@ -7,6 +7,7 @@ import toRenderProps from 'recompose/toRenderProps'
 import withState from 'recompose/withState'
 import { connect } from 'react-redux'
 import { logOut as stateLogOut } from '../store/actions/usersActions'
+import axios from 'axios'
 
 const WithState = toRenderProps(withState('anchorEl', 'updateAnchorEl', null))
 
@@ -17,6 +18,7 @@ class RenderPropsMenu extends React.Component {
     localStorage.removeItem('expires_at')
     localStorage.removeItem('lsid')
     this.stateLogOut()
+    axios.get('https://club-handbook.auth0.com/v2/logout')
   }
 
   render() {

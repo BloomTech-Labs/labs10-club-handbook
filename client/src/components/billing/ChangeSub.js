@@ -116,7 +116,7 @@ class ChangeSub extends React.Component {
 }
 
 const PaymentContainer = styled.div`
-  margin: auto;
+  margin: 100px auto;
   width: 70%;
   display: flex;
   flex-direction: column;
