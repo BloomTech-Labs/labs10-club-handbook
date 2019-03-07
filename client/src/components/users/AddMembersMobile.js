@@ -7,8 +7,9 @@ import { size } from '../../style/breakpoints';
 
 //#region STYLES
 const SCWrapper = styled.div`
-  width: 100vw;
-  height: 100vh;
+  /* width: 100vw; */
+  /* height: 100vh; */
+  margin-top: 70px;
   display: flex;
   flex-direction: column;
 `;
@@ -35,7 +36,7 @@ const StyledButton = styled.button`
   color: #000000;
   border: 1px solid black;
   border-radius: 4px;
-  padding: 5px 16px;
+  padding: 10px 16px;
   font-size: 0.875rem;
   min-width: 64px;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
