@@ -23,6 +23,12 @@ import Parallax from './Header'
 import GridContainer from './Grid'
 import Fade from 'react-reveal/Fade'
 import styled from 'styled-components'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
+
+import PersonPinIcon from '@material-ui/icons/PersonPin'
+import Group from '@material-ui/icons/Group'
+import Settings from '@material-ui/icons/Settings'
 
 const CardContainer = styled.div`
   margin: auto;
@@ -43,8 +49,16 @@ const styles = theme => ({
   toolbarTitle: {
     flex: 1,
   },
+
   landingContent: {
     maxWidth: 700,
+    margin: '0 auto',
+    marginTop: 20,
+    marginBottom: 30,
+    padding: `${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 6}px`,
+  },
+  headerContent: {
+    maxWidth: 1200,
     margin: '0 auto',
     marginTop: 20,
     marginBottom: 30,
@@ -110,13 +124,19 @@ const subscriptions = [
   },
 ]
 
+function LinkTab(props) {
+  return <Tab component="a" {...props} />
+}
+
 class Landing extends React.Component {
   state = {
     open: false,
+    value: null,
   }
 
   render() {
     const { classes } = this.props
+    const { value } = this.state
     return (
       <React.Fragment>
         <CssBaseline />
@@ -131,15 +151,26 @@ class Landing extends React.Component {
             >
               CliqueBook
             </Typography>
-            <Button component={Login} color="inherit" variant="outlined" />
-            <Button
-              component={Link}
-              to="/handbook/member-view"
-              color="inherit"
-              variant="outlined"
+
+            <Tabs
+              variant="fullWidth"
+              value={value}
+              onChange={this.handleChange}
             >
-              View Handbook{' '}
-            </Button>
+              <LinkTab
+                label="Group Member Access"
+                // href="https://clubhandbook.netlify.com/handbook"
+                component={Link}
+                to="/magic-link-request"
+                icon={<Group />}
+              />
+              <LinkTab
+                label="Admin Portal"
+                icon={<Settings />}
+                // component={Link}
+                href="https://club-handbook.auth0.com/login?state=g6Fo2SBfUGxJU3BTblE5WWdKMUx1SzAxRkVyM1M4c2xkeXVJOKN0aWTZIElUMkpPU0RrZFc4M1dlSnBqUEdyaU1ENGFoZUtwTzl1o2NpZNkgTEw1V0wzWUQ3dnhPWjV0dzV5TURtdFFiMlF4UnBUa1U&client=LL5WL3YD7vxOZ5tw5yMDmtQb2QxRpTkU&protocol=oauth2&response_type=token%20id_token&redirect_uri=https%3A%2F%2Fclubhandbook.netlify.com%2Fcallback&scope=openid%20profile%20email&audience=https%3A%2F%2Fclub-handbook.herokuapp.com%2F&nonce=zEnaQHLrMeFgM2ecdPdNLlGpuVIXf6Mb&auth0Client=eyJuYW1lIjoiYXV0aDAuanMiLCJ2ZXJzaW9uIjoiOS4xMC4wIn0%3D"
+              />
+            </Tabs>
           </Toolbar>
         </AppBar>
         <main>
@@ -149,20 +180,42 @@ class Landing extends React.Component {
             filter
             image={require('../assets/images/pexels-photo-1289898.jpeg')}
           >
-            <div className={classes.container}>
+            <div className={classes.headerContent}>
               <GridContainer>
                 <Fade left>
                   <GridContainer xs={12} sm={12} md={6}>
                     <Typography variant="h3" color="primary" gutterBottom>
-                      To happier, productive, and loyal employees.
+                      Create a Handbook for Your Group. <br />
+                      Stay Connected with your Members.
                     </Typography>
                     <Typography variant="h6" color="primary" paragraph>
-                      Top companies choose Club.Handbook to build their employee
-                      handbooks. Complete templates, beautiful design and easy
-                      customization. Publish as a mobile-friendly digital
-                      handbook.
+                      An easy way to create a handbook for your group that
+                      allows your members to electronically sign their agreement
+                      to your group's terms and condition. Your rules. Keep
+                      track of who has seen the handbook and who has
+                      electronically signed the handbook.
                     </Typography>
                     <br />
+                    <div>
+                      <Button
+                        className={classes.navButton}
+                        component={Link}
+                        to="/handbook/member-view"
+                        color="inherit"
+                        variant="contained"
+                      >
+                        I'm a Member and need to View My Group's Handbook
+                      </Button>
+                      <Button
+                        className={classes.navButton}
+                        component={Link}
+                        to="/handbook/member-view"
+                        color="secondary"
+                        variant="contained"
+                      >
+                        I'm an Admin and need to Create My Group's Handbook{' '}
+                      </Button>
+                    </div>
                   </GridContainer>
                 </Fade>
               </GridContainer>
