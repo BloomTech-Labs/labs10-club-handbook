@@ -23,6 +23,7 @@ const SectionRender = props => {
             bg_color,
             title_color,
             font,
+            id
           } = section
 
           const Section = styled.div`
@@ -85,7 +86,7 @@ const SectionRender = props => {
           }
 
           return (
-            <Section style={img_placement == 1 ? bgImage : null}>
+            <Section key={id} style={img_placement == 1 ? bgImage : null}>
               <SectionTitle>
                 <h1>{title}</h1>
               </SectionTitle>
