@@ -84,7 +84,7 @@ class Settings extends React.Component {
 
     return (
       <div className={classes.form}>
-        <DashBar />
+        {/* <DashBar /> */}
         <CssBaseline />
         <Tabs value={value} onChange={this.handleTab} centered>
           <Tab label="User Settings" />

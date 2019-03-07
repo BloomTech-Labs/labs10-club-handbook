@@ -48,11 +48,11 @@ class App extends Component {
       <MuiThemeProvider theme={Theme}>
         <BrowserRouter>
           <div className="App">
-            <Switch>
+            {/* <Switch> */}
               <Route exact path="/" component={Landing} />
-              <Route exact path="/dashboard" component={DashBar} />
-              <Route exact path="/handbook" component={HandbookPage} />
-              <Route exact path="/members" component={Members} />
+              <Route path="/clique" component={DashBar} />
+              <Route exact path="/clique/members" component={Members} />
+              <Route path="/clique/handbook" component={HandbookPage} />
               <Route exact path="/add-members" component={AddMembers} />
               <Route exact path="/signature" component={Signature} />
               <Route
@@ -61,7 +61,7 @@ class App extends Component {
                 component={UpdateMembers}
               />
               <Route exact path="/billing" component={Billing} />
-              <Route exact path="/settings" component={Settings} />
+              <Route exact path="/clique/settings" component={Settings} />
               <Route path="/login" component={Login} />
               <Route path="/callback" component={Callback} />
               <Route
@@ -80,8 +80,8 @@ class App extends Component {
                 path="/handbook/member-view"
                 component={HandbookMemberView}
               />
-              <Route path="/add-members-mobile" component={AddMembersMobile} />
-            </Switch>
+              <Route path="/clique/members/add-members-mobile" component={AddMembersMobile} />
+            {/* </Switch> */}
           </div>
         </BrowserRouter>
       </MuiThemeProvider>

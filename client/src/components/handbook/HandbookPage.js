@@ -104,7 +104,7 @@ class HandbookPage extends React.Component {
   render() {
     return (
       <>
-        <DashBar />
+        {/* <DashBar /> */}
         <HandbookPageContainer>
           <HandbookForm
             hasClub={this.state.hasClub}
