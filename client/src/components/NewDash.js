@@ -134,6 +134,16 @@ class DashBar extends React.Component {
     value: 0,
   }
 
+  componentDidMount() {
+    const currentLocation = window.location.href;
+    
+    if (currentLocation === 'http://localhost:3000/clique/members') {
+      this.setState({ value: 1 })
+    } else if (currentLocation === 'http://localhost:3000/clique/handbook') {
+      this.setState({ value: 0 })
+    }
+  }
+
   logoutUser = () => {
     auth.logout()
   }
@@ -192,13 +202,17 @@ class DashBar extends React.Component {
             >
               <LinkTab
                 label="Manage Handbook"
-                href="https://clubhandbook.netlify.com/handbook"
+                // href="https://clubhandbook.netlify.com/handbook"
+                component={Link}
+                to="/clique/handbook"
                 icon={<Book />}
               />
               <LinkTab
                 label="Manage Members"
-                href="https://clubhandbook.netlify.com/members"
+                // href="https://clubhandbook.netlify.com/members"
                 icon={<PersonPinIcon />}
+                component={Link}
+                to="/clique/members"
               />
             </Tabs>
             <RenderPropsMenu />

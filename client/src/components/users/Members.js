@@ -95,7 +95,7 @@ class Members extends React.Component {
     return (
       <>
 
-        <DashBar />
+        {/* <DashBar /> */}
         
         <Container>
           {/* <HeaderBar>{this.props.clubName} Members</HeaderBar> */}
@@ -130,7 +130,7 @@ class Members extends React.Component {
               }
             })}
           </MembersList>
-          <Link to={'/add-members-mobile'}><PopupButton>ADD MEMBER</PopupButton></Link>
+          <Link to={'/clique/members/add-members-mobile'}><PopupButton>ADD MEMBER</PopupButton></Link>
         </Container>
         {this.props.loading ? <LoadingPage /> : null}
       </>

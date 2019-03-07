@@ -38,7 +38,7 @@ function RenderPropsMenu() {
               onClose={handleClose}
             >
               <MenuItem onClick={handleClose}>Profile</MenuItem>
-              <MenuItem component={Link} to="/settings">
+              <MenuItem component={Link} to="/clique/settings">
               Settings
             </MenuItem>
               <MenuItem
