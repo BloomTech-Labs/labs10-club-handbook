@@ -1,10 +1,6 @@
 import React from 'react'
 import renderHTML from 'react-render-html'
-import {
-  SectionContainer,
-  Handbook,
-  Title,
-} from '../../style/handbook-page/handbook'
+import { Handbook, Title } from '../../style/handbook-page/handbook'
 
 import styled from 'styled-components'
 
@@ -30,34 +26,93 @@ const SectionRender = props => {
           } = section
 
           const Section = styled.div`
-            padding: 10rem;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            border-bottom: 1px solid gray;
+            align-items: center;
             background: ${bg_color};
+            font-family: ${font};
 
             h1 {
               text-align: center;
-              margin-bottom: 1.5rem;
               color: ${title_color};
+              font-size: 6rem;
             }
+
+            p {
+              text-align: center;
+              color: ${title_color};
+              font-size: 2.6rem;
+              text-align: left;
+            }
+          `
+
+          const SectionTitle = styled.div`
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 25vh;
           `
 
           const Body = styled.div`
             display: flex;
             width: 100%;
-            padding: 2rem;
-            margin-top: 2rem;
+            padding: 5rem;
             justify-content: space-between;
+            align-items: center;
+            min-height: 50vh;
+
+            .img {
+              width: 25%;
+              height: auto;
+              margin-right: 1.5rem;
+
+              img {
+                width: 100%;
+                height: auto;
+              }
+            }
+
+            .body {
+              width: 65%;
+              min-height: 60%;
+            }
           `
 
+          const bgImage = {
+            background: `url(${img_url})`,
+            backgroundSize: 'cover',
+          }
+
           return (
-            <Section>
-              <h1>{title}</h1>
-              <Body>
-                <img src={img_url} style={{ width: '30rem' }} />
-                <div className="body">{renderHTML(body)}</div>
+            <Section style={img_placement == 1 ? bgImage : null}>
+              <SectionTitle>
+                <h1>{title}</h1>
+              </SectionTitle>
+              <Body
+                style={
+                  !img_url || img_placement == 1 || img_placement == 4
+                    ? { justifyContent: 'center' }
+                    : img_placement == 3
+                    ? { flexDirection: 'row-reverse' }
+                    : null
+                }
+              >
+                {img_url && img_placement != 1 && img_placement != 4 ? (
+                  <div className="img">
+                    <img src={img_url} />
+                  </div>
+                ) : null}
+                <div
+                  className="body"
+                  style={
+                    !img_url || img_placement == 1 || img_placement == 4
+                      ? { width: '80%' }
+                      : null
+                  }
+                >
+                  {renderHTML(body)}
+                </div>
               </Body>
             </Section>
           )

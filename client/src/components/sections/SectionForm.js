@@ -255,15 +255,16 @@ class SectionForm extends Component {
               </div>
 
               <div>
-                <Label htmlFor="title-font">Font</Label>
+                <Label htmlFor="font">Font</Label>
                 <select
-                  name="title-font"
-                  id="title-font"
+                  name="font"
+                  id="font"
                   onChange={this.changeHandler}
                   value={this.state.font}
                 >
                   <option value="Roboto">Roboto</option>
                   {fonts.map(font => {
+                    console.log('font.font', font.font, typeof font.font)
                     if (font.font.toLowerCase() !== 'roboto') {
                       return <option value={font.font}>{font.font}</option>
                     }
