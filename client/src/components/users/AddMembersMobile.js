@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Button } from '@material-ui/core'
 import { addUser } from '../../store/actions/usersActions'
 import styled from 'styled-components'
 import { size } from '../../style/breakpoints';
@@ -133,7 +132,6 @@ class AddMembersMobile extends React.Component {
             value={this.state.email}
             required
           />
-          {/* <StyledButton>ADD MEMBER</StyledButton> */}
         </Form>
       </SCWrapper>
     )

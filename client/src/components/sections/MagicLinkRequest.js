@@ -124,6 +124,7 @@ class MagicLinkRequest extends React.Component {
               placeholder="Email Address"
               value={this.props.email}
               required
+              autoFocus
             />
             <button type="submit">Send Link</button>
           </form>

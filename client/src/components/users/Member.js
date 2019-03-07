@@ -7,7 +7,6 @@ import { size } from '../../style/breakpoints'
 import UpdateMembers from './UpdateMembers'
 import { updateUser } from '../../store/actions/usersActions'
 import { connect } from 'react-redux'
-import { Paper } from '@material-ui/core'
 
 //#region STYLES
 const H3 = styled.h3`

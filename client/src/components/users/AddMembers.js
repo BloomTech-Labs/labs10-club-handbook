@@ -115,7 +115,7 @@ class AddMembers extends React.Component {
             value={this.state.firstname}
             ref={(input) => { this.nameInput = input; }}
             required
-            autofocus
+            autoFocus
           />
 
           <SCName
