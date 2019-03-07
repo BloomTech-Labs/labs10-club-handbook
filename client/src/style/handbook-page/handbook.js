@@ -17,15 +17,3 @@ export const Handbook = styled.div`
   min-height: 100vh;
   width: 100%;
 `
-export const SectionContainer = styled.div`
-  padding: 10rem;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  border-bottom: 1px solid gray;
-
-  h1 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-  }
-`
