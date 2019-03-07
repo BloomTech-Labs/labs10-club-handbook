@@ -3,15 +3,15 @@ import ReactQuill from 'react-quill'
 import { size } from './breakpoints'
 
 export const FormContainer = styled.div`
+  position: fixed;
+  top: 100px;
   max-width: 60rem;
   padding: 3rem;
   margin: 0 auto;
   border: 1px solid gray;
   border-radius: 1rem;
   box-shadow: 0 1px 10px gray;
-  position: absolute;
   left: 20%;
-  top: 1rem;
   z-index: 10;
   background: white;
 
