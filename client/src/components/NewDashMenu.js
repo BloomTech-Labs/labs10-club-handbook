@@ -41,7 +41,7 @@ class RenderPropsMenu extends React.Component {
                 variant="outlined"
                 color="inherit"
               >
-                User
+                Profile
               </Button>
               <Menu
                 id="render-props-menu"
