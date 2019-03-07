@@ -3,6 +3,7 @@ import {
   GET_FORMATS_SUCCESS,
   GET_FORMATS_FAIL,
 } from '../actions/formatActions'
+import { LOG_OUT } from '../actions/usersActions'
 
 const initialState = {
   gettingFormats: false,
@@ -32,6 +33,11 @@ const formatReducer = (state = initialState, action) => {
         ...state,
         gettingFormats: false,
         error: action.error,
+      }
+
+    case LOG_OUT:
+      return {
+        initialState,
       }
 
     default:

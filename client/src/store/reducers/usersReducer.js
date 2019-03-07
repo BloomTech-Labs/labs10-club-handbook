@@ -15,6 +15,7 @@ import {
   NO_SUBSCRIPTION,
   CHANGE_SUB_FAIL,
   RESET_CHANGE_FAIL,
+  LOG_OUT,
 } from '../actions/usersActions'
 
 const initialState = {
@@ -163,6 +164,11 @@ const usersReducer = (state = initialState, action) => {
         ...state,
         message: null,
         changeFail: false,
+      }
+
+    case LOG_OUT:
+      return {
+        initialState,
       }
 
     default:

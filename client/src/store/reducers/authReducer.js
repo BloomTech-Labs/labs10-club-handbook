@@ -4,7 +4,13 @@ import {
   AUTHORIZATION_FAIL,
   LOGOUT_USER,
 } from '../actions/authActions'
-import { USERS_START, FAIL, GET_INFO_FROM_TOKEN } from '../actions/usersActions'
+import {
+  USERS_START,
+  FAIL,
+  GET_INFO_FROM_TOKEN,
+  LOG_OUT,
+  GET_USERS_BY_CLUB_ID,
+} from '../actions/usersActions'
 
 const initialState = {
   currentUser: {},
@@ -36,6 +42,7 @@ const authReducer = (state = initialState, action) => {
         message: action.message,
         currentUser: action.payload,
         authError: false,
+        loading: false,
       }
 
     case AUTHORIZATION_FAIL:
@@ -77,6 +84,18 @@ const authReducer = (state = initialState, action) => {
         loading: false,
         message: null,
         currentUser: action.payload.user,
+      }
+
+    case GET_USERS_BY_CLUB_ID:
+      return {
+        ...state,
+        loading: false,
+        message: null,
+      }
+
+    case LOG_OUT:
+      return {
+        initialState,
       }
 
     default:
