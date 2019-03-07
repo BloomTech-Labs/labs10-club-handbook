@@ -2,12 +2,20 @@ import styled from 'styled-components'
 import ReactQuill from 'react-quill'
 import { size } from './breakpoints'
 
-export const FormContainer = styled.div`
+export const FormHolder = styled.div`
   position: fixed;
-  top: 100px;
+  top: 0;
+  background: rgba(150, 150, 150, 0.5);
+  height: 100vh;
+  width: 100vw;
+  z-index: 10;
+`
+export const FormContainer = styled.div`
+  /* position: fixed;
+  top: 100px; */
   max-width: 60rem;
   padding: 3rem;
-  margin: 0 auto;
+  margin: 100px auto;
   border: 1px solid gray;
   border-radius: 1rem;
   box-shadow: 0 1px 10px gray;

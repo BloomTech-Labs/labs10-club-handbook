@@ -10,6 +10,7 @@ import {
 } from '../../store/actions/clubActions'
 
 import {
+  FormHolder,
   FormContainer,
   Row,
   Label,
@@ -155,180 +156,184 @@ class SectionForm extends Component {
     }
 
     return (
-      <FormContainer>
-        <form
-          method="/POST"
-          encType="multipart/form-data"
-          onSubmit={this.props.update ? this.updateSection : this.addSection}
-        >
-          <div className="form-group">
-            <Row>
-              <Button
-                variant="contained"
-                color="secondary"
-                onClick={this.cancel}
-              >
-                Cancel
-              </Button>
-
-              {this.props.update ? (
-                <h2>Update Section</h2>
-              ) : (
-                <h2>Create Section</h2>
-              )}
-
-              <Button
-                onClick={
-                  this.props.update ? this.updateSection : this.addSection
-                }
-                variant="contained"
-                color="primary"
-              >
-                Save Section
-              </Button>
-            </Row>
-
-            <Row>
-              <Label htmlFor="title">Section Title</Label>
-              <SectionInput
-                id="title"
-                name="title"
-                onChange={this.changeHandler}
-                required
-                value={this.state.title}
-              />
-            </Row>
-
-            <Label htmlFor="body" marginBottom>
-              Section Body
-            </Label>
-            <TextEditor
-              bodyChangeHandler={this.bodyChangeHandler}
-              body={this.state.body}
-            />
-
-            <Row marginTop>
-              <Label htmlFor="contact-name">Contact Name</Label>
-              <SectionInput
-                id="contact-name"
-                name="contactName"
-                onChange={this.changeHandler}
-                value={this.state.contactName}
-              />
-            </Row>
-
-            <Row>
-              <Label htmlFor="contact-info">Contact Info</Label>
-              <SectionInput
-                id="contact-info"
-                name="contactInfo"
-                onChange={this.changeHandler}
-                value={this.state.contactInfo}
-              />
-            </Row>
-
-            <Row wrap>
-              <ImageInput
-                label="Upload Image"
-                onChange={this.fileHandler}
-                type="file"
-                id="image"
-                name="image"
-                accept="image/*"
-              />
-            </Row>
-
-            <Row wrap>
-              <div>
-                <Label htmlFor="imgPlacement">Image Placement</Label>
-                <select
-                  name="imgPlacement"
-                  id="imgPlacement"
-                  onChange={this.changeHandler}
-                  value={this.state.imgPlacement}
+      <FormHolder>
+        <FormContainer>
+          <form
+            method="/POST"
+            encType="multipart/form-data"
+            onSubmit={this.props.update ? this.updateSection : this.addSection}
+          >
+            <div className="form-group">
+              <Row>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  onClick={this.cancel}
                 >
-                  <option value="4">No Image</option>
-                  <option value="1">Image Background</option>
-                  <option value="2">Image Left</option>
-                  <option value="3">Image Right</option>
-                </select>
-              </div>
+                  Cancel
+                </Button>
 
-              <div>
-                <Label htmlFor="font">Font</Label>
-                <select
-                  name="font"
-                  id="font"
-                  onChange={this.changeHandler}
-                  value={this.state.font}
-                >
-                  <option value="Roboto">Roboto</option>
-                  {fonts.map(font => {
-                    if (font.font.toLowerCase() !== 'roboto') {
-                      return <option value={font.font}>{font.font}</option>
-                    }
-                  })}
-                </select>
-              </div>
-            </Row>
+                {this.props.update ? (
+                  <h2>Update Section</h2>
+                ) : (
+                  <h2>Create Section</h2>
+                )}
 
-            <Row wrap>
-              <div>
-                <Label htmlFor="bgColor">Background Color</Label>
-                <select
-                  name="bgColor"
-                  id="bgColor"
-                  onChange={this.changeHandler}
-                  value={this.state.bgColor}
+                <Button
+                  onClick={
+                    this.props.update ? this.updateSection : this.addSection
+                  }
+                  variant="contained"
+                  color="primary"
                 >
-                  <option value="none">none</option>
-                  <option value="white">white</option>
-                  {colors.map(color => {
-                    return <option value={color.color}>{color.color}</option>
-                  })}
-                </select>
-              </div>
+                  Save Section
+                </Button>
+              </Row>
 
-              <div>
-                <Label htmlFor="titleColor">Title Color</Label>
-                <select
-                  name="titleColor"
-                  id="titleColor"
+              <Row>
+                <Label htmlFor="title">Section Title</Label>
+                <SectionInput
+                  id="title"
+                  name="title"
                   onChange={this.changeHandler}
-                  value={this.state.titleColor}
-                >
-                  <option value="black">black</option>
-                  <option value="white">white</option>
-                  {colors.map(color => {
-                    if (color.color.toLowerCase() !== 'black') {
+                  required
+                  value={this.state.title}
+                />
+              </Row>
+
+              <Label htmlFor="body" marginBottom>
+                Section Body
+              </Label>
+              <TextEditor
+                bodyChangeHandler={this.bodyChangeHandler}
+                body={this.state.body}
+              />
+
+              <Row marginTop>
+                <Label htmlFor="contact-name">Contact Name</Label>
+                <SectionInput
+                  id="contact-name"
+                  name="contactName"
+                  onChange={this.changeHandler}
+                  value={this.state.contactName}
+                />
+              </Row>
+
+              <Row>
+                <Label htmlFor="contact-info">Contact Info</Label>
+                <SectionInput
+                  id="contact-info"
+                  name="contactInfo"
+                  onChange={this.changeHandler}
+                  value={this.state.contactInfo}
+                />
+              </Row>
+
+              <Row wrap>
+                <ImageInput
+                  label="Upload Image"
+                  onChange={this.fileHandler}
+                  type="file"
+                  id="image"
+                  name="image"
+                  accept="image/*"
+                />
+              </Row>
+
+              <Row wrap>
+                <div>
+                  <Label htmlFor="imgPlacement">Image Placement</Label>
+                  <select
+                    name="imgPlacement"
+                    id="imgPlacement"
+                    onChange={this.changeHandler}
+                    value={this.state.imgPlacement}
+                  >
+                    <option value="4">No Image</option>
+                    <option value="1">Image Background</option>
+                    <option value="2">Image Left</option>
+                    <option value="3">Image Right</option>
+                  </select>
+                </div>
+
+                <div>
+                  <Label htmlFor="font">Font</Label>
+                  <select
+                    name="font"
+                    id="font"
+                    onChange={this.changeHandler}
+                    value={this.state.font}
+                  >
+                    <option value="Roboto">Roboto</option>
+                    {fonts.map(font => {
+                      if (font.font.toLowerCase() !== 'roboto') {
+                        return <option value={font.font}>{font.font}</option>
+                      }
+                    })}
+                  </select>
+                </div>
+              </Row>
+
+              <Row wrap>
+                <div>
+                  <Label htmlFor="bgColor">Background Color</Label>
+                  <select
+                    name="bgColor"
+                    id="bgColor"
+                    onChange={this.changeHandler}
+                    value={this.state.bgColor}
+                  >
+                    <option value="none">none</option>
+                    <option value="white">white</option>
+                    {colors.map(color => {
                       return <option value={color.color}>{color.color}</option>
-                    }
-                  })}
-                </select>
-              </div>
-            </Row>
+                    })}
+                  </select>
+                </div>
 
-            <Row>
-              <Button
-                variant="contained"
-                color="secondary"
-                onClick={this.cancel}
-              >
-                Cancel
-              </Button>
-              <Button
-                onClick={
-                  this.props.update ? this.updateSection : this.addSection
-                }
-                variant="contained"
-                color="primary"
-              >
-                Save Section
-              </Button>
-            </Row>
-          </div>
-        </form>
-      </FormContainer>
+                <div>
+                  <Label htmlFor="titleColor">Title Color</Label>
+                  <select
+                    name="titleColor"
+                    id="titleColor"
+                    onChange={this.changeHandler}
+                    value={this.state.titleColor}
+                  >
+                    <option value="black">black</option>
+                    <option value="white">white</option>
+                    {colors.map(color => {
+                      if (color.color.toLowerCase() !== 'black') {
+                        return (
+                          <option value={color.color}>{color.color}</option>
+                        )
+                      }
+                    })}
+                  </select>
+                </div>
+              </Row>
+
+              <Row>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  onClick={this.cancel}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  onClick={
+                    this.props.update ? this.updateSection : this.addSection
+                  }
+                  variant="contained"
+                  color="primary"
+                >
+                  Save Section
+                </Button>
+              </Row>
+            </div>
+          </form>
+        </FormContainer>
+      </FormHolder>
     )
   }
 }
