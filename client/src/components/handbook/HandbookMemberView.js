@@ -7,6 +7,7 @@ import HandbookRender from './HandbookRender'
 import LoadingPage from '../loading/loading'
 import { getClubById, updateClub, createClub, getClubSections } from '../../store/actions/clubActions'
 import { getFormatStyles } from '../../store/actions/formatActions'
+import MagicLinkRequest from '../sections/MagicLinkRequest'
 
 class HandbookMemberView extends React.Component {
 
@@ -15,15 +16,21 @@ class HandbookMemberView extends React.Component {
   }
 
   render() {
-    return (
-      <>
-        <HandbookPageContainer>
-          <HandbookMembersForm sections={this.props.sections} />
-          <HandbookRender sections={this.props.sections} />
-        </HandbookPageContainer>
-        {this.props.loading || this.props.usersLoading ? <LoadingPage /> : null}
-      </>
-    )
+    if (this.props.currentUser.club_id) {
+      return (
+        <>
+          <HandbookPageContainer>
+            <HandbookMembersForm sections={this.props.sections} />
+            <HandbookRender sections={this.props.sections} />
+          </HandbookPageContainer>
+          {this.props.loading || this.props.usersLoading ? <LoadingPage /> : null}
+        </>
+      )
+    } else {
+      return (
+        <MagicLinkRequest />
+      )
+    }
   }
 }
 const HandbookPageContainer = styled.div`
