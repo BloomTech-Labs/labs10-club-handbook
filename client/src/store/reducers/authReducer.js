@@ -11,6 +11,7 @@ import {
   LOG_OUT,
   GET_USERS_BY_CLUB_ID,
 } from '../actions/usersActions'
+import { CREATE_CLUB } from '../actions/clubActions'
 
 const initialState = {
   currentUser: {},
@@ -96,6 +97,12 @@ const authReducer = (state = initialState, action) => {
     case LOG_OUT:
       return {
         initialState,
+      }
+
+    case CREATE_CLUB:
+      return {
+        ...state,
+        currentUser: { ...state.currentUser, club_id: action.payload.club.id },
       }
 
     default:

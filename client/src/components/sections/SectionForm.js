@@ -153,7 +153,16 @@ class SectionForm extends Component {
     const { fonts, colors } = this.props
 
     if (!clubId) {
-      return <h1>Loading...</h1>
+      return (
+        <FormHolder>
+          <FormContainer>
+            <h1>Please Create a Handbook in the 'Overview' Tab</h1>
+            <Button variant="contained" color="secondary" onClick={this.cancel}>
+              Cancel
+            </Button>
+          </FormContainer>
+        </FormHolder>
+      )
     }
 
     return (
