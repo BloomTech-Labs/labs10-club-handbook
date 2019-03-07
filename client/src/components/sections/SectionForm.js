@@ -264,7 +264,6 @@ class SectionForm extends Component {
                 >
                   <option value="Roboto">Roboto</option>
                   {fonts.map(font => {
-                    console.log('font.font', font.font, typeof font.font)
                     if (font.font.toLowerCase() !== 'roboto') {
                       return <option value={font.font}>{font.font}</option>
                     }
