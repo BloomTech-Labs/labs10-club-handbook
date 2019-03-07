@@ -17,6 +17,7 @@ export const GET_SUBSCRIPTION_INFO = 'GET_SUBSCRIPTION_INFO'
 export const NO_SUBSCRIPTION = 'NO_SUBSCRIPTION'
 export const CHANGE_SUB_FAIL = 'CHANGE_SUB_FAIL'
 export const RESET_CHANGE_FAIL = 'RESET_CHANGE_FAIL'
+export const LOG_OUT = 'LOG_OUT'
 
 const baseURL = 'https://club-handbook.herokuapp.com'
 // const baseURL = 'http://localhost:5000'
@@ -245,4 +246,8 @@ export const createSubscription = body => dispatch => {
     .catch(err => {
       dispatch({ type: FAIL, error: err })
     })
+}
+
+export const logOut = () => dispatch => {
+  dispatch({ type: LOG_OUT })
 }

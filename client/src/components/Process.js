@@ -5,8 +5,8 @@ import Stepper from '@material-ui/core/Stepper'
 import Step from '@material-ui/core/Step'
 import StepLabel from '@material-ui/core/StepLabel'
 import Button from '@material-ui/core/Button'
-
-import { Link } from 'react-router-dom'
+import { signinUser } from '../store/actions/authActions'
+import { connect } from 'react-redux'
 
 const styles = theme => ({
   root: {
@@ -82,11 +82,7 @@ class ProcessStepper extends React.Component {
         <div>
           {this.state.activeStep === steps.length ? (
             <div>
-              <Button
-                variant="outlined"
-                onClick={Link}
-                href="https://club-handbook.auth0.com/login?state=g6Fo2SBnaG93SXFoSmd2ZURjMVJ5ZGtfajFxcnVVMVhYcWNEcaN0aWTZIDg4Y3h5Z29qVzFNaUFoTHNPcGE4dEJHcjZxX0s5eXM4o2NpZNkgTEw1V0wzWUQ3dnhPWjV0dzV5TURtdFFiMlF4UnBUa1U&client=LL5WL3YD7vxOZ5tw5yMDmtQb2QxRpTkU&protocol=oauth2&response_type=token%20id_token&redirect_uri=https%3A%2F%2Fclubhandbook.netlify.com%2Fcallback&scope=openid%20profile%20email&audience=https%3A%2F%2Fclub-handbook.herokuapp.com%2F&nonce=HyZ9_DQHaKIlzNyw-jglUXZILckQGMHR&auth0Client=eyJuYW1lIjoiYXV0aDAuanMiLCJ2ZXJzaW9uIjoiOS4xMC4wIn0%3D"
-              >
+              <Button variant="outlined" onClick={this.props.signinUser}>
                 Sign Up
               </Button>
             </div>
@@ -111,4 +107,7 @@ ProcessStepper.propTypes = {
   classes: PropTypes.object,
 }
 
-export default withStyles(styles)(ProcessStepper)
+export default connect(
+  null,
+  { signinUser }
+)(withStyles(styles)(ProcessStepper))
