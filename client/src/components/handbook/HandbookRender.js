@@ -31,17 +31,19 @@ const SectionRender = props => {
             flex-direction: column;
             align-items: center;
             background: ${bg_color};
+            font-family: ${font};
 
             h1 {
               text-align: center;
               color: ${title_color};
-              font-size: 4rem;
+              font-size: 6rem;
             }
 
             p {
               text-align: center;
               color: ${title_color};
-              font-size: 2rem;
+              font-size: 2.6rem;
+              text-align: left;
             }
           `
 
@@ -50,16 +52,14 @@ const SectionRender = props => {
             flex-direction: column;
             justify-content: center;
             min-height: 25vh;
-            border: 1px solid black;
           `
 
           const Body = styled.div`
             display: flex;
             width: 100%;
-            padding: 3rem;
+            padding: 5rem;
             justify-content: space-between;
             align-items: center;
-            border: 1px solid black;
             min-height: 50vh;
 
             .img {
@@ -74,7 +74,7 @@ const SectionRender = props => {
             }
 
             .body {
-              width: 70%;
+              width: 65%;
               min-height: 60%;
             }
           `
@@ -103,7 +103,16 @@ const SectionRender = props => {
                     <img src={img_url} />
                   </div>
                 ) : null}
-                <div className="body">{renderHTML(body)}</div>
+                <div
+                  className="body"
+                  style={
+                    !img_url || img_placement == 1 || img_placement == 4
+                      ? { width: '80%' }
+                      : null
+                  }
+                >
+                  {renderHTML(body)}
+                </div>
               </Body>
             </Section>
           )
