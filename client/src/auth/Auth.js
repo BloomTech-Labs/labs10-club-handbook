@@ -8,8 +8,8 @@ class Auth {
   auth0 = new auth0.WebAuth({
     domain: 'club-handbook.auth0.com',
     clientID: 'LL5WL3YD7vxOZ5tw5yMDmtQb2QxRpTkU',
-    redirectUri: 'https://clubhandbook.netlify.com/callback',
-//     redirectUri: 'http://localhost:3000/callback',
+    // redirectUri: 'https://clubhandbook.netlify.com/callback',
+    redirectUri: 'http://localhost:3000/callback',
     audience: 'https://club-handbook.herokuapp.com/',
     responseType: 'token id_token',
     scope: 'openid profile email',

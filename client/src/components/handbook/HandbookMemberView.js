@@ -1,69 +1,50 @@
 import React from 'react'
+import styled from 'styled-components'
 import { connect } from 'react-redux'
-import DashDrawer from '../Dashboard'
-import { getClubSections } from '../../store/actions/clubActions'
-import HandbookRender from './HandbookRender';
-import MagicLinkRequest from '../sections/MagicLinkRequest';
-import Signature from '../signature/Signature'
-import styled from 'styled-components';
-import { size } from '../../style/breakpoints'
-
-const HandbookViewContainer = styled.div`
-  margin: 0 auto;
-  max-width: 800px;
-  border: 1px solid red;
-  display: flex;
-  flex-direction: column;
-`;
-const SignatureContainer = styled.div`
-`;
-const HandbookRenderContainer = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-`;
+import SectionForm from '../sections/SectionForm'
+import HandbookMembersForm from './HandbookMembersForm'
+import HandbookRender from './HandbookRender'
+import LoadingPage from '../loading/loading'
+import { getClubById, updateClub, createClub, getClubSections } from '../../store/actions/clubActions'
+import { getFormatStyles } from '../../store/actions/formatActions'
 
 class HandbookMemberView extends React.Component {
-  componentDidMount() {
 
+  componentDidMount() {
     this.props.getClubSections(this.props.currentUser.club_id)
   }
 
   render() {
-    if (this.props.club_id) {
-      return (
-        <>
-          <DashDrawer />
-
-          <HandbookViewContainer>
-            <SignatureContainer>
-              {this.props.signed === false && <Signature />}
-            </SignatureContainer>
-            <HandbookRenderContainer>
-              <HandbookRender />
-            </HandbookRenderContainer>
-          </HandbookViewContainer>
-        </>
-      )
-    } else {
-      return (
-        <MagicLinkRequest />
-      )
-    }
+    return (
+      <>
+        <HandbookPageContainer>
+          <HandbookMembersForm sections={this.props.sections} />
+          <HandbookRender sections={this.props.sections} />
+        </HandbookPageContainer>
+        {this.props.loading || this.props.usersLoading ? <LoadingPage /> : null}
+      </>
+    )
   }
 }
+const HandbookPageContainer = styled.div`
+  display: flex;
+  width: 100%;
+  margin-top: 7.2rem;
+  position: relative;
+  z-index: 0;
+`
 
 const mapStateToProps = state => {
   return {
-    sections: state.clubs.sections,
     currentUser: state.auth.currentUser,
-    club_id: state.auth.currentUser.club_id,
-    authorized: state.auth.userAuthorized,
-    signed: state.auth.currentUser.signed
+    club: state.clubs.clubById,
+    sections: state.clubs.sections,
+    loading: state.clubs.loading,
+    usersLoading: state.users.loading,
   }
 }
 
 export default connect(
   mapStateToProps,
-  { getClubSections }
+  { getClubById, updateClub, createClub, getClubSections, getFormatStyles }
 )(HandbookMemberView)
