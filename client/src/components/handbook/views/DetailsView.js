@@ -4,8 +4,10 @@ import styled from 'styled-components'
 const Title = styled.h3`
   text-align: center;
   margin-top: -2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
   letter-spacing: 1px;
+  line-height: 1.1;
+  text-shadow: 0 1px 10px black;
 `
 
 const InputField = styled.input`
@@ -31,6 +33,18 @@ const Button = styled.button`
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 1px;
+  cursor: pointer;
+  text-shadow: 0 1px 5px black;
+
+  :hover {
+    transform: translateY(-2px);
+    box-shadow: -1px 1px 25px black;
+  }
+
+  :active {
+    transform: translateY(0);
+    box-shadow: 0 1px 5px black;
+  }
 `
 
 const DetailsView = props => {
@@ -45,7 +59,7 @@ const DetailsView = props => {
         onChange={props.handleChange}
       />
       {props.club.name || props.club.name == '' ? (
-        <Button onClick={props.updateClub}>Update Handbook</Button>
+        <Button onClick={props.updateClub}>Update</Button>
       ) : (
         <Button onClick={props.createClub}>Create Handbook</Button>
       )}

@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { size } from './breakpoints'
+import { AddCircle } from '@material-ui/icons'
 
 export const EditBtn = styled.div`
   display: none;
@@ -12,6 +13,17 @@ export const EditBtn = styled.div`
   border-radius: 100%;
   padding: 0.5rem;
   cursor: pointer;
+  box-shadow: 0 1px 5px black;
+
+  :hover {
+    transform: translateY(-2px);
+    box-shadow: -1px 1px 25px black;
+  }
+
+  :active {
+    transform: translateY(0);
+    box-shadow: 0 1px 5px black;
+  }
 `
 
 export const DeleteBtn = styled.div`
@@ -25,19 +37,35 @@ export const DeleteBtn = styled.div`
   border-radius: 100%;
   padding: 0.4rem;
   cursor: pointer;
+  box-shadow: 0 1px 5px black;
+
+  :hover {
+    transform: translateY(-2px);
+    box-shadow: -1px 1px 25px black;
+  }
+
+  :active {
+    transform: translateY(0);
+    box-shadow: 0 1px 5px black;
+  }
 `
 
 export const SectionBox = styled.div`
   box-sizing: border-box;
   height: 12rem;
   border: 0.5px solid lightgrey;
-  box-shadow: 0 1px 1px black;
+  box-shadow: 0 1px 10px black;
   text-align: center;
   width: 100%;
   border-radius: 8px;
   margin-top: 1rem;
   position: relative;
-  &:hover ${EditBtn}, &:hover ${DeleteBtn} {
+  :hover {
+    transform: translateY(-3px);
+    box-shadow: -1px 1px 30px black;
+  }
+
+  :hover ${EditBtn}, &:hover ${DeleteBtn} {
     display: block;
   }
 `
@@ -71,14 +99,24 @@ export const headerIcon = {
   fontSize: 50,
 }
 
-export const addIcon = {
-  fontSize: 50,
-  marginBottom: 1,
-  cursor: 'pointer',
-  borderRadius: '100%',
-  background: 'white',
-  boxShadow: '0 1px 5px black',
-  position: 'fixed',
-  marginTop: '-1rem',
-  zIndex: 1,
-}
+export const AddButton = styled(AddCircle)`
+  font-size: 50;
+  margin-bottom: 1;
+  cursor: pointer;
+  border-radius: 100%;
+  background: white;
+  box-shadow: -1px 1px 15px black;
+  position: fixed;
+  margin-top: -1rem;
+  z-index: 1;
+
+  :hover {
+    transform: translateY(-3px);
+    box-shadow: -1px 1px 25px black;
+  }
+
+  :active {
+    transform: translateY(0);
+    box-shadow: 0 1px 5px black;
+  }
+`

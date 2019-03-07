@@ -16,6 +16,7 @@ import {
   Label,
   SectionInput,
   ImageInput,
+  Select,
 } from '../../style/section-form'
 
 class SectionForm extends Component {
@@ -24,7 +25,7 @@ class SectionForm extends Component {
     title: '',
     body: '',
     imgPlacement: 4,
-    selectedFile: null,
+    SelectedFile: null,
     image: '',
     orderPosition: this.props.sections ? this.props.sections.length + 1 : 1,
     contactName: '',
@@ -71,14 +72,14 @@ class SectionForm extends Component {
   }
 
   fileHandler = e => {
-    this.setState({ selectedFile: e.target.files[0] })
+    this.setState({ SelectedFile: e.target.files[0] })
   }
 
   uploadImg = async () => {
     console.log(`upload img`)
 
     const fd = new FormData()
-    fd.append('image', this.state.selectedFile)
+    fd.append('image', this.state.SelectedFile)
 
     try {
       let res = await axios.post(
@@ -94,7 +95,7 @@ class SectionForm extends Component {
 
   addSection = async ev => {
     ev.preventDefault()
-    if (this.state.selectedFile) {
+    if (this.state.SelectedFile) {
       this.props.startLoading()
       await this.uploadImg()
     }
@@ -118,7 +119,7 @@ class SectionForm extends Component {
   updateSection = async ev => {
     console.log('update section')
     ev.preventDefault()
-    if (this.state.selectedFile) {
+    if (this.state.SelectedFile) {
       this.props.startLoading()
       await this.uploadImg()
     }
@@ -243,7 +244,7 @@ class SectionForm extends Component {
               <Row wrap>
                 <div>
                   <Label htmlFor="imgPlacement">Image Placement</Label>
-                  <select
+                  <Select
                     name="imgPlacement"
                     id="imgPlacement"
                     onChange={this.changeHandler}
@@ -253,12 +254,12 @@ class SectionForm extends Component {
                     <option value="1">Image Background</option>
                     <option value="2">Image Left</option>
                     <option value="3">Image Right</option>
-                  </select>
+                  </Select>
                 </div>
 
                 <div>
                   <Label htmlFor="font">Font</Label>
-                  <select
+                  <Select
                     name="font"
                     id="font"
                     onChange={this.changeHandler}
@@ -270,14 +271,14 @@ class SectionForm extends Component {
                         return <option value={font.font}>{font.font}</option>
                       }
                     })}
-                  </select>
+                  </Select>
                 </div>
               </Row>
 
               <Row wrap>
                 <div>
                   <Label htmlFor="bgColor">Background Color</Label>
-                  <select
+                  <Select
                     name="bgColor"
                     id="bgColor"
                     onChange={this.changeHandler}
@@ -288,12 +289,12 @@ class SectionForm extends Component {
                     {colors.map(color => {
                       return <option value={color.color}>{color.color}</option>
                     })}
-                  </select>
+                  </Select>
                 </div>
 
                 <div>
                   <Label htmlFor="titleColor">Title Color</Label>
-                  <select
+                  <Select
                     name="titleColor"
                     id="titleColor"
                     onChange={this.changeHandler}
@@ -308,7 +309,7 @@ class SectionForm extends Component {
                         )
                       }
                     })}
-                  </select>
+                  </Select>
                 </div>
               </Row>
 
