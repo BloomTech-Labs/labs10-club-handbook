@@ -3,6 +3,7 @@ import StripeCheckout from 'react-stripe-checkout'
 import styled from 'styled-components'
 import DashBar from '../NewDash'
 import axios from 'axios'
+import CliqueBook_favicon from '../../logos/CliqueBook_favicon.png'
 
 import {
   Grid,
@@ -13,7 +14,7 @@ import {
 } from '@material-ui/core'
 
 const PaymentContainer = styled.div`
-  margin: auto;
+  margin: 100px auto;
   width: 70%;
   display: flex;
   flex-direction: column;
@@ -157,6 +158,7 @@ class Payment extends React.Component {
                       description={tier.description}
                       amount={tier.price * 100}
                       allowRememberMe={false}
+                      image={CliqueBook_favicon}
                     />
                   </PaymentButton>
                 </CardContent>
