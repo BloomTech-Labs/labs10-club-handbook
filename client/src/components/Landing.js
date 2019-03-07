@@ -29,6 +29,8 @@ import Tab from '@material-ui/core/Tab'
 import PersonPinIcon from '@material-ui/icons/PersonPin'
 import Group from '@material-ui/icons/Group'
 import Settings from '@material-ui/icons/Settings'
+import { connect } from 'react-redux'
+import { signinUser } from '../store/actions/authActions'
 
 const CardContainer = styled.div`
   margin: auto;
@@ -167,8 +169,7 @@ class Landing extends React.Component {
               <LinkTab
                 label="Admin Portal"
                 icon={<Settings />}
-                // component={Link}
-                href="https://club-handbook.auth0.com/login?state=g6Fo2SBfUGxJU3BTblE5WWdKMUx1SzAxRkVyM1M4c2xkeXVJOKN0aWTZIElUMkpPU0RrZFc4M1dlSnBqUEdyaU1ENGFoZUtwTzl1o2NpZNkgTEw1V0wzWUQ3dnhPWjV0dzV5TURtdFFiMlF4UnBUa1U&client=LL5WL3YD7vxOZ5tw5yMDmtQb2QxRpTkU&protocol=oauth2&response_type=token%20id_token&redirect_uri=https%3A%2F%2Fclubhandbook.netlify.com%2Fcallback&scope=openid%20profile%20email&audience=https%3A%2F%2Fclub-handbook.herokuapp.com%2F&nonce=zEnaQHLrMeFgM2ecdPdNLlGpuVIXf6Mb&auth0Client=eyJuYW1lIjoiYXV0aDAuanMiLCJ2ZXJzaW9uIjoiOS4xMC4wIn0%3D"
+                onClick={this.props.signinUser}
               />
             </Tabs>
           </Toolbar>
@@ -391,4 +392,7 @@ Landing.propTypes = {
   classes: PropTypes.object.isRequired,
 }
 
-export default withStyles(styles)(Landing)
+export default connect(
+  null,
+  { signinUser }
+)(withStyles(styles)(Landing))
