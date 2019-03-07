@@ -2,7 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import AuthEmail from '../../auth/AuthEmail'
 import styled from 'styled-components'
-import { size } from '../../style/breakpoints';
+import { size } from '../../style/breakpoints'
+import logo from '../../logos/Cliquebook_combo.png'
 
 // #region Styled Components
 const SContainer = styled.div`
@@ -10,27 +11,45 @@ const SContainer = styled.div`
   top: 0;
   height: 100vh;
   width: 100vw;
-  background: rgba(75, 75, 75, 0.5);
+  background: rgba(150, 150, 150, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+
+  img {
+    position: absolute;
+    top: 60px;
+    margin: auto;
+    z-index: 2;
+
+    @media (max-width: 500px) {
+      top: 20px;
+      height: 100px;
+    }
+  }
 `
 
 const ContentContainer = styled.div`
   padding: 20px;
-  background: linear-gradient(to right, rgb(65, 82, 179), rgb(78, 98, 215));
+  background: linear-gradient(
+    to right,
+    rgba(65, 82, 179, 0.9),
+    rgba(78, 98, 215, 0.9)
+  );
   max-width: 700px;
   border-radius: 10px;
   color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 5;
   h2 {
     margin: 20px 0 30px;
     text-align: center;
   }
   p {
-    display: ${props => props.visible === true ? "block" : "none"};
+    display: ${props => (props.visible === true ? 'block' : 'none')};
     margin-top: 10px;
     color: orange;
     border: 1px solid red;
@@ -74,13 +93,13 @@ const ContentContainer = styled.div`
       border: 2px solid black;
     }
   }
-`;
+`
 const EmailSent = styled.div`
-  visibility: ${props => props.visible === true ? "visible" : "hidden"};
+  visibility: ${props => (props.visible === true ? 'visible' : 'hidden')};
   margin-top: 50px;
   color: orange;
   align-self: flex-start;
-`;
+`
 // #endregion
 
 const authEmail = new AuthEmail()
@@ -107,13 +126,20 @@ class MagicLinkRequest extends React.Component {
   render() {
     return (
       <SContainer>
+        <img src={logo} />
         <ContentContainer>
           <h2>You must sign in to access your Clique Book</h2>
 
           <ol>
-            <li>Enter your email address and click <span>Send Link</span>. We will send an email to you with a link.</li>
+            <li>
+              Enter your email address and click <span>Send Link</span>. We will
+              send an email to you with a link.
+            </li>
             <li>Clicking that link will redirect you back here.</li>
-            <li>Then you'll be able to read and digitally sign off on your Clique Book!</li>
+            <li>
+              Then you'll be able to read and digitally sign off on your Clique
+              Book!
+            </li>
           </ol>
 
           <form onSubmit={this.handleSubmit}>
@@ -127,7 +153,9 @@ class MagicLinkRequest extends React.Component {
             />
             <button type="submit">Send Link</button>
           </form>
-          <EmailSent visible={this.state.emailStatus}>Link sent! Check your email inbox.</EmailSent>
+          <EmailSent visible={this.state.emailStatus}>
+            Link sent! Check your email inbox.
+          </EmailSent>
         </ContentContainer>
       </SContainer>
     )
