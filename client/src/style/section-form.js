@@ -4,7 +4,7 @@ import { size } from './breakpoints'
 
 export const FormContainer = styled.div`
   position: fixed;
-  top: 100px;
+  top: 80px;
   max-width: 60rem;
   padding: 3rem;
   margin: 0 auto;
@@ -48,7 +48,8 @@ export const Row = styled.div`
 `
 
 export const Label = styled.label`
-  font-size: 1.6rem;
+  font-size: 1.8rem;
+  font-weight: strong;
   margin-bottom: ${props => (props.marginBottom ? '1rem' : 0)};
   padding-right: 10px;
   @media ${size.mobile} {
@@ -69,10 +70,14 @@ export const SectionInput = styled.input`
 `
 
 export const ImageInput = styled.input`
-  font-size: 12px;
+  font-size: 1.6rem;
 
   @media ${size.mobile} {
     width: 60%;
     margin-bottom: 2rem;
   }
+`
+
+export const Select = styled.select`
+  font-size: 1.4rem;
 `

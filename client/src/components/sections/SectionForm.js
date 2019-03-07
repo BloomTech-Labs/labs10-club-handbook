@@ -15,6 +15,7 @@ import {
   Label,
   SectionInput,
   ImageInput,
+  Select,
 } from '../../style/section-form'
 
 class SectionForm extends Component {
@@ -241,7 +242,7 @@ class SectionForm extends Component {
             <Row wrap>
               <div>
                 <Label htmlFor="imgPlacement">Image Placement</Label>
-                <select
+                <Select
                   name="imgPlacement"
                   id="imgPlacement"
                   onChange={this.changeHandler}
@@ -251,31 +252,33 @@ class SectionForm extends Component {
                   <option value="1">Image Background</option>
                   <option value="2">Image Left</option>
                   <option value="3">Image Right</option>
-                </select>
+                </Select>
               </div>
 
               <div>
                 <Label htmlFor="font">Font</Label>
-                <select
+                <Select
                   name="font"
                   id="font"
                   onChange={this.changeHandler}
                   value={this.state.font}
                 >
-                  <option value="Roboto">Roboto</option>
+                  <option value="Roboto" style={{ fontFamily: 'Roboto' }}>
+                    Roboto
+                  </option>
                   {fonts.map(font => {
                     if (font.font.toLowerCase() !== 'roboto') {
                       return <option value={font.font}>{font.font}</option>
                     }
                   })}
-                </select>
+                </Select>
               </div>
             </Row>
 
             <Row wrap>
               <div>
                 <Label htmlFor="bgColor">Background Color</Label>
-                <select
+                <Select
                   name="bgColor"
                   id="bgColor"
                   onChange={this.changeHandler}
@@ -286,12 +289,12 @@ class SectionForm extends Component {
                   {colors.map(color => {
                     return <option value={color.color}>{color.color}</option>
                   })}
-                </select>
+                </Select>
               </div>
 
               <div>
                 <Label htmlFor="titleColor">Title Color</Label>
-                <select
+                <Select
                   name="titleColor"
                   id="titleColor"
                   onChange={this.changeHandler}
@@ -304,7 +307,7 @@ class SectionForm extends Component {
                       return <option value={color.color}>{color.color}</option>
                     }
                   })}
-                </select>
+                </Select>
               </div>
             </Row>
 
