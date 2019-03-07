@@ -113,7 +113,7 @@ class Members extends React.Component {
             }
 
             {
-              users.length <= 1 && <AddMembersWarning>You need some members! They'll show up here when you add some.</AddMembersWarning>
+              users.length <= 1 && <AddMembersWarning>You need some members! They'll show up here.</AddMembersWarning>
             }
 
             {users.map(user => {
