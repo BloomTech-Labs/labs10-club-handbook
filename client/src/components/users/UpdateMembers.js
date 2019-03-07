@@ -1,5 +1,5 @@
 import React from 'react'
-import { AppBar } from '@material-ui/core'
+// import { AppBar } from '@material-ui/core'
 import { connect } from 'react-redux'
 import { updateUser, deleteUser } from '../../store/actions/usersActions'
 import styled from 'styled-components';

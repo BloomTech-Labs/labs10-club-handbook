@@ -14,7 +14,7 @@ import {
   Typography,
 } from '@material-ui/core'
 import LeaveTeam from './LeaveTeam'
-import DashBar from './NewDash'
+// import DashBar from './NewDash'
 import Billing from './billing/Billing'
 
 const styles = theme => ({

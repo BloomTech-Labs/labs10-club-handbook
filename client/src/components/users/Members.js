@@ -1,16 +1,16 @@
 import React from 'react'
-import { AppBar, Button, Avatar, SvgIcon } from '@material-ui/core'
+// import { AppBar, Button, Avatar, SvgIcon } from '@material-ui/core'
 
 import { connect } from 'react-redux'
 import { getUsers, getUsersByClubId } from '../../store/actions/usersActions'
 import { Link } from 'react-router-dom'
-import DeleteTwoToneIcon from '@material-ui/icons/DeleteTwoTone'
-import SignedManual from './SignedManual'
-import EmailButton from './SendEmail'
-import ViewedManual from './ViewedManual'
+// import DeleteTwoToneIcon from '@material-ui/icons/DeleteTwoTone'
+// import SignedManual from './SignedManual'
+// import EmailButton from './SendEmail'
+// import ViewedManual from './ViewedManual'
 import AddMember from './AddMembers'
 import styled from 'styled-components'
-import DashBar from '../NewDash'
+// import DashBar from '../NewDash'
 import { size } from '../../style/breakpoints'
 import Member from './Member'
 import LoadingPage from '../loading/loading'
@@ -24,14 +24,14 @@ const Container = styled.div`
     /* width: 75%; */
 }
 `;
-const HeaderBar = styled.div`
-  width: 100%;
-  background: #3648AC;
-  font-size: 35px;
-  color: #FFFFFF;
-  text-align: center;
-  padding: 10px 0;
-`;
+// const HeaderBar = styled.div`
+//   width: 100%;
+//   background: #3648AC;
+//   font-size: 35px;
+//   color: #FFFFFF;
+//   text-align: center;
+//   padding: 10px 0;
+// `;
 const MembersList = styled.div`
   display: flex;
   flex-direction: column;
