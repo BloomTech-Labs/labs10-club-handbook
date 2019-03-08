@@ -23,8 +23,10 @@ const SectionRender = props => {
             bg_color,
             title_color,
             font,
-            id
+            id,
           } = section
+
+          const textShadow = title_color == 'black' ? 'gray' : 'black'
 
           const Section = styled.div`
             min-height: 100vh;
@@ -38,7 +40,7 @@ const SectionRender = props => {
               text-align: center;
               color: ${title_color};
               font-size: 6rem;
-              text-shadow: 0 1px 3px black;
+              text-shadow: 0 1px 3px ${textShadow};
             }
 
             p {
