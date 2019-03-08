@@ -17,26 +17,47 @@ const ClubForm = styled.form`
   box-shadow: 0 1px 1px gray;
   text-align: center;
 `
+// const StyledButton = styled.button`
+//   margin-top: 30px;
+//   color: white;
+//   border: 1px solid black;
+//   border-radius: 8px;
+//   font-size: 1.75rem;
+//   width: 180px;
+//   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+//   text-transform: uppercase;
+//   padding: 15px;
+//   background-color: #3648AC;
+//   :hover {
+//     background-color: white;
+//     color: #384AA6;
+//     border: 1px solid #384AA6;
+//     cursor: pointer;
+//   }
+//   @media ${size.tablet} {
+//     width: 100px;
+// }
+// `
 const StyledButton = styled.button`
+  /* width: 100%; */
+  margin: 0 auto;
   margin-top: 30px;
+  padding: 1rem;
+  border: 0px solid black;
+  border-radius: 5px;
+  box-shadow: 0 1px 5px black;
+  background: #3648AC;
   color: white;
-  border: 1px solid black;
-  border-radius: 8px;
-  font-size: 1.75rem;
-  width: 180px;
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 900;
   text-transform: uppercase;
-  padding: 15px;
-  background-color: #3648AC;
-  :hover {
-    background-color: white;
-    color: #384AA6;
-    border: 1px solid #384AA6;
-    cursor: pointer;
+  letter-spacing: 1px;
+  cursor: pointer;
+  text-shadow: 0 1px 5px black;
+
+  @media ${size.mobile} {
+    font-size: 1.2rem;
   }
-  @media ${size.tablet} {
-    width: 100px;
-}
 `
 
 const Container = styled.div`
