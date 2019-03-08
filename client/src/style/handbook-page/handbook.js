@@ -16,4 +16,8 @@ export const Handbook = styled.div`
   overflow-x: hidden;
   min-height: 100vh;
   width: 100%;
+
+  @media ${size.mobile} {
+    margin-left: 16rem;
+  }
 `

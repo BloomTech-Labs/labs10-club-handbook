@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import SectionItem from './SectionItem'
 import { Row, Column, iconSize } from '../../../style/layout'
 import { AddButton } from '../../../style/section'
+import { size } from '../../../style/breakpoints'
 import { connect } from 'react-redux'
 import { updateSection } from '../../../store/actions/clubActions'
 const update = require('immutability-helper')
@@ -27,10 +28,8 @@ class SectionsView extends Component {
   }
 
   updateSectionOrder = sections => {
-    console.log('updating section after dnd')
     sections.map((section, idx) => {
       const orderUpdate = { order: idx + 1 }
-      console.log(section.club_id, section.id, orderUpdate)
       this.props.updateSection(section.club_id, section.id, orderUpdate)
     })
   }
@@ -49,7 +48,6 @@ class SectionsView extends Component {
         </Row>
 
         {this.props.sections.map((section, idx) => {
-          console.log('sections view: section:', section)
           return (
             <SectionItem
               key={section.id}
