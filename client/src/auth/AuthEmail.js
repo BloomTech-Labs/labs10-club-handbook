@@ -5,7 +5,7 @@ class AuthEmail {
     domain: 'club-handbook.auth0.com',
     clientID: 'LL5WL3YD7vxOZ5tw5yMDmtQb2QxRpTkU',
     redirectUri: 'https://clubhandbook.netlify.com/callback-email',
-    // redirectUri: 'http://localhost:3000/callback-email',
+//     redirectUri: 'http://localhost:3000/callback-email',
     audience: 'https://club-handbook.herokuapp.com/',
     responseType: 'token id_token',
     scope: 'openid profile email',
