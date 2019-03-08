@@ -1,6 +1,7 @@
 import React from 'react'
 import renderHTML from 'react-render-html'
 import { Handbook, Title } from '../../style/handbook-page/handbook'
+import { size } from '../../style/breakpoints'
 
 import styled from 'styled-components'
 
@@ -41,6 +42,10 @@ const SectionRender = props => {
               color: ${title_color};
               font-size: 6rem;
               text-shadow: 0 1px 3px ${textShadow};
+
+              @media ${size.mobile} {
+                font-size: 4rem;
+              }
             }
 
             p {
@@ -48,6 +53,10 @@ const SectionRender = props => {
               color: ${title_color};
               font-size: 2.6rem;
               text-align: left;
+
+              @media ${size.mobile} {
+                font-size: 1.8rem;
+              }
             }
           `
 
@@ -66,10 +75,22 @@ const SectionRender = props => {
             align-items: center;
             min-height: 50vh;
 
+            @media ${size.mobile} {
+              padding: 1rem;
+              padding-bottom: 4rem;
+              flex-direction: column !important;
+            }
+
             .img {
               width: 40%;
               height: auto;
               margin-right: 1.5rem;
+
+              @media ${size.mobile} {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 5rem;
+              }
 
               img {
                 width: 100%;
@@ -81,6 +102,10 @@ const SectionRender = props => {
             .body {
               width: 55%;
               min-height: 60%;
+
+              @media ${size.mobile} {
+                width: 90% !important;
+              }
             }
           `
 
