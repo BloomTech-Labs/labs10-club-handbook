@@ -66,9 +66,9 @@ const HandbookMembersForm = props => {
         <StyledButton onClick={props.showSignature}>
           Sign the Handbook
         </StyledButton>
-        {/* <Container>
+        <Container>
           <SectionsMembersView sections={props.sections} />
-        </Container> */}
+        </Container>
       </ClubForm>
     </>
   )
