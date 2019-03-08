@@ -23,6 +23,7 @@ const ClubForm = styled.form`
 `
 
 const StyledButton = styled.button`
+  margin: 0 auto;
   margin-top: 30px;
   color: white;
   border: 1px solid black;
@@ -40,7 +41,7 @@ const StyledButton = styled.button`
     cursor: pointer;
   }
   @media ${size.tablet} {
-    width: 100%;
+    width: 85%;
     font-size: 1.4rem;
   }
 
@@ -51,7 +52,6 @@ const StyledButton = styled.button`
 
 const Container = styled.div`
   padding: 2rem;
-  /* margin-top: 8rem; */
 `
 
 const HandbookMembersForm = props => {

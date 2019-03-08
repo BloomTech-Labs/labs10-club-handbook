@@ -16,6 +16,7 @@ import { getFormatStyles } from '../../store/actions/formatActions'
 import MagicLinkRequest from '../sections/MagicLinkRequest'
 import MembersViewDashBar from '../MembersViewDashBar'
 import Signature from '../signature/Signature'
+import { size } from '../../style/breakpoints'
 
 class HandbookMemberView extends React.Component {
   state = {
@@ -65,6 +66,10 @@ const HandbookPageContainer = styled.div`
   margin-top: 6.4rem;
   position: relative;
   z-index: 0;
+
+  @media (max-width: 600px) {
+    margin-top: 5.1rem;
+  }
 `
 
 const mapStateToProps = state => {
