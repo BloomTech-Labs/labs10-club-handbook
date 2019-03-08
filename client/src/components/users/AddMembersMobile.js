@@ -100,7 +100,7 @@ class AddMembersMobile extends React.Component {
     return (
       <SCWrapper>
         <HeaderBar>
-          <StyledButton onClick={() => this.props.history.push('/members')}>BACK</StyledButton>
+          <StyledButton onClick={() => this.props.history.push('/clique/members')}>BACK</StyledButton>
           <StyledButton onClick={this.handleSubmit}>ADD MEMBER</StyledButton>
         </HeaderBar>
         <Form onSubmit={this.handleSubmit}>
