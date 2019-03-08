@@ -9,6 +9,7 @@ import PopupState, {
 import { Link } from 'react-router-dom'
 import { getUsers, getUsersByClubId } from '../store/actions/usersActions'
 import { connect } from 'react-redux'
+import { logOut as stateLogOut } from '../store/actions/usersActions'
 
 class MenuPopupState extends React.Component {
   constructor(props) {
@@ -26,8 +27,12 @@ class MenuPopupState extends React.Component {
     localStorage.removeItem('id_token')
     localStorage.removeItem('expires_at')
     localStorage.removeItem('lsid')
-    this.stateLogOut()
+
+    // axios.get('https://club-handbook.auth0.com/v2/logout')
+    window.location.replace('https://club-handbook.auth0.com/v2/logout')
+    // this.props.stateLogOut()
   }
+
   render() {
     return (
       <PopupState variant="popover" popupId="demo-popup-menu">
@@ -38,13 +43,19 @@ class MenuPopupState extends React.Component {
               color="inherit"
               {...bindTrigger(popupState)}
             >
-              {this.props.currentUser.firstname ? this.props.currentUser.firstname : 'User'}
+              {this.props.currentUser.firstname
+                ? this.props.currentUser.firstname
+                : 'User'}
             </Button>
             <Menu {...bindMenu(popupState)}>
               <MenuItem component={Link} to="/clique/settings">
                 Settings
               </MenuItem>
-              <MenuItem component={Link} to="/" onClick={this.logOut}>
+              <MenuItem
+                // component={Link}
+                // to="/"
+                onClick={this.logOut}
+              >
                 Logout
               </MenuItem>
             </Menu>
@@ -63,5 +74,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getUsers, getUsersByClubId }
+  { getUsers, getUsersByClubId, stateLogOut }
 )(MenuPopupState)
