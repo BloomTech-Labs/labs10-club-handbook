@@ -16,8 +16,8 @@ const ClubForm = styled.form`
   color: white;
   overflow-x: hidden;
   overflow-y: scroll;
-  border-left: 0px solid gray;
-  box-shadow: 0 1px 1px gray;
+  border-left: 0px solid black;
+  box-shadow: 0px 0px 10px black;
   text-align: center;
 
   @media ${size.mobile} {

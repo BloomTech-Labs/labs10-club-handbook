@@ -251,7 +251,7 @@ class SectionForm extends Component {
               </Row>
 
               <Row wrap>
-                <div>
+                <div className="select-div">
                   <Label htmlFor="imgPlacement">Image Placement</Label>
                   <Select
                     name="imgPlacement"
@@ -266,7 +266,7 @@ class SectionForm extends Component {
                   </Select>
                 </div>
 
-                <div>
+                <div className="select-div">
                   <Label htmlFor="font">Font</Label>
                   <Select
                     name="font"
@@ -285,7 +285,7 @@ class SectionForm extends Component {
               </Row>
 
               <Row wrap>
-                <div>
+                <div className="select-div">
                   <Label htmlFor="bgColor">Background Color</Label>
                   <Select
                     name="bgColor"
@@ -301,7 +301,7 @@ class SectionForm extends Component {
                   </Select>
                 </div>
 
-                <div>
+                <div className="select-div">
                   <Label htmlFor="titleColor">Title Color</Label>
                   <Select
                     name="titleColor"

@@ -9,10 +9,9 @@ export const FormHolder = styled.div`
   height: 100vh;
   width: 100vw;
   z-index: 10;
+  overflow-y: scroll;
 `
 export const FormContainer = styled.div`
-  /* position: fixed;
-  top: 100px; */
   max-width: 60rem;
   padding: 3rem;
   margin: 100px auto;
@@ -25,6 +24,7 @@ export const FormContainer = styled.div`
 
   @media ${size.laptop} {
     left: 10%;
+    margin-top: 7.2rem;
   }
 
   @media (max-width: 660px) {
@@ -70,6 +70,14 @@ export const RichEditor = styled(ReactQuill)`
   margin-bottom: 1rem;
   width: 100%;
   height: 25rem;
+
+  @media ${size.tablet} {
+    height: 18rem;
+  }
+
+  @media ${size.mobile} {
+    height: 15rem;
+  }
 `
 
 export const SectionInput = styled.input`
@@ -80,11 +88,17 @@ export const ImageInput = styled.input`
   font-size: 1.4rem;
 
   @media ${size.mobile} {
-    width: 60%;
+    width: 100%;
     margin-bottom: 2rem;
   }
 `
 
 export const Select = styled.select`
   font-size: 1.4rem;
+
+  @media ${size.mobile} {
+    display: flex;
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
 `

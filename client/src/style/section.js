@@ -67,10 +67,6 @@ export const SectionBox = styled.div`
   :hover ${EditBtn}, &:hover ${DeleteBtn} {
     display: block;
   }
-
-  :active ${EditBtn}, &:active ${DeleteBtn} {
-    display: none;
-  }
 `
 
 export const SectionHead = styled.div`
