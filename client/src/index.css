@@ -79,3 +79,7 @@ html, body, div, span, applet, object, iframe,
     h6 {
     	font-size: 1.8rem;
     }
+
+    a {
+        text-decoration: none;
+    }

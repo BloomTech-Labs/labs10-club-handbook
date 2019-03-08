@@ -140,7 +140,7 @@ const SectionRender = props => {
           }
 
           return (
-            <Section key={id} style={img_placement == 1 ? bgImage : null}>
+            <Section id={id} key={id} style={img_placement == 1 ? bgImage : null}>
               <SectionTitle>
                 <h1>{title}</h1>
               </SectionTitle>

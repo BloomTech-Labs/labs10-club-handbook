@@ -25,6 +25,11 @@ const ClubForm = styled.form`
 const StyledButton = styled.button`
   margin: 0 auto;
   margin-top: 30px;
+  padding: 1rem;
+  border: 0px solid black;
+  border-radius: 5px;
+  box-shadow: 0 1px 5px black;
+  background: #3648AC;
   color: white;
   border: 1px solid black;
   border-radius: 8px;
@@ -61,9 +66,9 @@ const HandbookMembersForm = props => {
         <StyledButton onClick={props.showSignature}>
           Sign the Handbook
         </StyledButton>
-        {/* <Container>
+        <Container>
           <SectionsMembersView sections={props.sections} />
-        </Container> */}
+        </Container>
       </ClubForm>
     </>
   )

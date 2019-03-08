@@ -11,7 +11,7 @@ class MemberSectionItem extends Component {
 
     return (
         <div>
-            <Row key={section.id} >
+            <a href={`#${section.id}`}><Row key={section.id} >
                 <SectionBox>
                     <SectionHead>
                         <FormatAlignCenter style={headerIcon} />
@@ -22,7 +22,7 @@ class MemberSectionItem extends Component {
                     </TitleBox>
 
                 </SectionBox>
-            </Row>
+            </Row></a>
         </div>
     )
   }

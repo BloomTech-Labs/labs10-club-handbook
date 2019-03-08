@@ -89,7 +89,7 @@ class SectionItem extends Component {
     return connectDragSource(
       connectDropTarget(
         <div style={{ opacity }}>
-          <Row key={section.id} style={{ cursor: 'move' }}>
+          <a href={`#${section.id}`}><Row key={section.id} style={{ cursor: 'move' }}>
             <SectionBox>
               <SectionHead>
                 <FormatAlignCenter style={headerIcon} />
@@ -117,7 +117,7 @@ class SectionItem extends Component {
                 />
               </DeleteBtn>
             </SectionBox>
-          </Row>
+          </Row></a>
         </div>
       )
     )
