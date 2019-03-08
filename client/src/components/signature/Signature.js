@@ -1,17 +1,33 @@
 import React from 'react'
 import '../users/Members.css'
-import { AppBar, Button } from '@material-ui/core'
+import { Button } from '@material-ui/core'
 import { connect } from 'react-redux'
 import { memberSigned } from '../../store/actions/usersActions'
-
-import { SignatureContainer, FormContainer } from '../../style/signature'
 import styled from 'styled-components';
 import { size } from '../../style/breakpoints'
 
-const SCHeader = styled.div`
-  display: flex;
-  justify-content: center;
+const SignatureContainer = styled.div`
+  width: 500px;
+  position: fixed;
+  left: 230px;
+  top: 75px;
+  padding: 20px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  box-shadow: 0 1px 10px gray;
+  z-index: 10;
+  background: white;
+`
+
+const Form = styled.form`
+  width: 100%;
+  margin-top: 20px;
+  input {
+    width: 80%;
+    line-height: 1.5;
+  }
 `;
+
 const Notification = styled.div`
   color: red;
   margin: 20px 0 0 0;
@@ -53,42 +69,17 @@ class Signature extends React.Component {
     );
   }
 
-  showSignatureComponent = () => {
-    this.setState(prevState => ({
-      showSignature: !prevState.showSignature
-    }))
-  }
-
   render() {
     return (
       <SignatureContainer>
-        <SCHeader onClick={this.showSignatureComponent}>
-          <h3>Ready to sign the handbook?</h3>
-        </SCHeader>
-        <FormContainer visible={this.state.showSignature}>
-          <h6><strong>
-              I have read and will comply with the policies herin and any
-              revisions made henceforth and forever.
-              </strong></h6>
-          <br />
-          <p>
-              Failure to sign this manual may result in your being expunged from
-              the club, orgainization, or click. If you can't follow through,
-              then you're just not made of the stuff we're looking for. Dig it?
-            </p>
-          <br />
-          <form onSubmit={this.handleSubmit}>
-              <input
-                type="text"
-                name="signature"
-                onChange={this.handleChanges}
-                placeholder="Sign Here"
-                value={this.state.signature}
-              />
+          <p>I have read the document and agree to the terms as currently stated in the document and any changes in the future.</p>
+          
+          <Form onSubmit={this.handleSubmit}>
+              <input type="text" name="signature" onChange={this.handleChanges} placeholder="Enter your full name" value={this.state.signature} />
               <Button type="submit">Sign</Button>
-            </form>
+            </Form>
+
           <Notification>{this.state.signatureStatus === true && 'Signature submited!'}</Notification>
-        </FormContainer>
       </SignatureContainer>
     )
   }
