@@ -12,8 +12,9 @@ import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 // import PersonPinIcon from '@material-ui/icons/PersonPin'
 import Book from '@material-ui/icons/Book'
-// import MenuPopupState from './NewMenu'
+import MenuPopupState from './NewMenu'
 import Button from '@material-ui/core/Button'
+import logo from '../logos/Cliquebook_combo_white.png'
 
 const auth = new Auth()
 
@@ -150,7 +151,7 @@ class MembersViewDashBar extends React.Component {
               noWrap
               className={classes.toolbarTitle}
             >
-              Clique.Book
+              <img src={logo} style={{ height: '45px' }} />
             </Typography>
 
             {/* <div className={classes.navButtons} />
@@ -165,7 +166,7 @@ class MembersViewDashBar extends React.Component {
                 icon={<Book />}
               />
             </Tabs> */}
-            {/* <MenuPopupState /> */}
+            <MenuPopupState isMembers />
           </Toolbar>
         </AppBar>
       </div>

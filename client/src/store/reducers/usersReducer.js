@@ -16,6 +16,7 @@ import {
   CHANGE_SUB_FAIL,
   RESET_CHANGE_FAIL,
   LOG_OUT,
+  MEMBER_SIGNED,
 } from '../actions/usersActions'
 import { CREATE_CLUB } from '../actions/clubActions'
 
@@ -172,6 +173,14 @@ const usersReducer = (state = initialState, action) => {
         ...state,
         userById: { ...state.userById, club_id: action.payload.club.id },
       }
+
+    case MEMBER_SIGNED:
+      return {
+        ...state,
+        loading: false,
+        message: null,
+      }
+
     case LOG_OUT:
       return {
         initialState,

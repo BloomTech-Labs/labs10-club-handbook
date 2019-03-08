@@ -17,7 +17,7 @@ class RenderPropsMenu extends React.Component {
     localStorage.removeItem('id_token')
     localStorage.removeItem('expires_at')
     localStorage.removeItem('lsid')
-    this.stateLogOut()
+    this.props.stateLogOut()
     axios.get('https://club-handbook.auth0.com/v2/logout')
   }
 

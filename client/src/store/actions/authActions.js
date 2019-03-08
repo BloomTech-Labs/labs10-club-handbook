@@ -82,6 +82,9 @@ export const handleAuthorizationEmail = () => dispatch => {
             message: 'User authorized.',
           })
         })
+        .then(() => {
+          dispatch(getInfoFromToken())
+        })
         .catch(err => console.log(err))
     })
     .catch(err => {

@@ -31,6 +31,7 @@ import Group from '@material-ui/icons/Group'
 import Settings from '@material-ui/icons/Settings'
 import { connect } from 'react-redux'
 import { signinUser } from '../store/actions/authActions'
+import logo from '../logos/Cliquebook_combo_white.png'
 
 const CardContainer = styled.div`
   margin: auto;
@@ -151,7 +152,7 @@ class Landing extends React.Component {
               noWrap
               className={classes.toolbarTitle}
             >
-              CliqueBook
+              <img src={logo} style={{ height: '45px' }} />
             </Typography>
 
             <Tabs

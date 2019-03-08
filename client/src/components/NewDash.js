@@ -19,6 +19,7 @@ import PersonPinIcon from '@material-ui/icons/PersonPin'
 import Book from '@material-ui/icons/Book'
 import NoSsr from '@material-ui/core/NoSsr'
 import MenuPopupState from './NewMenu'
+import logo from '../logos/Cliquebook_combo_white.png'
 
 const auth = new Auth()
 
@@ -169,7 +170,7 @@ class DashBar extends React.Component {
               noWrap
               className={classes.toolbarTitle}
             >
-              Clique.Book
+              <img src={logo} style={{ height: '45px' }} />
             </Typography>
 
             <div className={classes.navButtons} />
