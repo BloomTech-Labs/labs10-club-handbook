@@ -62,9 +62,10 @@ class HandbookMemberView extends React.Component {
 const HandbookPageContainer = styled.div`
   display: flex;
   width: 100%;
-  margin-top: 7.2rem;
+  margin-top: 6.4rem;
   position: relative;
   z-index: 0;
+  margin-top: -8px;
 `
 
 const mapStateToProps = state => {

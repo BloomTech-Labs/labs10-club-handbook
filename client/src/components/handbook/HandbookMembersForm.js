@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import SectionsMembersView from './views/SectionsMembersView'
-import { size } from '../../style/breakpoints';
+import { size } from '../../style/breakpoints'
 
 const ClubForm = styled.form`
   position: fixed;
@@ -17,6 +17,7 @@ const ClubForm = styled.form`
   box-shadow: 0 1px 1px gray;
   text-align: center;
 `
+
 const StyledButton = styled.button`
   margin-top: 30px;
   color: white;
@@ -24,19 +25,19 @@ const StyledButton = styled.button`
   border-radius: 8px;
   font-size: 1.75rem;
   width: 180px;
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
   text-transform: uppercase;
   padding: 15px;
-  background-color: #384AA6;
+  background-color: #384aa6;
   :hover {
     background-color: white;
-    color: #384AA6;
-    border: 1px solid #384AA6;
+    color: #384aa6;
+    border: 1px solid #384aa6;
     cursor: pointer;
   }
   @media ${size.tablet} {
     width: 100px;
-}
+  }
 `
 
 const Container = styled.div`
@@ -48,10 +49,12 @@ const HandbookMembersForm = props => {
   return (
     <>
       <ClubForm>
-        <StyledButton onClick={props.showSignature}>Sign the Handbook</StyledButton>
-        <Container>
+        <StyledButton onClick={props.showSignature}>
+          Sign the Handbook
+        </StyledButton>
+        {/* <Container>
           <SectionsMembersView sections={props.sections} />
-        </Container>
+        </Container> */}
       </ClubForm>
     </>
   )
