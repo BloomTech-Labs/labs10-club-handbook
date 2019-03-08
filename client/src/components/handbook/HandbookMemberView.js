@@ -5,10 +5,16 @@ import SectionForm from '../sections/SectionForm'
 import HandbookMembersForm from './HandbookMembersForm'
 import HandbookRender from './HandbookRender'
 import LoadingPage from '../loading/loading'
-import { getClubById, updateClub, createClub, getClubSections } from '../../store/actions/clubActions'
+import {
+  getClubById,
+  updateClub,
+  createClub,
+  getClubSections,
+} from '../../store/actions/clubActions'
+import { getInfoFromToken } from '../../store/actions/usersActions'
 import { getFormatStyles } from '../../store/actions/formatActions'
 import MagicLinkRequest from '../sections/MagicLinkRequest'
-import MembersViewDashBar from '../MembersViewDashBar';
+import MembersViewDashBar from '../MembersViewDashBar'
 import Signature from '../signature/Signature'
 
 class HandbookMemberView extends React.Component {
@@ -17,7 +23,7 @@ class HandbookMemberView extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getClubSections(this.props.currentUser.club_id)
+    // this.props.getInfoFromToken()
   }
 
   showSignature = event => {
@@ -37,16 +43,19 @@ class HandbookMemberView extends React.Component {
           <MembersViewDashBar />
           <HandbookPageContainer>
             {this.state.signOpen === true && <Signature />}
-            <HandbookMembersForm sections={this.props.sections} showSignature={this.showSignature} />
+            <HandbookMembersForm
+              sections={this.props.sections}
+              showSignature={this.showSignature}
+            />
             <HandbookRender sections={this.props.sections} />
           </HandbookPageContainer>
-          {this.props.loading || this.props.usersLoading ? <LoadingPage /> : null}
+          {this.props.loading || this.props.usersLoading ? (
+            <LoadingPage />
+          ) : null}
         </>
       )
     } else {
-      return (
-        <MagicLinkRequest />
-      )
+      return <MagicLinkRequest />
     }
   }
 }
@@ -70,5 +79,12 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getClubById, updateClub, createClub, getClubSections, getFormatStyles }
+  {
+    getClubById,
+    updateClub,
+    createClub,
+    getClubSections,
+    getFormatStyles,
+    getInfoFromToken,
+  }
 )(HandbookMemberView)
