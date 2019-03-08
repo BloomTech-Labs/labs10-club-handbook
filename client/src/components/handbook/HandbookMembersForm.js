@@ -27,7 +27,7 @@ const StyledButton = styled.button`
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   text-transform: uppercase;
   padding: 15px;
-  background-color: #384AA6;
+  background-color: #3648AC;
   :hover {
     background-color: white;
     color: #384AA6;
