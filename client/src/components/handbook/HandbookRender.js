@@ -65,6 +65,10 @@ const SectionRender = props => {
             flex-direction: column;
             justify-content: center;
             min-height: 25vh;
+
+            @media ${size.mobile} {
+              margin-top: -40px;
+            }
           `
 
           const Body = styled.div`
@@ -75,10 +79,14 @@ const SectionRender = props => {
             align-items: center;
             min-height: 50vh;
 
-            @media ${size.mobile} {
+            @media (max-width: 100rem) {
               padding: 1rem;
               padding-bottom: 4rem;
               flex-direction: column !important;
+            }
+
+            @media ${size.mobile} {
+              margin-top: -40px;
             }
 
             .img {
@@ -86,10 +94,18 @@ const SectionRender = props => {
               height: auto;
               margin-right: 1.5rem;
 
-              @media ${size.mobile} {
-                width: 100%;
+              @media ${size.desktop} {
+                width: 50%;
+              }
+
+              @media (max-width: 100rem) {
+                width: 70%;
                 margin-right: 0;
                 margin-bottom: 5rem;
+              }
+
+              @media ${size.mobile} {
+                width: 100%;
               }
 
               img {
@@ -102,6 +118,15 @@ const SectionRender = props => {
             .body {
               width: 55%;
               min-height: 60%;
+
+              @media ${size.desktop} {
+                width: 45%;
+              }
+
+              @media (max-width: 100rem) {
+                width: 80% !important;
+                padding-bottom: 5rem;
+              }
 
               @media ${size.mobile} {
                 width: 90% !important;
