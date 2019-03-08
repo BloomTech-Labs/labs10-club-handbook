@@ -65,7 +65,6 @@ const HandbookPageContainer = styled.div`
   margin-top: 6.4rem;
   position: relative;
   z-index: 0;
-  margin-top: -8px;
 `
 
 const mapStateToProps = state => {

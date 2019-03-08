@@ -16,6 +16,10 @@ const ClubForm = styled.form`
   border-left: 0px solid gray;
   box-shadow: 0 1px 1px gray;
   text-align: center;
+
+  @media ${size.mobile} {
+    width: 16rem;
+  }
 `
 
 const StyledButton = styled.button`
@@ -36,7 +40,12 @@ const StyledButton = styled.button`
     cursor: pointer;
   }
   @media ${size.tablet} {
-    width: 100px;
+    width: 100%;
+    font-size: 1.4rem;
+  }
+
+  @media ${size.mobile} {
+    font-size: 1.2rem;
   }
 `
 
