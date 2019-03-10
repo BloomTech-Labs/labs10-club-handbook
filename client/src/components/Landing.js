@@ -32,6 +32,7 @@ import Settings from '@material-ui/icons/Settings'
 import { connect } from 'react-redux'
 import { signinUser } from '../store/actions/authActions'
 import logo from '../logos/Cliquebook_combo_white.png'
+import { Heading, ActionButton } from '../style/landing-page'
 
 const CardContainer = styled.div`
   margin: auto;
@@ -44,10 +45,21 @@ const CardContainer = styled.div`
 const styles = theme => ({
   appBar: {
     position: 'fixed',
-    zIndex: 1,
+    zIndex: 2,
+    color: 'white',
+    fontWeight: 'bold',
   },
   navButton: {
-    margin: 20,
+    padding: '10px 20px',
+    border: '0 solid black',
+    borderRadius: '25px',
+    boxShadow: '0 1px 5px black',
+    background: 'rgb(0, 153, 255)',
+    color: 'white',
+    textTransform: 'uppercase',
+    letterSpacing: '1px',
+    fontSize: '14px',
+    cursor: 'pointer',
   },
   toolbarTitle: {
     flex: 1,
@@ -97,9 +109,13 @@ const styles = theme => ({
   mainGrid: {
     marginTop: theme.spacing.unit * 3,
   },
-  mainContent: {
+  heading: {
     position: 'relative',
-    zIndex: 0,
+    zIndex: 'auto',
+    height: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
   },
 })
 
@@ -128,7 +144,7 @@ const subscriptions = [
 ]
 
 function LinkTab(props) {
-  return <Tab component="a" {...props} />
+  return <Tab component="a" {...props} style={{ fontSize: '1.4rem' }} />
 }
 
 class Landing extends React.Component {
@@ -176,54 +192,50 @@ class Landing extends React.Component {
           </Toolbar>
         </AppBar>
         <main>
-          {/* Parallax Header */}
           <Parallax
             className={classes.mainContent}
             filter
-            image={require('../assets/images/pexels-photo-1289898.jpeg')}
+            image={require('../assets/images/bg-abstract-lightblue.jpg')}
           >
-            <div className={classes.headerContent}>
-              <GridContainer>
-                <Fade left>
-                  <GridContainer xs={12} sm={12} md={6}>
-                    <Typography variant="h3" color="primary" gutterBottom>
-                      Create a Handbook for Your Group. <br />
-                      Stay Connected with your Members.
-                    </Typography>
-                    <Typography variant="h6" color="primary" paragraph>
-                      An easy way to create a handbook for your group that
-                      allows your members to electronically sign their agreement
-                      to your group's terms and condition. Your rules. Keep
-                      track of who has seen the handbook and who has
-                      electronically signed the handbook.
-                    </Typography>
-                    <br />
-                    <div>
-                      <Button
-                        className={classes.navButton}
-                        component={Link}
-                        to="/handbook/member-view"
-                        color="inherit"
-                        variant="contained"
-                      >
-                        I'm a Member and need to View My Group's Handbook
-                      </Button>
-                      <Button
-                        className={classes.navButton}
-                        component={Link}
-                        to="/handbook/member-view"
-                        color="secondary"
-                        variant="contained"
-                      >
-                        I'm an Admin and need to Create My Group's Handbook{' '}
-                      </Button>
-                    </div>
-                  </GridContainer>
-                </Fade>
-              </GridContainer>
-            </div>
+            <Heading>
+              {/* <div className="bg-cover" /> */}
+              <div className="heading-title">
+                <h1>
+                  Create a handbook for your organization <br />
+                  and stay connected with your members.
+                </h1>
+              </div>
+
+              <div className="action-div">
+                <div className="for-members">
+                  <h5>For Members</h5>
+                  <ActionButton
+                    members
+                    className={classes.navButton}
+                    component={Link}
+                    to="/handbook/member-view"
+                    color="inherit"
+                    variant="contained"
+                  >
+                    Access Handbook
+                  </ActionButton>
+                </div>
+
+                <div className="for-admins">
+                  <h5>For Admins</h5>
+                  <ActionButton
+                    className={classes.navButton}
+                    onClick={this.props.signinUser}
+                    color="secondary"
+                    variant="contained"
+                  >
+                    Access Application
+                  </ActionButton>
+                </div>
+              </div>
+            </Heading>
           </Parallax>
-          {/* Process Section */}
+
           <Paper className={classes.mainContent}>
             <Grid container xl={12}>
               <div className={classes.processContent}>

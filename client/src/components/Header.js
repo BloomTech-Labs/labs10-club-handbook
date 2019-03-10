@@ -60,6 +60,9 @@ class Parallax extends React.Component {
         className={parallaxClasses}
         style={{
           ...style,
+          position: 'relative',
+          zIndex: 1,
+          minHeight: '100vh',
           backgroundImage: 'url(' + image + ')',
           backgroundSize: 'cover',
           ...this.state,
