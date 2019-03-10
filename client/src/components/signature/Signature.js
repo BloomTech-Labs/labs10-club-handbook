@@ -82,20 +82,30 @@ class Signature extends React.Component {
   }
 
   render() {
-    return (
-      <SContainer>
-        <SignatureContainer>
-            <p>I have read the document and agree to the terms as currently stated in the document and any changes in the future.</p>
-            
-            <Form onSubmit={this.handleSubmit}>
-                <input type="text" name="signature" onChange={this.handleChanges} placeholder="Enter your full name" value={this.state.signature} />
-                <Button type="submit">Sign</Button>
-              </Form>
+    if (this.props.signed === false) {
+      return (
+        <SContainer>
+          <SignatureContainer>
+              <p>I have read the document and agree to the terms as currently stated in the document and any changes in the future.</p>
+              
+              <Form onSubmit={this.handleSubmit}>
+                  <input type="text" name="signature" onChange={this.handleChanges} placeholder="Enter your full name" value={this.state.signature} />
+                  <Button type="submit">Sign</Button>
+                </Form>
 
-            <Notification>{this.state.signatureStatus === true && 'Signature submited!'}</Notification>
-        </SignatureContainer>
-      </SContainer>
-    )
+              <Notification>{this.state.signatureStatus === true && 'Signature submited!'}</Notification>
+          </SignatureContainer>
+        </SContainer>
+      )
+    } else {
+      return (
+        <SContainer>
+          <SignatureContainer>
+              <p>You've already signed!</p>
+          </SignatureContainer>
+        </SContainer>
+      )
+    }
   }
 }
 

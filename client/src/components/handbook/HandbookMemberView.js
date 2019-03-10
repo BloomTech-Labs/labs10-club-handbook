@@ -42,7 +42,7 @@ class HandbookMemberView extends React.Component {
         <>
           <MembersViewDashBar signed={this.props.signed} showNav={this.showNav} showSignature={this.showSignature} navOpen={this.state.navOpen} />
           <HandbookPageContainer>
-            {this.state.signOpen === true && <Signature />}
+            {this.state.signOpen === true && <Signature signed={this.props.signed} />}
             <HandbookMembersForm
               sections={this.props.sections}
               showSignature={this.showSignature}

@@ -51,7 +51,6 @@ const CloseMenu = styled.img`
 `;
 
 const StyledButton = styled.button`
-display: ${props => props.visible === true ? "block" : "none"};
   border: 0px solid black;
   border-radius: 5px;
   box-shadow: 0 1px 5px black;
@@ -85,7 +84,7 @@ const MembersViewDashBar = props => {
                         <OpenMenu visible={!props.navOpen} src={menuButton} onClick={props.showNav} />
                         <CloseMenu visible={props.navOpen} src={menuButtonClose} onClick={props.showNav} />
                     </MenuBtn>
-                    <StyledButton visible={!props.signed} onClick={props.showSignature} >
+                    <StyledButton onClick={props.showSignature} >
                         Sign Clique Book
                     </StyledButton>
                 </LeftBtns>
