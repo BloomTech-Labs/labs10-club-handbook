@@ -23,30 +23,31 @@ import LoadingPage from '../loading/loading'
 const Container = styled.div`
   max-width: 900px;
   margin: 0 auto;
-  padding: 115px 30px;
+  padding: 70px 30px;
   min-height: 100vh;
   @media ${size.tablet} {
     /* width: 75%; */
+    padding-top: 70px;
   }
   /* border: 2px solid red; */
   background: rgb(200, 200, 200);
+
+  .shadow-wrapper {
+    border-radius: 7px;
+    box-shadow: 0 0 5px 5px gray;
+  }
 `
-// const HeaderBar = styled.div`
-//   width: 100%;
-//   background: #3648AC;
-//   font-size: 35px;
-//   color: #FFFFFF;
-//   text-align: center;
-//   padding: 10px 0;
-// `;
+
 const MembersList = styled.div`
   display: flex;
   flex-direction: column;
   background: white;
-  margin-top: 30px;
-  border-radius: 7px;
+  /* margin-top: 30px; */
+  border-bottom-right-radius: 7px;
+  border-bottom-left-radius: 7px;
+  /* border-radius: 7px; */
   padding: 20px 15px 40px;
-
+  /* box-shadow: 0px 5px 10px 5px gray; */
   h1 {
     text-align: center;
   }
@@ -189,51 +190,52 @@ class Members extends React.Component {
 
         <Container>
           {/* <HeaderBar>{this.props.clubName} Members</HeaderBar> */}
+          <div className="shadow-wrapper">
+            <AddMember />
 
-          <AddMember />
+            <MembersList>
+              <h1>Clique Members</h1>
+              {users.length > 1 && (
+                <StatusHeader>
+                  <Visited>Visited</Visited>
+                  <Signed>Signed</Signed>
+                </StatusHeader>
+              )}
 
-          <MembersList>
-            <h1>Clique Members</h1>
-            {users.length > 1 && (
-              <StatusHeader>
-                <Visited>Visited</Visited>
-                <Signed>Signed</Signed>
-              </StatusHeader>
-            )}
+              {users.length <= 1 && (
+                <AddMembersWarning>
+                  You need some members! They'll show up here.
+                </AddMembersWarning>
+              )}
 
-            {users.length <= 1 && (
-              <AddMembersWarning>
-                You need some members! They'll show up here.
-              </AddMembersWarning>
-            )}
-
-            {users
-              .filter(user => user.admin === false)
-              .map((user, idx) => {
-                if (idx % 2 === 0) {
-                  return (
-                    <Member
-                      key={user.id}
-                      user={user}
-                      clubName={this.props.clubName}
-                      adminFirstName={this.props.currentUser.firstname}
-                      adminLastName={this.props.currentUser.lastname}
-                      isEven
-                    />
-                  )
-                } else {
-                  return (
-                    <Member
-                      key={user.id}
-                      user={user}
-                      clubName={this.props.clubName}
-                      adminFirstName={this.props.currentUser.firstname}
-                      adminLastName={this.props.currentUser.lastname}
-                    />
-                  )
-                }
-              })}
-          </MembersList>
+              {users
+                .filter(user => user.admin === false)
+                .map((user, idx) => {
+                  if (idx % 2 === 0) {
+                    return (
+                      <Member
+                        key={user.id}
+                        user={user}
+                        clubName={this.props.clubName}
+                        adminFirstName={this.props.currentUser.firstname}
+                        adminLastName={this.props.currentUser.lastname}
+                        isEven
+                      />
+                    )
+                  } else {
+                    return (
+                      <Member
+                        key={user.id}
+                        user={user}
+                        clubName={this.props.clubName}
+                        adminFirstName={this.props.currentUser.firstname}
+                        adminLastName={this.props.currentUser.lastname}
+                      />
+                    )
+                  }
+                })}
+            </MembersList>
+          </div>
           <Link to={'/clique/members/add-members-mobile'}>
             <PopupButton>ADD MEMBER</PopupButton>
           </Link>

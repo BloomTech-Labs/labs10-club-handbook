@@ -9,17 +9,20 @@ import { size } from '../../style/breakpoints'
 const SCWrapper = styled.div`
   width: 100%;
   margin: 0 auto;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  /* margin-top: 10px; */
+  /* margin-bottom: 20px; */
   display: flex;
   justify-content: center;
   flex-direction: column;
+  padding: 30px;
   @media ${size.mobile} {
     display: none;
   }
+  background: white;
+  border-bottom: 1px dashed lightgray;
 `
 const StyledH6 = styled.h6`
-  font-size: 2.5rem;
+  font-size: 3rem;
   /* color: white; */
   /* margin-bottom: 8px; */
   margin: 0 auto 20px;
