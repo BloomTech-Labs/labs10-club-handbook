@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { size } from './breakpoints'
 import { AddCircle } from '@material-ui/icons'
 
 export const EditBtn = styled.div`
@@ -94,13 +93,7 @@ export const TitleBox = styled.div`
   border-bottom-right-radius: 5px;
 `
 
-// inline styles
-export const headerIcon = {
-  fontSize: 50,
-}
-
 export const AddButton = styled(AddCircle)`
-  font-size: 50;
   margin-bottom: 1;
   cursor: pointer;
   border-radius: 100%;
@@ -120,3 +113,8 @@ export const AddButton = styled(AddCircle)`
     box-shadow: 0 1px 5px black;
   }
 `
+
+// inline styles
+export const headerIcon = {
+  fontSize: 50,
+}

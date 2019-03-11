@@ -3,23 +3,20 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
-import Button from '@material-ui/core/Button'
 import Toolbar from '@material-ui/core/Toolbar'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Typography from '@material-ui/core/Typography'
-
 import { Link } from 'react-router-dom'
-
 import Auth from '../auth/Auth'
-// import RenderPropsMenu from './NewDashMenu'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
-import RenderPropsMenu from './NewDashMenu'
-import PersonPinIcon from '@material-ui/icons/PersonPin'
+// import PersonPinIcon from '@material-ui/icons/PersonPin'
 import Book from '@material-ui/icons/Book'
-import NoSsr from '@material-ui/core/NoSsr'
 import MenuPopupState from './NewMenu'
+import Button from '@material-ui/core/Button'
 import logo from '../logos/Cliquebook_combo_white.png'
+import styled from 'styled-components';
+import { size } from '../style/breakpoints'
 
 const auth = new Auth()
 
@@ -131,23 +128,9 @@ function LinkTab(props) {
   return <Tab component="a" {...props} />
 }
 
-class DashBar extends React.Component {
+class MembersViewDashBar extends React.Component {
   state = {
     value: 0,
-  }
-
-  componentDidMount() {
-    const currentLocation = window.location.href
-
-    if (currentLocation === 'http://localhost:3000/clique/members') {
-      this.setState({ value: 1 })
-    } else if (currentLocation === 'http://localhost:3000/clique/handbook') {
-      this.setState({ value: 0 })
-    }
-  }
-
-  logoutUser = () => {
-    auth.logout()
   }
 
   handleChange = (event, value) => {
@@ -173,54 +156,29 @@ class DashBar extends React.Component {
               <img src={logo} style={{ height: '45px' }} />
             </Typography>
 
-            <div className={classes.navButtons} />
+            {/* <div className={classes.navButtons} />
             <Tabs
               variant="fullWidth"
               value={value}
               onChange={this.handleChange}
             >
               <LinkTab
-                label="Manage Handbook"
-                // href="https://clubhandbook.netlify.com/handbook"
-                component={Link}
-                to="/clique/handbook"
+                label="Sign the handbook"
+                component={Button}
                 icon={<Book />}
               />
-              <LinkTab
-                label="Manage Members"
-                // href="https://clubhandbook.netlify.com/members"
-                icon={<PersonPinIcon />}
-                component={Link}
-                to="/clique/members"
-              />
-            </Tabs>
-            {/* <RenderPropsMenu /> */}
-            <MenuPopupState />
-            {/* <a href="https://club-handbook.auth0.com/v2/logout">
-              <Button
-                // component={Link}
-                // to="/"
-                color="inherit"
-                variant="outlined"
-                lassName={classes.toolbar}
-                onClick={this.logoutUser}
-              >
-                Do Not Logout
-              </Button>
-            </a> */}
+            </Tabs> */}
+            <MenuPopupState isMembers />
           </Toolbar>
         </AppBar>
-
-        {/* {value === 0 && <TabContainer>Manage Handbook</TabContainer>}
-        {value === 1 && <TabContainer>Manage Members</TabContainer>} */}
       </div>
     )
   }
 }
 
-DashBar.propTypes = {
+MembersViewDashBar.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
 }
 
-export default withStyles(styles, { withTheme: true })(DashBar)
+export default withStyles(styles, { withTheme: true })(MembersViewDashBar)

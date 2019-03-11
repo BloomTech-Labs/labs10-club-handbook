@@ -25,7 +25,7 @@ export const Column = styled.div`
 
 // inline styles
 export const iconSize = {
-  fontSize: 50,
+  fontSize: 40,
   marginBottom: 1,
   cursor: 'pointer',
 }

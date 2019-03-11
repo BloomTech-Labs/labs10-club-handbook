@@ -10,10 +10,14 @@ export const Title = styled.h1`
 `
 
 export const Handbook = styled.div`
-  margin-left: 22rem;
+  /* margin-left: 22rem; */
   background: whitesmoke;
   overflow-y: scroll;
   overflow-x: hidden;
   min-height: 100vh;
   width: 100%;
+
+  /* @media ${size.mobile} {
+    margin-left: 16rem;
+  } */
 `

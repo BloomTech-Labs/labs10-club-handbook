@@ -17,8 +17,7 @@ class MenuPopupState extends React.Component {
   }
 
   componentDidMount() {
-    const clubId = this.props.currentUser.club_id
-
+    // const clubId = this.props.currentUser.club_id
     // this.props.getUsersByClubId(clubId)
   }
 
@@ -30,7 +29,7 @@ class MenuPopupState extends React.Component {
 
     // axios.get('https://club-handbook.auth0.com/v2/logout')
     window.location.replace('https://club-handbook.auth0.com/v2/logout')
-    // this.props.stateLogOut()
+    this.props.stateLogOut()
   }
 
   render() {
@@ -48,9 +47,11 @@ class MenuPopupState extends React.Component {
                 : 'User'}
             </Button>
             <Menu {...bindMenu(popupState)}>
-              <MenuItem component={Link} to="/clique/settings">
-                Settings
-              </MenuItem>
+              {this.props.isMembers ? null : (
+                <MenuItem component={Link} to="/clique/settings">
+                  Settings
+                </MenuItem>
+              )}
               <MenuItem
                 // component={Link}
                 // to="/"

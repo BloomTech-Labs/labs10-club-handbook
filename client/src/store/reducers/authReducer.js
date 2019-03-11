@@ -11,6 +11,7 @@ import {
   LOG_OUT,
   GET_USERS_BY_CLUB_ID,
   GET_USER_BY_ID,
+  MEMBER_SIGNED,
 } from '../actions/usersActions'
 import { CREATE_CLUB } from '../actions/clubActions'
 
@@ -112,6 +113,13 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         currentUser: { ...state.currentUser, club_id: action.payload.club.id },
+      }
+
+    case MEMBER_SIGNED:
+      return {
+        ...state,
+        loading: false,
+        message: null,
       }
 
     default:

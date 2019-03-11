@@ -4,6 +4,7 @@ import SectionsView from './views/SectionsView'
 import DetailsView from './views/DetailsView'
 import { connect } from 'react-redux'
 import { deleteSectionById } from '../../store/actions/clubActions'
+import { size } from '../../style/breakpoints'
 
 const ClubForm = styled.form`
   position: fixed;
@@ -15,14 +16,22 @@ const ClubForm = styled.form`
   color: white;
   overflow-x: hidden;
   overflow-y: scroll;
-  border-left: 0px solid gray;
-  box-shadow: 0 1px 1px gray;
+  border-left: 0px solid black;
+  box-shadow: 0px 0px 10px black;
   text-align: center;
+
+  @media ${size.mobile} {
+    width: 16rem;
+  }
 `
 const FixedContainer = styled.div`
   position: fixed;
   z-index: 3;
   width: 22rem;
+
+  @media ${size.mobile} {
+    width: 16rem;
+  }
 `
 
 const Tabs = styled.div`
@@ -43,6 +52,11 @@ const Tab = styled.div`
   letter-spacing: 1px;
   font-size: ${props => (props.selected ? '1.3rem' : '1.2rem')};
   text-shadow: 0 1px 5px black;
+
+  @media ${size.mobile} {
+    width: 16rem;
+    font-size: ${props => (props.selected ? '1.1rem' : '1rem')};
+  }
 `
 
 const Container = styled.div`
