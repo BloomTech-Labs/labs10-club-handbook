@@ -170,7 +170,12 @@ class DashBar extends React.Component {
               noWrap
               className={classes.toolbarTitle}
             >
-              <img src={logo} style={{ height: '45px' }} />
+              <img
+                src={logo}
+                style={{ height: '45px', cursor: 'pointer' }}
+                onClick={() => window.location.reload()}
+                className="clique-navBar-logo"
+              />
             </Typography>
 
             <div className={classes.navButtons} />

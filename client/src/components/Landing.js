@@ -207,7 +207,11 @@ class Landing extends React.Component {
               noWrap
               className={classes.toolbarTitle}
             >
-              <img src={logo} style={{ height: '45px' }} />
+              <img
+                src={logo}
+                style={{ height: '45px' }}
+                className="navBar-logo"
+              />
             </Typography>
 
             <Tabs
