@@ -34,7 +34,7 @@ const ContentContainer = styled.div`
   padding: 20px;
   background: linear-gradient(
     to right,
-    rgba(65, 82, 179, 0.9),
+    rgba(82, 157, 248, 0.9),
     rgba(78, 98, 215, 0.9)
   );
   max-width: 700px;
