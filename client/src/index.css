@@ -83,3 +83,7 @@ html, body, div, span, applet, object, iframe,
     a {
         text-decoration: none;
     }
+
+    .MuiAppBar-root-15, .MuiAppBar-root-16, .jss16 {
+        background: linear-gradient(to right, rgb(82, 157, 248), rgb(78, 98, 215));
+    }

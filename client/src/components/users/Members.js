@@ -71,7 +71,7 @@ const PopupButton = styled.div`
   min-width: 64px;
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
   text-transform: uppercase;
-  background-color: #384aa6;
+  background-color: rgb(78, 98, 215);
   font-size: 1.7rem;
   &:hover {
     box-shadow: 0 0 15px 2px white inset;
