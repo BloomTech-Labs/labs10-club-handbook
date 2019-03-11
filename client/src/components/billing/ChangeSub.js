@@ -199,6 +199,7 @@ const ConfirmationPopUp = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  color: black;
 
   div {
     max-width: 700px;
@@ -208,6 +209,7 @@ const ConfirmationPopUp = styled.div`
     min-width: 200px;
     min-height: 200px;
     padding: 30px;
+    border: 2px solid rgb(65, 82, 179);
 
     h2 {
       margin-top: 0;
@@ -222,25 +224,25 @@ const ConfirmationPopUp = styled.div`
     }
 
     button {
-      padding: 10px;
+      padding: 10px 15px;
+      background: rgb(65, 82, 179);
+      color: white;
       border: 2px solid rgb(65, 82, 179);
-      color: rgb(65, 82, 179);
-      border-radius: 5px;
-      background: white;
       cursor: pointer;
-      font-size: 14px;
+      border-radius: 5px;
       margin: 20px;
       font-weight: bold;
 
       &:hover {
         background: rgb(65, 82, 179);
         color: white;
-        box-shadow: 0 0 0 5px rgb(255, 255, 255, 0.5) inset;
+        box-shadow: 0 0 8px 6px rgb(255, 255, 255, 0.5) inset;
         border: 2px solid white;
       }
       &:active {
+        color: rgb(65, 82, 179);
         background: white;
-        color: black;
+        box-shadow: 0 0 10px 0 rgb(65, 82, 179) inset;
       }
     }
   }
