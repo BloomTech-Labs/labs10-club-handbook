@@ -58,6 +58,17 @@ const SectionRender = props => {
                 font-size: 1.8rem;
               }
             }
+
+            li {
+              color: ${title_color};
+              font-size: 2.2rem;
+              text-align: left;
+              line-height: 1.5;
+
+              @media ${size.mobile} {
+                font-size: 1.4rem;
+              }
+            }
           `
 
           const SectionTitle = styled.div`
