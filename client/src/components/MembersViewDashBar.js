@@ -1,182 +1,97 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import classNames from 'classnames'
-import { withStyles } from '@material-ui/core/styles'
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import CssBaseline from '@material-ui/core/CssBaseline'
-import Typography from '@material-ui/core/Typography'
-import { Link } from 'react-router-dom'
-import Auth from '../auth/Auth'
-import Tabs from '@material-ui/core/Tabs'
-import Tab from '@material-ui/core/Tab'
-// import PersonPinIcon from '@material-ui/icons/PersonPin'
-import Book from '@material-ui/icons/Book'
-import MenuPopupState from './NewMenu'
-import Button from '@material-ui/core/Button'
+import styled from 'styled-components';
+import { size } from '../style/breakpoints'
 import logo from '../logos/Cliquebook_combo_white.png'
+import menuButton from '../assets/images/nav-hamburger.png'
+import menuButtonClose from '../assets/images/nav-hamburger-close.png'
 
-const auth = new Auth()
+const NavBarContainer = styled.div`
+    width: 100%;
+    background-color: #3648AC;
+    position: fixed;
+    top: 0;
+    z-index: 30;
+    box-shadow: 0 1px 5px black;
+    display: flex;
+    justify-content: center;
+`;
+const NavBar = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 2%;
+`;
 
-const drawerWidth = 150
+const LogoImg = styled.img`
+    height: 45px;
+    margin: 10px 0;
+`;
 
-const styles = theme => ({
-  root: {
-    display: 'flex',
-  },
-  appBar: {
-    paddingRight: 40,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  navButton: {
-    marginRight: 10,
-  },
-  navButtons: {
-    marginRight: 40,
-  },
-  userMenu: {},
-  toolbarTitle: {
-    flex: 1,
-  },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  menuButton: {
-    marginLeft: 12,
-    marginRight: 20,
-  },
-  hide: {
-    display: 'none',
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: drawerWidth,
-  },
-  drawerHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: '0 8px',
-    ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
-  },
-  toolbar: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: '0 8px',
-    ...theme.mixins.toolbar,
-  },
-  content: {
-    flexGrow: 1,
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: -drawerWidth,
-  },
-  contentShift: {
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginLeft: 0,
-  },
-  root: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
-  },
-})
+const LeftBtns = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 215px;
+`;
 
-function SectionContainer(props) {
-  return (
-    <Typography component="div" style={{ padding: 8 * 3 }}>
-      {props.children}
-    </Typography>
-  )
-}
+const MenuBtn = styled.div`
+    display: flex;
+    align-items: center;
+    :hover {
+        cursor: pointer;
+    }
+`;
 
-SectionContainer.propTypes = {
-  children: PropTypes.node.isRequired,
-}
+const OpenMenu = styled.img`
+    display: ${props => props.visible === true ? "block" : "none"};
+`;
 
-function TabContainer(props) {
-  return (
-    <Typography component="div" style={{ padding: 8 * 3 }}>
-      {props.children}
-    </Typography>
-  )
-}
+const CloseMenu = styled.img`
+    display: ${props => props.visible === true ? "block" : "none"};
+`;
 
-TabContainer.propTypes = {
-  children: PropTypes.node.isRequired,
-}
-
-function LinkTab(props) {
-  return <Tab component="a" {...props} />
-}
-
-class MembersViewDashBar extends React.Component {
-  state = {
-    value: 0,
+const StyledButton = styled.button`
+  border: 0px solid black;
+  border-radius: 5px;
+  box-shadow: 0 1px 5px black;
+  background: #3648AC;
+  color: white;
+  border: 1px solid black;
+  font-size: 1.5rem;
+  width: 150px;
+  height: 40px;
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  text-transform: uppercase;
+  background-color: #384aa6;
+  :hover {
+    background-color: white;
+    color: #384aa6;
+    border: 1px solid #384aa6;
+    cursor: pointer;
   }
-
-  handleChange = (event, value) => {
-    this.setState({ value })
+  @media ${size.mobile} {
+      width: 125px;
+      font-size: 1.1rem;
   }
+`
 
-  render() {
-    const { classes } = this.props
-    const { value } = this.state
-
+const MembersViewDashBar = props => {
     return (
-      <div className={classes.root}>
-        <CssBaseline />
-
-        <AppBar position="fixed" className={classNames(classes.appBar)}>
-          <Toolbar>
-            <Typography
-              variant="h6"
-              color="inherit"
-              noWrap
-              className={classes.toolbarTitle}
-            >
-              <img src={logo} style={{ height: '45px' }} />
-            </Typography>
-
-            {/* <div className={classes.navButtons} />
-            <Tabs
-              variant="fullWidth"
-              value={value}
-              onChange={this.handleChange}
-            >
-              <LinkTab
-                label="Sign the handbook"
-                component={Button}
-                icon={<Book />}
-              />
-            </Tabs> */}
-            <MenuPopupState isMembers />
-          </Toolbar>
-        </AppBar>
-      </div>
+        <NavBarContainer>
+            <NavBar>
+                <LeftBtns>
+                    <MenuBtn>
+                        <OpenMenu visible={!props.navOpen} src={menuButton} onClick={props.showNav} />
+                        <CloseMenu visible={props.navOpen} src={menuButtonClose} onClick={props.showNav} />
+                    </MenuBtn>
+                    <StyledButton onClick={props.showSignature} >
+                        Sign Clique Book
+                    </StyledButton>
+                </LeftBtns>
+                <LogoImg src={logo} />
+            </NavBar>
+        </NavBarContainer>
     )
-  }
 }
 
-MembersViewDashBar.propTypes = {
-  classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
-}
-
-export default withStyles(styles, { withTheme: true })(MembersViewDashBar)
+export default MembersViewDashBar

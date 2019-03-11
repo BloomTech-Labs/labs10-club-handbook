@@ -4,6 +4,7 @@ import SectionsMembersView from './views/SectionsMembersView'
 import { size } from '../../style/breakpoints'
 
 const ClubForm = styled.form`
+  display: ${props => props.visible === true ? "block" : "none"};
   position: fixed;
   width: 22rem;
   height: 94%;
@@ -22,42 +23,6 @@ const ClubForm = styled.form`
   }
 `
 
-const StyledButton = styled.button`
-  margin: 0 auto;
-  margin-top: 30px;
-  padding: 1rem;
-  border: 0px solid black;
-  border-radius: 5px;
-  box-shadow: 0 1px 5px black;
-  background: linear-gradient(to right, rgb(82, 157, 248), rgb(78, 98, 215));
-  color: white;
-  border: 1px solid black;
-  border-radius: 8px;
-  font-size: 1.75rem;
-  width: 180px;
-  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
-  text-transform: uppercase;
-  padding: 15px;
-  /* background-color: #384aa6; */
-  :hover {
-    border: 1px solid #384aa6;
-    box-shadow: 0 0 20px 6px white inset;
-    cursor: pointer;
-  }
-  :active {
-    background: rgb(82, 157, 248);
-    box-shadow: 0 0 20px 6px white inset;
-  }
-  @media ${size.tablet} {
-    width: 85%;
-    font-size: 1.4rem;
-  }
-
-  @media ${size.mobile} {
-    font-size: 1.2rem;
-  }
-`
-
 const Container = styled.div`
   padding: 2rem;
 `
@@ -65,10 +30,7 @@ const Container = styled.div`
 const HandbookMembersForm = props => {
   return (
     <>
-      <ClubForm>
-        <StyledButton onClick={props.showSignature}>
-          Sign the Handbook
-        </StyledButton>
+      <ClubForm visible={props.navOpen}>
         <Container>
           <SectionsMembersView sections={props.sections} />
         </Container>
