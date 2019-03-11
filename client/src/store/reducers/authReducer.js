@@ -10,6 +10,7 @@ import {
   GET_INFO_FROM_TOKEN,
   LOG_OUT,
   GET_USERS_BY_CLUB_ID,
+  GET_USER_BY_ID,
 } from '../actions/usersActions'
 import { CREATE_CLUB } from '../actions/clubActions'
 
@@ -85,6 +86,14 @@ const authReducer = (state = initialState, action) => {
         loading: false,
         message: null,
         currentUser: action.payload.user,
+      }
+
+    case GET_USER_BY_ID:
+      return {
+        ...state,
+        loading: false,
+        message: null,
+        currentUser: action.payload,
       }
 
     case GET_USERS_BY_CLUB_ID:

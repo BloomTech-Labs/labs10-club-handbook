@@ -1,6 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
+import { connect } from 'react-redux'
+import {
+  getUsers,
+  getUsersByClubId,
+  updateUserById,
+} from '../store/actions/usersActions'
 import {
   CssBaseline,
   FormGroup,
@@ -62,10 +68,34 @@ SettingsContainer.propTypes = {
 }
 
 class Settings extends React.Component {
-  state = {
-    disabled: true,
-    checkedNotifications: false,
-    value: 0,
+  constructor(props) {
+    super(props)
+    this.state = {
+      disabled: true,
+      checkedNotifications: false,
+      value: 0,
+      firstname: '',
+      lastname: '',
+    }
+  }
+
+  handleEditUser = e => {
+    e.preventDefault()
+    const userId = this.props.currentUser.id
+
+    const userChanges = {}
+    userChanges.firstname = this.state.firstname
+    userChanges.lastname = this.state.lastname
+    this.props.updateUserById(userId, userChanges)
+
+    this.setState({
+      firstname: '',
+      lastname: '',
+    })
+  }
+
+  handleInputChange = e => {
+    this.setState({ [e.target.name]: e.target.value })
   }
 
   handleCheckbox = () => {
@@ -74,7 +104,7 @@ class Settings extends React.Component {
     }))
   }
 
-  handleTab = (event, value) => {
+  handleTab = value => {
     this.setState({ value })
   }
 
@@ -83,7 +113,7 @@ class Settings extends React.Component {
     const { value } = this.state
 
     return (
-      <div className={classes.form}>
+      <div>
         {/* <DashBar /> */}
         <CssBaseline />
         <Tabs value={value} onChange={this.handleTab} centered>
@@ -93,25 +123,27 @@ class Settings extends React.Component {
         {value === 0 && (
           <SettingsContainer>
             {' '}
-            <Paper className={classes.paper}>
-              <form className={classes.form} onSubmit={this.handleSubmit}>
+            <Paper>
+              <form onSubmit={e => this.handleEditUser(e)}>
                 <TextField
-                  id="outlined-email"
+                  id="outlined-first"
                   label="First Name"
                   margin="normal"
                   variant="outlined"
-                  onChange={this.handleChange}
+                  name="firstname"
                   value={this.state.firstname}
+                  onChange={this.handleInputChange}
                 />
                 <TextField
-                  id="outlined-phone"
+                  id="outlined-last"
                   label="Last Name"
                   margin="normal"
                   variant="outlined"
-                  onChange={this.handleChange}
+                  name="lastname"
                   value={this.state.lastname}
+                  onChange={this.handleInputChange}
                 />
-                <FormGroup className={classes.formgroup}>
+                <FormGroup>
                   <FormControlLabel
                     control={<Checkbox color="primary" indeterminate />}
                     label="Nofications"
@@ -137,13 +169,12 @@ class Settings extends React.Component {
                   fullWidth
                   variant="contained"
                   color="primary"
-                  className={classes.submit}
                 >
                   Save
                 </Button>
               </form>
             </Paper>
-            <Button className={classes.submit} component={LeaveTeam} />
+            <Button component={LeaveTeam} />
           </SettingsContainer>
         )}
         {value === 1 && <Billing />}
@@ -152,8 +183,17 @@ class Settings extends React.Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    currentUser: state.auth.currentUser,
+  }
+}
+
 Settings.propTypes = {
   classes: PropTypes.object.isRequired,
 }
 
-export default withStyles(styles)(Settings)
+export default connect(
+  mapStateToProps,
+  { updateUserById }
+)(withStyles(styles)(Settings))
