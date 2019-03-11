@@ -79,7 +79,7 @@ const SectionRender = props => {
             align-items: center;
             min-height: 50vh;
 
-            @media (max-width: 100rem) {
+            @media (max-width: 1000px) {
               padding: 1rem;
               padding-bottom: 4rem;
               flex-direction: column !important;
@@ -92,15 +92,16 @@ const SectionRender = props => {
             .img {
               width: 40%;
               height: auto;
-              margin-right: 1.5rem;
+              margin-right: 2rem;
 
               @media ${size.desktop} {
                 width: 50%;
               }
 
-              @media (max-width: 100rem) {
+              @media (max-width: 1000px) {
                 width: 70%;
                 margin-right: 0;
+                margin-left: 0;
                 margin-bottom: 5rem;
               }
 
@@ -123,7 +124,7 @@ const SectionRender = props => {
                 width: 45%;
               }
 
-              @media (max-width: 100rem) {
+              @media (max-width: 1000px) {
                 width: 80% !important;
                 padding-bottom: 5rem;
               }
@@ -140,7 +141,11 @@ const SectionRender = props => {
           }
 
           return (
-            <Section id={id} key={id} style={img_placement == 1 ? bgImage : null}>
+            <Section
+              id={id}
+              key={id}
+              style={img_placement == 1 ? bgImage : null}
+            >
               <SectionTitle>
                 <h1>{title}</h1>
               </SectionTitle>
@@ -154,7 +159,10 @@ const SectionRender = props => {
                 }
               >
                 {img_url && img_placement != 1 && img_placement != 4 ? (
-                  <div className="img">
+                  <div
+                    className="img"
+                    style={img_placement == 3 ? { marginLeft: '2rem' } : null}
+                  >
                     <img src={img_url} />
                   </div>
                 ) : null}
