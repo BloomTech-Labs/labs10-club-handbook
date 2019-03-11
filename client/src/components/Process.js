@@ -19,7 +19,15 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.paper,
   },
   stepButtons: {
+    fontSize: '1.4rem',
     justifyContent: 'center',
+  },
+  iconContainer: {
+    transform: 'scale(1.4)',
+    fontSize: '3rem',
+  },
+  label: {
+    fontSize: '1.4rem',
   },
 })
 
@@ -62,8 +70,9 @@ class ProcessStepper extends React.Component {
 
     return (
       <div className={classes.root}>
-        <div className={classes.stepButtons}>
+        <div>
           <Button
+            className={classes.stepButtons}
             variant="outlined"
             justifyContent="center"
             disabled={activeStep === 0}
@@ -74,21 +83,33 @@ class ProcessStepper extends React.Component {
         </div>
         <Stepper activeStep={activeStep} alternativeLabel>
           {steps.map(label => (
-            <Step>
-              <StepLabel>{label}</StepLabel>
+            <Step key={label}>
+              <StepLabel
+                classes={{
+                  iconContainer: classes.iconContainer,
+                  label: classes.label,
+                }}
+              >
+                {label}
+              </StepLabel>
             </Step>
           ))}
         </Stepper>
         <div>
           {this.state.activeStep === steps.length ? (
             <div>
-              <Button variant="outlined" onClick={this.props.signinUser}>
+              <Button
+                className={classes.stepButtons}
+                variant="outlined"
+                onClick={this.props.signinUser}
+              >
                 Sign Up
               </Button>
             </div>
           ) : (
-            <div classname={classes.stepButtons}>
+            <div>
               <Button
+                className={classes.stepButtons}
                 variant="contained"
                 color="primary"
                 onClick={this.handleNext}

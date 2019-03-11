@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Button } from '@material-ui/core'
 import { addUser } from '../../store/actions/usersActions'
 import styled from 'styled-components'
-import { size } from '../../style/breakpoints';
+import { size } from '../../style/breakpoints'
 
 //#region STYLES
 const SCWrapper = styled.div`
@@ -17,56 +17,69 @@ const SCWrapper = styled.div`
   @media ${size.mobile} {
     display: none;
   }
-`;
+`
 const StyledH6 = styled.h6`
-  font-size: 1rem;
-  margin-bottom: 8px;
-`;
+  font-size: 2.5rem;
+  color: white;
+  /* margin-bottom: 8px; */
+  margin: 0 auto 20px;
+`
 const Form = styled.form`
   width: 100%;
   display: flex;
   justify-content: space-between;
   @media ${size.tablet} {
     /* flex-direction: column; */
-}
-`;
+  }
+`
 const SCName = styled.input`
   width: 25%;
   margin-right: 0 10px;
   line-height: 1.5;
-  border-radius: 3px;
+  border-radius: 7px;
+  padding: 0 10px;
   @media ${size.tablet} {
     /* width: 50%; */
-}
-`;
+  }
+`
 const SCEmail = styled.input`
   width: 35%;
   margin-right: 0 10px;
   line-height: 1.5;
-  border-radius: 3px;
+  border-radius: 7px;
+  padding: 0 10px;
   @media ${size.tablet} {
     /* width: 50%; */
-}
-`;
+  }
+`
 const StyledButton = styled.button`
+  min-width: 100px;
   color: #000000;
+  background-color: white;
   border: 1px solid black;
   border-radius: 4px;
-  font-size: 0.875rem;
-  min-width: 64px;
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
   text-transform: uppercase;
-  background-color: transparent;
+  padding: 10px;
+
   :hover {
-    background-color: #384AA6;
-    color: white;
-    border: 1px solid #384AA6;
+    /* background-color: orange; */
+    color: black;
+    border: 1px solid #384aa6;
     cursor: pointer;
+    box-shadow: 0 0 15px 0 rgb(65, 65, 65) inset;
+  }
+  &:active {
+    background: rgb(35, 35, 35);
+    box-shadow: 0 0 15px 0 white inset;
+    color: white;
   }
   @media ${size.tablet} {
-    width: 100px;
-}
-`;
+    /* width: 100px; */
+  }
+`
 //#endregion
 
 class AddMembers extends React.Component {
@@ -98,14 +111,14 @@ class AddMembers extends React.Component {
       firstname: '',
       lastname: '',
       email: '',
-    });
-    this.nameInput.focus();
+    })
+    this.nameInput.focus()
   }
 
   render() {
     return (
       <SCWrapper>
-        <StyledH6>Add some members to your clique</StyledH6>
+        <StyledH6>Add Some Members to Your Clique</StyledH6>
         <Form onSubmit={this.handleSubmit}>
           <SCName
             type="text"
@@ -113,7 +126,9 @@ class AddMembers extends React.Component {
             onChange={this.handleChanges}
             placeholder="First Name"
             value={this.state.firstname}
-            ref={(input) => { this.nameInput = input; }}
+            ref={input => {
+              this.nameInput = input
+            }}
             required
             autoFocus
           />

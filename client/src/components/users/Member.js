@@ -13,25 +13,31 @@ const H3 = styled.h3`
   font-size: 1.8rem;
   margin-right: 5px;
   overflow: hidden;
-`;
+  padding: 5px;
+`
 const MemberContainer = styled.div`
   margin: 10px 2%;
   padding: 5px 1%;
-  border-left: 1px solid #3648AC;
-  background: ${props => props.editVisible === true && "#3648AC"};
-  color: ${props => props.editVisible === true && "white"};
+  /* border-left: 1px solid #3648ac; */
+  background: ${props =>
+    props.editVisible === true &&
+    'linear-gradient(to right, rgb(82, 157, 248), rgb(78, 98, 215))'};
+  /* color: ${props => props.editVisible === true && 'white'}; */
   :hover {
-    background: #3648AC;
+    background: linear-gradient(to right, rgb(82, 157, 248), rgb(78, 98, 215));;
     color: white;
   }
-`;
+  color: white;
+  box-shadow: 0 0 10px 0 white inset;
+  border-radius: 7px;
+`
 const SCMember = styled.div`
   display: flex;
   justify-content: space-between;
+  cursor: pointer;
   @media ${size.tablet} {
-
   }
-`;
+`
 const MemberInfo = styled.div`
   width: 75%;
   display: flex;
@@ -39,9 +45,9 @@ const MemberInfo = styled.div`
   align-items: center;
   @media ${size.tablet} {
     flex-direction: column;
-    align-items: flex-start
+    align-items: flex-start;
   }
-`;
+`
 const Name = styled.div`
   display: flex;
   width: 40%;
@@ -52,7 +58,7 @@ const Name = styled.div`
   :hover {
     cursor: pointer;
   }
-`;
+`
 const Email = styled.div`
   display: flex;
   width: 60%;
@@ -67,18 +73,18 @@ const Email = styled.div`
   @media ${size.mobile} {
     width: 210px;
   }
-`;
+`
 const UpdateMember = styled.div`
-  display: ${props => props.visible === true ? "block" : "none"};
+  display: ${props => (props.visible === true ? 'block' : 'none')};
   margin-top: 20px;
-`;
+`
 const Actions = styled.div`
   width: 200px;
   display: flex;
   justify-content: space-between;
   margin: 0 0 0 0;
   align-items: center;
-`;
+`
 //#endregion
 
 class Member extends React.Component {
@@ -137,17 +143,19 @@ class Member extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    event.stopPropagation();
+    event.stopPropagation()
     console.log('handleSubmit() invoked')
 
     // const { userId } = this.props
     const userId = this.props.user.id
 
-    const userChanges = {};
+    const userChanges = {}
 
-    if (this.state.firstname.length > 0) userChanges.firstname = this.state.firstname;
-    if (this.state.lastname.length > 0) userChanges.lastname = this.state.lastname;
-    if (this.state.email.length > 0) userChanges.email = this.state.email;
+    if (this.state.firstname.length > 0)
+      userChanges.firstname = this.state.firstname
+    if (this.state.lastname.length > 0)
+      userChanges.lastname = this.state.lastname
+    if (this.state.email.length > 0) userChanges.email = this.state.email
 
     this.props.updateUser(userId, userChanges)
 
@@ -163,14 +171,14 @@ class Member extends React.Component {
     //   email: ''
     // })
   }
-//#endregion
+  //#endregion
 
   render() {
     return (
       // <Paper style={{ marginBottom: 10, paddingTop: 5, paddingBottom: 5, paddingRight: 10, paddingLeft: 10 }}>
       <MemberContainer editVisible={this.state.open}>
         <SCMember onClick={this.showEditField} key={this.props.user.id}>
-        {/* <SCMember key={this.props.user.id}> */}
+          {/* <SCMember key={this.props.user.id}> */}
           <MemberInfo>
             <Name>
               {/* {
@@ -199,12 +207,17 @@ class Member extends React.Component {
           <Actions>
             <ViewedManual sub_id={this.props.user.sub_id} />
             <SignedManual signed={this.props.user.signed} />
-            <EmailButton email={this.props.user.email} name={this.props.user.firstname} clubName={this.props.clubName} adminFirstName={this.props.adminFirstName} adminLastName={this.props.adminLastName} />
+            <EmailButton
+              email={this.props.user.email}
+              name={this.props.user.firstname}
+              clubName={this.props.clubName}
+              adminFirstName={this.props.adminFirstName}
+              adminLastName={this.props.adminLastName}
+            />
           </Actions>
-
         </SCMember>
-        <UpdateMember visible={this.state.open} >
-            <UpdateMembers userId={this.props.user.id}/>
+        <UpdateMember visible={this.state.open}>
+          <UpdateMembers userId={this.props.user.id} />
         </UpdateMember>
       </MemberContainer>
       // </Paper>

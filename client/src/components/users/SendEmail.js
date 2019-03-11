@@ -9,15 +9,23 @@ const StyledButton = styled.button`
   background-color: white;
   border: 1px solid black;
   border-radius: 4px;
-  font-size: 0.875rem;
+  font-size: 1.2rem;
+  font-weight: bold;
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
   text-transform: uppercase;
   padding: 10px 0;
+
   :hover {
-    background-color: orange;
+    /* background-color: orange; */
     color: black;
     border: 1px solid #384aa6;
     cursor: pointer;
+    box-shadow: 0 0 15px 0 rgb(65, 65, 65) inset;
+  }
+  &:active {
+    background: rgb(35, 35, 35);
+    box-shadow: 0 0 15px 0 white inset;
+    color: white;
   }
   @media ${size.tablet} {
     /* width: 100px; */

@@ -17,6 +17,7 @@ import {
   RESET_CHANGE_FAIL,
   LOG_OUT,
   MEMBER_SIGNED,
+  ADD_MEMBER_RESET,
 } from '../actions/usersActions'
 import { CREATE_CLUB } from '../actions/clubActions'
 
@@ -29,6 +30,7 @@ const initialState = {
   failFromToken: false,
   subscription: null,
   changeFail: false,
+  addMemberFailed: false,
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -69,6 +71,13 @@ const usersReducer = (state = initialState, action) => {
         loading: false,
         message: null,
         error: action.error,
+        addMemberFailed: true,
+      }
+
+    case ADD_MEMBER_RESET:
+      return {
+        ...state,
+        addMemberFailed: false,
       }
 
     case GET_USERS:

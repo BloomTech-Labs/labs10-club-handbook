@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { addUser } from '../../store/actions/usersActions'
 import styled from 'styled-components'
-import { size } from '../../style/breakpoints';
+import { size } from '../../style/breakpoints'
 
 //#region STYLES
 const SCWrapper = styled.div`
@@ -11,7 +11,9 @@ const SCWrapper = styled.div`
   margin-top: 70px;
   display: flex;
   flex-direction: column;
-`;
+  background: rgb(55, 55, 55);
+  min-height: 100vh;
+`
 const Form = styled.form`
   display: flex;
   flex-direction: column;
@@ -19,48 +21,60 @@ const Form = styled.form`
   align-items: center;
   /* border: 1px solid red; */
   width: 100%;
-`;
+`
 const SCName = styled.input`
   width: 75%;
   line-height: 1.2;
-  border-radius: 3px;
+  border-radius: 7px;
   margin-bottom: 10px;
-`;
+  padding: 2px 6px;
+`
 const SCEmail = styled.input`
   width: 75%;
   line-height: 1.2;
-  border-radius: 3px;
-`;
+  border-radius: 7px;
+  padding: 2px 6px;
+`
 const StyledButton = styled.button`
+  width: 100px;
   color: #000000;
+  background-color: white;
   border: 1px solid black;
   border-radius: 4px;
-  padding: 10px 16px;
-  font-size: 0.875rem;
-  min-width: 64px;
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
   text-transform: uppercase;
-  background-color: white;
+  padding: 10px 0;
+
   :hover {
-    background-color: #384AA6;
-    color: white;
-    border: 1px solid #384AA6;
+    /* background-color: orange; */
+    color: black;
+    border: 1px solid rgb(78, 98, 215);
+    color: rgb(78, 98, 215);
     cursor: pointer;
+    box-shadow: 0 0 10px 3px rgb(78, 98, 215) inset;
+  }
+  &:active {
+    background: rgb(78, 98, 215);
+    box-shadow: 0 0 10px 2px white inset;
+    color: white;
   }
   @media ${size.tablet} {
-    width: 100px;
-}
-`;
+    /* width: 100px; */
+  }
+`
 const HeaderBar = styled.div`
   width: 100%;
-  background: #3648AC;
+  margin-top: 20px;
+  /* background: #3648ac; */
   font-size: 35px;
-  color: #FFFFFF;
+  color: #ffffff;
   text-align: center;
   padding: 10px 0;
   display: flex;
-  justify-content: space-between;
-`;
+  justify-content: space-around;
+`
 //#endregion
 
 class AddMembersMobile extends React.Component {
@@ -92,15 +106,20 @@ class AddMembersMobile extends React.Component {
       firstname: '',
       lastname: '',
       email: '',
-    });
-    this.nameInput.focus();
+    })
+    this.nameInput.focus()
+    this.props.history.push('/clique/members')
   }
 
   render() {
     return (
       <SCWrapper>
         <HeaderBar>
-          <StyledButton onClick={() => this.props.history.push('/clique/members')}>BACK</StyledButton>
+          <StyledButton
+            onClick={() => this.props.history.push('/clique/members')}
+          >
+            BACK
+          </StyledButton>
           <StyledButton onClick={this.handleSubmit}>ADD MEMBER</StyledButton>
         </HeaderBar>
         <Form onSubmit={this.handleSubmit}>
@@ -110,7 +129,9 @@ class AddMembersMobile extends React.Component {
             onChange={this.handleChanges}
             placeholder="First Name"
             value={this.state.firstname}
-            ref={(input) => { this.nameInput = input; }}
+            ref={input => {
+              this.nameInput = input
+            }}
             required
             autofocus
           />
