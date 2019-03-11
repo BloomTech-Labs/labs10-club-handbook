@@ -116,18 +116,29 @@ class ChangeSub extends React.Component {
 }
 
 const PaymentContainer = styled.div`
-  margin: 100px auto;
-  width: 70%;
+  margin: 50px auto;
+  padding-top: 50px;
+  max-width: 800px;
+  min-width: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
   color: rgb(65, 82, 179);
+  border: 2px solid rgb(55, 55, 55);
+  border-radius: 7px;
+  box-shadow: 5px 5px 5px 0 lightgray;
+  padding: 80px 10px 30px 10px;
+
+  @media (max-width: 500px) {
+    margin: 0;
+    min-width: 300px;
+  }
 
   .mySub {
     border: 3px solid rgb(65, 82, 179);
     border-radius: 5px;
     padding: 20px;
-    box-shadow: 7px 7px 7px 0px lightgray;
+    box-shadow: 5px 5px 5px 0 lightgray;
     min-width: 300px;
 
     h1 {
@@ -173,7 +184,8 @@ const SubscriptionHolder = styled.div`
     margin-left: 10px;
     box-shadow: 0 0 3px 3px rgb(255, 255, 255, 0.5) inset;
     margin-bottom: 10px;
-    /* border: 2px solid black; */
+    border: 2px solid rgb(45, 45, 45);
+    box-shadow: 5px 5px 5px 0 lightgray;
 
     h3 {
       margin: 0 0 10px 0;
@@ -199,6 +211,7 @@ const ConfirmationPopUp = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  color: black;
 
   div {
     max-width: 700px;
@@ -208,6 +221,7 @@ const ConfirmationPopUp = styled.div`
     min-width: 200px;
     min-height: 200px;
     padding: 30px;
+    border: 2px solid rgb(65, 82, 179);
 
     h2 {
       margin-top: 0;
@@ -222,25 +236,25 @@ const ConfirmationPopUp = styled.div`
     }
 
     button {
-      padding: 10px;
+      padding: 10px 15px;
+      background: rgb(65, 82, 179);
+      color: white;
       border: 2px solid rgb(65, 82, 179);
-      color: rgb(65, 82, 179);
-      border-radius: 5px;
-      background: white;
       cursor: pointer;
-      font-size: 14px;
+      border-radius: 5px;
       margin: 20px;
       font-weight: bold;
 
       &:hover {
         background: rgb(65, 82, 179);
         color: white;
-        box-shadow: 0 0 0 5px rgb(255, 255, 255, 0.5) inset;
+        box-shadow: 0 0 8px 6px rgb(255, 255, 255, 0.5) inset;
         border: 2px solid white;
       }
       &:active {
+        color: rgb(65, 82, 179);
         background: white;
-        color: black;
+        box-shadow: 0 0 10px 0 rgb(65, 82, 179) inset;
       }
     }
   }
