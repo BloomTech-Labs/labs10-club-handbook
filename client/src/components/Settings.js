@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
+import { connect } from 'react-redux'
+import { updateUserById } from '../store/actions/usersActions'
 import {
   CssBaseline,
   FormGroup,
@@ -33,14 +35,18 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    padding: `${theme.spacing.unit * 1}px ${theme.spacing.unit * 3}px ${theme
-      .spacing.unit * 4}px`,
+    justify: 'center',
+    width: '40%',
+    minWidth: 220,
+    margin: 'auto',
+    padding: `${theme.spacing.unit}px ${theme.spacing.unit * 1}px ${theme
+      .spacing.unit * 3}px`,
   },
   form: {
-    marginTop: '60px',
+    marginTop: '40px',
     display: 'flex',
     flexDirection: 'column',
-    width: '90%',
+    width: '80%',
     margin: 'auto',
   },
   formgroup: {
@@ -48,8 +54,18 @@ const styles = theme => ({
     flexDirection: 'row',
     margin: 'auto',
   },
+  tabs: {
+    marginTop: theme.spacing.unit * 4,
+  },
   submit: {
     marginTop: theme.spacing.unit * 4,
+    marginBottom: theme.spacing.unit * 4,
+  },
+  logout: {
+    marginTop: theme.spacing.unit * 4,
+    marginBottom: theme.spacing.unit * 4,
+    width: '40%',
+    minWidth: 220,
   },
 })
 
@@ -62,10 +78,33 @@ SettingsContainer.propTypes = {
 }
 
 class Settings extends React.Component {
-  state = {
-    disabled: true,
-    checkedNotifications: false,
-    value: 0,
+  constructor(props) {
+    super(props)
+    this.state = {
+      disabled: true,
+      checkedNotifications: false,
+      value: 0,
+      firstname: '',
+      lastname: '',
+    }
+  }
+
+  handleEditUser = e => {
+    e.preventDefault()
+    const userId = this.props.currentUser.id
+    const userChanges = {}
+    userChanges.firstname = this.state.firstname
+    userChanges.lastname = this.state.lastname
+    this.props.updateUserById(userId, userChanges)
+
+    this.setState({
+      firstname: '',
+      lastname: '',
+    })
+  }
+
+  handleInputChange = e => {
+    this.setState({ [e.target.name]: e.target.value })
   }
 
   handleCheckbox = () => {
@@ -76,6 +115,7 @@ class Settings extends React.Component {
 
   handleTab = (event, value) => {
     this.setState({ value })
+    console.log(value)
   }
 
   render() {
@@ -86,7 +126,12 @@ class Settings extends React.Component {
       <div className={classes.form}>
         {/* <DashBar /> */}
         <CssBaseline />
-        <Tabs value={value} onChange={this.handleTab} centered>
+        <Tabs
+          className={classes.tabs}
+          value={value}
+          onChange={this.handleTab}
+          centered
+        >
           <Tab label="User Settings" />
           <Tab label="Account Billing" />
         </Tabs>
@@ -94,24 +139,29 @@ class Settings extends React.Component {
           <SettingsContainer>
             {' '}
             <Paper className={classes.paper}>
-              <form className={classes.form} onSubmit={this.handleSubmit}>
+              <form
+                className={classes.form}
+                onSubmit={e => this.handleEditUser(e)}
+              >
                 <TextField
-                  id="outlined-email"
+                  id="outlined-first"
                   label="First Name"
                   margin="normal"
                   variant="outlined"
-                  onChange={this.handleChange}
+                  name="firstname"
                   value={this.state.firstname}
+                  onChange={this.handleInputChange}
                 />
                 <TextField
-                  id="outlined-phone"
+                  id="outlined-last"
                   label="Last Name"
                   margin="normal"
                   variant="outlined"
-                  onChange={this.handleChange}
+                  name="lastname"
                   value={this.state.lastname}
+                  onChange={this.handleInputChange}
                 />
-                <FormGroup className={classes.formgroup}>
+                {/* <FormGroup className={classes.formgroup}>
                   <FormControlLabel
                     control={<Checkbox color="primary" indeterminate />}
                     label="Nofications"
@@ -131,19 +181,19 @@ class Settings extends React.Component {
                     disabled={this.state.disabled}
                     // onChange={this.handleCheckbox('checkedText')}
                   />
-                </FormGroup>
+                </FormGroup> */}
                 <Button
+                  className={classes.submit}
                   type="submit"
                   fullWidth
                   variant="contained"
                   color="primary"
-                  className={classes.submit}
                 >
                   Save
                 </Button>
+                <Button component={LeaveTeam} className={classes.submit} />
               </form>
             </Paper>
-            <Button className={classes.submit} component={LeaveTeam} />
           </SettingsContainer>
         )}
         {value === 1 && <Billing />}
@@ -152,8 +202,17 @@ class Settings extends React.Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    currentUser: state.auth.currentUser,
+  }
+}
+
 Settings.propTypes = {
   classes: PropTypes.object.isRequired,
 }
 
-export default withStyles(styles)(Settings)
+export default connect(
+  mapStateToProps,
+  { updateUserById }
+)(withStyles(styles)(Settings))

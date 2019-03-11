@@ -7,6 +7,7 @@ export const ADD_MEMBER_SUCCESS = 'ADD_MEMBER_SUCCESS'
 export const ADD_MEMBER_FAIL = 'ADD_MEMBER_FAIL'
 export const GET_USERS = 'GET_USERS'
 export const GET_USER_BY_ID = 'GET_USER_BY_ID'
+export const UPDATE_USER_BY_ID = 'UPDATE_USER_BY_ID'
 export const GET_USERS_BY_CLUB_ID = 'GET_USERS_BY_CLUB_ID'
 export const UPDATE_USER = 'UPDATE_USER'
 export const DELETE_USER = 'DELETE_USER'
@@ -49,6 +50,30 @@ export const getUserById = id => dispatch => {
       dispatch({ type: GET_USER_BY_ID, payload: res.data })
     })
     .catch(err => {
+      dispatch({ type: FAIL, error: err })
+    })
+}
+
+export const updateUserById = (id, changes) => dispatch => {
+  dispatch({ type: USERS_START, message: `Updating user` })
+
+  const header = {
+    headers: {
+      authorization: localStorage.getItem('access_token'),
+    },
+  }
+  console.log(id)
+  console.log(changes)
+
+  axios
+    .patch(`${baseURL}/api/users/${id}`, changes, header)
+    .then(res => {
+      console.log(res.data.user)
+      dispatch({ type: UPDATE_USER_BY_ID, payload: res.data.user })
+      dispatch(getUserById(id))
+    })
+    .catch(err => {
+      console.log(err)
       dispatch({ type: FAIL, error: err })
     })
 }
