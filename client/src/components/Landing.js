@@ -64,6 +64,19 @@ const styles = theme => ({
     color: 'white',
     fontWeight: 'bold',
   },
+  actionButton: {
+    padding: '10px 20px',
+    border: '0 solid black',
+    borderRadius: '25px',
+    boxShadow: '0 1px 5px black',
+    color: 'rgb(0, 153, 255)',
+    background: 'white',
+    textTransform: 'uppercase',
+    letterSpacing: '1px',
+    fontSize: '14px',
+    fontWeight: 'bolder',
+    cursor: 'pointer',
+  },
   navButton: {
     padding: '10px 20px',
     border: '0 solid black',
@@ -155,14 +168,14 @@ const subscriptions = [
   },
   {
     title: 'Small Business',
-    price: '9.95',
+    price: '5',
     description: '20 members',
     buttonText: 'Great value',
     buttonVariant: 'outlined',
   },
   {
     title: 'Enterprise',
-    price: '19.95',
+    price: '20',
     description: '500 members',
     buttonText: 'Get started',
     buttonVariant: 'outlined',
@@ -236,7 +249,7 @@ class Landing extends React.Component {
                   <h5>For Members</h5>
                   <ActionButton
                     members
-                    className={classes.navButton}
+                    className={classes.actionButton}
                     component={Link}
                     to="/handbook/member-view"
                     color="inherit"
@@ -249,7 +262,7 @@ class Landing extends React.Component {
                 <div className="for-admins">
                   <h5>For Admins</h5>
                   <ActionButton
-                    className={classes.navButton}
+                    className={classes.actionButton}
                     onClick={this.props.signinUser}
                     color="secondary"
                     variant="contained"
