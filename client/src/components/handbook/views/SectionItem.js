@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { findDOMNode } from 'react-dom'
 import { DragSource, DropTarget } from 'react-dnd'
-import flow from 'lodash/flow'
 import { Typography } from '@material-ui/core'
 import { Delete, Edit, FormatAlignCenter } from '@material-ui/icons'
 import { Row } from '../../../style/layout'
@@ -82,56 +81,54 @@ class SectionItem extends Component {
       deleteSectionById,
       clubId,
       connectDropTarget,
+      isDragging,
     } = this.props
 
-    return (
-      connectDragSource &&
-      connectDropTarget &&
-      connectDragSource(
-        connectDropTarget(
-          <div>
-            <Row key={section.id} style={{ cursor: 'move' }}>
-              <SectionBox>
-                <SectionHead>
-                  <FormatAlignCenter style={headerIcon} />
-                </SectionHead>
+    const opacity = isDragging ? 0 : 1
 
-                <TitleBox>
-                  <Typography variant="header4">{section.title}</Typography>
-                </TitleBox>
+    return connectDragSource(
+      connectDropTarget(
+        <div style={{ opacity }}>
+          <a href={`#${section.id}`}><Row key={section.id} style={{ cursor: 'move' }}>
+            <SectionBox>
+              <SectionHead>
+                <FormatAlignCenter style={headerIcon} />
+              </SectionHead>
 
-                <EditBtn>
-                  <Edit
-                    onClick={ev => {
-                      ev.stopPropagation()
-                      toggleEditView(section.id)
-                    }}
-                  />
-                </EditBtn>
+              <TitleBox>
+                <Typography variant="header4">{section.title}</Typography>
+              </TitleBox>
 
-                <DeleteBtn>
-                  <Delete
-                    onClick={ev => {
-                      ev.stopPropagation()
-                      deleteSectionById(clubId, section.id)
-                    }}
-                  />
-                </DeleteBtn>
-              </SectionBox>
-            </Row>
-          </div>
-        )
+              <EditBtn>
+                <Edit
+                  onClick={ev => {
+                    ev.stopPropagation()
+                    toggleEditView(section.id)
+                  }}
+                />
+              </EditBtn>
+
+              <DeleteBtn>
+                <Delete
+                  onClick={ev => {
+                    ev.stopPropagation()
+                    deleteSectionById(clubId, section.id)
+                  }}
+                />
+              </DeleteBtn>
+            </SectionBox>
+          </Row></a>
+        </div>
       )
     )
   }
 }
 
-export default flow(
+export default DropTarget('section', sectionTarget, connect => ({
+  connectDropTarget: connect.dropTarget(),
+}))(
   DragSource('section', sectionSource, (connect, monitor) => ({
     connectDragSource: connect.dragSource(),
     isDragging: monitor.isDragging(),
-  })),
-  DropTarget('section', sectionTarget, connect => ({
-    connectDropTarget: connect.dropTarget(),
-  }))
-)(SectionItem)
+  }))(SectionItem)
+)

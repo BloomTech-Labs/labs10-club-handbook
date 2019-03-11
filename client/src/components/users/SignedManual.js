@@ -5,10 +5,10 @@ import Checkbox from '@material-ui/icons/CheckBox'
 // import Copyright from 'material-ui/icons/Copyright'
 
 // const SignedManual = props => {
-//   if (this.props.signed === true) {
-//     return <h1>true bro</h1>
+//   if (props.signed === true) {
+//     return <Checkbox />
 //   } else {
-//     return <h1>false bro</h1>
+//     return <CheckBoxOutlineBlank />
 //   }
 // }
 
@@ -30,3 +30,5 @@ class SignedManual extends React.Component {
 }
 
 export default SignedManual
+
+

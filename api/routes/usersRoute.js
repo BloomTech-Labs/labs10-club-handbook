@@ -172,6 +172,8 @@ router.post(
   checkMemberLimit,
   async (req, res, next) => {
     req.body.club_id = req.userInfo.club_id
+    req.body.email = req.body.email.toLowerCase()
+
     try {
       let ids = await db('users')
         .insert(req.body)

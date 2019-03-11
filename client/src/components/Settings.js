@@ -14,7 +14,7 @@ import {
   Typography,
 } from '@material-ui/core'
 import LeaveTeam from './LeaveTeam'
-import DashBar from './NewDash'
+// import DashBar from './NewDash'
 import Billing from './billing/Billing'
 
 const styles = theme => ({
@@ -68,7 +68,7 @@ class Settings extends React.Component {
     value: 0,
   }
 
-  handleChange = () => {
+  handleCheckbox = () => {
     this.setState(state => ({
       disabled: state.disabled ? false : true,
     }))
@@ -94,25 +94,29 @@ class Settings extends React.Component {
           <SettingsContainer>
             {' '}
             <Paper className={classes.paper}>
-              <form className={classes.form}>
+              <form className={classes.form} onSubmit={this.handleSubmit}>
                 <TextField
                   id="outlined-email"
-                  label="Email"
+                  label="First Name"
                   margin="normal"
                   variant="outlined"
+                  onChange={this.handleChange}
+                  value={this.state.firstname}
                 />
                 <TextField
                   id="outlined-phone"
-                  label="Phone"
+                  label="Last Name"
                   margin="normal"
                   variant="outlined"
+                  onChange={this.handleChange}
+                  value={this.state.lastname}
                 />
                 <FormGroup className={classes.formgroup}>
                   <FormControlLabel
                     control={<Checkbox color="primary" indeterminate />}
                     label="Nofications"
                     checkedNotifications={this.state.checkedNotifications}
-                    onChange={this.handleChange}
+                    onChange={this.handleCheckbox}
                   />
                   <FormControlLabel
                     control={<Checkbox color="secondary" />}
@@ -125,7 +129,7 @@ class Settings extends React.Component {
                     label="Text"
                     labelPlacement="start"
                     disabled={this.state.disabled}
-                    // onChange={this.handleChange('checkedText')}
+                    // onChange={this.handleCheckbox('checkedText')}
                   />
                 </FormGroup>
                 <Button

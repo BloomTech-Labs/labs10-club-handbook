@@ -18,6 +18,8 @@ import RenderPropsMenu from './NewDashMenu'
 import PersonPinIcon from '@material-ui/icons/PersonPin'
 import Book from '@material-ui/icons/Book'
 import NoSsr from '@material-ui/core/NoSsr'
+import MenuPopupState from './NewMenu'
+import logo from '../logos/Cliquebook_combo_white.png'
 
 const auth = new Auth()
 
@@ -135,8 +137,8 @@ class DashBar extends React.Component {
   }
 
   componentDidMount() {
-    const currentLocation = window.location.href;
-    
+    const currentLocation = window.location.href
+
     if (currentLocation === 'http://localhost:3000/clique/members') {
       this.setState({ value: 1 })
     } else if (currentLocation === 'http://localhost:3000/clique/handbook') {
@@ -168,33 +170,10 @@ class DashBar extends React.Component {
               noWrap
               className={classes.toolbarTitle}
             >
-              Clique.Book
+              <img src={logo} style={{ height: '45px' }} />
             </Typography>
 
-            <div className={classes.navButtons}>
-              {/* <Button
-                className={classes.navButton}
-                component={Link}
-                to="/handbook"
-                color="secondary"
-                variant="contained"
-                // lassName={classes.toolbar}
-                // onClick={this.logoutUser}
-              >
-                Manage Handbook
-              </Button>
-              <Button
-                className={classes.navButton}
-                component={Link}
-                to="/members"
-                color="primary"
-                variant="contained"
-                // lassName={classes.toolbar}
-                // onClick={this.logoutUser}
-              >
-                Manage Members
-              </Button> */}
-            </div>
+            <div className={classes.navButtons} />
             <Tabs
               variant="fullWidth"
               value={value}
@@ -215,7 +194,8 @@ class DashBar extends React.Component {
                 to="/clique/members"
               />
             </Tabs>
-            <RenderPropsMenu />
+            {/* <RenderPropsMenu /> */}
+            <MenuPopupState />
             {/* <a href="https://club-handbook.auth0.com/v2/logout">
               <Button
                 // component={Link}

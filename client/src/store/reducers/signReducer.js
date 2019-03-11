@@ -1,4 +1,5 @@
 import { MEMBER_SIGNED, USERS_START, FAIL } from '../actions/usersActions'
+import { LOG_OUT } from '../actions/usersActions'
 
 const initialState = {
   signature: {},
@@ -30,6 +31,11 @@ const signReducer = (state = initialState, action) => {
         loading: false,
         signature: true,
         message: action.payload,
+      }
+
+    case LOG_OUT:
+      return {
+        initialState,
       }
 
     default:

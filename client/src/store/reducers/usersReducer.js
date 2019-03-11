@@ -15,7 +15,11 @@ import {
   NO_SUBSCRIPTION,
   CHANGE_SUB_FAIL,
   RESET_CHANGE_FAIL,
+  LOG_OUT,
+  MEMBER_SIGNED,
+  ADD_MEMBER_RESET,
 } from '../actions/usersActions'
+import { CREATE_CLUB } from '../actions/clubActions'
 
 const initialState = {
   users: [],
@@ -26,6 +30,7 @@ const initialState = {
   failFromToken: false,
   subscription: null,
   changeFail: false,
+  addMemberFailed: false,
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -66,6 +71,13 @@ const usersReducer = (state = initialState, action) => {
         loading: false,
         message: null,
         error: action.error,
+        addMemberFailed: true,
+      }
+
+    case ADD_MEMBER_RESET:
+      return {
+        ...state,
+        addMemberFailed: false,
       }
 
     case GET_USERS:
@@ -163,6 +175,24 @@ const usersReducer = (state = initialState, action) => {
         ...state,
         message: null,
         changeFail: false,
+      }
+
+    case CREATE_CLUB:
+      return {
+        ...state,
+        userById: { ...state.userById, club_id: action.payload.club.id },
+      }
+
+    case MEMBER_SIGNED:
+      return {
+        ...state,
+        loading: false,
+        message: null,
+      }
+
+    case LOG_OUT:
+      return {
+        initialState,
       }
 
     default:

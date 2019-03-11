@@ -3,6 +3,7 @@ import StripeCheckout from 'react-stripe-checkout'
 import styled from 'styled-components'
 import DashBar from '../NewDash'
 import axios from 'axios'
+import CliqueBook_favicon from '../../logos/CliqueBook_favicon.png'
 
 import {
   Grid,
@@ -13,14 +14,39 @@ import {
 } from '@material-ui/core'
 
 const PaymentContainer = styled.div`
-  margin: auto;
-  width: 70%;
+  margin: 100px auto;
+  max-width: 800px;
+  /* width: 70%; */
   display: flex;
   flex-direction: column;
 
+  h1 {
+    margin: 0 auto;
+    margin-bottom: 60px;
+    color: white;
+  }
+  .title-thin {
+    display: none;
+  }
+  @media (max-width: 600px) {
+    margin: 50px auto;
+
+    .title-thin {
+      display: block;
+      margin: 0 auto;
+
+      &:last-of-type {
+        margin-bottom: 40px;
+      }
+    }
+    .title-wide {
+      display: none;
+    }
+  }
+
   .card {
     border: 2px solid rgb(65, 82, 179);
-    box-shadow: 7px 7px 7px 0 lightgray;
+    /* box-shadow: 7px 7px 7px 0 lightgray; */
   }
 
   .MuiCardHeader-root-262 {
@@ -34,7 +60,6 @@ const PaymentButton = styled.div`
   width: 40%;
   display: flex;
   flex-direction: column;
-
 `
 
 const styles = theme => ({
@@ -108,6 +133,10 @@ class Payment extends React.Component {
 
     return (
       <PaymentContainer>
+        <h1 className="title-wide">Our Subscription Options</h1>
+        <h1 className="title-thin">Our</h1>
+        <h1 className="title-thin">Subscription</h1>
+        <h1 className="title-thin">Options</h1>
         <Grid container spacing={40} alignItems="flex-end">
           {subscriptions.map(tier => (
             <Grid
@@ -157,6 +186,7 @@ class Payment extends React.Component {
                       description={tier.description}
                       amount={tier.price * 100}
                       allowRememberMe={false}
+                      image={CliqueBook_favicon}
                     />
                   </PaymentButton>
                 </CardContent>

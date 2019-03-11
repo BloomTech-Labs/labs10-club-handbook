@@ -1,6 +1,7 @@
 import React from 'react'
 import renderHTML from 'react-render-html'
 import { Handbook, Title } from '../../style/handbook-page/handbook'
+import { size } from '../../style/breakpoints'
 
 import styled from 'styled-components'
 
@@ -23,7 +24,10 @@ const SectionRender = props => {
             bg_color,
             title_color,
             font,
+            id,
           } = section
+
+          const textShadow = title_color == 'black' ? 'gray' : 'black'
 
           const Section = styled.div`
             min-height: 100vh;
@@ -37,6 +41,11 @@ const SectionRender = props => {
               text-align: center;
               color: ${title_color};
               font-size: 6rem;
+              text-shadow: 0 1px 3px ${textShadow};
+
+              @media ${size.mobile} {
+                font-size: 4rem;
+              }
             }
 
             p {
@@ -44,6 +53,10 @@ const SectionRender = props => {
               color: ${title_color};
               font-size: 2.6rem;
               text-align: left;
+
+              @media ${size.mobile} {
+                font-size: 1.8rem;
+              }
             }
           `
 
@@ -52,6 +65,10 @@ const SectionRender = props => {
             flex-direction: column;
             justify-content: center;
             min-height: 25vh;
+
+            @media ${size.mobile} {
+              margin-top: -40px;
+            }
           `
 
           const Body = styled.div`
@@ -62,20 +79,59 @@ const SectionRender = props => {
             align-items: center;
             min-height: 50vh;
 
+            @media (max-width: 1000px) {
+              padding: 1rem;
+              padding-bottom: 4rem;
+              flex-direction: column !important;
+            }
+
+            @media ${size.mobile} {
+              margin-top: -40px;
+            }
+
             .img {
-              width: 25%;
+              width: 40%;
               height: auto;
-              margin-right: 1.5rem;
+              margin-right: 2rem;
+
+              @media ${size.desktop} {
+                width: 50%;
+              }
+
+              @media (max-width: 1000px) {
+                width: 70%;
+                margin-right: 0;
+                margin-left: 0;
+                margin-bottom: 5rem;
+              }
+
+              @media ${size.mobile} {
+                width: 100%;
+              }
 
               img {
                 width: 100%;
                 height: auto;
+                box-shadow: -1px 1px 10px black;
               }
             }
 
             .body {
-              width: 65%;
+              width: 55%;
               min-height: 60%;
+
+              @media ${size.desktop} {
+                width: 45%;
+              }
+
+              @media (max-width: 1000px) {
+                width: 80% !important;
+                padding-bottom: 5rem;
+              }
+
+              @media ${size.mobile} {
+                width: 90% !important;
+              }
             }
           `
 
@@ -85,7 +141,11 @@ const SectionRender = props => {
           }
 
           return (
-            <Section style={img_placement == 1 ? bgImage : null}>
+            <Section
+              id={id}
+              key={id}
+              style={img_placement == 1 ? bgImage : null}
+            >
               <SectionTitle>
                 <h1>{title}</h1>
               </SectionTitle>
@@ -99,7 +159,10 @@ const SectionRender = props => {
                 }
               >
                 {img_url && img_placement != 1 && img_placement != 4 ? (
-                  <div className="img">
+                  <div
+                    className="img"
+                    style={img_placement == 3 ? { marginLeft: '2rem' } : null}
+                  >
                     <img src={img_url} />
                   </div>
                 ) : null}

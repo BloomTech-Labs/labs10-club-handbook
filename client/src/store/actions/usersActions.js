@@ -17,6 +17,8 @@ export const GET_SUBSCRIPTION_INFO = 'GET_SUBSCRIPTION_INFO'
 export const NO_SUBSCRIPTION = 'NO_SUBSCRIPTION'
 export const CHANGE_SUB_FAIL = 'CHANGE_SUB_FAIL'
 export const RESET_CHANGE_FAIL = 'RESET_CHANGE_FAIL'
+export const LOG_OUT = 'LOG_OUT'
+export const ADD_MEMBER_RESET = 'ADD_MEMBER_RESET'
 
 const baseURL = 'https://club-handbook.herokuapp.com'
 // const baseURL = 'http://localhost:5000'
@@ -88,6 +90,10 @@ export const addUser = user => dispatch => {
     .catch(err => {
       dispatch({ type: ADD_MEMBER_FAIL, error: err })
     })
+}
+
+export const resetAddMember = () => dispatch => {
+  dispatch({ type: ADD_MEMBER_RESET })
 }
 
 export const updateUser = (id, changes) => dispatch => {
@@ -245,4 +251,8 @@ export const createSubscription = body => dispatch => {
     .catch(err => {
       dispatch({ type: FAIL, error: err })
     })
+}
+
+export const logOut = () => dispatch => {
+  dispatch({ type: LOG_OUT })
 }
