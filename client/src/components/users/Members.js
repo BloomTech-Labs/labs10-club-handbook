@@ -123,7 +123,7 @@ const FailedPage = styled.div`
     flex-direction: column;
     padding: 30px;
     border-radius: 7px;
-    border: 2px solid rgb(65, 82, 179);
+    border: 2px solid rgb(82, 157, 248);
 
     h3 {
       margin-bottom: 10px;
@@ -133,23 +133,23 @@ const FailedPage = styled.div`
     }
     button {
       padding: 5px 15px;
-      background: rgb(65, 82, 179);
+      background: rgb(82, 157, 248);
       color: white;
-      border: 2px solid rgb(65, 82, 179);
+      border: 2px solid rgb(82, 157, 248);
       cursor: pointer;
       border-radius: 5px;
       font-weight: bold;
 
       &:hover {
-        background: rgb(65, 82, 179);
+        background: rgb(82, 157, 248);
         color: white;
         box-shadow: 0 0 4px 3px rgb(255, 255, 255, 0.5) inset;
         border: 2px solid white;
       }
       &:active {
-        color: rgb(65, 82, 179);
+        color: rgb(82, 157, 248);
         background: white;
-        box-shadow: 0 0 10px 0 rgb(65, 82, 179) inset;
+        box-shadow: 0 0 10px 0 rgb(82, 157, 248) inset;
       }
     }
   }
