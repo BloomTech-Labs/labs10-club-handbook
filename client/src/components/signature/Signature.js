@@ -3,7 +3,7 @@ import '../users/Members.css'
 import { Button } from '@material-ui/core'
 import { connect } from 'react-redux'
 import { memberSigned } from '../../store/actions/usersActions'
-import styled from 'styled-components';
+import styled from 'styled-components'
 import { size } from '../../style/breakpoints'
 
 const SContainer = styled.div`
@@ -15,19 +15,29 @@ const SContainer = styled.div`
   align-items: center;
   flex-direction: column;
   z-index: 20;
-`;
+  background: rgba(150, 150, 150, 0.5);
+`
 
 const SignatureContainer = styled.div`
   width: 400px;
   margin-top: 100px;
   padding: 20px;
-  border: 1px solid gray;
+  border: 2px solid rgb(68, 125, 197);
   border-radius: 5px;
   box-shadow: 0 1px 10px gray;
   z-index: 20;
-  background: white;
+  background: linear-gradient(to right, rgb(82, 157, 248), rgb(66, 126, 199));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
   @media ${size.mobile} {
     width: 95%;
+  }
+
+  h2 {
+    margin-bottom: 15px;
   }
 `
 
@@ -37,13 +47,37 @@ const Form = styled.form`
   input {
     width: 80%;
     line-height: 1.5;
+    padding: 0px 5px;
+    border-radius: 5px;
   }
-`;
+
+  button {
+    padding: 5px 15px;
+    background: rgb(65, 82, 179);
+    color: white;
+    border: 2px solid white;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+
+    &:hover {
+      background: rgb(65, 82, 179);
+      color: white;
+      box-shadow: 0 0 4px 3px rgb(255, 255, 255, 0.5) inset;
+      border: 2px solid white;
+    }
+    &:active {
+      color: rgb(65, 82, 179);
+      background: white;
+      box-shadow: 0 0 10px 0 rgb(65, 82, 179) inset;
+    }
+  }
+`
 
 const Notification = styled.div`
   color: red;
   margin: 20px 0 0 0;
-`;
+`
 
 class Signature extends React.Component {
   constructor() {
@@ -51,7 +85,7 @@ class Signature extends React.Component {
     this.state = {
       signature: '',
       signatureStatus: false,
-      showSignature: false
+      showSignature: false,
     }
   }
 
@@ -64,21 +98,20 @@ class Signature extends React.Component {
 
     const signature = this.state
     this.props.memberSigned(this.props.currentUser.club_id, signature)
-    this.signatureConfirmation();
+    this.signatureConfirmation()
   }
 
   signatureConfirmation = () => {
     if (this.state.signature.length > 0) {
       this.setState({ signatureStatus: true })
     }
-    
+
     setTimeout(
       function() {
-          this.setState({signatureStatus: false});
-      }
-      .bind(this),
+        this.setState({ signatureStatus: false })
+      }.bind(this),
       2000
-    );
+    )
   }
 
   render() {
@@ -86,14 +119,26 @@ class Signature extends React.Component {
       return (
         <SContainer>
           <SignatureContainer>
-              <p>I have read the document and agree to the terms as currently stated in the document and any changes in the future.</p>
-              
-              <Form onSubmit={this.handleSubmit}>
-                  <input type="text" name="signature" onChange={this.handleChanges} placeholder="Enter your full name" value={this.state.signature} />
-                  <Button type="submit">Sign</Button>
-                </Form>
+            <h2>Sign the Book</h2>
+            <p>
+              I have read the document and agree to the terms as currently
+              stated in the document and any changes in the future.
+            </p>
 
-              <Notification>{this.state.signatureStatus === true && 'Signature submited!'}</Notification>
+            <Form onSubmit={this.handleSubmit}>
+              <input
+                type="text"
+                name="signature"
+                onChange={this.handleChanges}
+                placeholder="Enter your full name"
+                value={this.state.signature}
+              />
+              <button type="submit">Sign</button>
+            </Form>
+
+            <Notification>
+              {this.state.signatureStatus === true && 'Signature submited!'}
+            </Notification>
           </SignatureContainer>
         </SContainer>
       )
@@ -101,7 +146,7 @@ class Signature extends React.Component {
       return (
         <SContainer>
           <SignatureContainer>
-              <p>You've already signed!</p>
+            <p>You've already signed!</p>
           </SignatureContainer>
         </SContainer>
       )

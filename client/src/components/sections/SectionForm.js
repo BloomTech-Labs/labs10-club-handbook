@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import TextEditor from './TextEditor'
-import { Button } from '@material-ui/core'
 import { connect } from 'react-redux'
 import {
   addSection,
@@ -17,6 +16,7 @@ import {
   SectionInput,
   ImageInput,
   Select,
+  FormButton,
 } from '../../style/section-form'
 
 class SectionForm extends Component {
@@ -157,9 +157,13 @@ class SectionForm extends Component {
         <FormHolder>
           <FormContainer>
             <h1>Please Create a Handbook in the 'Overview' Tab</h1>
-            <Button variant="contained" color="secondary" onClick={this.cancel}>
+            <FormButton
+              variant="contained"
+              color="secondary"
+              onClick={this.cancel}
+            >
               Cancel
-            </Button>
+            </FormButton>
           </FormContainer>
         </FormHolder>
       )
@@ -175,13 +179,7 @@ class SectionForm extends Component {
           >
             <div className="form-group">
               <Row>
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  onClick={this.cancel}
-                >
-                  Cancel
-                </Button>
+                <FormButton onClick={this.cancel}>Cancel</FormButton>
 
                 {this.props.update ? (
                   <h2>Update Section</h2>
@@ -189,15 +187,14 @@ class SectionForm extends Component {
                   <h2>Create Section</h2>
                 )}
 
-                <Button
+                <FormButton
+                  save
                   onClick={
                     this.props.update ? this.updateSection : this.addSection
                   }
-                  variant="contained"
-                  color="primary"
                 >
-                  Save Section
-                </Button>
+                  Save
+                </FormButton>
               </Row>
 
               <Row>
@@ -263,6 +260,7 @@ class SectionForm extends Component {
                     <option value="1">Image Background</option>
                     <option value="2">Image Left</option>
                     <option value="3">Image Right</option>
+                    <option value="5">Image Top</option>
                   </Select>
                 </div>
 
@@ -322,23 +320,16 @@ class SectionForm extends Component {
                 </div>
               </Row>
 
-              <Row>
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  onClick={this.cancel}
-                >
-                  Cancel
-                </Button>
-                <Button
+              <Row style={{ marginBottom: 0 }}>
+                <FormButton onClick={this.cancel}>Cancel</FormButton>
+                <FormButton
+                  save
                   onClick={
                     this.props.update ? this.updateSection : this.addSection
                   }
-                  variant="contained"
-                  color="primary"
                 >
-                  Save Section
-                </Button>
+                  Save
+                </FormButton>
               </Row>
             </div>
           </form>

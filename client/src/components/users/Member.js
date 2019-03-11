@@ -21,10 +21,10 @@ const MemberContainer = styled.div`
   /* border-left: 1px solid #3648ac; */
   background: ${props =>
     props.editVisible === true &&
-    'linear-gradient(to right, rgb(82, 157, 248), rgb(78, 98, 215))'};
+    'linear-gradient(to right, rgb(82, 157, 248), rgb(66, 126, 199))'};
   /* color: ${props => props.editVisible === true && 'white'}; */
   :hover {
-    background: linear-gradient(to right, rgb(82, 157, 248), rgb(78, 98, 215));;
+    background: linear-gradient(to right, rgb(82, 157, 248), rgb(66, 126, 199));
     color: white;
   }
   color: white;
