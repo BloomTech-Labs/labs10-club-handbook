@@ -50,13 +50,13 @@ const StyledButton = styled.button`
   :hover {
     /* background-color: orange; */
     color: black;
-    border: 1px solid rgb(78, 98, 215);
+    border: 1px solid rgb(82, 157, 248);
     color: rgb(78, 98, 215);
     cursor: pointer;
-    box-shadow: 0 0 10px 3px rgb(78, 98, 215) inset;
+    box-shadow: 0 0 10px 3px rgb(82, 157, 248) inset;
   }
   &:active {
-    background: rgb(78, 98, 215);
+    background: rgb(82, 157, 248);
     box-shadow: 0 0 10px 2px white inset;
     color: white;
   }
