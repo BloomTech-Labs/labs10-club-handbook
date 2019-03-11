@@ -29,7 +29,7 @@ const StyledButton = styled.button`
   border: 0px solid black;
   border-radius: 5px;
   box-shadow: 0 1px 5px black;
-  background: #3648AC;
+  background: linear-gradient(to right, rgb(82, 157, 248), rgb(78, 98, 215));
   color: white;
   border: 1px solid black;
   border-radius: 8px;
@@ -38,12 +38,15 @@ const StyledButton = styled.button`
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
   text-transform: uppercase;
   padding: 15px;
-  background-color: #384aa6;
+  /* background-color: #384aa6; */
   :hover {
-    background-color: white;
-    color: #384aa6;
     border: 1px solid #384aa6;
+    box-shadow: 0 0 20px 6px white inset;
     cursor: pointer;
+  }
+  :active {
+    background: rgb(82, 157, 248);
+    box-shadow: 0 0 20px 6px white inset;
   }
   @media ${size.tablet} {
     width: 85%;

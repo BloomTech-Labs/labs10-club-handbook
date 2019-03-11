@@ -23,6 +23,7 @@ const PaymentContainer = styled.div`
   h1 {
     margin: 0 auto;
     margin-bottom: 60px;
+    color: white;
   }
   .title-thin {
     display: none;
@@ -45,7 +46,7 @@ const PaymentContainer = styled.div`
 
   .card {
     border: 2px solid rgb(65, 82, 179);
-    box-shadow: 7px 7px 7px 0 lightgray;
+    /* box-shadow: 7px 7px 7px 0 lightgray; */
   }
 
   .MuiCardHeader-root-262 {

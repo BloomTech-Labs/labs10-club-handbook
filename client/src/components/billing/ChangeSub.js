@@ -123,11 +123,12 @@ const PaymentContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: rgb(65, 82, 179);
+  color: rgb(78, 98, 215);
   border: 2px solid rgb(55, 55, 55);
   border-radius: 7px;
-  box-shadow: 5px 5px 5px 0 lightgray;
+  /* box-shadow: 5px 5px 5px 0 lightgray; */
   padding: 80px 10px 30px 10px;
+  background: white;
 
   @media (max-width: 500px) {
     margin: 0;
@@ -135,7 +136,7 @@ const PaymentContainer = styled.div`
   }
 
   .mySub {
-    border: 3px solid rgb(65, 82, 179);
+    border: 3px solid rgb(78, 98, 215);
     border-radius: 5px;
     padding: 20px;
     box-shadow: 5px 5px 5px 0 lightgray;
@@ -178,7 +179,7 @@ const SubscriptionHolder = styled.div`
     padding: 20px;
     border-radius: 5px;
     cursor: pointer;
-    background: linear-gradient(to right, rgb(65, 82, 179), rgb(78, 98, 215));
+    background: linear-gradient(to right, rgb(82, 157, 248), rgb(78, 98, 215));
     color: white;
     box-shadow: 5px 5px 5px 0px lightgray;
     margin-left: 10px;
@@ -221,7 +222,7 @@ const ConfirmationPopUp = styled.div`
     min-width: 200px;
     min-height: 200px;
     padding: 30px;
-    border: 2px solid rgb(65, 82, 179);
+    border: 2px solid rgb(82, 157, 248);
 
     h2 {
       margin-top: 0;
@@ -237,24 +238,24 @@ const ConfirmationPopUp = styled.div`
 
     button {
       padding: 10px 15px;
-      background: rgb(65, 82, 179);
+      background: rgb(82, 157, 248);
       color: white;
-      border: 2px solid rgb(65, 82, 179);
+      border: 2px solid rgb(82, 157, 248);
       cursor: pointer;
       border-radius: 5px;
       margin: 20px;
       font-weight: bold;
 
       &:hover {
-        background: rgb(65, 82, 179);
+        background: rgb(82, 157, 248);
         color: white;
         box-shadow: 0 0 8px 6px rgb(255, 255, 255, 0.5) inset;
         border: 2px solid white;
       }
       &:active {
-        color: rgb(65, 82, 179);
+        color: rgb(82, 157, 248);
         background: white;
-        box-shadow: 0 0 10px 0 rgb(65, 82, 179) inset;
+        box-shadow: 0 0 10px 0 rgb(82, 157, 248) inset;
       }
     }
   }

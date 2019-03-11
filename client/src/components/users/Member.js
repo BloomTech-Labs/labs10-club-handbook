@@ -19,10 +19,12 @@ const MemberContainer = styled.div`
   margin: 10px 2%;
   padding: 5px 1%;
   /* border-left: 1px solid #3648ac; */
-  background: ${props => props.editVisible === true && '#3648AC'};
+  background: ${props =>
+    props.editVisible === true &&
+    'linear-gradient(to right, rgb(82, 157, 248), rgb(78, 98, 215))'};
   /* color: ${props => props.editVisible === true && 'white'}; */
   :hover {
-    background: #3648ac;
+    background: linear-gradient(to right, rgb(82, 157, 248), rgb(78, 98, 215));;
     color: white;
   }
   color: white;
