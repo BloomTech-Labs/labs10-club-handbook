@@ -139,9 +139,9 @@ class DashBar extends React.Component {
   componentDidMount() {
     const currentLocation = window.location.href
 
-    if (currentLocation === 'http://localhost:3000/clique/members') {
+    if (currentLocation.includes('members')) {
       this.setState({ value: 1 })
-    } else if (currentLocation === 'http://localhost:3000/clique/handbook') {
+    } else if (currentLocation.includes('handbook')) {
       this.setState({ value: 0 })
     }
   }
