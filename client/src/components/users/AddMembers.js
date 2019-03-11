@@ -20,7 +20,7 @@ const SCWrapper = styled.div`
 `
 const StyledH6 = styled.h6`
   font-size: 2.5rem;
-  color: white;
+  /* color: white; */
   /* margin-bottom: 8px; */
   margin: 0 auto 20px;
 `

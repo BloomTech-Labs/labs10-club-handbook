@@ -29,7 +29,7 @@ const Container = styled.div`
     /* width: 75%; */
   }
   /* border: 2px solid red; */
-  background: rgb(75, 75, 75);
+  background: rgb(200, 200, 200);
 `
 // const HeaderBar = styled.div`
 //   width: 100%;

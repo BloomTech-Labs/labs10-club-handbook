@@ -59,7 +59,7 @@ const InputEmail = styled.input`
 const ButtonWrapper = styled.div``
 
 const StyledButton = styled.button`
-  width: 100px;
+  width: 70px;
   color: #000000;
   background-color: white;
   border: 1px solid black;
@@ -68,7 +68,7 @@ const StyledButton = styled.button`
   font-weight: bold;
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
   text-transform: uppercase;
-  padding: 10px 0;
+  padding: 7px 0;
   margin-right: 30px;
 
   :hover {
