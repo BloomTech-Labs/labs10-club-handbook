@@ -13,7 +13,7 @@ const StyledButton = styled.button`
   font-weight: bold;
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
   text-transform: uppercase;
-  padding: 10px 0;
+  padding: 7px 0;
 
   :hover {
     /* background-color: orange; */
