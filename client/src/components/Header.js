@@ -17,28 +17,28 @@ const style = {
 class Parallax extends React.Component {
   constructor(props) {
     super(props)
-    let windowScrollTop = window.pageYOffset / 3
-    this.state = {
-      transform: 'translate3d(0,' + windowScrollTop + 'px,0)',
-    }
-    this.resetTransform = this.resetTransform.bind(this)
+    // let windowScrollTop = window.pageYOffset / 3
+    // this.state = {
+    //   transform: 'translate3d(0,' + windowScrollTop + 'px,0)',
+    // }
+    // this.resetTransform = this.resetTransform.bind(this)
   }
-  componentDidMount() {
-    let windowScrollTop = window.pageYOffset / 3
-    this.setState({
-      transform: 'translate3d(0,' + windowScrollTop + 'px,0)',
-    })
-    window.addEventListener('scroll', this.resetTransform)
-  }
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.resetTransform)
-  }
-  resetTransform() {
-    let windowScrollTop = window.pageYOffset / 3
-    this.setState({
-      transform: 'translate3d(0,' + windowScrollTop + 'px,0)',
-    })
-  }
+  // componentDidMount() {
+  //   let windowScrollTop = window.pageYOffset / 3
+  //   this.setState({
+  //     transform: 'translate3d(0,' + windowScrollTop + 'px,0)',
+  //   })
+  //   window.addEventListener('scroll', this.resetTransform)
+  // }
+  // componentWillUnmount() {
+  //   window.removeEventListener('scroll', this.resetTransform)
+  // }
+  // resetTransform() {
+  //   let windowScrollTop = window.pageYOffset / 3
+  //   this.setState({
+  //     transform: 'translate3d(0,' + windowScrollTop + 'px,0)',
+  //   })
+  // }
   render() {
     const {
       classes,
@@ -65,6 +65,8 @@ class Parallax extends React.Component {
           minHeight: '100vh',
           backgroundImage: 'url(' + image + ')',
           backgroundSize: 'cover',
+          borderBottom: '0px solid gray',
+          boxShadow: '0 0px 2px grey',
           ...this.state,
         }}
         ref="parallax"

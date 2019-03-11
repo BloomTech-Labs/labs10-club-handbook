@@ -20,8 +20,11 @@ export const Heading = styled.div`
     text-shadow: 0 1px 0 gray;
     width: 100%;
     text-align: center;
-    margin-top: -5rem;
     margin-bottom: 10rem;
+
+    h1 {
+      font-size: 4.5rem;
+    }
   }
 
   .action-div {
@@ -32,7 +35,7 @@ export const Heading = styled.div`
     background: url('../assets/images/background-blue-design-925708.jpg');
 
     h5 {
-      font-size: 2.5rem;
+      font-size: 3rem;
       text-shadow: 0 1px 0 gray;
       margin-bottom: 2rem;
     }
@@ -65,4 +68,25 @@ export const ActionButton = styled(Button)`
     transform: translateY(0);
     box-shadow: 0 1px 5px black;
   }
+`
+
+export const ProcessContainer = styled.div`
+  padding: 15rem 0;
+  background: white;
+  border-bottom: 0px solid gray;
+  box-shadow: 0 0px 2px grey;
+`
+
+export const SubscriptionCard = styled.div`
+  width: 20rem;
+  height: 25rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background: white;
+  border: 1px solid gray;
+  border-radius: 10px;
+  box-shadow: 0 1px 5px black;
 `
