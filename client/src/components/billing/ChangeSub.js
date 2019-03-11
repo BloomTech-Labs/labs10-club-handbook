@@ -128,7 +128,7 @@ const PaymentContainer = styled.div`
   border-radius: 7px;
   /* box-shadow: 5px 5px 5px 0 lightgray; */
   padding: 80px 10px 30px 10px;
-  background: rgb(220, 220, 220);
+  background: white;
   /* background: linear-gradient(to right, rgb(82, 157, 248), rgb(66, 126, 199)); */
   @media (max-width: 500px) {
     margin: 0;
