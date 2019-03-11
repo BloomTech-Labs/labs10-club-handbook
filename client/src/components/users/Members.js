@@ -42,6 +42,18 @@ const Container = styled.div`
 const MembersList = styled.div`
   display: flex;
   flex-direction: column;
+  background: white;
+  margin-top: 30px;
+  border-radius: 7px;
+  padding: 20px 15px 40px;
+
+  h1 {
+    text-align: center;
+  }
+
+  @media ${size.mobile} {
+    padding: 20px 5px 40px;
+  }
 `
 
 const StatusHeader = styled.div`
@@ -53,12 +65,12 @@ const StatusHeader = styled.div`
 const Visited = styled.h2`
   font-size: 1.8rem;
   margin-right: 15px;
-  color: white;
+  /* color: white; */
 `
 const Signed = styled.h2`
   font-size: 1.8rem;
   margin-right: 14%;
-  color: white;
+  /* color: white; */
 `
 
 const PopupButton = styled.div`
@@ -181,6 +193,7 @@ class Members extends React.Component {
           <AddMember />
 
           <MembersList>
+            <h1>Clique Members</h1>
             {users.length > 1 && (
               <StatusHeader>
                 <Visited>Visited</Visited>
@@ -194,19 +207,32 @@ class Members extends React.Component {
               </AddMembersWarning>
             )}
 
-            {users.map(user => {
-              if (user.admin === false) {
-                return (
-                  <Member
-                    key={user.id}
-                    user={user}
-                    clubName={this.props.clubName}
-                    adminFirstName={this.props.currentUser.firstname}
-                    adminLastName={this.props.currentUser.lastname}
-                  />
-                )
-              }
-            })}
+            {users
+              .filter(user => user.admin === false)
+              .map((user, idx) => {
+                if (idx % 2 === 0) {
+                  return (
+                    <Member
+                      key={user.id}
+                      user={user}
+                      clubName={this.props.clubName}
+                      adminFirstName={this.props.currentUser.firstname}
+                      adminLastName={this.props.currentUser.lastname}
+                      isEven
+                    />
+                  )
+                } else {
+                  return (
+                    <Member
+                      key={user.id}
+                      user={user}
+                      clubName={this.props.clubName}
+                      adminFirstName={this.props.currentUser.firstname}
+                      adminLastName={this.props.currentUser.lastname}
+                    />
+                  )
+                }
+              })}
           </MembersList>
           <Link to={'/clique/members/add-members-mobile'}>
             <PopupButton>ADD MEMBER</PopupButton>

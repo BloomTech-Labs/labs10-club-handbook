@@ -16,9 +16,10 @@ const H3 = styled.h3`
   padding: 5px;
 `
 const MemberContainer = styled.div`
-  margin: 10px 2%;
+  margin: 0px 2%;
   padding: 5px 1%;
   /* border-left: 1px solid #3648ac; */
+  background: ${props => props.isEven === true && 'rgba(82, 157, 248, 0.5)'};
   background: ${props =>
     props.editVisible === true &&
     'linear-gradient(to right, rgb(82, 157, 248), rgb(66, 126, 199))'};
@@ -26,10 +27,10 @@ const MemberContainer = styled.div`
   :hover {
     background: linear-gradient(to right, rgb(82, 157, 248), rgb(66, 126, 199));
     color: white;
+    box-shadow: 0 0 10px 0 white inset;
   }
-  color: white;
-  box-shadow: 0 0 10px 0 white inset;
-  border-radius: 7px;
+  /* color: white; */
+  border-radius: 3px;
 `
 const SCMember = styled.div`
   display: flex;
@@ -176,7 +177,7 @@ class Member extends React.Component {
   render() {
     return (
       // <Paper style={{ marginBottom: 10, paddingTop: 5, paddingBottom: 5, paddingRight: 10, paddingLeft: 10 }}>
-      <MemberContainer editVisible={this.state.open}>
+      <MemberContainer editVisible={this.state.open} isEven={this.props.isEven}>
         <SCMember onClick={this.showEditField} key={this.props.user.id}>
           {/* <SCMember key={this.props.user.id}> */}
           <MemberInfo>
