@@ -66,7 +66,6 @@ const HandbookPageContainer = styled.div`
   display: flex;
   width: 100%;
   margin-top: 6.2rem;
-  position: relative;
   z-index: 0;
 
   @media (max-width: 600px) {
@@ -74,7 +73,8 @@ const HandbookPageContainer = styled.div`
   }
 `
 const RenderContainer = styled.div`
-
+  max-width: 1000px;
+  margin: 0 auto;
 `;
 
 const mapStateToProps = state => {
