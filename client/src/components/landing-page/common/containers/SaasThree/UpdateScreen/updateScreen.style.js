@@ -69,7 +69,7 @@ const SectionWrapper = styled.section`
         margin-right: 0;
         transition: 0.25s ease-in-out;
         &:hover {
-          color: #ff4362;
+          color: rgb(81, 159, 248);
         }
         &:after {
           content: '';
@@ -84,13 +84,13 @@ const SectionWrapper = styled.section`
           }
         }
         &:after {
-          background: #ff4362;
+          background: rgb(81, 159, 248);
           transform: scaleX(0);
           transform-origin: right center 0;
           transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1) 0s;
         }
         &.rc-tabs-tab-active {
-          color: #ff4362;
+          color: rgb(81, 159, 248);
           &:after {
             transform: scaleX(1);
             transform-origin: left center 0;
@@ -121,7 +121,7 @@ const SectionWrapper = styled.section`
       .rc-tabs-tabpane {
         border-radius: 10px;
         overflow: hidden;
-        box-shadow: 0px 5px 60px 0px rgba(27, 67, 111, 0.15);
+        box-shadow: 0px 5px 60px 0px rgb(81, 159, 248);
         &.rc-tabs-tabpane-active {
           animation: 0.7s ScaleInUp;
         }

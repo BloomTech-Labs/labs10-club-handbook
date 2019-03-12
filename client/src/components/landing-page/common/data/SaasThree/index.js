@@ -8,6 +8,13 @@ import { ic_monetization_on } from 'react-icons-kit/md/ic_monetization_on';
 import { ic_settings } from 'react-icons-kit/md/ic_settings';
 import { pieChart } from 'react-icons-kit/icomoon/pieChart';
 import { briefcase } from 'react-icons-kit/fa/briefcase';
+import { ic_create_new_folder, ic_verified_user } from 'react-icons-kit/md'
+import { users } from 'react-icons-kit/fa'
+import ScreenShot_AddMembers from '../../../../../assets/images/ScreenShot_AddMembers.png'
+import ScreenShot_ManageClique from '../../../../../assets/images/ScreenShot_ManageClique.png'
+import ScreenShot_CreateHandbook from '../../../../../assets/images/ScreenShot_CreateHandbook.png'
+import ScreenShot_SignHandbook from '../../../../../assets/images/ScreenShot_SignHandbook.png'
+
 
 export const MENU_ITEMS = [
   {
@@ -16,12 +23,12 @@ export const MENU_ITEMS = [
     offset: '0',
   },
   {
-    label: 'Screenshot',
+    label: 'Process',
     path: '#screenshot_section',
     offset: '0',
   },
   {
-    label: 'Feature',
+    label: 'Features',
     path: '#feature_section',
     offset: '0',
   },
@@ -31,7 +38,7 @@ export const MENU_ITEMS = [
     offset: '0',
   },
   {
-    label: 'Testimonial',
+    label: 'Testimonials',
     path: '#testimonial_section',
     offset: '0',
   },
@@ -63,166 +70,157 @@ export const SERVICE_ITEMS = [
 export const MONTHLY_PRICING_TABLE = [
   {
     name: 'Basic Account',
-    description: 'For Small teams or group who need to build website ',
+    // description: 'For Small teams or group who need to build website ',
     price: '$0',
-    priceLabel: 'Only for first month',
-    buttonLabel: 'Start for free',
+    priceLabel: 'Per month',
+    buttonLabel: 'Sign Up',
     url: '#',
     listItems: [
       {
-        content: 'Drag & Drop Builder',
+        content: 'Hand book text editor',
       },
       {
-        content: '1,000s of Templates Ready',
+        content: 'Members management',
       },
       {
-        content: 'Blog Tools',
+        content: 'Member nudging',
       },
       {
-        content: 'eCommerce Store ',
-      },
-      {
-        content: '30+ Webmaster Tools',
+        content: 'Up to 5 members',
       },
     ],
   },
   {
-    name: 'Business Account',
-    description: 'For Mediums teams or group who need to build website ',
-    price: '$9.87',
-    priceLabel: 'Per month & subscription yearly',
-    buttonLabel: 'Register Now',
+    name: 'Small Club',
+    // description: 'For Mediums teams or group who need to build website ',
+    price: '$5',
+    priceLabel: 'Per month',
+    buttonLabel: 'Sign Up',
     url: '#',
-    trialButtonLabel: 'Or Start 14 Days trail',
+    // trialButtonLabel: 'Or Start 14 Days trail',
     trialURL: '#',
     listItems: [
       {
-        content: 'Drag & Drop Builder',
+        content: 'Hand book text editor',
       },
       {
-        content: '1,000s of Templates Ready',
+        content: 'Members management',
       },
       {
-        content: 'Blog Tools',
+        content: 'Member nudging',
       },
       {
-        content: 'eCommerce Store ',
-      },
-      {
-        content: '30+ Webmaster Tools',
+        content: 'Up to 20 members',
       },
     ],
   },
   {
-    name: 'Premium Account',
-    description: 'For Large teams or group who need to build website ',
-    price: '$12.98',
-    priceLabel: 'Per month & subscription yearly',
-    buttonLabel: 'Register Now',
+    name: 'Premium Club',
+    // description: 'For Large teams or group who need to build website ',
+    price: '$20',
+    priceLabel: 'Per month',
+    buttonLabel: 'Sign Up',
     url: '#',
-    trialButtonLabel: 'Or Start 14 Days trail',
+    // trialButtonLabel: 'Or Start 14 Days trail',
     trialURL: '#',
     listItems: [
       {
-        content: 'Drag & Drop Builder',
+        content: 'Hand book text editor',
       },
       {
-        content: '1,000s of Templates Ready',
+        content: 'Members management',
       },
       {
-        content: 'Blog Tools',
+        content: 'Member nudging',
       },
       {
-        content: 'eCommerce Store ',
-      },
-      {
-        content: '30+ Webmaster Tools',
+        content: 'Up to 500 members',
       },
     ],
   },
 ];
 
-export const YEARLY_PRICING_TABLE = [
-  {
-    name: 'Basic Account',
-    description: 'For a single client or team who need to build website ',
-    price: '$0',
-    priceLabel: 'Only for first month',
-    buttonLabel: 'Start for free',
-    url: '#',
-    listItems: [
-      {
-        content: 'Drag & Drop Builder',
-      },
-      {
-        content: '1,000s of Templates Ready',
-      },
-      {
-        content: 'Blog Tools',
-      },
-      {
-        content: 'eCommerce Store ',
-      },
-      {
-        content: '30+ Webmaster Tools',
-      },
-    ],
-  },
-  {
-    name: 'Business Account',
-    description: 'For Small teams or group who need to build website ',
-    price: '$6.00',
-    priceLabel: 'Per month & subscription yearly',
-    buttonLabel: 'Register Now',
-    url: '#',
-    trialButtonLabel: 'Or Start 14 Days trail',
-    trialURL: '#',
-    listItems: [
-      {
-        content: 'Unlimited secure storage',
-      },
-      {
-        content: '2,000s of Templates Ready',
-      },
-      {
-        content: 'Blog Tools',
-      },
-      {
-        content: '24/7 phone support',
-      },
-      {
-        content: '50+ Webmaster Tools',
-      },
-    ],
-  },
-  {
-    name: 'Premium Account',
-    description: 'For Large teams or group who need to build website ',
-    price: '$9.99',
-    priceLabel: 'Per month & subscription yearly',
-    buttonLabel: 'Register Now',
-    url: '#',
-    trialButtonLabel: 'Or Start 14 Days trail',
-    trialURL: '#',
-    listItems: [
-      {
-        content: 'Drag & Drop Builder',
-      },
-      {
-        content: '3,000s of Templates Ready',
-      },
-      {
-        content: 'Advanced branding',
-      },
-      {
-        content: 'Knowledge base support',
-      },
-      {
-        content: '80+ Webmaster Tools',
-      },
-    ],
-  },
-];
+// export const YEARLY_PRICING_TABLE = [
+//   {
+//     name: 'Basic Account',
+//     description: 'For a single client or team who need to build website ',
+//     price: '$0',
+//     priceLabel: 'Only for first month',
+//     buttonLabel: 'Start for free',
+//     url: '#',
+//     listItems: [
+//       {
+//         content: 'Drag & Drop Builder',
+//       },
+//       {
+//         content: '1,000s of Templates Ready',
+//       },
+//       {
+//         content: 'Blog Tools',
+//       },
+//       {
+//         content: 'eCommerce Store ',
+//       },
+//       {
+//         content: '30+ Webmaster Tools',
+//       },
+//     ],
+//   },
+//   {
+//     name: 'Business Account',
+//     description: 'For Small teams or group who need to build website ',
+//     price: '$6.00',
+//     priceLabel: 'Per month & subscription yearly',
+//     buttonLabel: 'Register Now',
+//     url: '#',
+//     trialButtonLabel: 'Or Start 14 Days trail',
+//     trialURL: '#',
+//     listItems: [
+//       {
+//         content: 'Unlimited secure storage',
+//       },
+//       {
+//         content: '2,000s of Templates Ready',
+//       },
+//       {
+//         content: 'Blog Tools',
+//       },
+//       {
+//         content: '24/7 phone support',
+//       },
+//       {
+//         content: '50+ Webmaster Tools',
+//       },
+//     ],
+//   },
+//   {
+//     name: 'Premium Account',
+//     description: 'For Large teams or group who need to build website ',
+//     price: '$9.99',
+//     priceLabel: 'Per month & subscription yearly',
+//     buttonLabel: 'Register Now',
+//     url: '#',
+//     trialButtonLabel: 'Or Start 14 Days trail',
+//     trialURL: '#',
+//     listItems: [
+//       {
+//         content: 'Drag & Drop Builder',
+//       },
+//       {
+//         content: '3,000s of Templates Ready',
+//       },
+//       {
+//         content: 'Advanced branding',
+//       },
+//       {
+//         content: 'Knowledge base support',
+//       },
+//       {
+//         content: '80+ Webmaster Tools',
+//       },
+//     ],
+//   },
+// ];
 
 export const FAQ_DATA = [
   {
@@ -349,63 +347,63 @@ export const FOOTER_WIDGET = [
 
 export const FEATURES = [
   {
-    icon: 'flaticon-hourglass',
-    title: 'App Development',
+    icon: 'flaticon-security',
+    title: 'Security',
     description:
-      'Get your proof tests delivered home collect a sample from the news get design.',
+      'Your information is protected using modern security measures.',
   },
   {
-    icon: 'flaticon-trophy-1',
-    title: '10 Times Award',
+    icon: 'flaticon-sign-in',
+    title: 'Ease of Use',
     description:
-      'Get your proof tests delivered home collect a sample from the news get design.',
+      'Our built-in text editor makes it wasy to personalize your handbook.',
   },
   {
     icon: 'flaticon-upload',
-    title: 'Cloud Storage',
+    title: 'No Registration',
     description:
-      'Get your proof tests delivered home collect a sample from the news get design.',
+      'Your members do not need to register. They are quickly authenticated via a link sent directly to their inbox',
   },
   {
     icon: 'flaticon-settings',
-    title: 'Customization',
+    title: 'Auditing',
     description:
-      'Get your proof tests delivered home collect a sample from the news get design.',
+      'We track we has viewed your handbook and agreed to your terms.',
   },
   {
-    icon: 'flaticon-strategy',
-    title: 'UX Planning',
+    icon: 'flaticon-document-1',
+    title: 'Document Editing',
     description:
-      'Get your proof tests delivered home collect a sample from the news get design.',
+      'Making changes to your handbook is simple.',
   },
   {
     icon: 'flaticon-conversation',
-    title: 'Customer Support',
+    title: 'Member Outreach',
     description:
-      'Get your proof tests delivered home collect a sample from the news get design.',
+      'Easily contact your members if they have not viewed your handbook yet',
   },
 ];
 
 export const SCREENSHOTS = [
   {
-    icon: ic_monetization_on,
-    title: 'Budget Overview',
-    image: Screenshot1,
+    icon: ic_create_new_folder,
+    title: 'Create a Handbook',
+    image: ScreenShot_CreateHandbook,
   },
   {
-    icon: ic_settings,
-    title: 'Create & Adjust',
-    image: Screenshot1,
+    icon: users,
+    title: 'Add Members',
+    image: ScreenShot_AddMembers,
   },
   {
-    icon: pieChart,
-    title: 'View Reports',
-    image: Screenshot1,
+    icon: ic_verified_user,
+    title: 'Sign the Handbook',
+    image: ScreenShot_SignHandbook,
   },
   {
     icon: briefcase,
-    title: 'Integrations',
-    image: Screenshot1,
+    title: 'Manage Your Clique',
+    image: ScreenShot_ManageClique,
   },
 ];
 

@@ -163,12 +163,12 @@ export const ContentWrapper = styled.div`
           a {
             color: #000;
             &:hover {
-              color: #ff4361;
+              color: rgb(81, 159, 248);
             }
           }
           &.is-current {
             a {
-              color: #ff4361;
+              color: rgb(81, 159, 248);
             }
           }
         }
@@ -205,7 +205,7 @@ export const ContentWrapper = styled.div`
         }
         &.is-current {
           a {
-            color: #edcd37;
+            color: black;
           }
         }
         a {
@@ -215,7 +215,7 @@ export const ContentWrapper = styled.div`
           color: #fff;
           transition: 0.15s ease-in-out;
           &:hover {
-            color: #edcd37;
+            color: black;
           }
         }
       }

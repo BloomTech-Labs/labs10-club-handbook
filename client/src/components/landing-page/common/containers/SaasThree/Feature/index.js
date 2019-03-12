@@ -25,10 +25,10 @@ const FeatureSection = ({
     <SectionWrapper id="feature_section">
       <Container>
         <Box {...secTitleWrapper}>
-          <Text {...secText} content="PRODUCT COMPARISON" />
+          <Text {...secText} content="FEATURES" />
           <Heading
             {...secHeading}
-            content="Whats different from other dashboards"
+            content="Why use Clique Book?"
           />
         </Box>
 
@@ -51,8 +51,8 @@ const FeatureSection = ({
         </Box>
       </Container>
     </SectionWrapper>
-  )
-}
+  );
+};
 
 FeatureSection.propTypes = {
   sectionHeader: PropTypes.object,
@@ -67,7 +67,7 @@ FeatureSection.propTypes = {
   contentStyle: PropTypes.object,
   featureTitle: PropTypes.object,
   featureDescription: PropTypes.object,
-}
+};
 
 FeatureSection.defaultProps = {
   secTitleWrapper: {
@@ -80,7 +80,7 @@ FeatureSection.defaultProps = {
     fontSize: '14px',
     letterSpacing: '0.15em',
     fontWeight: '700',
-    color: '#ff4362',
+    color: 'rgb(81, 159, 248)',
     mb: '12px',
   },
   secHeading: {
@@ -137,6 +137,6 @@ FeatureSection.defaultProps = {
     lineHeight: '1.88',
     mb: 0,
   },
-}
+};
 
-export default FeatureSection
+export default FeatureSection;

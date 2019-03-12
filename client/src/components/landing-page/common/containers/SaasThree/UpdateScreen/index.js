@@ -19,10 +19,10 @@ const UpdateScreen = ({ secTitleWrapper, secText, secHeading }) => {
     <SectionWrapper id="screenshot_section">
       <Container>
         <Box {...secTitleWrapper}>
-          <Text {...secText} content="PRODUCT SCREENSHOT" />
+          <Text {...secText} content="PROCESS" />
           <Heading
             {...secHeading}
-            content="Easily customize dashboard in minutes"
+            content="The Process is Simple"
           />
         </Box>
         <Tabs
@@ -46,14 +46,14 @@ const UpdateScreen = ({ secTitleWrapper, secText, secHeading }) => {
         </Tabs>
       </Container>
     </SectionWrapper>
-  )
-}
+  );
+};
 
 UpdateScreen.propTypes = {
   secTitleWrapper: PropTypes.object,
   secText: PropTypes.object,
   secHeading: PropTypes.object,
-}
+};
 
 UpdateScreen.defaultProps = {
   secTitleWrapper: {
@@ -66,7 +66,7 @@ UpdateScreen.defaultProps = {
     fontSize: '14px',
     letterSpacing: '0.15em',
     fontWeight: '700',
-    color: '#ff4362',
+    color: 'rgb(81, 159, 248)',
     mb: '12px',
   },
   secHeading: {
@@ -82,6 +82,6 @@ UpdateScreen.defaultProps = {
     width: '540px',
     maxWidth: '100%',
   },
-}
+};
 
-export default UpdateScreen
+export default UpdateScreen;

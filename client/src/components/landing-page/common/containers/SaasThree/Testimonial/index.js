@@ -45,7 +45,7 @@ const TestimonialSection = ({
     <Box {...sectionWrapper} as="section" id="testimonial_section">
       <Container>
         <Box {...secTitleWrapper}>
-          <Text {...secText} content="TESTIMONIAL" />
+          <Text {...secText} content="TESTIMONIALS" />
           <Heading
             {...secHeading}
             content="Meet Client Satisfaction by using product"
@@ -109,7 +109,7 @@ TestimonialSection.defaultProps = {
     fontSize: '14px',
     letterSpacing: '0.15em',
     fontWeight: '700',
-    color: '#ff4362',
+    color: 'rgb(81, 159, 248)',
     mb: '12px',
   },
   secHeading: {

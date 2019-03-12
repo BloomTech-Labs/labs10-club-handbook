@@ -23,7 +23,7 @@ const ButtonStyle = styled.button`
   padding-bottom: ${themeGet('space.2', '8')}px;
   padding-left: ${themeGet('space.4', '15')}px;
   padding-right: ${themeGet('space.4', '15')}px;
-  border: 0;
+  border: 1px solid;
   transition: all 0.3s ease;
   span.btn-text {
     padding-left: ${themeGet('space.1', '4')}px;

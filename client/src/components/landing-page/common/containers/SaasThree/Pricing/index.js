@@ -39,17 +39,17 @@ const PricingSection = ({
   const [state, setState] = useState({
     data: MONTHLY_PRICING_TABLE,
     active: true,
-  })
+  });
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     setTimeout(function() {
-      setLoading(true)
-    }, 500)
-  })
+      setLoading(true);
+    }, 500);
+  });
 
-  const data = state.data
-  const activeStatus = state.active
+  const data = state.data;
+  const activeStatus = state.active;
 
   const pricingCarouselOptions = {
     type: 'slider',
@@ -91,18 +91,18 @@ const PricingSection = ({
         },
       },
     },
-  }
+  };
 
   return (
     <Box {...sectionWrapper} id="pricing_section">
       <Container>
         <Box {...secTitleWrapper}>
-          <Text {...secText} content="PRICING PLAN" />
+          <Text {...secText} content="PRICING" />
           <Heading
             {...secHeading}
-            content="Choose your pricing policy which affordable"
+            content="Choose a plan that fits your Clique"
           />
-          <PricingButtonWrapper>
+          {/* <PricingButtonWrapper>
             <Button
               title="Monthly Pricing"
               className={activeStatus ? 'active-item' : ''}
@@ -120,7 +120,7 @@ const PricingSection = ({
             <Link href="#">
               <a>+ Custom Plan</a>
             </Link>
-          </PricingButtonWrapper>
+          </PricingButtonWrapper> */}
         </Box>
         <PricingTableWrapper>
           <GlideCarousel
@@ -165,7 +165,7 @@ const PricingSection = ({
                           />
                         </a>
                       </Link>
-                      {pricingTable.trialButtonLabel ? (
+                      {/* {pricingTable.trialButtonLabel ? (
                         <Link href={pricingTable.trialURL || '#'}>
                           <a className="trial_button">
                             {pricingTable.trialButtonLabel}
@@ -173,7 +173,7 @@ const PricingSection = ({
                         </Link>
                       ) : (
                         ''
-                      )}
+                      )} */}
                     </PricingButton>
                   </PricingTable>
                 </GlideSlide>
@@ -183,8 +183,8 @@ const PricingSection = ({
         </PricingTableWrapper>
       </Container>
     </Box>
-  )
-}
+  );
+};
 
 PricingSection.propTypes = {
   sectionWrapper: PropTypes.object,
@@ -197,7 +197,7 @@ PricingSection.propTypes = {
   priceStyle: PropTypes.object,
   priceLabelStyle: PropTypes.object,
   listContentStyle: PropTypes.object,
-}
+};
 
 PricingSection.defaultProps = {
   sectionWrapper: {
@@ -215,7 +215,7 @@ PricingSection.defaultProps = {
     fontSize: '14px',
     letterSpacing: '0.15em',
     fontWeight: '700',
-    color: '#ff4362',
+    color: 'rgb(81, 159, 248)',
     mb: '12px',
   },
   secHeading: {
@@ -289,7 +289,7 @@ PricingSection.defaultProps = {
     borderRadius: '4px',
     pl: '10px',
     pr: '10px',
-    colors: 'primaryWithBg',
+    colors: 'cliqueSecondary',
     minWidth: ['160px', '190px'],
     maxWidth: '100%',
     height: '48px',
@@ -299,6 +299,6 @@ PricingSection.defaultProps = {
     color: '#6e7379',
     mb: '0',
   },
-}
+};
 
-export default PricingSection
+export default PricingSection;

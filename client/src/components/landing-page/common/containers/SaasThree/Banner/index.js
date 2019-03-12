@@ -81,7 +81,7 @@ const BannerSection = ({
       <Container>
         <Box {...row}>
           <Box {...contentWrapper}>
-            <DiscountWrapper>
+            {/* <DiscountWrapper>
               <DiscountLabel>
                 <Text {...discountAmount} content="25% Save" />
                 <Text
@@ -89,16 +89,16 @@ const BannerSection = ({
                   content="for first month trail version"
                 />
               </DiscountLabel>
-            </DiscountWrapper>
+            </DiscountWrapper> */}
             <Heading
               {...title}
-              content="Ultimate Platform to monitor your best workflow."
+              content="Clique Book makes it easy to maintain your club"
             />
             <Text
               {...description}
-              content="For Enhanced performance we use LiteSpeed Web Server, HTTP/2, PHP7. We make your website faster, which will help you to increase search ranking!"
+              content="Clique Book is an easy-to-use document creator and club manager. Let Clique Book make maintaining your club's hand book quick and painless."
             />
-            <Box {...buttonWrapper}>
+            {/* <Box {...buttonWrapper}>
               <Link href="#">
                 <a>
                   <Button {...fillButton} title="FREE TRIAL" />
@@ -114,7 +114,7 @@ const BannerSection = ({
                   />
                 </a>
               </Link>
-            </Box>
+            </Box> */}
           </Box>
           <Box {...imageWrapper}>
             <Fade bottom>
@@ -129,8 +129,8 @@ const BannerSection = ({
         </Box>
       </Container>
     </BannerWrapper>
-  )
-}
+  );
+};
 
 BannerSection.propTypes = {
   row: PropTypes.object,
@@ -143,7 +143,7 @@ BannerSection.propTypes = {
   buttonWrapper: PropTypes.object,
   button: PropTypes.object,
   fillButton: PropTypes.object,
-}
+};
 
 BannerSection.defaultProps = {
   row: {
@@ -215,6 +215,6 @@ BannerSection.defaultProps = {
     height: ['40px', '46px'],
     minHeight: 'auto',
   },
-}
+};
 
-export default BannerSection
+export default BannerSection;

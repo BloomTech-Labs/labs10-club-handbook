@@ -9,14 +9,18 @@ const colors = {
   inactiveButton: '#b7dbdd', // 6
   inactiveIcon: '#EBEBEB', // 7
   primary: '#ff4265', // 8
-  primaryHover: '#ff4265', // 9
+  primaryHover: 'grey', // 9
   secondary: '#edcd37', // 10
   secondaryHover: '#edcd37', // 11
   yellow: '#fdb32a', // 12
   yellowHover: '#F29E02', // 13
   borderColor: '#1b1e25', //14
-  primaryBoxShadow: '0px 8px 20px -6px rgba(255, 66, 101, 0.57)',
+  primaryBoxShadow: '0px 8px 20px -6px grey',
   secondaryBoxShadow: '0px 8px 20px -6px rgba(237, 205, 55, 0.5)',
+  light: '#9fa8da',
+  main: 'rgb(81, 159, 248)',
+  dark: '#1a237e',
+  contrastText: '#fff',
 };
 
 export default colors;
