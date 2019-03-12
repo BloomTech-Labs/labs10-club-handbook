@@ -18,6 +18,7 @@ import {
 import LeaveTeam from './LeaveTeam'
 // import DashBar from './NewDash'
 import Billing from './billing/Billing'
+import styled from 'styled-components'
 
 const styles = theme => ({
   main: {
@@ -37,7 +38,8 @@ const styles = theme => ({
     alignItems: 'center',
     justify: 'center',
     width: '40%',
-    minWidth: 220,
+    minWidth: 300,
+    maxWidth: 400,
     margin: 'auto',
     padding: `${theme.spacing.unit}px ${theme.spacing.unit * 1}px ${theme
       .spacing.unit * 3}px`,
@@ -49,6 +51,9 @@ const styles = theme => ({
     width: '80%',
     margin: 'auto',
   },
+  textField: {
+    fontSize: 50,
+  },
   formgroup: {
     display: 'flex',
     flexDirection: 'row',
@@ -59,15 +64,30 @@ const styles = theme => ({
   },
   submit: {
     marginTop: theme.spacing.unit * 4,
-    marginBottom: theme.spacing.unit * 4,
+    marginBottom: theme.spacing.unit * 2,
+    fontSize: 16,
   },
   logout: {
-    marginTop: theme.spacing.unit * 4,
+    marginTop: theme.spacing.unit * 2,
     marginBottom: theme.spacing.unit * 4,
-    width: '40%',
-    minWidth: 220,
+    fontSize: 16,
+    color: 'white',
   },
 })
+
+const TabsWrapper = styled.div`
+  .setting-tab {
+    font-size: 16px;
+
+    @media (max-width: 500px) {
+      font-size: 12px;
+    }
+  }
+`
+
+const FormWrapper = styled.div`
+  margin-top: 50px;
+`
 
 function SettingsContainer(props) {
   return <Typography component="div">{props.children}</Typography>
@@ -142,42 +162,52 @@ class Settings extends React.Component {
       <div className={classes.form}>
         {/* <DashBar /> */}
         <CssBaseline />
-        <Tabs
-          className={classes.tabs}
-          value={value}
-          onChange={this.handleTab}
-          centered
-        >
-          <Tab label="User Settings" />
-          <Tab label="Account Billing" />
-        </Tabs>
+        <TabsWrapper>
+          <Tabs
+            className={classes.tabs}
+            value={value}
+            onChange={this.handleTab}
+            centered
+          >
+            <Tab className="setting-tab" label="User Settings" />
+            <Tab className="setting-tab" label="Account Billing" />
+          </Tabs>
+        </TabsWrapper>
         {value === 0 && (
-          <SettingsContainer>
-            {' '}
-            <Paper className={classes.paper}>
-              <form
-                className={classes.form}
-                onSubmit={e => this.handleEditUser(e)}
-              >
-                <TextField
-                  id="outlined-first"
-                  label="First Name"
-                  margin="normal"
-                  variant="outlined"
-                  name="firstname"
-                  value={this.state.firstname}
-                  onChange={this.handleInputChange}
-                />
-                <TextField
-                  id="outlined-last"
-                  label="Last Name"
-                  margin="normal"
-                  variant="outlined"
-                  name="lastname"
-                  value={this.state.lastname}
-                  onChange={this.handleInputChange}
-                />
-                {/* <FormGroup className={classes.formgroup}>
+          <FormWrapper>
+            <SettingsContainer>
+              {' '}
+              <Paper className={classes.paper}>
+                <form
+                  className={classes.form}
+                  onSubmit={e => this.handleEditUser(e)}
+                >
+                  <TextField
+                    id="outlined-first"
+                    label="First Name"
+                    margin="normal"
+                    variant="outlined"
+                    name="firstname"
+                    value={this.state.firstname}
+                    onChange={this.handleInputChange}
+                    inputProps={{
+                      style: { fontSize: 16, padding: 12 },
+                    }}
+                  />
+                  <TextField
+                    id="outlined-last"
+                    label="Last Name"
+                    margin="normal"
+                    variant="outlined"
+                    name="lastname"
+                    value={this.state.lastname}
+                    onChange={this.handleInputChange}
+                    className="form-input"
+                    inputProps={{
+                      style: { fontSize: 16, padding: 12 },
+                    }}
+                  />
+                  {/* <FormGroup className={classes.formgroup}>
                   <FormControlLabel
                     control={<Checkbox color="primary" indeterminate />}
                     label="Nofications"
@@ -198,19 +228,21 @@ class Settings extends React.Component {
                     // onChange={this.handleCheckbox('checkedText')}
                   />
                 </FormGroup> */}
-                <Button
-                  className={classes.submit}
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                >
-                  Save
-                </Button>
-                <Button component={LeaveTeam} className={classes.submit} />
-              </form>
-            </Paper>
-          </SettingsContainer>
+                  <Button
+                    className={classes.submit}
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                  >
+                    Save
+                  </Button>
+                  {/* <Button component={LeaveTeam} className={classes.submit} /> */}
+                  <LeaveTeam className={classes.logout} />
+                </form>
+              </Paper>
+            </SettingsContainer>
+          </FormWrapper>
         )}
         {value === 1 && <Billing />}
       </div>

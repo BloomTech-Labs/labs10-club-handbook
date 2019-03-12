@@ -78,7 +78,7 @@ const SectionRender = props => {
             min-height: 25vh;
 
             @media ${size.mobile} {
-              margin-top: -40px;
+              margin-top: -10px;
             }
           `
 

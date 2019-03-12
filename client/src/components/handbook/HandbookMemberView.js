@@ -40,9 +40,16 @@ class HandbookMemberView extends React.Component {
     if (this.props.currentUser.club_id) {
       return (
         <>
-          <MembersViewDashBar signed={this.props.signed} showNav={this.showNav} showSignature={this.showSignature} navOpen={this.state.navOpen} />
+          <MembersViewDashBar
+            signed={this.props.signed}
+            showNav={this.showNav}
+            showSignature={this.showSignature}
+            navOpen={this.state.navOpen}
+          />
           <HandbookPageContainer>
-            {this.state.signOpen === true && <Signature signed={this.props.signed} />}
+            {this.state.signOpen === true && (
+              <Signature signed={this.props.signed} />
+            )}
             <HandbookMembersForm
               sections={this.props.sections}
               showSignature={this.showSignature}
@@ -74,9 +81,10 @@ const HandbookPageContainer = styled.div`
   }
 `
 const RenderContainer = styled.div`
-  max-width: 1200px;
+  width: 100%;
+  max-width: 2000px;
   margin: 0 auto;
-`;
+`
 
 const mapStateToProps = state => {
   return {
@@ -91,5 +99,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { }
+  {}
 )(HandbookMemberView)

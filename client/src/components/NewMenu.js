@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom'
 import { getUsers, getUsersByClubId } from '../store/actions/usersActions'
 import { connect } from 'react-redux'
 import { logOut as stateLogOut } from '../store/actions/usersActions'
+import { withStyles } from '@material-ui/core/styles'
 
 class MenuPopupState extends React.Component {
   constructor(props) {
@@ -40,21 +41,34 @@ class MenuPopupState extends React.Component {
             <Button
               variant="outlined"
               color="inherit"
+              type="pupUpTrigger"
+              className={this.props.classes.popUpTrigger}
               {...bindTrigger(popupState)}
             >
               {this.props.currentUser.firstname
                 ? this.props.currentUser.firstname
                 : 'User'}
             </Button>
-            <Menu {...bindMenu(popupState)}>
+            <Menu
+              type="pupUpWrapper"
+              className={this.props.classes.popUpWrapper}
+              {...bindMenu(popupState)}
+            >
               {this.props.isMembers ? null : (
-                <MenuItem component={Link} to="/clique/settings">
+                <MenuItem
+                  component={Link}
+                  to="/clique/settings"
+                  type="pupUp"
+                  className={this.props.classes.popUp}
+                >
                   Settings
                 </MenuItem>
               )}
               <MenuItem
                 // component={Link}
                 // to="/"
+                type="pupUp"
+                className={this.props.classes.popUp}
                 onClick={this.logOut}
               >
                 Logout
@@ -67,6 +81,20 @@ class MenuPopupState extends React.Component {
   }
 }
 
+const styles = theme => ({
+  popUp: {
+    fontSize: 16,
+    padding: 15,
+  },
+  popUpWrapper: {
+    marginTop: 40,
+    marginLeft: 0,
+  },
+  popUpTrigger: {
+    fontSize: 16,
+  },
+})
+
 const mapStateToProps = state => {
   return {
     currentUser: state.auth.currentUser,
@@ -76,4 +104,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { getUsers, getUsersByClubId, stateLogOut }
-)(MenuPopupState)
+)(withStyles(styles)(MenuPopupState))

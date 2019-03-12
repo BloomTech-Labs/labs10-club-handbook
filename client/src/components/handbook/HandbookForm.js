@@ -15,13 +15,14 @@ const ClubForm = styled.form`
   background: rgb(60, 67, 75);
   color: white;
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
   border-left: 0px solid black;
   box-shadow: 0px 0px 10px black;
   text-align: center;
 
   @media ${size.mobile} {
     width: 16rem;
+    display: ${props => (props.navOpen ? 'block' : 'none')};
   }
 `
 const FixedContainer = styled.div`
@@ -67,7 +68,10 @@ const Container = styled.div`
 const HandbookForm = props => {
   return (
     <>
-      <ClubForm onSubmit={props.hasClub ? props.updateClub : props.createClub}>
+      <ClubForm
+        navOpen={props.navOpen}
+        onSubmit={props.hasClub ? props.updateClub : props.createClub}
+      >
         <FixedContainer>
           <Tabs
             value={props.value}
@@ -120,8 +124,13 @@ const HandbookForm = props => {
     </>
   )
 }
+const mapStateToProps = state => {
+  return {
+    navOpen: state.handbook.navOpen,
+  }
+}
 
 export default connect(
-  null,
+  mapStateToProps,
   { deleteSectionById }
 )(HandbookForm)

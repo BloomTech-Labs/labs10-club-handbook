@@ -160,10 +160,12 @@ const HandbookPageContainer = styled.div`
 const RenderContainer = styled.div`
   margin-left: 22rem;
   scroll-behavior: smooth;
+  width: 100%;
+  max-width: 2000px;
   @media ${size.mobile} {
-    margin-left: 16rem;
+    margin-left: 0;
   }
-`;
+`
 
 const mapStateToProps = state => {
   return {

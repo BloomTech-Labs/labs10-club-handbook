@@ -85,10 +85,6 @@ html, body, div, span, applet, object, iframe,
         text-decoration: none;
     }
 
-    .MuiAppBar-root-15, .MuiAppBar-root-16, .jss16 {
-        background: linear-gradient(to right, rgb(82, 157, 248), rgb(66, 126, 199));
-    }
-
     @media (max-width: 500px) {
         .navBar-logo {
             display: none;
