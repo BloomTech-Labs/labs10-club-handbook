@@ -18,6 +18,6 @@ export const Handbook = styled.div`
   width: 100%;
 
   /* @media ${size.mobile} {
-    margin-left: 16rem;
+    margin-left: 0;
   } */
 `
