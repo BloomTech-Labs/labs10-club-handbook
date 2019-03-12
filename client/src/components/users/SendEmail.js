@@ -5,9 +5,9 @@ import { size } from '../../style/breakpoints'
 
 const StyledButton = styled.button`
   width: 65px;
-  color: #000000;
+  color: gray;
   background-color: white;
-  border: 1px solid black;
+  border: 1px solid gray;
   border-radius: 4px;
   font-size: 1.2rem;
   font-weight: bold;

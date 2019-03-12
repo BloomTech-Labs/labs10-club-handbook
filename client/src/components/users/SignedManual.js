@@ -22,13 +22,11 @@ class SignedManual extends React.Component {
   render() {
     if (this.props.signed === true) {
       // console.log('signed props', this.props.signed)
-      return <Checkbox />
+      return <Checkbox color={'secondary'} />
     } else {
-      return <CheckBoxOutlineBlank />
+      return <CheckBoxOutlineBlank color={'secondary'} />
     }
   }
 }
 
 export default SignedManual
-
-

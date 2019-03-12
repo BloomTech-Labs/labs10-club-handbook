@@ -124,11 +124,12 @@ const PaymentContainer = styled.div`
   flex-direction: column;
   align-items: center;
   color: rgb(82, 157, 248);
-  border: 2px solid rgb(45, 45, 45);
-  border-radius: 7px;
+  /* border: 2px solid rgb(45, 45, 45); */
+  /* border-radius: 7px; */
   /* box-shadow: 5px 5px 5px 0 lightgray; */
   padding: 80px 10px 30px 10px;
   background: white;
+  box-shadow: 0 0 5px 5px rgb(230, 230, 230);
   /* background: linear-gradient(to right, rgb(82, 157, 248), rgb(66, 126, 199)); */
   @media (max-width: 500px) {
     margin: 0;
@@ -136,13 +137,14 @@ const PaymentContainer = styled.div`
   }
 
   .mySub {
-    border: 2px solid rgb(45, 45, 45);
-    border-radius: 5px;
+    /* border: 2px solid rgb(45, 45, 45); */
+    /* border-radius: 5px; */
     padding: 20px;
     /* box-shadow: 5px 5px 5px 0 lightgray; */
     background: linear-gradient(to right, rgb(82, 157, 248), rgb(66, 126, 199));
     color: white;
     min-width: 300px;
+    box-shadow: 0 0 5px 5px rgb(230, 230, 230);
 
     h1 {
       /* margin-left: 20px; */
@@ -179,15 +181,15 @@ const SubscriptionHolder = styled.div`
   div {
     min-width: 200px;
     padding: 20px;
-    border-radius: 5px;
+    /* border-radius: 5px; */
     cursor: pointer;
     background: linear-gradient(to right, rgb(82, 157, 248), rgb(66, 126, 199));
     color: white;
-    box-shadow: 5px 5px 5px 0px lightgray;
+    box-shadow: 0 0 5px 5px rgb(230, 230, 230);
     margin-left: 10px;
     /* box-shadow: 0 0 3px 3px rgb(255, 255, 255, 0.5) inset; */
     margin-bottom: 10px;
-    border: 2px solid rgb(45, 45, 45);
+    /* border: 2px solid rgb(45, 45, 45); */
     /* box-shadow: 5px 5px 5px 0 lightgray; */
 
     h3 {

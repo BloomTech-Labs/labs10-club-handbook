@@ -23,18 +23,19 @@ import LoadingPage from '../loading/loading'
 const Container = styled.div`
   max-width: 900px;
   margin: 0 auto;
-  padding: 70px 30px;
+  padding: 115px 30px;
   min-height: 100vh;
   @media ${size.tablet} {
     /* width: 75%; */
-    padding-top: 70px;
+    /* padding-top: 70px; */
   }
   /* border: 2px solid red; */
   background: rgb(200, 200, 200);
+  background: white;
 
   .shadow-wrapper {
-    border-radius: 7px;
-    box-shadow: 0 0 5px 5px gray;
+    /* border-radius: 7px; */
+    box-shadow: 0 0 5px 5px rgb(230, 230, 230);
   }
 `
 
@@ -43,8 +44,8 @@ const MembersList = styled.div`
   flex-direction: column;
   background: white;
   /* margin-top: 30px; */
-  border-bottom-right-radius: 7px;
-  border-bottom-left-radius: 7px;
+  /* border-bottom-right-radius: 7px; */
+  /* border-bottom-left-radius: 7px; */
   /* border-radius: 7px; */
   padding: 20px 15px 40px;
   /* box-shadow: 0px 5px 10px 5px gray; */
@@ -66,6 +67,7 @@ const StatusHeader = styled.div`
 const Visited = styled.h2`
   font-size: 1.8rem;
   margin-right: 15px;
+  margin-bottom: 3px;
   /* color: white; */
 `
 const Signed = styled.h2`

@@ -20,6 +20,8 @@ const SCWrapper = styled.div`
   }
   background: white;
   border-bottom: 1px dashed lightgray;
+  /* border-top-right-radius: 7px; */
+  /* border-top-left-radius: 7px; */
 `
 const StyledH6 = styled.h6`
   font-size: 3rem;
@@ -57,9 +59,9 @@ const SCEmail = styled.input`
 `
 const StyledButton = styled.button`
   min-width: 100px;
-  color: #000000;
+  color: gray;
   background-color: white;
-  border: 1px solid black;
+  border: 1px solid gray;
   border-radius: 4px;
   font-size: 1.2rem;
   font-weight: bold;
