@@ -35,7 +35,12 @@ const Container = styled.div`
 
   .shadow-wrapper {
     /* border-radius: 7px; */
+
     box-shadow: 0 0 5px 5px rgb(230, 230, 230);
+  }
+
+  @media ${size.mobile} {
+    padding: 115px 15px;
   }
 `
 
@@ -69,11 +74,30 @@ const Visited = styled.h2`
   margin-right: 15px;
   margin-bottom: 3px;
   /* color: white; */
+  @media ${size.mobile} {
+    font-size: 1rem;
+    margin-right: 5px;
+  }
+  @media (max-width: 400px) {
+    font-size: 1rem;
+    margin-right: 5px;
+  }
 `
 const Signed = styled.h2`
   font-size: 1.8rem;
   margin-right: 14%;
   /* color: white; */
+  @media ${size.mobile} {
+    font-size: 1rem;
+    margin-right: 7%;
+  }
+  @media (max-width: 400px) {
+    font-size: 1rem;
+    margin-right: 5%;
+  }
+  @media (max-width: 340px) {
+    margin-right: 2%;
+  }
 `
 
 const PopupButton = styled.div`
@@ -106,7 +130,10 @@ const PopupButton = styled.div`
 `
 const AddMembersWarning = styled.h3`
   font-size: 2rem;
-  margin-top: 100px;
+  margin-top: 50px;
+  padding: 20px;
+  width: 100%;
+  text-align: center;
 `
 
 const FailedPage = styled.div`

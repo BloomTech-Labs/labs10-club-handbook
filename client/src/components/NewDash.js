@@ -7,9 +7,8 @@ import Button from '@material-ui/core/Button'
 import Toolbar from '@material-ui/core/Toolbar'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Typography from '@material-ui/core/Typography'
-
-import { Link } from 'react-router-dom'
-
+import styled from 'styled-components'
+import { Link, withRouter } from 'react-router-dom'
 import Auth from '../auth/Auth'
 // import RenderPropsMenu from './NewDashMenu'
 import Tabs from '@material-ui/core/Tabs'
@@ -21,6 +20,11 @@ import NoSsr from '@material-ui/core/NoSsr'
 import MenuPopupState from './NewMenu'
 import logo from '../logos/Cliquebook_combo_white.png'
 
+import menuButton from '../assets/images/nav-hamburger.png'
+import menuButtonClose from '../assets/images/nav-hamburger-close.png'
+import { connect } from 'react-redux'
+import { toggleEditWindow } from '../store/actions/handbookActions'
+
 const auth = new Auth()
 
 const drawerWidth = 150
@@ -30,17 +34,17 @@ const styles = theme => ({
     display: 'flex',
   },
   appBar: {
-    paddingRight: 40,
+    paddingRight: 0,
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
   },
   navButton: {
-    marginRight: 10,
+    marginRight: 0,
   },
   navButtons: {
-    marginRight: 40,
+    marginRight: 0,
   },
   userMenu: {},
   toolbarTitle: {
@@ -111,6 +115,22 @@ function SectionContainer(props) {
   )
 }
 
+const OpenMenu = styled.img`
+  display: ${props => (props.visible === true ? 'block' : 'none')};
+  cursor: pointer;
+  @media (min-width: 500px) {
+    display: none;
+  }
+`
+
+const CloseMenu = styled.img`
+  display: ${props => (props.visible === true ? 'block' : 'none')};
+  cursor: pointer;
+  @media (min-width: 500px) {
+    display: none;
+  }
+`
+
 SectionContainer.propTypes = {
   children: PropTypes.node.isRequired,
 }
@@ -164,6 +184,20 @@ class DashBar extends React.Component {
 
         <AppBar position="fixed" className={classNames(classes.appBar)}>
           <Toolbar>
+            {this.props.history.location.pathname === `/clique/handbook` ? (
+              <>
+                <OpenMenu
+                  visible={!this.props.navOpen}
+                  src={menuButton}
+                  onClick={this.props.toggleEditWindow}
+                />
+                <CloseMenu
+                  visible={this.props.navOpen}
+                  src={menuButtonClose}
+                  onClick={this.props.toggleEditWindow}
+                />
+              </>
+            ) : null}
             <Typography
               variant="h6"
               color="inherit"
@@ -173,7 +207,10 @@ class DashBar extends React.Component {
               <img
                 src={logo}
                 style={{ height: '45px', cursor: 'pointer' }}
-                onClick={() => window.location.reload()}
+                onClick={() => {
+                  this.props.history.push('/clique/handbook')
+                  window.location.reload()
+                }}
                 className="clique-navBar-logo"
               />
             </Typography>
@@ -228,4 +265,13 @@ DashBar.propTypes = {
   theme: PropTypes.object.isRequired,
 }
 
-export default withStyles(styles, { withTheme: true })(DashBar)
+const mapStateToProps = state => {
+  return {
+    navOpen: state.handbook.navOpen,
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  { toggleEditWindow }
+)(withStyles(styles, { withTheme: true })(DashBar))

@@ -31,6 +31,8 @@ class LeaveTeam extends React.Component {
           variant="contained"
           color="secondary"
           onClick={this.handleOpen}
+          type="logout"
+          className={this.props.className}
         >
           Logout
         </Button>
@@ -46,6 +48,7 @@ class LeaveTeam extends React.Component {
               Cancel
             </Button>
             <Button
+              type="logout"
               onClick={Link}
               href="https://club-handbook.auth0.com/v2/logout"
               color="secondary"
