@@ -35,7 +35,7 @@ const Container = styled.div`
 
   .shadow-wrapper {
     /* border-radius: 7px; */
-    box-shadow: 0 0 5px 5px lightgray;
+    box-shadow: 0 0 5px 5px rgb(230, 230, 230);
   }
 `
 
@@ -67,6 +67,7 @@ const StatusHeader = styled.div`
 const Visited = styled.h2`
   font-size: 1.8rem;
   margin-right: 15px;
+  margin-bottom: 3px;
   /* color: white; */
 `
 const Signed = styled.h2`
