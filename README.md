@@ -9,13 +9,13 @@ CliqueBook is an easy to use document creator and club manager. Admins can creat
 - Front-End Deployment: https://clubhandbook.netlify.com/
 - Back-End Deployment: https://club-handbook.herokuapp.com/
 - Back-End Documentation: https://club-handbook.herokuapp.com/apidoc/
+<br>
 
 ## Table of Contents
 - [Team](#team)
 - [Features](#features)
-- [Front End Dependencies](#front-end)
-- [Back End Dependencies](#back-end)
-
+- [Dependencies](#dependencies)
+<br>
 
 ## Team
 
@@ -26,6 +26,7 @@ CliqueBook is an easy to use document creator and club manager. Admins can creat
 | Andrew Cengiz | https://github.com/turkworks | https://www.linkedin.com/in/andrewcengiz/ |
 | Daren Larson | https://github.com/darenlarson  | https://www.linkedin.com/in/daren-larson |
 | Tommy Huynh | https://github.com/tommaay | https://www.linkedin.com/in/tommy-huynh-ops/ |
+<br>
 
 ## Features 
 
@@ -36,9 +37,11 @@ CliqueBook is an easy to use document creator and club manager. Admins can creat
 - Reorganize the sections by dragging and dropping them
 - Members can access the handbook using a magic link
 - Members can read and sign the handbook
+<br>
 
-<a name='front-end'/>
-## Front-End Dependencies
+## Dependencies
+
+### Front End Dependencies
 
 - [React](https://reactjs.org/) - A JavaScript library for building user interfaces
 - [Axios](https://www.npmjs.com/package/axios) - Promise based HTTP client for the browser and node.js
@@ -50,8 +53,7 @@ CliqueBook is an easy to use document creator and club manager. Admins can creat
 - [React DND](https://www.npmjs.com/package/react-dnd) - Drag and drop for React
 - [Redux](https://redux.js.org/) - State container
 
-<a name='back-end'/>
-## Back-End Dependencies
+### Back End Dependencies
 
 - [Node.js](https://nodejs.org/) - Back end JavaScript runtime
 - [cors](https://www.npmjs.com/package/cors) - package for providing a Express middleware that can be used to enable CORS
