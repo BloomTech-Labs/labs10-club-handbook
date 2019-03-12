@@ -124,11 +124,12 @@ const PaymentContainer = styled.div`
   flex-direction: column;
   align-items: center;
   color: rgb(82, 157, 248);
-  border: 2px solid rgb(45, 45, 45);
-  border-radius: 7px;
+  /* border: 2px solid rgb(45, 45, 45); */
+  /* border-radius: 7px; */
   /* box-shadow: 5px 5px 5px 0 lightgray; */
   padding: 80px 10px 30px 10px;
   background: white;
+  box-shadow: 0 0 5px 5px lightgray;
   /* background: linear-gradient(to right, rgb(82, 157, 248), rgb(66, 126, 199)); */
   @media (max-width: 500px) {
     margin: 0;

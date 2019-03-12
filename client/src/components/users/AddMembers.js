@@ -20,6 +20,8 @@ const SCWrapper = styled.div`
   }
   background: white;
   border-bottom: 1px dashed lightgray;
+  /* border-top-right-radius: 7px; */
+  /* border-top-left-radius: 7px; */
 `
 const StyledH6 = styled.h6`
   font-size: 3rem;

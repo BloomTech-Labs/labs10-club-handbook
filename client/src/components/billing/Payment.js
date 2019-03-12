@@ -45,8 +45,10 @@ const PaymentContainer = styled.div`
   }
 
   .card {
-    border: 2px solid rgb(65, 82, 179);
+    /* border: 2px solid rgb(65, 82, 179); */
     /* box-shadow: 7px 7px 7px 0 lightgray; */
+    box-shadow: 0 0 5px 5px lightgray;
+    border-radius: 0;
   }
 
   .MuiCardHeader-root-262 {

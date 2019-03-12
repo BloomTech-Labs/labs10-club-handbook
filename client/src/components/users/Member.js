@@ -30,7 +30,7 @@ const MemberContainer = styled.div`
     box-shadow: 0 0 10px 0 white inset;
   }
   /* color: white; */
-  border-radius: 3px;
+  /* border-radius: 3px; */
 `
 const SCMember = styled.div`
   display: flex;
