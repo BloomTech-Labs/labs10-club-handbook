@@ -130,7 +130,10 @@ const PopupButton = styled.div`
 `
 const AddMembersWarning = styled.h3`
   font-size: 2rem;
-  margin-top: 100px;
+  margin-top: 50px;
+  padding: 20px;
+  width: 100%;
+  text-align: center;
 `
 
 const FailedPage = styled.div`

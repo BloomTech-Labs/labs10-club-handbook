@@ -14,7 +14,7 @@ import {
 } from '@material-ui/core'
 
 const PaymentContainer = styled.div`
-  margin: 100px auto;
+  margin: 50px auto;
   max-width: 800px;
   /* width: 70%; */
   display: flex;
@@ -29,7 +29,7 @@ const PaymentContainer = styled.div`
     display: none;
   }
   @media (max-width: 600px) {
-    margin: 50px auto;
+    margin: 0 auto;
 
     .title-thin {
       display: block;
