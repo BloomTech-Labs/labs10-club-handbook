@@ -216,7 +216,7 @@ class Member extends React.Component {
           </Actions>
         </SCMember>
         <UpdateMember visible={this.state.open}>
-          <UpdateMembers userId={this.props.user.id} />
+          <UpdateMembers userId={this.props.user.id} user={this.props.user} />
         </UpdateMember>
       </MemberContainer>
       // </Paper>
