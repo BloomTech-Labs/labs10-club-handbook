@@ -70,7 +70,7 @@ const Email = styled.div`
     width: 275px;
   }
   @media ${size.mobile} {
-    width: 210px;
+    width: 250px;
   }
 `
 const UpdateMember = styled.div`
@@ -83,6 +83,20 @@ const Actions = styled.div`
   justify-content: space-between;
   margin: 0 0 0 0;
   align-items: center;
+
+  div {
+    width: 90px;
+    display: flex;
+    justify-content: space-between;
+  }
+  @media ${size.mobile} {
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    div {
+      width: 50px;
+    }
+  }
 `
 //#endregion
 
@@ -204,8 +218,10 @@ class Member extends React.Component {
           </MemberInfo>
 
           <Actions>
-            <ViewedManual sub_id={this.props.user.sub_id} />
-            <SignedManual signed={this.props.user.signed} />
+            <div>
+              <ViewedManual sub_id={this.props.user.sub_id} />
+              <SignedManual signed={this.props.user.signed} />
+            </div>
             <EmailButton
               email={this.props.user.email}
               name={this.props.user.firstname}

@@ -8,7 +8,7 @@ import { size } from '../../style/breakpoints'
 const SCWrapper = styled.div`
   /* width: 100vw; */
   /* height: 100vh; */
-  margin-top: 70px;
+  padding-top: 70px;
   display: flex;
   flex-direction: column;
   background: rgb(55, 55, 55);
