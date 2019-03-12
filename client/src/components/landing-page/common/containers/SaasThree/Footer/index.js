@@ -11,6 +11,7 @@ import FooterWrapper, { List, ListItem } from './footer.style'
 import LogoImage from '../../../assets/image/saasTwo/logo.png'
 
 import { FOOTER_WIDGET } from '../../../data/SaasTwo'
+import CliqueLogoBlue from '../../../../../../logos/Cliquebook_combo.png'
 
 const Footer = ({
   row,
@@ -28,15 +29,15 @@ const Footer = ({
           <Box {...colOne}>
             <Logo
               href="#"
-              logoSrc={LogoImage}
+              logoSrc={CliqueLogoBlue}
               title="Hosting"
               logoStyle={logoStyle}
             />
-            <Text content="hello@isomorphic.com" {...textStyle} />
-            <Text content="+97 0267 5923" {...textStyle} />
+            {/* <Text content="hello@isomorphic.com" {...textStyle} /> */}
+            {/* <Text content="+97 0267 5923" {...textStyle} /> */}
           </Box>
           {/* End of footer logo column */}
-          <Box {...colTwo}>
+          {/* <Box {...colTwo}>
             {FOOTER_WIDGET.map((widget, index) => (
               <Box className="col" {...col} key={`footer-widget-${index}`}>
                 <Heading content={widget.title} {...titleStyle} />
@@ -51,13 +52,13 @@ const Footer = ({
                 </List>
               </Box>
             ))}
-          </Box>
+          </Box> */}
           {/* End of footer List column */}
         </Box>
       </Container>
     </FooterWrapper>
-  )
-}
+  );
+};
 
 // Footer style props
 Footer.propTypes = {
@@ -68,7 +69,7 @@ Footer.propTypes = {
   titleStyle: PropTypes.object,
   textStyle: PropTypes.object,
   logoStyle: PropTypes.object,
-}
+};
 
 // Footer default style
 Footer.defaultProps = {
@@ -118,6 +119,6 @@ Footer.defaultProps = {
     fontSize: '16px',
     mb: '10px',
   },
-}
+};
 
-export default Footer
+export default Footer;

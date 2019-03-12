@@ -20,18 +20,22 @@ const ServiceSection = ({
     <SectionWrapper>
       <Container>
         <Box {...secTitleWrapper}>
-          <Text {...secText} content="CUSTOMER SERVICE" />
+          <Text {...secText} content="ABOUT" />
           <Heading
             {...secHeading}
-            content="Choose dashboard for every stage of your customer journey"
+            content="What is Clique Book?"
           />
           <Text
             {...secDes}
-            content="The rise of mobile devices transforms the way we consume information entirely and the world's most relevant channels such as Facebook and Instagram are almost exclusively used on mobile that is why we developed mobile."
+            content="Clique Book makes it easy for a club administrator to create and maintain their club's handbook, and maintain their list of club members, all in one location."
+          />
+          <Text
+            {...secDes}
+            content="Your club members don't even need to go through a registration process. Members verify themselves by simply clicking a link that's sent to their email."
           />
         </Box>
 
-        <Box {...Row}>
+        {/* <Box {...Row}>
           {SERVICE_ITEMS.map((item, index) => (
             <Box
               {...Col}
@@ -46,11 +50,11 @@ const ServiceSection = ({
               </Box>
             </Box>
           ))}
-        </Box>
+        </Box> */}
       </Container>
     </SectionWrapper>
-  )
-}
+  );
+};
 
 ServiceSection.propTypes = {
   secTitleWrapper: PropTypes.object,
@@ -60,7 +64,7 @@ ServiceSection.propTypes = {
   Col: PropTypes.object,
   serviceTitleStyle: PropTypes.object,
   secDes: PropTypes.object,
-}
+};
 
 ServiceSection.defaultProps = {
   secTitleWrapper: {
@@ -73,7 +77,7 @@ ServiceSection.defaultProps = {
     fontSize: '14px',
     letterSpacing: '0.15em',
     fontWeight: '700',
-    color: '#ff4362',
+    color: 'rgb(81, 159, 248)',
     mb: '12px',
   },
   secHeading: {
@@ -118,6 +122,6 @@ ServiceSection.defaultProps = {
     maxWidth: '100%',
     textAlign: 'center',
   },
-}
+};
 
-export default ServiceSection
+export default ServiceSection;

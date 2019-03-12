@@ -50,11 +50,11 @@ export default () => {
           <ServiceSection />
           <UpdateScreen />
           <FeatureSection />
-          <PartnerSection />
+          {/* <PartnerSection /> */}
           <PricingSection />
           <TestimonialSection />
-          <TrialSection />
-          <Newsletter />
+          {/* <TrialSection /> */}
+          {/* <Newsletter /> */}
           <Footer />
         </ContentWrapper>
       </Fragment>

@@ -15,6 +15,8 @@ import ScrollSpyMenu from '../../../components/ScrollSpyMenu'
 
 import LogoImage from '../../../assets/image/saasThree/logo-white.png'
 import LogoImageAlt from '../../../assets/image/saasThree/logo.png'
+import CliqueLogoWhite from '../../../../../../logos/Cliquebook_combo_white.png'
+import CliqueLogoBlue from '../../../../../../logos/Cliquebook_combo.png'
 
 const Navbar = ({ navbarStyle, logoStyle, button, row, menuWrapper }) => {
   const { state, dispatch } = useContext(DrawerContext)
@@ -32,14 +34,14 @@ const Navbar = ({ navbarStyle, logoStyle, button, row, menuWrapper }) => {
         <Box {...row}>
           <Logo
             href="#"
-            logoSrc={LogoImage}
+            logoSrc={CliqueLogoWhite}
             title="Portfolio"
             logoStyle={logoStyle}
             className="main-logo"
           />
           <Logo
             href="#"
-            logoSrc={LogoImageAlt}
+            logoSrc={CliqueLogoBlue}
             title="Portfolio"
             logoStyle={logoStyle}
             className="logo-alt"
@@ -110,7 +112,7 @@ Navbar.defaultProps = {
     borderRadius: '4px',
     pl: '15px',
     pr: '15px',
-    colors: 'secondaryWithBg',
+    colors: 'cliqueDefault',
     minHeight: 'auto',
     height: '40px',
   },
