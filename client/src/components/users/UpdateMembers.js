@@ -111,6 +111,16 @@ class UpdateMembers extends React.Component {
     })
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.user !== this.props.user) {
+      this.setState({
+        firstname: this.props.user.firstname,
+        lastname: this.props.user.lastname,
+        email: this.props.user.email,
+      })
+    }
+  }
+
   handleChanges = event => {
     this.setState({ [event.target.name]: event.target.value })
   }
