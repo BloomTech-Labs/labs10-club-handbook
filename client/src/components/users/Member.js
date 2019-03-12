@@ -19,14 +19,12 @@ const MemberContainer = styled.div`
   margin: 0px 2%;
   padding: 5px 1%;
   /* border-left: 1px solid #3648ac; */
-  background: ${props => props.isEven === true && 'rgb(230, 230, 230)'};
-  background: ${props =>
-    props.editVisible === true &&
-    'linear-gradient(to right, rgb(82, 157, 248), rgb(66, 126, 199))'};
+  background: ${props => props.isEven === true && 'rgb(245, 245, 245)'};
+  background: ${props => props.editVisible === true && 'rgb(230,230,230)'};
   /* color: ${props => props.editVisible === true && 'white'}; */
   :hover {
-    background: linear-gradient(to right, rgb(82, 157, 248), rgb(66, 126, 199));
-    color: white;
+    background: rgb(230,230,230);
+    /* color: white; */
     box-shadow: 0 0 10px 0 white inset;
   }
   /* color: white; */
@@ -218,7 +216,7 @@ class Member extends React.Component {
           </Actions>
         </SCMember>
         <UpdateMember visible={this.state.open}>
-          <UpdateMembers userId={this.props.user.id} />
+          <UpdateMembers userId={this.props.user.id} user={this.props.user} />
         </UpdateMember>
       </MemberContainer>
       // </Paper>

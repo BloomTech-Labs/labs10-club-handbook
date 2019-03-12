@@ -56,13 +56,18 @@ const InputEmail = styled.input`
   }
 `
 
-const ButtonWrapper = styled.div``
+const ButtonWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+`
 
 const StyledButton = styled.button`
   width: 70px;
-  color: #000000;
+  color: gray;
   background-color: white;
-  border: 1px solid black;
+  border: 1px solid gray;
   border-radius: 4px;
   font-size: 1.2rem;
   font-weight: bold;
@@ -95,6 +100,24 @@ class UpdateMembers extends React.Component {
       firstname: '',
       lastname: '',
       email: '',
+    }
+  }
+
+  componentDidMount() {
+    this.setState({
+      firstname: this.props.user.firstname,
+      lastname: this.props.user.lastname,
+      email: this.props.user.email,
+    })
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.user !== this.props.user) {
+      this.setState({
+        firstname: this.props.user.firstname,
+        lastname: this.props.user.lastname,
+        email: this.props.user.email,
+      })
     }
   }
 

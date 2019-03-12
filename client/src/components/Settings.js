@@ -89,6 +89,22 @@ class Settings extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.setState({
+      firstname: this.props.currentUser.firstname,
+      lastname: this.props.currentUser.lastname,
+    })
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.currentUser !== this.props.currentUser) {
+      this.setState({
+        firstname: this.props.currentUser.firstname,
+        lastname: this.props.currentUser.lastname,
+      })
+    }
+  }
+
   handleEditUser = e => {
     e.preventDefault()
     const userId = this.props.currentUser.id
