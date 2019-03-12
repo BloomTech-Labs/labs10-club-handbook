@@ -13,6 +13,8 @@ CliqueBook is an easy to use document creator and club manager. Admins can creat
 ## Table of Contents
 - [Team](#team)
 - [Features](#Features)
+- [Front-End Dependencies](#Front-End Dependencies)
+- [Back-End Dependencies](#Back-End Dependencies)
 
 ## Team
 
@@ -33,3 +35,29 @@ CliqueBook is an easy to use document creator and club manager. Admins can creat
 - Reorganize the sections by dragging and dropping them
 - Members can access the handbook using a magic link
 - Members can read and sign the handbook
+
+## Front-End Dependencies
+
+- [React](https://reactjs.org/) - A JavaScript library for building user interfaces
+- [Axios](https://www.npmjs.com/package/axios) - Promise based HTTP client for the browser and node.js
+- [React Router](https://reacttraining.com/react-router/web/guides/quick-start) - Routing Library
+- [Styled Components](https://www.styled-components.com/) - Styling library for CSS in JS
+- [React-Quill](https://quilljs.com/) - Rich text editor
+- [React-Render-HTML](https://www.npmjs.com/package/react-render-html) - Renders a string of html syntax
+- [Material UI](https://material-ui.com/) - UI library
+- [React DND](https://www.npmjs.com/package/react-dnd) - Drag and drop for React
+- [Redux](https://redux.js.org/) - State container
+
+## Back-End Dependencies
+
+- [Node.js](https://nodejs.org/) - Back end JavaScript runtime
+- [cors](https://www.npmjs.com/package/cors) - package for providing a Express middleware that can be used to enable CORS
+- [expressjs](https://expressjs.com/) - Node.js framework
+- [json web token](https://www.npmjs.com/package/jsonwebtoken) - Implements JSON web tokens
+- [knex.js](https://knexjs.org/) - SQL query builder
+- [sqlite3](https://www.sqlite.org/index.html) - Library that implements SQL database engine
+- [Stripe](https://stripe.com/docs) - Library to implement Stripes billing functionality
+- [Cloudinary](https://www.npmjs.com/package/cloudinary) - Library to upload and store images in the cloud
+- [Multer](https://www.npmjs.com/package/multer) - Middleware for handling multipart/form-data, which is primarily used for uploading files
+- [API Doc](https://www.npmjs.com/package/apidoc) - Plug in that helps create API documentation from source code comments
+- [JWT Decode](https://www.npmjs.com/package/jwt-decode) - Library that helps decoding JWTs token which are Base64Url encoded
