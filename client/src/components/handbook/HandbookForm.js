@@ -15,7 +15,7 @@ const ClubForm = styled.form`
   background: rgb(60, 67, 75);
   color: white;
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
   border-left: 0px solid black;
   box-shadow: 0px 0px 10px black;
   text-align: center;
