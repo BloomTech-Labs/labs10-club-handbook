@@ -65,12 +65,13 @@ const styles = theme => ({
   submit: {
     marginTop: theme.spacing.unit * 4,
     marginBottom: theme.spacing.unit * 2,
-    fontSize: 14,
+    fontSize: 16,
   },
   logout: {
     marginTop: theme.spacing.unit * 2,
     marginBottom: theme.spacing.unit * 4,
-    fontSize: 14,
+    fontSize: 16,
+    color: 'white',
   },
 })
 
@@ -190,7 +191,7 @@ class Settings extends React.Component {
                     value={this.state.firstname}
                     onChange={this.handleInputChange}
                     inputProps={{
-                      style: { fontSize: 14 },
+                      style: { fontSize: 16, padding: 12 },
                     }}
                   />
                   <TextField
@@ -203,7 +204,7 @@ class Settings extends React.Component {
                     onChange={this.handleInputChange}
                     className="form-input"
                     inputProps={{
-                      style: { fontSize: 14 },
+                      style: { fontSize: 16, padding: 12 },
                     }}
                   />
                   {/* <FormGroup className={classes.formgroup}>

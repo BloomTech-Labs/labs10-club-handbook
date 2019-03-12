@@ -39,16 +39,26 @@ class LeaveTeam extends React.Component {
         <Dialog open={this.state.open} onClose={this.handleClose}>
           <DialogContent>
             <DialogContentText>
-              <p>Are you sure you would like to continue?</p>
+              <p style={{ fontSize: '20px' }}>
+                Are you sure you would like to continue?
+              </p>
             </DialogContentText>
             <Divider />
           </DialogContent>
-          <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
+          <DialogActions style={{ display: 'flex', justifyContent: 'center' }}>
+            <Button
+              onClick={this.handleClose}
+              color="primary"
+              type="logout"
+              className={this.props.className}
+              variant="contained"
+            >
               Cancel
             </Button>
             <Button
               type="logout"
+              className={this.props.className}
+              variant="contained"
               onClick={Link}
               href="https://club-handbook.auth0.com/v2/logout"
               color="secondary"

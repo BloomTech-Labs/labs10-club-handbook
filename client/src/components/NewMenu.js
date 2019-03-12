@@ -84,6 +84,7 @@ class MenuPopupState extends React.Component {
 const styles = theme => ({
   popUp: {
     fontSize: 16,
+    padding: 15,
   },
   popUpWrapper: {
     marginTop: 40,
