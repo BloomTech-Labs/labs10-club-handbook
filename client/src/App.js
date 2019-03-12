@@ -30,6 +30,7 @@ import AddMembersMobile from './components/users/AddMembersMobile'
 
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
 import Theme from './style/colors'
+import LandingPage from './components/landing-page/LandingPage'
 
 class App extends Component {
   componentDidMount() {
@@ -49,38 +50,38 @@ class App extends Component {
         <BrowserRouter>
           <div className="App">
             {/* <Switch> */}
-              <Route exact path="/" component={Landing} />
-              <Route path="/clique" component={DashBar} />
-              <Route exact path="/clique/members" component={Members} />
-              <Route path="/clique/handbook" component={HandbookPage} />
-              <Route exact path="/add-members" component={AddMembers} />
-              <Route exact path="/signature" component={Signature} />
-              <Route
-                exact
-                path="/update-members/:id"
-                component={UpdateMembers}
-              />
-              <Route exact path="/billing" component={Billing} />
-              <Route exact path="/clique/settings" component={Settings} />
-              <Route path="/login" component={Login} />
-              <Route path="/callback" component={Callback} />
-              <Route
-                path="/authenticated"
-                render={props => <Authenticated {...props} />}
-              />
-              <Route path="/add-section" component={SectionForm} />
-              <Route
-                path="/update-section/:id"
-                render={props => <SectionForm {...props} update={true} />}
-              />
-              <Route path="/callback-email" component={CallbackEmail} />
-              <Route path="/magic-link-request" component={MagicLinkRequest} />
-              <Route path="/section/:id" component={SectionRender} />
-              <Route
-                path="/handbook/member-view"
-                component={HandbookMemberView}
-              />
-              <Route path="/clique/members/add-members-mobile" component={AddMembersMobile} />
+            <Route exact path="/" component={Landing} />
+            <Route path="/clique" component={DashBar} />
+            <Route exact path="/clique/members" component={Members} />
+            <Route path="/clique/handbook" component={HandbookPage} />
+            <Route exact path="/add-members" component={AddMembers} />
+            <Route exact path="/signature" component={Signature} />
+            <Route exact path="/update-members/:id" component={UpdateMembers} />
+            <Route exact path="/billing" component={Billing} />
+            <Route exact path="/clique/settings" component={Settings} />
+            <Route path="/login" component={Login} />
+            <Route path="/callback" component={Callback} />
+            <Route
+              path="/authenticated"
+              render={props => <Authenticated {...props} />}
+            />
+            <Route path="/add-section" component={SectionForm} />
+            <Route
+              path="/update-section/:id"
+              render={props => <SectionForm {...props} update={true} />}
+            />
+            <Route path="/callback-email" component={CallbackEmail} />
+            <Route path="/magic-link-request" component={MagicLinkRequest} />
+            <Route path="/section/:id" component={SectionRender} />
+            <Route
+              path="/handbook/member-view"
+              component={HandbookMemberView}
+            />
+            <Route
+              path="/clique/members/add-members-mobile"
+              component={AddMembersMobile}
+            />
+            <Route path="/home" component={LandingPage} />
             {/* </Switch> */}
           </div>
         </BrowserRouter>
