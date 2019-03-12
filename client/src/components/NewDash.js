@@ -20,7 +20,7 @@ import NoSsr from '@material-ui/core/NoSsr'
 import MenuPopupState from './NewMenu'
 import logo from '../logos/Cliquebook_combo_white.png'
 
-import menuButton from '../assets/images/nav-hamburger.png'
+import menuButton from '../assets/images/book-dropdown-white.png'
 import menuButtonClose from '../assets/images/nav-hamburger-close.png'
 import { connect } from 'react-redux'
 import { toggleEditWindow } from '../store/actions/handbookActions'
@@ -193,6 +193,9 @@ class DashBar extends React.Component {
                   visible={!this.props.navOpen}
                   src={menuButton}
                   onClick={this.props.toggleEditWindow}
+                  style={{
+                    height: '40px',
+                  }}
                 />
                 <CloseMenu
                   visible={this.props.navOpen}
