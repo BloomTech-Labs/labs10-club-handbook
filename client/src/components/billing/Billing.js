@@ -17,7 +17,11 @@ class Billing extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getSubscription()
+    if (this.props.subscription) {
+      this.setState({ hasSubscription: true })
+    } else {
+      this.props.getSubscription()
+    }
   }
 
   componentDidUpdate(prevProps) {
