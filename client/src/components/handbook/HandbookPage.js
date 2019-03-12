@@ -159,6 +159,7 @@ const HandbookPageContainer = styled.div`
 
 const RenderContainer = styled.div`
   margin-left: 22rem;
+  scroll-behavior: smooth;
   @media ${size.mobile} {
     margin-left: 16rem;
   }

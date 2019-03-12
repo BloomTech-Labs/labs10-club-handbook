@@ -67,6 +67,7 @@ const HandbookPageContainer = styled.div`
   width: 100%;
   margin-top: 6.2rem;
   z-index: 0;
+  scroll-behavior: smooth;
 
   @media (max-width: 600px) {
     margin-top: 5.1rem;
