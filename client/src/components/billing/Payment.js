@@ -57,7 +57,7 @@ const PaymentContainer = styled.div`
 
 const PaymentButton = styled.div`
   margin: auto;
-  margin-top 5%;
+  margin-top: 5%;
   width: 40%;
   display: flex;
   flex-direction: column;
