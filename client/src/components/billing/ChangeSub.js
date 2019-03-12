@@ -132,7 +132,6 @@ const PaymentContainer = styled.div`
   box-shadow: 0 0 5px 5px rgb(230, 230, 230);
   /* background: linear-gradient(to right, rgb(82, 157, 248), rgb(66, 126, 199)); */
   @media (max-width: 500px) {
-    margin: 0;
     min-width: 300px;
   }
 

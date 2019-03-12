@@ -105,6 +105,9 @@ const styles = theme => ({
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
   },
+  tabButton: {
+    fontSize: 12,
+  },
 })
 
 function SectionContainer(props) {
@@ -227,6 +230,8 @@ class DashBar extends React.Component {
                 component={Link}
                 to="/clique/handbook"
                 icon={<Book />}
+                type="tabButton"
+                className={classes.tabButton}
               />
               <LinkTab
                 label="Manage Members"
@@ -234,6 +239,8 @@ class DashBar extends React.Component {
                 icon={<PersonPinIcon />}
                 component={Link}
                 to="/clique/members"
+                type="tabButton"
+                className={classes.tabButton}
               />
             </Tabs>
             {/* <RenderPropsMenu /> */}
