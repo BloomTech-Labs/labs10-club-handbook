@@ -12,9 +12,10 @@ CliqueBook is an easy to use document creator and club manager. Admins can creat
 
 ## Table of Contents
 - [Team](#team)
-- [Features](#Features)
-- [Front-End Dependencies](#Front-End Dependencies)
-- [Back-End Dependencies](#Back-End Dependencies)
+- [Features](#features)
+- [Front End Dependencies](#front-end)
+- [Back End Dependencies](#back-end)
+
 
 ## Team
 
@@ -26,7 +27,7 @@ CliqueBook is an easy to use document creator and club manager. Admins can creat
 | Daren Larson | https://github.com/darenlarson  | https://www.linkedin.com/in/daren-larson |
 | Tommy Huynh | https://github.com/tommaay | https://www.linkedin.com/in/tommy-huynh-ops/ |
 
-## Features
+## Features 
 
 - Create a club handbook
 - Add members and give them access to the handbook
@@ -36,6 +37,7 @@ CliqueBook is an easy to use document creator and club manager. Admins can creat
 - Members can access the handbook using a magic link
 - Members can read and sign the handbook
 
+<a name='front-end'/>
 ## Front-End Dependencies
 
 - [React](https://reactjs.org/) - A JavaScript library for building user interfaces
@@ -48,6 +50,7 @@ CliqueBook is an easy to use document creator and club manager. Admins can creat
 - [React DND](https://www.npmjs.com/package/react-dnd) - Drag and drop for React
 - [Redux](https://redux.js.org/) - State container
 
+<a name='back-end'/>
 ## Back-End Dependencies
 
 - [Node.js](https://nodejs.org/) - Back end JavaScript runtime
