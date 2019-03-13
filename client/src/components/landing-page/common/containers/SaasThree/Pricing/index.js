@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import Link from 'next/link'
+// import Link from 'next/link'
 import Box from '../../../../reusecore/elements/Box'
 import Text from '../../../../reusecore/elements/Text'
 import Heading from '../../../../reusecore/elements/Heading'
@@ -8,6 +8,7 @@ import Button from '../../../../reusecore/elements/Button'
 import Container from '../../../components/UI/Container'
 import GlideCarousel from '../../../components/GlideCarousel'
 import GlideSlide from '../../../components/GlideCarousel/glideSlide'
+import { Link } from 'react-router-dom'
 
 import {
   MONTHLY_PRICING_TABLE,
@@ -157,7 +158,7 @@ const PricingSection = ({
                       ))}
                     </PricingList>
                     <PricingButton>
-                      <Link href={pricingTable.url}>
+                      <Link to="/get-started">
                         <a>
                           <Button
                             title={pricingTable.buttonLabel}

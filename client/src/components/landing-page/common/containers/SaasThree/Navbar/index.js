@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import Link from 'next/link'
+// import Link from 'next/link'
 import PropTypes from 'prop-types'
 import NavbarWrapper from '../../../../reusecore/elements/Navbar'
 import Drawer from '../../../../reusecore/elements/Drawer'
@@ -17,6 +17,7 @@ import LogoImage from '../../../assets/image/saasThree/logo-white.png'
 import LogoImageAlt from '../../../assets/image/saasThree/logo.png'
 import CliqueLogoWhite from '../../../../../../logos/Cliquebook_combo_white.png'
 import CliqueLogoBlue from '../../../../../../logos/Cliquebook_combo.png'
+import { Link } from 'react-router-dom'
 
 const Navbar = ({ navbarStyle, logoStyle, button, row, menuWrapper }) => {
   const { state, dispatch } = useContext(DrawerContext)
@@ -52,7 +53,7 @@ const Navbar = ({ navbarStyle, logoStyle, button, row, menuWrapper }) => {
               menuItems={MENU_ITEMS}
               offset={-70}
             />
-            <Link href="#">
+            <Link to="/get-started">
               <a className="navbar_button">
                 <Button {...button} title="GET STARTED" />
               </a>
@@ -70,7 +71,7 @@ const Navbar = ({ navbarStyle, logoStyle, button, row, menuWrapper }) => {
                 drawerClose={true}
                 offset={-100}
               />
-              <Link href="#">
+              <Link to="/get-started">
                 <a className="navbar_drawer_button">
                   <Button {...button} title="GET STARTED" />
                 </a>

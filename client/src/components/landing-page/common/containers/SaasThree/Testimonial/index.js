@@ -67,12 +67,12 @@ const TestimonialSection = ({
                     <Text content={item.review} {...review} />
                     <TestimonialMeta>
                       <AuthorInfo>
-                        <AuthorImage>
+                        {/* <AuthorImage>
                           <Image
                             src={item.avatar}
                             alt={`reviewer-image-${index}`}
                           />
-                        </AuthorImage>
+                        </AuthorImage> */}
                         <Box>
                           <Heading as="h3" content={item.name} {...name} />
                           <Text content={item.designation} {...designation} />
