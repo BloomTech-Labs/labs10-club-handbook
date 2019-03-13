@@ -132,6 +132,7 @@ const SectionRender = props => {
             .body {
               width: 55%;
               min-height: 60%;
+              padding: 3rem;
               padding-bottom: 5rem;
 
               @media ${size.desktop} {
@@ -195,7 +196,7 @@ const SectionRender = props => {
                     img_placement == 1 ||
                     img_placement == 4 ||
                     img_placement == 5
-                      ? { width: '80%' }
+                      ? { width: '100%' }
                       : null
                   }
                 >
