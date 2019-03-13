@@ -66,7 +66,8 @@ const SectionWrapper = styled.section`
         min-width: 230px;
         padding: 0 0 25px 0;
         text-align: center;
-        margin-right: 0;
+        /* margin-right: 0; */
+        margin: 0 10px;
         transition: 0.25s ease-in-out;
         &:hover {
           color: rgb(81, 159, 248);
