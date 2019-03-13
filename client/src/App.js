@@ -31,6 +31,7 @@ import AddMembersMobile from './components/users/AddMembersMobile'
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
 import Theme from './style/colors'
 import LandingPage from './components/landing-page/LandingPage'
+import GetStarted from './components/GetStarted'
 
 class App extends Component {
   componentDidMount() {
@@ -82,6 +83,7 @@ class App extends Component {
               component={AddMembersMobile}
             />
             <Route path="/home" component={LandingPage} />
+            <Route path="/get-started" component={GetStarted} />
             {/* </Switch> */}
           </div>
         </BrowserRouter>

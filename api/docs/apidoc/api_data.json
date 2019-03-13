@@ -350,7 +350,7 @@
   },
   {
     "type": "post",
-    "url": "/api/clubs/:id/checkMember",
+    "url": "/api/clubs/checkMember",
     "title": "verify member by email",
     "group": "members",
     "description": "<p>no token req, returns boolean</p>",
@@ -390,7 +390,7 @@
     "version": "0.0.0",
     "filename": "api/routes/clubsRoute.js",
     "groupTitle": "members",
-    "name": "PostApiClubsIdCheckmember"
+    "name": "PostApiClubsCheckmember"
   },
   {
     "type": "post",

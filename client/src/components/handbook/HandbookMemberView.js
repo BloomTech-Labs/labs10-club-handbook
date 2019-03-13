@@ -37,7 +37,13 @@ class HandbookMemberView extends React.Component {
   }
 
   render() {
-    if (this.props.currentUser.club_id) {
+    if (
+      this.props.loading ||
+      this.props.usersLoading ||
+      this.props.authLoading
+    ) {
+      return <LoadingPage />
+    } else if (this.props.currentUser.club_id) {
       return (
         <>
           <MembersViewDashBar
@@ -62,9 +68,6 @@ class HandbookMemberView extends React.Component {
               <HandbookRender sections={this.props.sections} />
             </RenderContainer>
           </HandbookPageContainer>
-          {this.props.loading || this.props.usersLoading ? (
-            <LoadingPage />
-          ) : null}
         </>
       )
     } else {
@@ -96,6 +99,7 @@ const mapStateToProps = state => {
     sections: state.clubs.sections,
     loading: state.clubs.loading,
     usersLoading: state.users.loading,
+    authLoading: state.auth.loading,
   }
 }
 

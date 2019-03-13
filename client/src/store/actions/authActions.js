@@ -25,7 +25,7 @@ export const signinUser = () => dispatch => {
 }
 
 export const handleAuthorization = () => dispatch => {
-  console.log('handleAuthorization() from authActions invoked')
+  dispatch({ type: AUTHORIZATION_START, message: 'Starting authorization.' })
 
   auth
     .handleAuthentication()
@@ -62,7 +62,7 @@ export const logoutUser = () => dispatch => {
 }
 
 export const handleAuthorizationEmail = () => dispatch => {
-  console.log('handleAuthorizationEmail() from authActions invoked')
+  dispatch({ type: AUTHORIZATION_START, message: 'Starting authorization.' })
 
   authEmail
     .handleAuthentication()

@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { AddCircle } from '@material-ui/icons'
 
 export const EditBtn = styled.div`
   display: none;
@@ -93,24 +92,29 @@ export const TitleBox = styled.div`
   border-bottom-right-radius: 5px;
 `
 
-export const AddButton = styled(AddCircle)`
-  margin-bottom: 1;
+export const AddButton = styled.div`
   cursor: pointer;
   border-radius: 100%;
-  background: white;
+  background: rgb(81, 159, 248);
+  color: white;
   box-shadow: -1px 1px 15px black;
   position: fixed;
-  margin-top: -1rem;
+  margin-top: -0.5rem;
   z-index: 1;
+  font-size: 4rem !important;
+  width: 4rem;
+  height: 4rem;
+  text-shadow: 0 1px 1px black;
+  font-weight: bold;
 
   :hover {
-    transform: translateY(-3px);
-    box-shadow: -1px 1px 25px black;
+    transform: translateY(-2px);
+    box-shadow: 0px 1px 15px black;
   }
 
   :active {
     transform: translateY(0);
-    box-shadow: 0 1px 5px black;
+    box-shadow: 0 1px 2px black;
   }
 `
 
