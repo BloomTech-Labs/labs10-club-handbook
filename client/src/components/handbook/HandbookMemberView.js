@@ -85,7 +85,6 @@ const HandbookPageContainer = styled.div`
 `
 const RenderContainer = styled.div`
   width: 100%;
-  max-width: 2000px;
   margin: 0 auto;
 `
 
