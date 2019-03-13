@@ -120,6 +120,7 @@ const authReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         message: null,
+        currentUser: { ...state.currentUser, signed: true },
       }
 
     default:

@@ -9,6 +9,7 @@ import { size } from '../../style/breakpoints'
 const SContainer = styled.div`
   position: fixed;
   top: 0;
+  left: 0;
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -20,6 +21,7 @@ const SContainer = styled.div`
 
 const SignatureContainer = styled.div`
   width: 400px;
+  max-width: 100vw;
   margin-top: 100px;
   padding: 20px;
   border: 2px solid rgb(68, 125, 197);
@@ -32,8 +34,9 @@ const SignatureContainer = styled.div`
   align-items: center;
   flex-direction: column;
   color: white;
+  margin-left: 0;
   @media ${size.mobile} {
-    width: 95%;
+    /* width: 95%; */
   }
 
   h2 {
@@ -45,7 +48,7 @@ const Form = styled.form`
   width: 100%;
   margin-top: 20px;
   input {
-    width: 80%;
+    width: 100%;
     line-height: 1.5;
     padding: 0px 5px;
     border-radius: 5px;
@@ -71,6 +74,12 @@ const Form = styled.form`
       background: white;
       box-shadow: 0 0 10px 0 rgb(65, 82, 179) inset;
     }
+  }
+  .button-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    margin-top: 20px;
   }
 `
 
@@ -133,7 +142,16 @@ class Signature extends React.Component {
                 placeholder="Enter your full name"
                 value={this.state.signature}
               />
-              <button type="submit">Sign</button>
+              <div className="button-wrapper">
+                <button
+                  type="button"
+                  className="close-btn"
+                  onClick={this.props.showSignature}
+                >
+                  Close
+                </button>
+                <button type="submit">Sign</button>
+              </div>
             </Form>
 
             <Notification>
@@ -146,7 +164,12 @@ class Signature extends React.Component {
       return (
         <SContainer>
           <SignatureContainer>
-            <p>You've already signed!</p>
+            <p>You have signed the CliqueBook!</p>
+            <Form>
+              <div className="button-wrapper">
+                <button onClick={this.props.showSignature}>Close</button>
+              </div>
+            </Form>
           </SignatureContainer>
         </SContainer>
       )
