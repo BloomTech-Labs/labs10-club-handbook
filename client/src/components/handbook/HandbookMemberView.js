@@ -48,7 +48,10 @@ class HandbookMemberView extends React.Component {
           />
           <HandbookPageContainer>
             {this.state.signOpen === true && (
-              <Signature signed={this.props.signed} />
+              <Signature
+                signed={this.props.signed}
+                showSignature={this.showSignature}
+              />
             )}
             <HandbookMembersForm
               sections={this.props.sections}

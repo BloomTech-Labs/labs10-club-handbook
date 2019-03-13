@@ -188,6 +188,7 @@ const usersReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         message: null,
+        userById: { ...state.userById, signed: true },
       }
 
     case LOG_OUT:
