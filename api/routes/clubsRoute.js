@@ -21,6 +21,37 @@ router.get('/', async (req, res) => {
 })
 
 /**
+ * @api {post} /api/clubs/checkMember verify member by email
+ * @apiGroup members
+ * @apiDescription no token req, returns boolean
+ * @apiParam {string} email add to body.email (REQ)
+ * @apiSuccess {string} message confirmation message
+ * @apiSuccess {boolean} isMember true or false
+ */
+router.post('/checkMember', async (req, res, next) => {
+  try {
+    req.body.email = req.body.email.toLowerCase()
+
+    let member = await db('users')
+      .where({ email: req.body.email })
+      .first()
+    if (member) {
+      if (member.club_id) {
+        res.status(200).json({ message: `member has club`, isMember: true })
+      } else {
+        res.status(200).json({ message: `member has no club`, isMember: false })
+      }
+    } else {
+      res
+        .status(200)
+        .json({ message: `member does not exist`, isMember: false })
+    }
+  } catch (err) {
+    res.status(500).json(err)
+  }
+})
+
+/**
  * @api {get} /api/clubs/:id Request Club by ID
  * @apiGroup clubs
  * @apiDescription token holder must be member of club
@@ -60,37 +91,6 @@ router.get(
     }
   }
 )
-
-/**
- * @api {post} /api/clubs/checkMember verify member by email
- * @apiGroup members
- * @apiDescription no token req, returns boolean
- * @apiParam {string} email add to body.email (REQ)
- * @apiSuccess {string} message confirmation message
- * @apiSuccess {boolean} isMember true or false
- */
-router.post('/checkMember', async (req, res, next) => {
-  try {
-    req.body.email = req.body.email.toLowerCase()
-
-    let member = await db('users')
-      .where({ email: req.body.email })
-      .first()
-    if (member) {
-      if (member.club_id) {
-        res.status(200).json({ message: `member has club`, isMember: true })
-      } else {
-        res.status(200).json({ message: `member has no club`, isMember: false })
-      }
-    } else {
-      res
-        .status(200)
-        .json({ message: `member does not exist`, isMember: false })
-    }
-  } catch (err) {
-    res.status(500).json(err)
-  }
-})
 
 /**
  * @api {post} /api/clubs/:id/signature sign a handbook
