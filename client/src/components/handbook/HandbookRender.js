@@ -36,6 +36,7 @@ const SectionRender = props => {
             align-items: center;
             background: ${bg_color};
             font-family: ${font};
+            border-bottom: 1px solid gray;
 
             h1 {
               text-align: center;
@@ -85,6 +86,7 @@ const SectionRender = props => {
           const Body = styled.div`
             display: flex;
             width: 100%;
+            max-width: 140rem;
             padding: 5rem;
             justify-content: space-between;
             align-items: center;
@@ -130,6 +132,8 @@ const SectionRender = props => {
             .body {
               width: 55%;
               min-height: 60%;
+              padding: 3rem;
+              padding-bottom: 5rem;
 
               @media ${size.desktop} {
                 width: 45%;
@@ -166,13 +170,21 @@ const SectionRender = props => {
                     ? { justifyContent: 'center' }
                     : img_placement == 3
                     ? { flexDirection: 'row-reverse' }
+                    : img_placement == 5
+                    ? { flexDirection: 'column' }
                     : null
                 }
               >
                 {img_url && img_placement != 1 && img_placement != 4 ? (
                   <div
                     className="img"
-                    style={img_placement == 3 ? { marginLeft: '2rem' } : null}
+                    style={
+                      img_placement == 3
+                        ? { marginLeft: '2rem' }
+                        : img_placement == 5
+                        ? { marginBottom: '5rem', marginTop: '-5rem' }
+                        : null
+                    }
                   >
                     <img src={img_url} />
                   </div>
@@ -180,8 +192,11 @@ const SectionRender = props => {
                 <div
                   className="body"
                   style={
-                    !img_url || img_placement == 1 || img_placement == 4
-                      ? { width: '80%' }
+                    !img_url ||
+                    img_placement == 1 ||
+                    img_placement == 4 ||
+                    img_placement == 5
+                      ? { width: '100%' }
                       : null
                   }
                 >
