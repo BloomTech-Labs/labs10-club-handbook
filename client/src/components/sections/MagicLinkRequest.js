@@ -4,6 +4,7 @@ import AuthEmail from '../../auth/AuthEmail'
 import styled from 'styled-components'
 import { size } from '../../style/breakpoints'
 import logo from '../../logos/Cliquebook_combo.png'
+import axios from 'axios'
 
 // #region Styled Components
 const SContainer = styled.div`
@@ -108,19 +109,32 @@ class MagicLinkRequest extends React.Component {
   state = {
     email: '',
     emailStatus: false,
+    notFound: false,
+    message: '',
   }
 
   handleChanges = event => {
     this.setState({ [event.target.name]: event.target.value })
   }
 
-  handleSubmit = event => {
+  handleSubmit = async event => {
     event.preventDefault()
-    authEmail.sendEmail(this.state.email)
+    this.setState({ notFound: false, message: '', emailStatus: false })
 
-    this.setState({
-      emailStatus: true,
-    })
+    let checkMember = await axios.post(
+      'https://club-handbook.herokuapp.com/api/clubs/checkMember',
+      { email: this.state.email }
+    )
+    console.log(checkMember)
+    if (checkMember.data.isMember) {
+      authEmail.sendEmail(this.state.email)
+
+      this.setState({
+        emailStatus: true,
+      })
+    } else {
+      this.setState({ notFound: true, message: checkMember.data.message })
+    }
   }
 
   render() {
@@ -154,8 +168,10 @@ class MagicLinkRequest extends React.Component {
             />
             <button type="submit">Send Link</button>
           </form>
-          <EmailSent visible={this.state.emailStatus}>
-            Link sent! Check your email inbox.
+          <EmailSent visible={this.state.emailStatus || this.state.notFound}>
+            {!this.state.notFound
+              ? 'Link sent! Check your email inbox.'
+              : this.state.message}
           </EmailSent>
         </ContentContainer>
       </SContainer>
