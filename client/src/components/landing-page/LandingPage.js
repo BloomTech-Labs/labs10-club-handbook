@@ -21,8 +21,10 @@ import UpdateScreen from './common/containers/SaasThree/UpdateScreen'
 import TestimonialSection from './common/containers/SaasThree/Testimonial'
 import Newsletter from './common/containers/SaasThree/Newsletter'
 import Footer from './common/containers/SaasThree/Footer'
+import { connect } from 'react-redux'
+import { signinUser } from '../../store/actions/authActions'
 
-export default () => {
+const LandingPage = props => {
   return (
     <ThemeProvider theme={saasThreeTheme}>
       <Fragment>
@@ -46,7 +48,7 @@ export default () => {
               <Navbar />
             </DrawerProvider>
           </Sticky>
-          <BannerSection />
+          <BannerSection signinUser={props.signinUser} />
           <ServiceSection />
           <UpdateScreen />
           <FeatureSection />
@@ -61,3 +63,8 @@ export default () => {
     </ThemeProvider>
   )
 }
+
+export default connect(
+  null,
+  { signinUser }
+)(LandingPage);

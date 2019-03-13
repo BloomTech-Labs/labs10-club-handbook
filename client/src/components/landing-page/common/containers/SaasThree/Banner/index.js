@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Link from 'next/link'
+// import Link from 'next/link'
 import Icon from 'react-icons-kit'
 import Fade from 'react-reveal/Fade'
 import { openModal, closeModal } from '@redq/reuse-modal'
@@ -22,6 +22,7 @@ import {
 import BannerImage from '../../../assets/image/saasThree/banner-image.jpg'
 import { ic_play_circle_filled } from 'react-icons-kit/md/ic_play_circle_filled'
 import { play } from 'react-icons-kit/entypo/play'
+import { Link } from 'react-router-dom'
 
 // close button for modal
 const CloseModalButton = () => (
@@ -54,6 +55,7 @@ const BannerSection = ({
   buttonWrapper,
   button,
   fillButton,
+  signinUser
 }) => {
   // modal handler
   const handleVideoModal = () => {
@@ -98,13 +100,18 @@ const BannerSection = ({
               {...description}
               content="Clique Book is an easy-to-use document creator and club manager. Let Clique Book make maintaining your club's hand book quick and painless."
             />
-            {/* <Box {...buttonWrapper}>
-              <Link href="#">
-                <a>
-                  <Button {...fillButton} title="FREE TRIAL" />
-                </a>
+            <Box {...buttonWrapper}>
+              <Link to='/handbook/member-view'>
+                {/* <a> */}
+                  <Button {...fillButton} title="VIEW CLIQUEBOOK" />
+                {/* </a> */}
               </Link>
-              <Link href="#">
+              {/* <Link to='/clique/handbook'> */}
+                {/* <a> */}
+                  <Button  onClick={signinUser} {...fillButton} title="MANAGE CLIQUEBOOK" />
+                {/* </a> */}
+              {/* </Link> */}
+              {/* <Link href="#">
                 <a>
                   <Button
                     {...button}
@@ -113,8 +120,8 @@ const BannerSection = ({
                     iconPosition="left"
                   />
                 </a>
-              </Link>
-            </Box> */}
+              </Link> */}
+            </Box>
           </Box>
           <Box {...imageWrapper}>
             <Fade bottom>
@@ -189,15 +196,17 @@ BannerSection.defaultProps = {
   },
   fillButton: {
     type: 'button',
-    fontSize: ['13px', '14px'],
-    fontWeight: '600',
+    fontSize: ['16px', '16px'],
+    fontWeight: '700',
     borderRadius: '4px',
     p: ['0px 15px', '8px 22px'],
-    colors: 'secondaryWithBg',
+    colors: 'cliqueAction',
     height: '46px',
     minWidth: ['auto', '150px'],
-    height: ['40px', '46px'],
+    height: ['60px', '60px'],
     minHeight: 'auto',
+    width: '225px',
+    margin: '0 10px',
   },
   buttonWrapper: {
     flexBox: true,

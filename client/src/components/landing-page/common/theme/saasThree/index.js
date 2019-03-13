@@ -85,7 +85,7 @@ export const saasThreeTheme = {
         color: colors.black,
         backgroundColor: colors.secondaryHover,
         borderColor: colors.secondaryHover,
-        boxShadow: colors.secondaryBoxShadow,
+        boxShadow: colors.primaryBoxShadow,
       },
     },
     cliqueDefault: {
@@ -93,10 +93,10 @@ export const saasThreeTheme = {
       backgroundColor: colors.white,
       borderColor: colors.main,
       '&:hover': {
-        color: colors.white,
-        backgroundColor: colors.dark,
-        borderColor: colors.dark,
-        // boxShadow: colors.secondaryBoxShadow,
+        // color: colors.white,
+        // backgroundColor: colors.dark,
+        // borderColor: colors.dark,
+        boxShadow: colors.primaryBoxShadow,
       },
     },
     cliqueSecondary: {
@@ -106,6 +106,17 @@ export const saasThreeTheme = {
       '&:hover': {
         color: colors.white,
         backgroundColor: colors.main,
+        borderColor: colors.main,
+        boxShadow: colors.primaryBoxShadow,
+      },
+    },
+    cliqueAction: {
+      color: colors.main,
+      backgroundColor: colors.white,
+      borderColor: colors.main,
+      '&:hover': {
+        // color: colors.white,
+        // backgroundColor: colors.main,
         borderColor: colors.main,
         boxShadow: colors.primaryBoxShadow,
       },
