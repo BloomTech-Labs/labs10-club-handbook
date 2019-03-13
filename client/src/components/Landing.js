@@ -255,7 +255,7 @@ class Landing extends React.Component {
                     members
                     className={classes.actionButton}
                     component={Link}
-                    to="/handbook/member-view"
+                    to="/get-started"
                     color="inherit"
                     variant="contained"
                   >
