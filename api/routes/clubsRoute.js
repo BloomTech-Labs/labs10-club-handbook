@@ -62,24 +62,30 @@ router.get(
 )
 
 /**
- * @api {post} /api/clubs/:id/checkMember verify member by email
+ * @api {post} /api/clubs/checkMember verify member by email
  * @apiGroup members
  * @apiDescription no token req, returns boolean
  * @apiParam {string} email add to body.email (REQ)
  * @apiSuccess {string} message confirmation message
  * @apiSuccess {boolean} isMember true or false
  */
-router.post('/:id/checkMember', async (req, res, next) => {
+router.post('/checkMember', async (req, res, next) => {
   try {
+    req.body.email = req.body.email.toLowerCase()
+
     let member = await db('users')
-      .where({ email: req.body.email, club_id: req.params.id })
+      .where({ email: req.body.email })
       .first()
     if (member) {
-      res.status(200).json({ message: `member exists in club`, isMember: true })
+      if (member.club_id) {
+        res.status(200).json({ message: `member has club`, isMember: true })
+      } else {
+        res.status(200).json({ message: `member has no club`, isMember: false })
+      }
     } else {
       res
-        .status(400)
-        .json({ message: `member does not exist in club`, isMember: false })
+        .status(200)
+        .json({ message: `member does not exist`, isMember: false })
     }
   } catch (err) {
     res.status(500).json(err)

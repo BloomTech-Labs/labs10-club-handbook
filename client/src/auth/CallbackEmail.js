@@ -12,14 +12,6 @@ class CallbackEmail extends React.Component {
     this.props.history.push('/handbook/member-view')
   }
 
-  // componentDidUpdate() {
-  //   if (this.props.userLoggedIn) {
-  //     this.props.history.push('/handbook/member-view')
-  //   } else {
-  //     this.props.history.push('/handbook/member-view')
-  //   }
-  // }
-
   render() {
     return <LoadingPage />
   }
