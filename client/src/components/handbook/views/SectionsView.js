@@ -43,7 +43,9 @@ class SectionsView extends Component {
               onClick={this.props.toggleAddView}
               color="primary"
               style={iconSize}
-            />
+            >
+              +
+            </AddButton>
           </Column>
         </Row>
 

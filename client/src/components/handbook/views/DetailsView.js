@@ -64,7 +64,6 @@ const DetailsView = props => {
         type="text"
         name="title"
         value={props.title}
-        placeholder="...handbook name"
         onChange={props.handleChange}
       />
       {props.club.name || props.club.name == '' ? (
