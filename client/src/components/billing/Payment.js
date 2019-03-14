@@ -19,11 +19,16 @@ const PaymentContainer = styled.div`
   /* width: 70%; */
   display: flex;
   flex-direction: column;
+  padding-top: 10px;
+
+  @media (max-width: 600px) {
+    padding-top: 40px;
+  }
 
   h1 {
     margin: 0 auto;
     margin-bottom: 60px;
-    color: white;
+    /* color: white; */
   }
   .title-thin {
     display: none;
@@ -110,7 +115,7 @@ class Payment extends React.Component {
   render() {
     const subscriptions = [
       {
-        title: 'Startup',
+        title: 'Starting Plan',
         price: '0',
         description: ['5 members'],
         value: 'a',
@@ -177,19 +182,36 @@ class Payment extends React.Component {
                       {line}
                     </Typography>
                   ))}
-                  <PaymentButton>
-                    <StripeCheckout
-                      label="BUY"
-                      panelLabel="SUBSCRIBE"
-                      token={tier.token}
-                      stripeKey="pk_test_M1Y5kyDDSB7dOAWXIhzOOqMV"
-                      name={tier.title}
-                      description={tier.description}
-                      amount={tier.price * 100}
-                      allowRememberMe={false}
-                      image={CliqueBook_favicon}
-                    />
-                  </PaymentButton>
+                  {tier.title !== 'Starting Plan' ? (
+                    <PaymentButton>
+                      <StripeCheckout
+                        label="BUY"
+                        panelLabel="SUBSCRIBE"
+                        token={tier.token}
+                        stripeKey="pk_test_M1Y5kyDDSB7dOAWXIhzOOqMV"
+                        name={tier.title}
+                        description={tier.description}
+                        amount={tier.price * 100}
+                        allowRememberMe={false}
+                        image={CliqueBook_favicon}
+                      />
+                    </PaymentButton>
+                  ) : (
+                    <PaymentButton>
+                      <StripeCheckout
+                        label="FREE"
+                        disabled={true}
+                        panelLabel="SUBSCRIBE"
+                        token={tier.token}
+                        stripeKey="pk_test_M1Y5kyDDSB7dOAWXIhzOOqMV"
+                        name={tier.title}
+                        description={tier.description}
+                        amount={tier.price * 100}
+                        allowRememberMe={false}
+                        image={CliqueBook_favicon}
+                      />
+                    </PaymentButton>
+                  )}
                 </CardContent>
               </Card>
             </Grid>
