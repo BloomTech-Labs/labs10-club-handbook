@@ -353,7 +353,7 @@ export const FEATURES = [
       'Your information is protected using modern security measures.',
   },
   {
-    icon: 'flaticon-sign-in',
+    icon: 'flaticon-stopwatch-1',
     title: 'Ease of Use',
     description:
       'Our built-in text editor makes it wasy to personalize your handbook.',
@@ -365,13 +365,13 @@ export const FEATURES = [
       'Your members do not need to register. They are quickly authenticated via a link sent directly to their inbox',
   },
   {
-    icon: 'flaticon-settings',
+    icon: 'flaticon-magnifying-glass',
     title: 'Auditing',
     description:
       'We track we has viewed your handbook and agreed to your terms.',
   },
   {
-    icon: 'flaticon-document-1',
+    icon: 'flaticon-briefing',
     title: 'Document Editing',
     description:
       'Making changes to your handbook is simple.',
@@ -409,27 +409,43 @@ export const SCREENSHOTS = [
 
 export const TESTIMONIALS = [
   {
-    title: 'Modern look & trending design',
+    title: '',
     review:
-      'Get working experience to work with this amazing team & in future want to work together for bright future projects and also make deposit to freelancer.',
-    name: 'Denny Hilguston',
-    designation: 'CEO of Dell Co.',
+      'CliqueBook is such a powerful tool. I love the ability to share the culture of our club in a visual way. The layout tools were super easy to use to add images and change font colors. Everything looks so professional and is easy to keep up-to-date.',
+    name: 'Joshua',
+    designation: 'Software Engineer Project Lead',
+    avatar: `${AuthorThree}`,
+  },
+  {
+    title: '',
+    review:
+      'Easy to Use with a very nice user flow!',
+    name: 'Albert',
+    designation: 'Wordpress Developer',
+    avatar: `${AuthorThree}`,
+  },
+  {
+    title: '',
+    review:
+      `Very professional looking app. It's easy to use and very quick startup.`,
+    name: 'Dave',
+    designation: 'B.S. Computer Science',
     avatar: `${AuthorOne}`,
   },
   {
-    title: 'Modern look & trending design',
+    title: '',
     review:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit sed eiusmod tempor incididunt labore dolore features Lorem ipsum dolor sit amet consectetur.',
-    name: 'Justin Albuz',
-    designation: 'Co Founder of IBM',
+      'The handbook renderer section is fun to use on mobile view!',
+    name: 'Paolo',
+    designation: 'B.S. Tourism',
     avatar: `${AuthorTwo}`,
   },
   {
-    title: 'Modern look & trending design',
+    title: '',
     review:
-      'Get working experience to work with this amazing team & in future want to work together for bright future projects and also make deposit to freelancer.',
-    name: 'Milly Cristiana',
-    designation: 'Manager of Hp co.',
+      'I love the Handbook Renderer Section. So Clean and so Intuitive. Makes me so excited to start Lambda School.',
+    name: 'Jacob',
+    designation: 'Upcoming Lambda Student',
     avatar: `${AuthorThree}`,
   },
 ];

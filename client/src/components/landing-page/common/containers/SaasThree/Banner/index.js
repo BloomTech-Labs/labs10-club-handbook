@@ -18,6 +18,8 @@ import {
   VideoModal,
   PlayButton,
   VideoWrapper,
+  ButtonWrapper,
+  Stylediframe,
 } from './banner.style'
 import BannerImage from '../../../assets/image/saasThree/banner-image.jpg'
 import { ic_play_circle_filled } from 'react-icons-kit/md/ic_play_circle_filled'
@@ -55,7 +57,7 @@ const BannerSection = ({
   buttonWrapper,
   button,
   fillButton,
-  signinUser
+  signinUser,
 }) => {
   // modal handler
   const handleVideoModal = () => {
@@ -79,7 +81,7 @@ const BannerSection = ({
 
   return (
     <BannerWrapper id="banner_section">
-      <TiltShape className="banner-shape" />
+      <TiltShape  />
       <Container>
         <Box {...row}>
           <Box {...contentWrapper}>
@@ -100,7 +102,7 @@ const BannerSection = ({
               {...description}
               content="Clique Book is an easy-to-use document creator and club manager. Let Clique Book make maintaining your club's hand book quick and painless."
             />
-            <Box {...buttonWrapper}>
+            <ButtonWrapper>
               <Link to='/handbook/member-view'>
                 {/* <a> */}
                   <Button {...fillButton} title="VIEW CLIQUEBOOK" />
@@ -111,7 +113,7 @@ const BannerSection = ({
                   <Button  onClick={signinUser} {...fillButton} title="MANAGE CLIQUEBOOK" />
                 {/* </a> */}
               {/* </Link> */}
-              {/* <Link href="#">
+              {/* <Link to='#'>
                 <a>
                   <Button
                     {...button}
@@ -121,9 +123,9 @@ const BannerSection = ({
                   />
                 </a>
               </Link> */}
-            </Box>
+            </ButtonWrapper>
           </Box>
-          <Box {...imageWrapper}>
+          {/* <Box {...imageWrapper}>
             <Fade bottom>
               <VideoModal>
                 <Image src={BannerImage} alt="banner image" />
@@ -131,6 +133,17 @@ const BannerSection = ({
                   <Icon icon={play} size={40} />
                 </PlayButton>
               </VideoModal>
+            </Fade>
+          </Box> */}
+          <Box {...imageWrapper}>
+            <Fade bottom>
+              {/* <VideoModal> */}
+              <Stylediframe  allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/DaWl0aIXgr4?controls=1&loop=1&color=white&enablejsapi=1&modestbranding=1&rel=0"></Stylediframe>
+              {/* https://www.youtube.com/embed/DaWl0aIXgr4?controls=0 */}
+                {/* <PlayButton tabIndex="1000" onClick={handleVideoModal}> */}
+                  {/* <Icon icon={play} size={40} /> */}
+                {/* </PlayButton> */}
+              {/* </VideoModal> */}
             </Fade>
           </Box>
         </Box>

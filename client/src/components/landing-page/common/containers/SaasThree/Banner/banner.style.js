@@ -138,3 +138,32 @@ export const VideoWrapper = styled.div`
     left: 0;
   }
 `;
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 35px;
+  @media (max-width: 550px) {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    button {
+      &:last-of-type {
+        margin-top: 40px;
+      }
+    }
+`;
+
+export const Stylediframe = styled.iframe`
+  width: 550px;
+  height: 300px;
+  margin: 0 100px;
+  @media (max-width: 550px) {
+    /* max-width: 99%;
+    height: 200px; */
+    margin: 0;
+    width: 100vw;
+    height: 60vw;
+  }
+`;
