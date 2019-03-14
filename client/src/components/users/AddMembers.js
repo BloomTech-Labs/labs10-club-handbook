@@ -4,7 +4,8 @@ import { Button } from '@material-ui/core'
 import { addUser } from '../../store/actions/usersActions'
 import styled from 'styled-components'
 import { size } from '../../style/breakpoints'
-
+import { withStyles } from '@material-ui/core/styles'
+import { TextField } from '@material-ui/core'
 //#region STYLES
 const SCWrapper = styled.div`
   width: 100%;
@@ -85,6 +86,35 @@ const StyledButton = styled.button`
     /* width: 100px; */
   }
 `
+
+const NameField = withStyles({
+  root: {
+    width: '25%',
+    // line-height: 1.5;
+    marginTop: 0,
+    marginBottom: 0,
+    marginRight: 0,
+    marginLeft: 0,
+  },
+  label: {
+    fontSize: 100,
+  },
+})(TextField)
+
+const EmailField = withStyles({
+  root: {
+    width: '35%',
+    // line-height: 1.5;
+    marginTop: 0,
+    marginBottom: 0,
+    marginRight: 0,
+    marginLeft: 0,
+  },
+  label: {
+    fontSize: 50,
+  },
+})(TextField)
+
 //#endregion
 
 class AddMembers extends React.Component {
@@ -117,7 +147,7 @@ class AddMembers extends React.Component {
       lastname: '',
       email: '',
     })
-    this.nameInput.focus()
+    // this.nameInput.focus()
   }
 
   render() {
@@ -125,7 +155,7 @@ class AddMembers extends React.Component {
       <SCWrapper>
         <StyledH6>Add Some Members to Your Clique</StyledH6>
         <Form onSubmit={this.handleSubmit}>
-          <SCName
+          {/* <SCName
             type="text"
             name="firstname"
             onChange={this.handleChanges}
@@ -136,24 +166,64 @@ class AddMembers extends React.Component {
             }}
             required
             autoFocus
+          /> */}
+          <NameField
+            id="outlined-first"
+            label="First Name"
+            margin="normal"
+            variant="outlined"
+            name="firstname"
+            value={this.state.firstname}
+            onChange={this.handleChanges}
+            inputProps={{
+              style: { fontSize: 16, padding: 12 },
+              // step: 300,
+            }}
+            InputLabelProps={{ style: { fontSize: 16, marginTop: -5 } }}
           />
 
-          <SCName
+          {/* <SCName
             type="text"
             name="lastname"
             onChange={this.handleChanges}
             placeholder="Last Name"
             value={this.state.lastname}
             required
+          /> */}
+          <NameField
+            id="outlined-first"
+            label="Last Name"
+            margin="normal"
+            variant="outlined"
+            name="lastname"
+            value={this.state.lastname}
+            onChange={this.handleChanges}
+            inputProps={{
+              style: { fontSize: 16, padding: 12 },
+            }}
+            InputLabelProps={{ style: { fontSize: 16, marginTop: -5 } }}
           />
 
-          <SCEmail
+          {/* <SCEmail
             type="text"
             name="email"
             onChange={this.handleChanges}
             placeholder="Email Address"
             value={this.state.email}
             required
+          /> */}
+          <EmailField
+            id="outlined-first"
+            label="Email Address"
+            margin="normal"
+            variant="outlined"
+            name="email"
+            value={this.state.email}
+            onChange={this.handleChanges}
+            inputProps={{
+              style: { fontSize: 16, padding: 12 },
+            }}
+            InputLabelProps={{ style: { fontSize: 16, marginTop: -5 } }}
           />
           {/* <Button>Add Member</Button> */}
           <StyledButton>ADD MEMBER</StyledButton>

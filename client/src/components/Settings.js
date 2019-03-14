@@ -193,6 +193,7 @@ class Settings extends React.Component {
                     inputProps={{
                       style: { fontSize: 16, padding: 12 },
                     }}
+                    InputLabelProps={{ style: { fontSize: 16, marginTop: -5 } }}
                   />
                   <TextField
                     id="outlined-last"
@@ -206,6 +207,7 @@ class Settings extends React.Component {
                     inputProps={{
                       style: { fontSize: 16, padding: 12 },
                     }}
+                    InputLabelProps={{ style: { fontSize: 16, marginTop: -5 } }}
                   />
                   {/* <FormGroup className={classes.formgroup}>
                   <FormControlLabel
