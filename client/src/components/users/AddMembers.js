@@ -180,6 +180,7 @@ class AddMembers extends React.Component {
               // step: 300,
             }}
             InputLabelProps={{ style: { fontSize: 16, marginTop: -5 } }}
+            required
           />
 
           {/* <SCName
@@ -202,6 +203,7 @@ class AddMembers extends React.Component {
               style: { fontSize: 16, padding: 12 },
             }}
             InputLabelProps={{ style: { fontSize: 16, marginTop: -5 } }}
+            required
           />
 
           {/* <SCEmail
@@ -224,6 +226,7 @@ class AddMembers extends React.Component {
               style: { fontSize: 16, padding: 12 },
             }}
             InputLabelProps={{ style: { fontSize: 16, marginTop: -5 } }}
+            required
           />
           {/* <Button>Add Member</Button> */}
           <StyledButton>ADD MEMBER</StyledButton>
