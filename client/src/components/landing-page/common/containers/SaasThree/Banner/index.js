@@ -138,8 +138,7 @@ const BannerSection = ({
           <Box {...imageWrapper}>
             <Fade bottom>
               {/* <VideoModal> */}
-              <Stylediframe  allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/DaWl0aIXgr4?controls=1&loop=1&color=white&enablejsapi=1&modestbranding=1&rel=0"></Stylediframe>
-              {/* https://www.youtube.com/embed/DaWl0aIXgr4?controls=0 */}
+              <Stylediframe  allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/FvFjSsddojQ?controls=1&loop=1&color=white&enablejsapi=1&modestbranding=1&rel=0"></Stylediframe>
                 {/* <PlayButton tabIndex="1000" onClick={handleVideoModal}> */}
                   {/* <Icon icon={play} size={40} /> */}
                 {/* </PlayButton> */}
