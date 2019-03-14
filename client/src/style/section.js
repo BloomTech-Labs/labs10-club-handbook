@@ -97,7 +97,7 @@ export const AddButton = styled.div`
   border-radius: 100%;
   background: rgb(81, 159, 248);
   color: white;
-  box-shadow: -1px 1px 15px black;
+  box-shadow: 0px 1px 5px black;
   position: fixed;
   margin-top: -0.5rem;
   z-index: 1;
