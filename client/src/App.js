@@ -51,29 +51,29 @@ class App extends Component {
         <BrowserRouter>
           <div className="App">
             {/* <Switch> */}
-            <Route exact path="/" component={Landing} />
+            <Route exact path="/" component={LandingPage} />
             <Route path="/clique" component={DashBar} />
             <Route exact path="/clique/members" component={Members} />
             <Route path="/clique/handbook" component={HandbookPage} />
-            <Route exact path="/add-members" component={AddMembers} />
-            <Route exact path="/signature" component={Signature} />
-            <Route exact path="/update-members/:id" component={UpdateMembers} />
-            <Route exact path="/billing" component={Billing} />
+            {/* <Route exact path="/add-members" component={AddMembers} /> */}
+            {/* <Route exact path="/signature" component={Signature} /> */}
+            {/* <Route exact path="/update-members/:id" component={UpdateMembers} /> */}
+            {/* <Route exact path="/billing" component={Billing} /> */}
             <Route exact path="/clique/settings" component={Settings} />
-            <Route path="/login" component={Login} />
+            {/* <Route path="/login" component={Login} /> */}
             <Route path="/callback" component={Callback} />
             <Route
               path="/authenticated"
               render={props => <Authenticated {...props} />}
             />
-            <Route path="/add-section" component={SectionForm} />
-            <Route
+            {/* <Route path="/add-section" component={SectionForm} /> */}
+            {/* <Route
               path="/update-section/:id"
               render={props => <SectionForm {...props} update={true} />}
-            />
+            /> */}
             <Route path="/callback-email" component={CallbackEmail} />
-            <Route path="/magic-link-request" component={MagicLinkRequest} />
-            <Route path="/section/:id" component={SectionRender} />
+            {/* <Route path="/magic-link-request" component={MagicLinkRequest} /> */}
+            {/* <Route path="/section/:id" component={SectionRender} /> */}
             <Route
               path="/handbook/member-view"
               component={HandbookMemberView}
@@ -82,7 +82,6 @@ class App extends Component {
               path="/clique/members/add-members-mobile"
               component={AddMembersMobile}
             />
-            <Route path="/home" component={LandingPage} />
             <Route path="/get-started" component={GetStarted} />
             {/* </Switch> */}
           </div>
