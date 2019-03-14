@@ -156,7 +156,7 @@ export const ButtonWrapper = styled.div`
 `;
 
 export const Stylediframe = styled.iframe`
-  width: 550px;
+  width: 532px;
   height: 300px;
   margin: 0 100px;
   @media (max-width: 550px) {
@@ -164,6 +164,6 @@ export const Stylediframe = styled.iframe`
     height: 200px; */
     margin: 0;
     width: 100vw;
-    height: 60vw;
+    height: 57vw;
   }
 `;
