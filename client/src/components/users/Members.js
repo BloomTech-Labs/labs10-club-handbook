@@ -142,10 +142,11 @@ const FailedPage = styled.div`
   height: 100vh;
   width: 100vw;
   background: rgba(150, 150, 150, 0.5);
+  z-index: 10;
 
   div {
     margin: 100px auto;
-    background: white;
+    background: rgb(255, 255, 255);
     max-width: 500px;
     display: flex;
     justify-content: center;

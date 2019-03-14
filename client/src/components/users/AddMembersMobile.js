@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { addUser } from '../../store/actions/usersActions'
 import styled from 'styled-components'
 import { size } from '../../style/breakpoints'
+import { TextField } from '@material-ui/core'
+import { withStyles } from '@material-ui/core/styles'
 
 //#region STYLES
 const SCWrapper = styled.div`
@@ -29,12 +31,36 @@ const SCName = styled.input`
   margin-bottom: 10px;
   padding: 2px 6px;
 `
+const NameField = withStyles({
+  root: {
+    width: '75%',
+    // line-height: 1.5;
+    marginTop: 0,
+    marginBottom: 10,
+    marginRight: 0,
+    marginLeft: 0,
+    color: 'white',
+  },
+})(TextField)
+
 const SCEmail = styled.input`
   width: 75%;
   line-height: 1.2;
   border-radius: 7px;
   padding: 2px 6px;
 `
+
+const EmailField = withStyles({
+  root: {
+    width: '75%',
+    // line-height: 1.5;
+    marginTop: 0,
+    marginBottom: 0,
+    marginRight: 0,
+    marginLeft: 0,
+  },
+})(TextField)
+
 const StyledButton = styled.button`
   width: 100px;
   color: #000000;
@@ -107,7 +133,7 @@ class AddMembersMobile extends React.Component {
       lastname: '',
       email: '',
     })
-    this.nameInput.focus()
+    // this.nameInput.focus()
     this.props.history.push('/clique/members')
   }
 
@@ -123,7 +149,7 @@ class AddMembersMobile extends React.Component {
           <StyledButton onClick={this.handleSubmit}>ADD MEMBER</StyledButton>
         </HeaderBar>
         <Form onSubmit={this.handleSubmit}>
-          <SCName
+          {/* <SCName
             type="text"
             name="firstname"
             onChange={this.handleChanges}
@@ -134,24 +160,72 @@ class AddMembersMobile extends React.Component {
             }}
             required
             autofocus
+          /> */}
+          <NameField
+            id="outlined-first"
+            label="First Name"
+            margin="normal"
+            variant="outlined"
+            name="firstname"
+            value={this.state.firstname}
+            onChange={this.handleChanges}
+            inputProps={{
+              style: { fontSize: 16, padding: 12, color: 'white' },
+              // step: 300,
+            }}
+            InputLabelProps={{
+              style: { fontSize: 16, marginTop: -5, color: 'white' },
+            }}
           />
 
-          <SCName
+          {/* <SCName
             type="text"
             name="lastname"
             onChange={this.handleChanges}
             placeholder="Last Name"
             value={this.state.lastname}
             required
+          /> */}
+          <NameField
+            id="outlined-first"
+            label="Last Name"
+            margin="normal"
+            variant="outlined"
+            name="lastname"
+            value={this.state.lastname}
+            onChange={this.handleChanges}
+            inputProps={{
+              style: { fontSize: 16, padding: 12, color: 'white' },
+              // step: 300,
+            }}
+            InputLabelProps={{
+              style: { fontSize: 16, marginTop: -5, color: 'white' },
+            }}
           />
 
-          <SCEmail
+          {/* <SCEmail
             type="text"
             name="email"
             onChange={this.handleChanges}
             placeholder="Email Address"
             value={this.state.email}
             required
+          /> */}
+          <EmailField
+            id="outlined-first"
+            label="Email Address"
+            margin="normal"
+            variant="outlined"
+            name="email"
+            value={this.state.email}
+            onChange={this.handleChanges}
+            inputProps={{
+              style: { fontSize: 16, padding: 12, color: 'white' },
+              // step: 300,
+            }}
+            InputLabelProps={{
+              style: { fontSize: 16, marginTop: -5, color: 'white' },
+            }}
           />
         </Form>
       </SCWrapper>
