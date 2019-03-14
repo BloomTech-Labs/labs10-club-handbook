@@ -4,17 +4,44 @@ import { connect } from 'react-redux'
 import { signinUser } from '../store/actions/authActions'
 import styled from 'styled-components'
 import bgImage from '../assets/images/bg-abstract-lightblue.jpg'
+import TiltShape from './landing-page/common/containers/SaasThree/TiltShape';
+
+const BannerWrapper = styled.section`
+  /* padding: 150px 0 0 0; */
+  background-image: linear-gradient(
+    rgb(81, 159, 248) 0%,
+    rgb(81, 159, 248) 100%
+  );
+  background-size: cover;
+  background-position: top center;
+  overflow: hidden;
+  /* height: 975px; */
+  height: 100vh;
+  @media (max-width: 575px) {
+    /* padding: 120px 0 0 0; */
+  }
+
+  img {
+    max-width: 100%;
+    /* height: auto; */
+    display: block;
+  }
+
+  .banner-shape {
+    z-index: 2;
+  }
+`;
 
 const Container = styled.div`
   position: relative;
   display: flex;
   width: 100%;
-  height: 100vh;
+  /* height: 100vh; */
   justify-content: center;
   margin: 0 auto;
   padding: 10rem;
-  background: url(${bgImage});
-  background-size: cover;
+  /* background: url(${bgImage}); */
+  /* background-size: cover; */
 
   @media (max-width: 800px) {
     padding: 10rem 3rem;
@@ -28,11 +55,11 @@ const Container = styled.div`
 `
 
 const Card = styled.div`
-  margin-top: 20rem;
+  margin-top: 15rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 25rem;
+  width: 30rem;
   padding: 2rem;
   height: 20rem;
   background: white;
@@ -48,13 +75,18 @@ const Card = styled.div`
     }
 
     @media (max-width: 550px) {
-      margin: 10rem 0 5rem;
+      margin: 2rem 0 5rem;
     }
+  }
+  @media (max-width: 800px) {
+    margin-top: 5rem;
+    height: 16rem;
   }
 
   @media (max-width: 550px) {
     width: 30rem;
     margin: 0;
+    height: 16rem;
   }
 
   h5,
@@ -131,20 +163,23 @@ const Image = styled.img`
 
 const GetStarted = props => {
   return (
-    <Container>
-      <Image src={require('../logos/Cliquebook_combo2.png')} />
-      <Card>
-        <h5>For Members</h5>
-        <p>View your club's handbook</p>
-        <MemberButton to="/handbook/member-view">Access Handbook</MemberButton>
-      </Card>
+    <BannerWrapper id="banner_section">
+      <TiltShape />
+      <Container>
+        <Image src={require('../logos/Cliquebook_combo2_white.png')} />
+        <Card>
+          <h5>For Members</h5>
+          <p>View your club's handbook</p>
+          <MemberButton to="/handbook/member-view">Access Handbook</MemberButton>
+        </Card>
 
-      <Card>
-        <h5>For Admins</h5>
-        <p>Manage Handbook</p>
-        <AdminButton onClick={props.signinUser}>Signup / Signin</AdminButton>
-      </Card>
-    </Container>
+        <Card>
+          <h5>For Admins</h5>
+          <p>Manage Handbook</p>
+          <AdminButton onClick={props.signinUser}>Signup / Signin</AdminButton>
+        </Card>
+      </Container>
+    </BannerWrapper>
   )
 }
 
