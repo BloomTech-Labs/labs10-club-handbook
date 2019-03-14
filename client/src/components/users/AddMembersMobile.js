@@ -92,7 +92,7 @@ const StyledButton = styled.button`
 `
 const HeaderBar = styled.div`
   width: 100%;
-  margin-top: 20px;
+  margin-bottom: 20px;
   /* background: #3648ac; */
   font-size: 35px;
   color: #ffffff;
@@ -140,15 +140,17 @@ class AddMembersMobile extends React.Component {
   render() {
     return (
       <SCWrapper>
-        <HeaderBar>
-          <StyledButton
-            onClick={() => this.props.history.push('/clique/members')}
-          >
-            BACK
-          </StyledButton>
-          <StyledButton onClick={this.handleSubmit}>ADD MEMBER</StyledButton>
-        </HeaderBar>
         <Form onSubmit={this.handleSubmit}>
+          <HeaderBar>
+            <StyledButton
+              type="button"
+              onClick={() => this.props.history.push('/clique/members')}
+            >
+              BACK
+            </StyledButton>
+            <StyledButton type="submit">ADD MEMBER</StyledButton>
+          </HeaderBar>
+
           {/* <SCName
             type="text"
             name="firstname"
@@ -176,6 +178,7 @@ class AddMembersMobile extends React.Component {
             InputLabelProps={{
               style: { fontSize: 16, marginTop: -5, color: 'white' },
             }}
+            required
           />
 
           {/* <SCName
@@ -201,6 +204,7 @@ class AddMembersMobile extends React.Component {
             InputLabelProps={{
               style: { fontSize: 16, marginTop: -5, color: 'white' },
             }}
+            required
           />
 
           {/* <SCEmail
@@ -226,6 +230,7 @@ class AddMembersMobile extends React.Component {
             InputLabelProps={{
               style: { fontSize: 16, marginTop: -5, color: 'white' },
             }}
+            required
           />
         </Form>
       </SCWrapper>
