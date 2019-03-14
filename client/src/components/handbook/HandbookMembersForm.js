@@ -1,10 +1,22 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import SectionsMembersView from './views/SectionsMembersView'
 import { size } from '../../style/breakpoints'
 
+const easeInLeft = keyframes`
+  0% {left: -20rem}
+  100% {left: 0}
+`
+
+const easeOutLeft = keyframes`
+  0% {left: 0}
+  100% {left: -20rem}
+`
+
 const ClubForm = styled.form`
-  display: ${props => props.visible === true ? "block" : "none"};
+  /* display: ${props => (props.visible === true ? 'block' : 'none')}; */
+  animation: ${props => (props.navOpen ? easeInLeft : easeOutLeft)} 0.3s;
+  animation-fill-mode: forwards;
   position: fixed;
   width: 22rem;
   height: 94%;

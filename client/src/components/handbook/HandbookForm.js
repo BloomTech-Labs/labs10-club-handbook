@@ -1,10 +1,20 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import SectionsView from './views/SectionsView'
 import DetailsView from './views/DetailsView'
 import { connect } from 'react-redux'
 import { deleteSectionById } from '../../store/actions/clubActions'
 import { size } from '../../style/breakpoints'
+
+const easeInLeft = keyframes`
+  0% {left: -20rem}
+  100% {left: 0}
+`
+
+const easeOutLeft = keyframes`
+  0% {left: 0}
+  100% {left: -20rem}
+`
 
 const ClubForm = styled.form`
   position: fixed;
@@ -22,7 +32,8 @@ const ClubForm = styled.form`
 
   @media ${size.mobile} {
     width: 16rem;
-    display: ${props => (props.navOpen ? 'block' : 'none')};
+    animation: ${props => (props.navOpen ? easeInLeft : easeOutLeft)} 0.3s;
+    animation-fill-mode: forwards;
   }
 `
 const FixedContainer = styled.div`
